@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>HydroFlask</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title><%= yield(:title) %></title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+      <%= render 'layouts/header' %>
+      <% if current_page? root_url %>
+        <%= yield %>
+      <% else %>
+        <div class="wrapper">
+          <div id="contentWrapper">
+            <%= yield %>
+          </div>
+        </div>
+      <% end %>
+    	<%= render 'layouts/footer' %>
+  </body>
 </html>

@@ -1,0 +1,60 @@
+<footer class="clear">
+	<div class="wrapper">
+		<div id="footerWrapper">
+			<div class="panel fifty_percent">
+				<div id="footer-nav-div" class="inner-panel left">
+					<nav>
+						<ul id="footer-nav">
+							<li>Shop</li>
+							<li>Hydro Flask</li>
+							<li>Social</li>
+							<li>5% Back</li>
+							<li>Cart</li>
+						</ul>
+					</nav>
+				</div>
+				<div id="footer-email-updates" class="inner-panel left">
+					<h3>EMAIL UPDATES</h3>
+					<p>Get the latest news from Hydro Flask!</p>
+					<form>
+						<div class="form-row">
+							<input type="text" value="Enter email address" id="footer_email_box" /><input type="image" src="<%= asset_path "submit_button.png" %>" />
+						</div>
+					</form>
+				</div>
+				<div id="footer-copy" class="clear">
+					<p>&copy; <%= Time.now.year %> Hydro Flask. All prices are in USD.</p>
+				</div>
+			</div>
+			<div class="panel fifty_percent">
+				<div class="inner-panel left">
+					<h3>SOCIAL</h3>
+					<p>Stay current on the Hydro Flask world!</p>
+					<nav id="footer-social-nav">
+						<ul>
+							<li><a href="https://twitter.com/HydroFlask" target="_blank"><%= image_tag "twitter_square.png", alt: "Hydro Flask on Twitter" %></a></li>
+							<li><a href="http://www.facebook.com/hydroflask?ref=mf" target="_blank"><%= image_tag "facebook_square.png", alt: "Hydro Flask on Facebook" %></a></li>
+							<li><a href="#" target="_blank"><%= image_tag "instagram_square.png", alt: "Hydro Flask on Instagram" %></a></li>
+							<li><a href="#" target="_blank"><%= image_tag "pinterest_square.png", alt: "Hydro Flask on Pinterest" %></a></li>
+							<li><a href="http://feeds.feedburner.com/HydroFlask" target="_blank"><%= image_tag "rss_square.png", alt: "Hydro Flask Feedburner" %></a></li>
+						</ul>
+					</nav>
+					<div id="hman-div" class="clear">
+						<%= image_tag "h_man.png", id: "h_man" %>
+						<h3>H-MAN</h3>
+						<p>Meet the heart &amp; soul of Hydro Flask!</p>
+					</div>
+				</div>
+				<div class="inner-panel left">
+					<h3>SEARCH</h3>
+					<p>Find info on the Hydro Flask site.</p>
+					<form>
+						<div class="form-row">
+							<input type="text" value="Search" id="footer_search_box"/><input type="image" src="<%= asset_path "search_button.png" %>" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

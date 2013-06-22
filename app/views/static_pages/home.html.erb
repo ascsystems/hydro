@@ -1,1 +1,73 @@
-<h1>Hydro Flask coming soon.</h1>
+<% provide(:title, 'Hydro Flask') %>
+<div id="homeslideposition">
+	<div id="homeslidenavouter">
+		<div id="homeslidenav">
+			<img src="<%= asset_path "arrow_left.png" %>" class="navarrow" id="navarrowleft" onclick="homeSlide.prevNext(-1);"/>
+			<img src="<%= asset_path "arrow_right.png" %>" class="navarrow" id="navarrowright" onclick="homeSlide.prevNext(1);" />
+			<ul id="homeslidenavlinks" style="display: none;">
+				<li>
+					<img src="<%= asset_path "clear.gif" %>" class="navlink active" id="navlink0" onclick="homeSlide.slideToPage(0);" alt="Hydroflask Mountains" title="Hydroflask Mountains" />
+				</li>
+				<li>
+					<img src="<%= asset_path "clear.gif" %>" class="navlink" id="navlink1" onclick="homeSlide.slideToPage(1);" alt="" title="" />
+				</li>
+				<li>
+					<img src="<%= asset_path "clear.gif" %>" class="navlink" id="navlink2" onclick="homeSlide.slideToPage(2);" alt="" title="" />
+				</li>
+				<li>
+					<img src="<%= asset_path "clear.gif" %>" class="navlink" id="navlink3" onclick="homeSlide.slideToPage(3);" alt="" title="" />
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="homeslidewrapper" style="width: 100%;">
+		<div id="homeslidebox">
+			<div class="homeslide" id="homeslideB">
+				<div class="homeslidediv" style="">
+					<a href="/"><img src="<%= asset_path "mountains.png" %>" alt="Hydroflask Mountains" title="Hydroflask Mountains" class="homeslideimg" id="homeslideimg0" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="homeContentWrapper" class="bottom">
+		<div id="homeContent">
+			<div class="panel featured-panel">
+				<div class="inner-panel">
+					<div class="featured-text">
+						<h2>FEATURED FLASK</h2>
+						<hr class="dividing_line">
+						<p class="bold">24 oz. Narrow Mouth</p>
+						<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
+						<p class="link"><a href="#">Shop this flask >></a></p>
+					</div>
+					<%= image_tag "featured_flask.png" %>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="inner-panel">
+					<div class="center" id="fiveback_div">
+						<%= image_tag "five_percent_back.png" %>
+					</div>
+					<hr class="dividing_line">
+					<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
+					<p class="link"><a href="#">Learn more >></a></p>
+				</div>
+			</div>
+			<div class="panel no-background">
+				<div class="inner-panel">
+					<h2>FIND A STORE</h2>
+					<form>
+						<div class="form-row">
+							<input type="text" value="Enter zip code" /><input type="image" src="<%= asset_path "submit_button.png" %>" />
+						</div>
+					</form>
+					<h2 id="hydroflask_stories">HYDRO FLASK STORIES</h2>
+					<div class="left" id="hydroflask_stories_div">
+						<p class="alt_color left">Where has your flask taken you?</p>
+						<img class="right" src="<%= asset_path "share_button.png" %>" alt="Share">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

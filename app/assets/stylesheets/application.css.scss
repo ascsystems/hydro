@@ -1,0 +1,258 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+@import "compass/css3/border-radius";
+@import "variables";
+
+* {  
+	margin: 0;  
+	padding: 0;  
+}
+
+body {
+	background: none repeat scroll 0 0 $background_color;
+    font-size:12px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: $primary_color;
+	text-decoration: none;
+}
+
+a:hover {
+	color: $secondary_color;
+}
+
+ul {
+	list-style-type: none;
+}
+
+input[type="text"], input[type="password"] {
+	height:30px;
+    color: $input_text_color;
+    padding-left:5px;
+    border:none;
+} 
+
+p {
+	margin: 0 0 .8em 0;
+}
+
+p.link {
+	/* margin: .7em 0 .7em 0; */
+	font-weight:bold;
+}
+
+p.alt_color {
+	color: $tertiary_color;
+}
+
+.form-row input[type="image"] {
+	vertical-align:top;
+}
+
+.panel {
+    text-align:left;
+	float: left;
+	height:100%;
+	width: 33%;
+    background-color: $background_color;
+    .inner-panel {
+        float:left;
+        width:90%;
+        padding: 5% 5% 0 5%;
+    }
+}
+
+.form-row{
+    height:30px;
+}
+
+.wrapper {
+	margin-left:auto;
+	margin-right:auto;
+	#left: 0;
+    min-width: 1000px;
+    #position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 50;
+}
+
+header .wrapper {
+    background: url(/assets/header.png) no-repeat;
+}
+
+header .no-background {
+    background:none;
+}
+
+#headerWrapper, #footerWrapper, #contentWrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 980px;
+    height: 122px;
+    position: relative;
+    text-align: left;
+}
+
+#footerWrapper {
+    height:200px;
+}
+
+#contentWrapper {
+    height:auto;
+}
+
+#logo {
+	height: 122px;
+    background: rgba(0, 0, 0, 0.4);
+	float: left;
+}
+
+header nav {
+	float: right;
+	ul {
+        margin-top:20px;
+        @include border-radius(4px);
+        float: left;
+        background-color:#ffffff;
+        padding: 0 10px 0 10px;
+        li {
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            padding: 5px 10px 5px 10px;
+            height: 12px;
+    		float: left;
+            a {
+                color: $secondary_color;
+            }
+            a:hover {
+                color: $primary_color;
+            }
+            a.primary-color {
+                color: $primary_color;
+            }
+            a.primary-color:hover {
+                color: $secondary_color;
+            }
+    	}
+        li.selected {
+            background-color: $selected_nav_color;
+            a {
+                color: $primary_color;
+            }
+        }
+    }
+}
+
+footer h3 {
+    font-weight:normal;
+    margin-bottom:.5em;
+    font-size:12px;
+}
+
+#footer-nav-div {
+    width:150px;
+}
+
+#footer-email-updates {
+    width:auto;
+}
+
+#footer-nav {
+    width:150px;
+}
+
+#footer-nav li {
+    margin-bottom: 6px;
+}
+
+#footer-copy {
+    float: left;
+    font-size: 0.9em;
+    margin-top: 30px;
+    margin-left:2%;
+}
+
+footer p {
+    color: $footer_text_color;
+    margin-bottom: 1em;
+}
+
+#footer-social-nav ul li {
+	float: left;
+    margin-right:5px;
+}
+
+.no-background {
+    background:none;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
+.center {
+    text-align:center;
+}
+
+.clear {
+    clear:both;
+}
+
+.bold {
+    font-weight:bold;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.fifty_percent {
+    width: 50%;
+}
+
+footer .panel .inner-panel {
+    padding: 4% 2% 0 2%;
+    width:46%;
+}
+
+#hman-div {
+    float:left;
+    margin-top:6%;
+}
+
+#footer_email_box {
+    width:225px;
+}
+
+#footer_search_box {
+    width: 190px;
+}
+
+#h_man {
+    float:left;
+    margin-right:6%;
+}
+
+footer #wrapper {
+    border-top: 2px solid #FFFFFF;
+}
