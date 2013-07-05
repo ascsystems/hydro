@@ -1,6 +1,15 @@
-<div>
+<div id="page">
+  <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
   <h1><%= @page.title %></h1>
-  <%= raw @page.body %>
-  <%= link_to 'Edit', edit_page_path(@page) %> |
-  <%= link_to 'Back', pages_path %>
+  <div id="header_content"><%= raw @page.header_content %></div>
+  <div id="left_content">
+    <%= raw @page.body %>
+  </div>
+  <div id="right_content">
+    <%= raw @page.right_content %>
+  </div>
+  <div class="admin_links">
+    <%= link_to 'Edit', edit_page_path(@page) %> |
+    <%= link_to 'Back', pages_path %>
+  </div>
 </div>

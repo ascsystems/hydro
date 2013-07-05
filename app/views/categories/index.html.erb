@@ -1,22 +1,23 @@
-<div id="category_content">
-  <h1>SHOP</h1>
-  <div id="breadcrumb"></div>
-  <% @categories.each do |category| %>
-      <h2><%= category.name %></h2>
-      <div class="category_row">
-        <% category.products.each do |product| %>
-        <div class="category_product">
-          <div><%= image_tag "/images/product/default.png", alt: product.name, title: product.name %></div>
-          <h3><%= product.name %></h3>
-          <div>
-            <div><%= product.price %></div>
-            <div>Star Rating</div>
-          </div>
-          <div>
-            Colors here
-          </div>
-        </div>
-        <% end %>
-      </div>
-  <% end %>
-</div>
+<h1>Categories</h1>
+
+<table class="admin_table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= link_to 'Show', category %></td>
+    <td><%= link_to 'Edit', edit_category_path(category) %></td>
+    <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Category', new_category_path %>

@@ -1,4 +1,40 @@
 HydroFlask::Application.routes.draw do
+  resources :product_option_values
+
+
+  resources :product_types
+
+
+  resources :brands
+
+
+  resources :option_types
+
+
+  resources :product_images
+
+
+  resources :option_values
+
+
+  resources :options
+
+
+  resources :orders
+
+
+  resources :line_items
+
+
+  resources :carts
+
+
+  get "pages/edit"
+
+  get "pages/index"
+
+  get "pages/create"
+
   resources :category_products
 
 
@@ -16,9 +52,9 @@ HydroFlask::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  
+  match '/mycart' => 'carts#show'
 
-  match '/shop' => 'categories#index'
+  match '/shop' => 'categories#shop'
 
   match '/:id' => 'pages#show'
 

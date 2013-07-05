@@ -10,6 +10,15 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def shop
+    @categories = Category.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @categories }
+    end
+  end
+
   # GET /categories/1
   # GET /categories/1.json
   def show

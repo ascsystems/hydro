@@ -1,3 +1,84 @@
-// Place all the styles related to the Categories controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+#category_content .category_row {
+	float:left;
+	width: 100%;
+	background-color: #EFEFEF;
+	clear:both;
+	margin-bottom: 20px;
+}
+
+#category_content h2 {
+	color: #ffffff;
+	background-color:$heading_color;
+	width: 25%;
+	padding:12px;
+	margin:0 0 14px 0;
+	font-size: 1em;
+	text-transform:uppercase;
+	font-weight:bold;
+	clear:both;
+	float:left;
+	position:relative;
+}
+
+#category_content h2:after {
+    border-color: $heading_color transparent;
+    border-style: solid;
+    border-width: 15px 15px 0;
+    bottom: -15px;
+    content: "";
+    display: block;
+    left: 50px;
+    position: absolute;
+    width: 0;
+}
+
+#category_content .category_row {
+	margin-top: -15px;
+}
+
+#category_content .category_product {
+	float: left;
+	width: 25%;
+}
+
+.category_product .product_wrapper {
+	padding: 10px 20px 10px 20px;
+}
+
+.category_product .image {
+	text-align:center;
+}
+
+.category_product h3 {
+	font-size: 1em;
+	text-transform:uppercase;
+	font-weight:bold;
+	margin-top:8px;
+}
+
+.category_product h3 a {
+	color: $secondary_color;
+}
+
+.category_product h3 a:hover {
+	color: $primary_color;
+}
+
+.category_product .content_wrapper {
+	float:left;
+	width:100%;
+	clear:both;
+	margin:8px 0;
+}
+
+.category_product .content_wrapper .price {
+	float:left;
+	width: 50%;
+}
+
+.category_product .content_wrapper .rating {
+	float:left;
+	width: 50%;
+}

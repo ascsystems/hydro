@@ -1,20 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div id="product">
+	<div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; Flasks &raquo; <%= @product.name %></div>
+	<h1><%= @product.name %></h1>
+	<div id="image_column">
+		<div class="image"><%= image_tag "products/default.jpg", alt: @product.name, title: @product.name %></div>
+	</div>
+	<div id="product_content_column">
+		<div id="top_content_wrapper">
+			<div id="options">
+			Select Cap: Standard
+			</div>
+			<div id="cart_wrapper">
+				<!--<div id="cart" class="hydro_button">ADD TO CART &raquo;</div>-->
+			<%= button_to 'Add to Cart', line_items_path(:product_id => @product) %>
+				<div id="rating">
+				</div>
+				<div id="social">
+				</div>
+			</div>
+		</div>
+		<div id="content_nav">
+			<ul>
+				<li class="selected">DESCRIPTION<li>
+				<li>REVIEWS</li>
+				<li>WRITE A REVIEW</li>
+			</ul>
+		</div>
+		<div id="description">
+			<%= @product.description %>
+		</div>
+	</div>
+	<div class="admin_links">
+		<%= link_to 'Edit', edit_product_path(@product) %> |
+		<%= link_to 'Back', products_path %>
+	</div>
+</div>

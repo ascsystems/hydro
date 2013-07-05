@@ -1,3 +1,35 @@
-// Place all the styles related to the Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+#page h1 {
+	color: $heading_color;
+	border-bottom: 1px $secondary_color solid;
+	margin: 5px 0 15px 0;
+	padding: 15px 0px 5px 0px;
+	font-weight:normal;
+	text-transform: uppercase;
+}
+
+#page #header_content {
+	width: 100%;
+	background-color: $background_color;
+	color: $heading_color;
+	font-size: 1.2em;
+	min-height:200px;
+	line-height:200px;
+}
+
+#page #left_content {
+	float:left;
+	width: 80%;
+}
+
+#page #right_content {
+	float:left;
+	width:20%;
+}
+
+#page #right_content div {
+	background-color: $background_color;
+	width:100%;
+	margin-bottom:5px;
+}

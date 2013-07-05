@@ -2,16 +2,16 @@
 	<div class="wrapper<% if current_page? root_url %> home_wrapper no-background<% end %>">
 		<div id="headerWrapper">
 			<div id="logo">
-				<a href="http://www.hydroflask.com"><%= image_tag "hydroflask_logo.png" %></a>
+				<%= link_to image_tag("hydroflask_logo.png", alt: "Hydro Flask"), root_url %>
 			</div>
 			<nav id="homepage-nav">
 				<ul>
 					<li><%= link_to "SHOP", shop_path %></li>
-					<li><a href="#">HYDRO FLASK</a></li>
-					<li><a href="#">SOCIAL</a></li>
-					<li><%= link_to "5% Back", controller: 'pages', action: 'show', id: "5-back" %></li>
+					<li><%= link_to "HYDRO FLASK", controller: 'pages', action: 'show', id: 'hydro-flask-technology' %></li>
+					<li><%= link_to "SOCIAL", controller: 'pages', action: 'show', id: 'hydro-flask-social' %></li>
+					<li><%= link_to "5% BACK", controller: 'pages', action: 'show', id: "5-back" %></li>
 					<li>|</li>
-					<li><a href="" class="primary-color">CART 0<div id="cart-img"></div></a></li>
+					<li><%= link_to "CART #{items_in_cart}", mycart_path, class: "primary-color" %><div id="cart-img"></div></a></li>
 				</ul>
 			</nav>
 		</div>

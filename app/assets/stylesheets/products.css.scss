@@ -1,3 +1,78 @@
-// Place all the styles related to the Products controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+#product {
+	float:left;
+	width: 100%;
+}
+
+#product h1 {
+	color: $heading_color;
+	border-top: 1px $secondary_color solid;
+	border-bottom: 1px $secondary_color solid;
+	margin: 5px 0 40px 0;
+	padding: 15px 5px 15px 5px;
+	font-weight:normal;
+	text-transform: uppercase;
+}
+
+#product #image_column {
+	float:left;
+	width:33.3%;
+}
+
+#product #product_content_column {
+	float:left;
+	width: 66.6%;
+}
+
+#product .image {
+	text-align:center;
+}
+
+#product #top_content_wrapper{
+	float:left;
+	width:100%;
+	margin-bottom:15px;
+}
+
+#product #options{
+	float:left;
+}
+
+#product #cart_wrapper {
+	float:left;
+	margin-left: 15px;
+	width: 33%;
+}
+
+#product #cart, #product #rating, #product #social {
+	float:left;
+	width:100%;
+}
+
+#product #content_nav {
+	clear:both;
+	width: 100%;
+	float:left;
+	margin-bottom: 15px;
+}
+
+#product #content_nav ul {
+	height: 40px;
+	background-color: $background_color;
+	li {
+		padding: 0px 15px 0 15px;
+		float:left;
+		font-size: 1.1em;
+		line-height: 40px;
+	}
+	li.selected {
+		color: #fff;
+		background-color: $heading_color;
+	}
+}
+
+#product #options {
+	background-color: $background_color;
+	width:60%;
+}

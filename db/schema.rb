@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622182247) do
+ActiveRecord::Schema.define(:version => 20130705025514) do
+
+  create_table "brands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "carts", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -28,20 +39,100 @@ ActiveRecord::Schema.define(:version => 20130622182247) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "line_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "quantity",   :default => 1
+    t.integer  "order_id"
+  end
+
+  create_table "option_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "product_type_id"
+  end
+
+  create_table "option_values", :force => true do |t|
+    t.integer  "option_id"
+    t.string   "name"
+    t.integer  "order_num"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "display_data"
+  end
+
+  create_table "options", :force => true do |t|
+    t.string   "name"
+    t.integer  "order_num"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "option_type_id"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.integer  "shipping_method_id"
+    t.string   "billing_first_name"
+    t.string   "billing_last_name"
+    t.string   "billing_address"
+    t.string   "billing_address2"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "billing_zip"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "body"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "slug",           :null => false
+    t.text     "header_content"
+    t.text     "right_content"
+  end
+
+  create_table "product_images", :force => true do |t|
+    t.integer  "product_id"
+    t.string   "name"
+    t.integer  "order_num"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "slug",       :null => false
+  end
+
+  create_table "product_option_values", :force => true do |t|
+    t.integer  "option_value_id"
+    t.integer  "product_id"
+    t.decimal  "price",           :precision => 10, :scale => 0
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  create_table "product_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.decimal  "price",       :precision => 10, :scale => 0
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.decimal  "price",           :precision => 10, :scale => 0
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.integer  "product_type_id"
+    t.integer  "brand_id"
   end
 
 end
