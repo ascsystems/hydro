@@ -1,0 +1,28 @@
+<div id="category_content">
+  <h1>SHOP</h1>
+  <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; Shop</div>
+  <% @categories.each do |category| %>
+      <% if category.products.exists? %>
+        <h2><%= category.name %></h2>
+        <div class="category_row">
+          <% category.products.each do |product| %>
+            <div class="category_product">
+              <div class="product_wrapper">
+                <div class="image"><%= link_to image_tag("products/default.jpg", alt: product.name, title: product.name), product_path(product) %></div>
+                <h3><%= link_to product.name, product_path(product) %></h3>
+                <div class="content_wrapper">
+                  <div class="price"><%= number_to_currency product.price %></div>
+                  <div class="rating">Star Rating</div>
+                </div>
+                <div class="colors">
+                  <% product.product_option_values.option_values.each do |val| %>
+                  <div class="color_circle" style="color:<%= val.display_data %>" title="<%= val.name %>"></div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+  <% end %>
+</div>

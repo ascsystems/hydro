@@ -1,0 +1,23 @@
+<h1>Listing option_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @option_types.each do |option_type| %>
+  <tr>
+    <td><%= option_type.name %></td>
+    <td><%= link_to 'Show', option_type %></td>
+    <td><%= link_to 'Edit', edit_option_type_path(option_type) %></td>
+    <td><%= link_to 'Destroy', option_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Option type', new_option_type_path %>

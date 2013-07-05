@@ -1,0 +1,16 @@
+<h1>My Cart</h1>
+<table>
+  <thead>
+    <tr><th>Product</th><th>Price</th><th>Quantity</th></tr>
+  </thead>
+  <tbody>
+  <% @cart.line_items.each do |item| %>
+    <tr><td><%= link_to image_tag("products/default.jpg", alt: item.product.name, title: item.product.name, style: "height:10%;float:left;"), item.product %><%= link_to item.product.name, item.product %></td><td><%= number_to_currency item.product.price %></td><td><%= item.quantity %></td></tr>
+  <% end %>
+</tbody>
+</table>
+<%= button_to 'Checkout', new_order_path, :method => :get %>
+<div class="admin_links">
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
+</div>

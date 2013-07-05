@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  option_value_id: 1
+  product_id: 1
+  price: 9.99
+
+two:
+  option_value_id: 1
+  product_id: 1
+  price: 9.99
