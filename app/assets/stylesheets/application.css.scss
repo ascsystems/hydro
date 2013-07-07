@@ -92,6 +92,10 @@ p.alt_color {
 
 header .wrapper {
     background: url(/assets/header.png) no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 footer .wrapper {
@@ -122,7 +126,7 @@ header .no-background {
 }
 
 #logo {
-	height: 122px;
+	height: 114px;
     background: rgba(0, 0, 0, 0.4);
 	float: left;
 }
@@ -305,8 +309,17 @@ footer #wrapper {
 
 div.color_circle {
     background: none repeat scroll 0 0 #000000;
-    border-radius: 5px 5px 5px 5px;
-    height: 10px;
-    line-height: 10px;
-    width: 10px;
+    border-radius: 6px 6px 6px 6px;
+    height: 12px;
+    line-height: 12px;
+    width: 12px;
+    float: left;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+div.colors {
+    margin-top: 5px;
+    float:left;
+    width: 100%;
 }

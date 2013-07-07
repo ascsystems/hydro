@@ -25,8 +25,8 @@
 #category_content h2:after {
     border-color: $heading_color transparent;
     border-style: solid;
-    border-width: 15px 15px 0;
-    bottom: -15px;
+    border-width: 10px 10px 0;
+    bottom: -10px;
     content: "";
     display: block;
     left: 50px;
@@ -36,6 +36,8 @@
 
 #category_content .category_row {
 	margin-top: -15px;
+	padding-top: 15px;
+	padding-bottom: 20px;
 }
 
 #category_content .category_product {
@@ -43,42 +45,46 @@
 	width: 25%;
 }
 
-.category_product .product_wrapper {
+#category_content .category_product .product_wrapper {
 	padding: 10px 20px 10px 20px;
 }
 
-.category_product .image {
+#category_content .category_product .image {
 	text-align:center;
 }
 
-.category_product h3 {
+#category_content .category_product .image img {
+	width:60%;
+}
+
+#category_content .category_product h3 {
 	font-size: 1em;
 	text-transform:uppercase;
 	font-weight:bold;
 	margin-top:8px;
 }
 
-.category_product h3 a {
+#category_content .category_product h3 a {
 	color: $secondary_color;
 }
 
-.category_product h3 a:hover {
+#category_content .category_product h3 a:hover {
 	color: $primary_color;
 }
 
-.category_product .content_wrapper {
+#category_content .category_product .content_wrapper {
 	float:left;
 	width:100%;
 	clear:both;
 	margin:8px 0;
 }
 
-.category_product .content_wrapper .price {
+#category_content .category_product .content_wrapper .price {
 	float:left;
 	width: 50%;
 }
 
-.category_product .content_wrapper .rating {
+#category_content .category_product .content_wrapper .rating {
 	float:left;
 	width: 50%;
 }

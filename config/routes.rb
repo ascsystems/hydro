@@ -1,4 +1,7 @@
 HydroFlask::Application.routes.draw do
+  resources :reviews
+
+
   resources :product_option_values
 
 
