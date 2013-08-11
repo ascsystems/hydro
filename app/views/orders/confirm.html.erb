@@ -1,0 +1,79 @@
+<div id="checkout_page">
+  <h1>Confirm Your Order</h1>
+  <div id="cart_panel">
+    <h2>Your Cart</h2>
+      <%= render partial: 'carts/item', collection: current_cart.line_items %>
+  </div>
+  <div id="form_panel">
+<p id="notice"><%= notice %></p>
+  <p>
+    <b>First name:</b>
+    <%= @order.first_name %>
+  </p>
+
+  <p>
+    <b>Last name:</b>
+    <%= @order.last_name %>
+  </p>
+
+  <p>
+    <b>Email:</b>
+    <%= @order.email %>
+  </p>
+
+  <p>
+    <b>Address:</b>
+    <%= @order.address %>
+  </p>
+
+  <p>
+    <b>Address2:</b>
+    <%= @order.address2 %>
+  </p>
+
+  <p>
+    <b>City:</b>
+    <%= @order.city %>
+  </p>
+
+  <p>
+    <b>State:</b>
+    <%= @order.state %>
+  </p>
+
+  <p>
+    <b>Zip:</b>
+    <%= @order.zip %>
+  </p>
+
+  <p>
+    <b>Shipping method:</b>
+    <%= @order.shipping_method_id %>
+  </p>
+
+  <p>
+    <b>Billing address:</b>
+    <%= @order.billing_address %>
+  </p>
+
+  <p>
+    <b>Billing address2:</b>
+    <%= @order.billing_address2 %>
+  </p>
+
+  <p>
+    <b>Billing city:</b>
+    <%= @order.billing_city %>
+  </p>
+
+  <p>
+    <b>Billing state:</b>
+    <%= @order.billing_state %>
+  </p>
+
+  <p>
+    <b>Billing zip:</b>
+    <%= @order.billing_zip %>
+  </p>
+  </div>
+</div>

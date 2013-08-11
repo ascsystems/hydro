@@ -16,14 +16,38 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
+    <%= f.label :short_name %><br />
+    <%= f.text_field :short_name %>
+  </div>
+  <div class="field">
+    <%= f.label :brand_id %>
+    <%= f.collection_select :brand_id, Brand.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :product_type_id %>
+    <%= f.collection_select :product_type_id, ProductType.all, :id, :name %>
+  </div>
+  <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.cktext_area :description, ckeditor: { allowedContent: true } %>
   </div>
   <div class="field">
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :meta_description %><br />
+    <%= f.text_field :meta_description %>
+  </div>
+  <div class="field">
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords %>
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit('Save »', class: 'button') %>
   </div>
 <% end %>

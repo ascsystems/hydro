@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :items_in_cart
+  helper_method :items_in_cart,  :current_cart, :header_categories
 
   private
 
@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
 
   def items_in_cart
     current_cart.line_items.count
+  end
+
+  def header_categories
+    Category.find(:all)
   end
 
 end

@@ -1,4 +1,16 @@
 HydroFlask::Application.routes.draw do
+  resources :product_option_value_images
+
+
+  resources :accounts
+
+
+  resources :line_item_options
+
+
+  resources :related_products
+
+
   resources :reviews
 
 
@@ -14,7 +26,6 @@ HydroFlask::Application.routes.draw do
   resources :option_types
 
 
-  resources :product_images
 
 
   resources :option_values
@@ -24,10 +35,10 @@ HydroFlask::Application.routes.draw do
 
 
   resources :orders
-
+  post "orders/confirm"
 
   resources :line_items
-
+  post "line_items/create"
 
   resources :carts
 
@@ -41,7 +52,13 @@ HydroFlask::Application.routes.draw do
   resources :category_products
 
 
-  resources :products
+  resources :products do
+    resources :product_images do
+      collection do
+        get :get_image
+      end
+    end
+  end
 
 
   resources :categories
@@ -49,6 +66,13 @@ HydroFlask::Application.routes.draw do
 
   resources :pages
 
+  match '/pages/hydro-flask-social' => 'pages#social'
+
+  match '/netsuite/item/:id' => 'netsuite#item'
+  match '/netsuite/items' => 'netsuite#items'
+  match '/netsuite/order/:id' => 'netsuite#order'
+  match '/netsuite/orders' => 'netsuite#orders'
+  match '/netsuite/add' => 'netsuite#addOrder'
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root to: 'static_pages#home'

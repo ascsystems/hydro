@@ -6,13 +6,7 @@
 }
 
 #product h1 {
-	color: $heading_color;
-	border-top: 1px $secondary_color solid;
-	border-bottom: 1px $secondary_color solid;
-	margin: 5px 0 40px 0;
-	padding: 15px 5px 15px 5px;
-	font-weight:normal;
-	text-transform: uppercase;
+    margin-top: 5px;
 }
 
 #product h3 {
@@ -42,7 +36,7 @@
 #product #top_content_wrapper{
 	float:left;
 	width:100%;
-	margin-bottom:15px;
+	margin-bottom:10px;
 }
 
 #product #options{
@@ -71,13 +65,16 @@
 }
 
 #product #content_nav ul {
-	height: 40px;
+	height: $button_height;
 	background-color: $background_color;
 	li {
+		height: $button_height;
 		padding: 0px 15px 0 15px;
 		float:left;
-		font-size: 1.1em;
-		line-height: 40px;
+	    font-family: Pragmatica2;
+	    font-size: 1.2em;
+		line-height: $button_line_height;
+    	letter-spacing: 2.3px;
 		position:relative;
 		cursor: pointer;
 	}
@@ -91,15 +88,11 @@
 		    bottom: -10px;
 		    content: "";
 		    display: block;
-		    left: 25px;
+		    left: 15px;
 		    position: absolute;
 		    width: 0;
 		}
 	}
-}
-
-#product #options {
-	width:60%;
 }
 
 #product #social .row {
@@ -118,6 +111,17 @@
 	}
 }
 
+#product #options {
+	width:60%;
+	min-height: 225px;
+}
+
+#product #options .content_box_wrapper {
+	padding: 20px;
+    padding: 5%;
+    width: 90%;
+}
+
 #product .addthis_button_google_plusone {
 	height:28px;
 }
@@ -127,10 +131,13 @@
 	cursor: pointer;
 	color: #fff;
 	font-size: 1.1em;
-	height: 40px;
-	line-height: 40px;
+	height: $button_height;
+	line-height: $button_line_height;
 	.cart_wrapper {
 		padding-left: 10px;
+	    font-family: Pragmatica2;
+	    font-size: 1.2em;
+	    letter-spacing: 1.2px;
 	}
 }
 
@@ -144,8 +151,14 @@
 }
 
 #product #related_products_header {
+	height:$button_height;
+	line-height:$button_line_height;
 	cursor: default;
 	position:relative;
+	margin-top:15px;
+    font-family: Pragmatica2;
+    font-size: 1em;
+    letter-spacing: 1.2px;
 	&:after {
 		border-color: $heading_color transparent;
 		border-style: solid;
@@ -153,7 +166,7 @@
 		bottom: -10px;
 		content: "";
 		display: block;
-		left: 25px;
+		left: 15px;
 		position: absolute;
 		width: 0;
 	}
@@ -220,11 +233,152 @@
 
 #product #description p.highlight {
 	font-size: 1.3em;
-	font-weight:bold;
 	color: $heading_color;
 	line-height: 25px;
 }
 
 #product #reviews, #product #review_form {
 	display: none;
+}
+
+#product div.color_circle {
+    background: none repeat scroll 0 0 #000000;
+    border-radius: 9px 9px 9px 9px;
+    height: 18px;
+    line-height: 18px;
+    width: 18px;
+    float: left;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#product #review_nav_list {
+	font-size: 90%;
+}
+
+#product div.white_circle  {
+	border:1px solid #000;
+	width:16px; 
+	height:16px;
+}
+
+#product div.colors {
+    float:left;
+    width: 100%;
+}
+
+#product img.option {
+	width:80px;
+	background-color:#ffffff;
+	border:3px solid #ffffff;
+	margin-right:10px;
+}
+
+#product img.selected {
+	border:3px solid #000000;
+}
+
+#product .option_wrapper {
+	clear:both;
+	float:left;
+}
+
+#product .option_header {
+	font-size: 1.2em;
+	font-family: Pragmatica2;
+	letter-spacing: 2px;
+	margin-bottom:5px;
+	margin-top:15px;
+	text-transform: uppercase;
+	color: #696969;
+
+}
+
+#product .option_wrapper.first {
+	width:65%;
+}
+
+#product .option_wrapper.first .option_header{
+	margin-top:0;
+}
+
+#product #quantity_div {
+	position:absolute;
+	right:35px;
+	top:5px;
+}
+
+#product #quantity {
+	width: 25px;
+	padding-left:15px;
+	padding-top:4px;
+}
+
+#product .option_text {
+	font-weight:bold;
+	color:#000000;
+}
+
+#product #color_header {
+	margin-top:15px;
+}
+
+#product .image {
+	position:relative;
+}
+
+#product #loadingImage { 
+  display:none; 
+  position:absolute; 
+  background:#fff;
+  top:0;
+  padding-top:100px;
+  width:100%;
+  height:100%;
+}
+
+#product #loading_image { 
+  position:absolute; 
+}
+
+#product .customer_review .posted_by, #product .customer_review .star_rating  {
+	margin:0;
+}
+
+#product .customer_review .posted_by .name {
+	color:$heading_color;
+}
+
+#product .customer_review .review_body{
+	margin-bottom: 40px;
+}
+
+#product .customer_review h3{
+	font-size: 1.1em;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#product #new_review input[type='text'] {
+    border: 1px solid #CCCCCC;
+    color: #777777;
+    height: 28px;
+    padding-left: 5px;
+    width: 240px;
+}
+
+#product .related_products {
+	float:left;
+	.related_product {
+		float:left;
+		width:50%;
+		font-size: 90%;
+	}
+	.image {
+		text-align:center;
+	}
+}
+
+#product #options .content_box_wrapper {
+	position:relative;
 }

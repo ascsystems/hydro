@@ -1,0 +1,27 @@
+<h1>Listing line_item_options</h1>
+
+<table>
+  <tr>
+    <th>Line item</th>
+    <th>Option</th>
+    <th>Option name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @line_item_options.each do |line_item_option| %>
+  <tr>
+    <td><%= line_item_option.line_item_id %></td>
+    <td><%= line_item_option.option_id %></td>
+    <td><%= line_item_option.option_name %></td>
+    <td><%= link_to 'Show', line_item_option %></td>
+    <td><%= link_to 'Edit', edit_line_item_option_path(line_item_option) %></td>
+    <td><%= link_to 'Destroy', line_item_option, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Line item option', new_line_item_option_path %>

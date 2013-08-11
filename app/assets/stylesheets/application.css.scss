@@ -10,9 +10,63 @@
  *
  *= require_self
  *= require_tree .
+ *= require fancybox/jquery.fancybox
+ */
+/*
+ *= require jquery.ui.all
  */
 @import "compass/css3/border-radius";
 @import "variables";
+
+@font-face {
+  font-family: 'Pragmatica';
+  src:font-url('27A4D40.eot');
+  src:font-url('27A4D40.eot?#iefix') format('embedded-opentype'),
+  font-url('27A4D40.woff') format('woff'),
+  font-url('27A4D40.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pragmatica1';
+  src:font-url('27A4D41.eot');
+  src:font-url('27A4D41.eot?#iefix') format('embedded-opentype'),
+  font-url('27A4D41.woff') format('woff'),
+  font-url('27A4D41.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pragmatica2';
+  src:font-url('27A4D42.eot');
+  src:font-url('27A4D42.eot?#iefix') format('embedded-opentype'),
+  font-url('27A4D42.woff') format('woff'),
+  font-url('27A4D42.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pragmatica3';
+  src:font-url('27A4D43.eot');
+  src:font-url('27A4D43.eot?#iefix') format('embedded-opentype'),
+  font-url('27A4D43.woff') format('woff'),
+  font-url('27A4D43.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pragmatica4';
+  src:font-url('27A4D44.eot');
+  src:font-url('27A4D44.eot?#iefix') format('embedded-opentype'),
+  font-url('27A4D44.woff') format('woff'),
+  font-url('27A4D44.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {  
 	margin: 0;  
@@ -22,7 +76,25 @@
 body {
 	background: none repeat scroll 0 0 #ffffff;
     font-size:12px;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: Pragmatica, Helvetica, Arial, sans-serif;
+    letter-spacing: 1px;
+}
+
+h1 {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    color: #00AAFF;
+    font-weight: normal;
+    height: 55px;
+    line-height: 58px;
+    margin: 20px 0;
+    padding: 0 10px;
+    text-transform: uppercase;
+
+    font-family: Pragmatica2;
+    font-size: 2.3em;
+    letter-spacing: 3px;
+
 }
 
 a {
@@ -36,6 +108,11 @@ a:hover {
 
 ul {
 	list-style-type: none;
+}
+
+footer {
+  height:100%;
+  background-color:$background_color;
 }
 
 footer input[type="text"], footer input[type="password"] {
@@ -143,11 +220,13 @@ header nav {
           -webkit-box-shadow: 1px 1px 3px 1px #ccc;
           box-shadow:         1px 1px 3px 1px #ccc;
         li {
-            font-size: 0.9em;
-            letter-spacing: 1px;
-            padding: 10px 10px 8px;
-            height: 12px;
-    		float: left;
+            height: 32px;
+            font-size: 1em;
+            line-height:34px;
+            padding-left: 10px;
+            padding-right: 10px;
+    		    float: left;
+            font-family: Pragmatica2;
             a {
                 color: $secondary_color;
             }
@@ -157,10 +236,60 @@ header nav {
             a.primary-color {
                 color: $primary_color;
             }
-            a.primary-color:hover {
-                color: $secondary_color;
+            ul {
+              margin:-2px 0 0 -20px;
+              padding:0 20px 20px 20px;
+              z-index:999;
+              position:absolute;
+              width: 346px;
+              background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+              display:none;
+              li{
+                margin:0;
+                display:block;
+                padding:0;
+                width:163px;
+                float:left;
+                color:#ffffff;
+                line-height:24px;
+                height:24px;
+                a {
+                  color: #ffffff;
+                  font-size:.9em;
+                }
+              }
+              li.category {
+                text-transform:uppercase;
+                font-size:1.1em;
+                margin-top:10px;
+              }
+              li:first-child {
+                padding-left:0;
+              }
+              li:hover {
+                background:none;
+              }
             }
-    	}
+    	  }
+        li:first-child {
+          padding-left: 10px;
+        }
+        li:hover {
+          background-color: #000000;
+          color: $primary_color;
+        }
+        li:hover a {
+          color: $primary_color;
+        }
+        li:hover ul{
+          display:block;
+        }
+        li:hover ul li a{
+          color: #ffffff;
+        }
+        li:hover ul li a:hover {
+          color:$primary_color;
+        }
         li.selected {
             background-color: $selected_nav_color;
             a {
@@ -279,6 +408,7 @@ footer #wrapper {
 
 #breadcrumb a {
     color: $secondary_color;
+    font-size: 90%;
 }
 
 #breadcrumb a:hover {
@@ -307,19 +437,41 @@ footer #wrapper {
     margin: 10px 0 10px 0;
 }
 
-div.color_circle {
-    background: none repeat scroll 0 0 #000000;
-    border-radius: 6px 6px 6px 6px;
-    height: 12px;
-    line-height: 12px;
-    width: 12px;
-    float: left;
-    margin-right: 5px;
-    cursor: pointer;
+#breadcrumb {
+  padding-left:10px;
 }
 
-div.colors {
-    margin-top: 5px;
-    float:left;
-    width: 100%;
+.field {
+  float:left;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.actions {
+  margin: 20px 0 20px 0;
+  float:left;
+  text-align:right;
+  width: 100%;
+}
+
+input[type='submit'].button, a.button {
+  border:none;
+  background-color: $heading_color !important;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.1em;
+  height: 34px;
+  line-height: 34px;
+  position: relative;
+  padding: 0 10px 0 10px;
+  font-family: Pragmatica2, Helvetica, Arial, sans-serif;
+}
+
+.field_with_errors {
+  label {
+    color:red;
+  }
+  input[type="text"], input[type="password"] {
+    border: 1px solid red;
+  }
 }

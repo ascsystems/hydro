@@ -1,62 +1,105 @@
+<% provide(:meta_title, @product.title) %>
+<% provide(:meta_description, @product.meta_description) %>
+<% provide(:meta_keywords, @product.keywords) %>
+<style>
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background: none;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+	border-bottom-right-radius:0;
+	border-radius:none;
+	border:none;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+	border-top-right-radius:0;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+	border-top-left-radius:0;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+	border-bottom-left-radius:0;
+}
+
+.ui-spinner {
+	height:30px;
+}
+</style>
 <div id="product">
 	<div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; Flasks &raquo; <%= @product.name %></div>
 	<h1><%= @product.name %></h1>
 	<div id="image_column">
-		<div class="image"><%= image_tag "products/default.jpg", alt: @product.name, title: @product.name %></div>
-		<div id="enlarge"><a href="#" id="enlarge_link"><%= image_tag 'enlarge.png', alt: 'view larger', title: 'view larger' %> view larger</a></div>
+		<div class="image"><%= image_tag "", alt: @product.name, title: @product.name, style: 'width:90%;', id: 'product_image' %><div id="loadingImage"><%= image_tag "ajax-loader.gif", class: "loading_image", id: "loading_image", alt: "loading" %></div></div>
+		<div id="enlarge">
+			<a href="#" id="enlarge_link">
+				<%= image_tag 'enlarge.png', alt: 'view larger', title: 'view larger' %> view larger
+			</a>
+		</div>
 		<div id="related_products_header" class="content_box">
 			<div class="cart_wrapper">
 				YOU MIGHT ALSO BE INTERESTED IN
 			</div>
 		</div>
+		<div class="related_products">
+			<%= render partial: 'related_product', collection: @product.products unless @product.products.empty? %>
+		</div>
 	</div>
 	<div id="product_content_column">
 		<div id="product_content_wrapper">
 			<div id="top_content_wrapper">
-				<div id="options" class="content_box">
-					<div class="content_box_wrapper">
-					Select Cap: Standard
+				<%= form_tag( { controller: 'line_items', action: 'create' }, method:'post', id: 'product_form') do %>
+					<input type="hidden" name="product_id" id="product_id" value="<%= @product.id %>">
+					<div id="options" class="content_box">
+						<div class="content_box_wrapper">
+							<%= render partial: 'option', collection: @product.sorted_options %>
+							<div id="quantity_div">
+								<div class="option_header">QUANTITY: <span class="option_text" id="quantity_text">1</span></div>
+								<div><input name="quantity" id="quantity" type="text"></div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div id="cart_content">
-					<div id="top_right_wrapper">
-						<div id="cart" class="content_box">
-							<div class="cart_wrapper">
-								ADD TO CART &raquo; <%= image_tag 'cart_white.png', alt: 'Add to cart', title: 'Add to cart' %>
-							</div>
-						</div>
-						<div id="rating" class="content_box">
-							<div class="content_box_wrapper">
-								<h3><%= image_tag 'review.png', alt: 'Reviews', title: 'Reviews' %> Reviews <%= image_tag 'stars_0.png', alt: 'stars', title: 'stars', id: 'stars' %></h3>
-								<ul id="review_nav_list">
-									<li display="reviews">Read all reviews</li>
-									<li>|</li>
-									<li display="review_form">Write a review</li>
-								</ul>
-							</div>
-						</div>
-						<div id="social" class="content_box">
-							<div class="content_box_wrapper">
-								<h3>SHARE:</h3>
-								<div class="addthis_toolbox addthis_default_style">
-									<div class="row">
-										<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-										<a class="addthis_button_tweet"></a>
-									</div>
-									<div class="row">
-										<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-										<a class="addthis_button_pinterest_pinit"></a>
-									</div>
+					<div id="cart_content">
+						<div id="top_right_wrapper">
+							<div id="cart" class="content_box">
+								<div class="cart_wrapper">
+									ADD TO CART &raquo; <%= image_tag 'cart_white.png', alt: 'Add to cart', title: 'Add to cart' %>
 								</div>
-								<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51d8b57643b8a401"></script>
+							</div>
+							<div id="rating" class="content_box">
+								<div class="content_box_wrapper">
+									<h3><%= image_tag 'review.png', alt: 'Reviews', title: 'Reviews' %> Reviews <%= image_tag "stars_#{@product.rating}.png", alt: 'stars', title: 'stars', id: 'stars' %></h3>
+									<ul id="review_nav_list">
+										<li display="reviews">Read all reviews</li>
+										<li>|</li>
+										<li display="review_form">Write a review</li>
+									</ul>
+								</div>
+							</div>
+							<div id="social" class="content_box">
+								<div class="content_box_wrapper">
+									<h3>SHARE:</h3>
+									<div class="addthis_toolbox addthis_default_style">
+										<div class="row">
+											<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+											<a class="addthis_button_tweet"></a>
+										</div>
+										<div class="row">
+											<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+											<a class="addthis_button_pinterest_pinit"></a>
+										</div>
+									</div>
+									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51d8b57643b8a401"></script>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				<% end %>
 			</div>
 			<div id="content_nav">
 				<ul id="content_nav_list">
-					<li id="description_li" class="selected" display="description">DESCRIPTION<li>
+					<li id="description_li" class="selected" display="description">DESCRIPTION</li>
 					<li id="reviews_li" display="reviews">REVIEWS</li>
 					<li id="write_review_li" display="review_form">WRITE A REVIEW</li>
 				</ul>
@@ -65,10 +108,10 @@
 				<%= raw @product.description %>
 			</div>
 			<div id="reviews" class="content_div">
-				Reviews go here.
+				<%= render partial: 'review', collection: @product.reviews %>
 			</div>
 			<div id="review_form" class="content_div">
-				Review form goes here.
+				<%= render 'reviews/form', review: Review.new %>
 			</div>
 		</div>
 	</div>

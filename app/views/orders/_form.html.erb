@@ -1,8 +1,6 @@
-<%= form_for(@order) do |f| %>
+<%= form_for @order, url: {action: "confirm"} do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
       <ul>
       <% @order.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,64 +8,61 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+  <h2>Shipping Info</h2>
+  <div class="field half">
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
   </div>
-  <div class="field">
+  <div class="field half">
     <%= f.label :last_name %><br />
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address %>
+    <%= f.text_field :address, class: 'long' %>
   </div>
   <div class="field">
     <%= f.label :address2 %><br />
-    <%= f.text_field :address2 %>
+    <%= f.text_field :address2, class: 'long' %>
   </div>
-  <div class="field">
+  <div class="field half">
     <%= f.label :city %><br />
     <%= f.text_field :city %>
   </div>
-  <div class="field">
+  <div class="field quarter">
     <%= f.label :state %><br />
-    <%= f.text_field :state %>
+    <%= f.select :state, us_states, class: 'short' %>
   </div>
-  <div class="field">
+  <div class="field quarter">
     <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
+    <%= f.text_field :zip, class: 'short' %>
   </div>
-  <div class="field">
-    <%= f.label :shipping_method_id %><br />
-    <%= f.text_field :shipping_method_id %>
+   <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </div>
+  <h2>Billing Info</h2>
   <div class="field">
     <%= f.label :billing_address %><br />
-    <%= f.text_field :billing_address %>
+    <%= f.text_field :billing_address, class: 'long' %>
   </div>
   <div class="field">
     <%= f.label :billing_address2 %><br />
-    <%= f.text_field :billing_address2 %>
+    <%= f.text_field :billing_address2, class: 'long' %>
   </div>
-  <div class="field">
+  <div class="field half">
     <%= f.label :billing_city %><br />
     <%= f.text_field :billing_city %>
   </div>
-  <div class="field">
+  <div class="field quarter">
     <%= f.label :billing_state %><br />
-    <%= f.text_field :billing_state %>
+    <%= f.select :billing_state, us_states, class: 'short' %>
   </div>
-  <div class="field">
+  <div class="field quarter">
     <%= f.label :billing_zip %><br />
-    <%= f.text_field :billing_zip %>
+    <%= f.text_field :billing_zip, class: 'short' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'CONFIRM YOUR ORDER »', class: 'button'  %>
   </div>
 <% end %>

@@ -1,0 +1,20 @@
+
+<div id="page">
+  <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
+  <h1><%= @page.title %></h1>
+  <% if !@page.header_content.empty? %>
+  <div id="header_content"><%= raw @page.header_content %></div>
+  <% end %>
+  <div id="left_content">
+    <%= raw @page.body %>
+  </div>
+  <% if !@page.right_content.empty? %>
+  <div id="right_content">
+    <%= raw @page.right_content %>
+  </div>
+  <% end %>
+  <div class="admin_links">
+    <%= link_to 'Edit', edit_page_path(@page) %> |
+    <%= link_to 'Back', pages_path %>
+  </div>
+</div>

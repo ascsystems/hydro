@@ -1,5 +1,11 @@
-<h1>New order</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', orders_path %>
+<div id="checkout_page">
+	<h1>Checkout</h1>
+	<div id="cart_panel">
+		<h2>Your Cart</h2>
+  		<%= render partial: 'carts/item', collection: current_cart.line_items %>
+	</div>
+	<div id="form_panel">
+		<h2>Have an account?</h2>
+		<%= render 'form' %>
+	</div>
+</div>

@@ -53,6 +53,17 @@ class ProductsController < ApplicationController
     end
   end
 
+  def netsuite_connect
+    item = NetSuite::Records::BaseRefList.get_select_value(
+      field: 'class',
+      recordType: 'salesOrder',
+      sublist: 'itemList'
+    )
+    render text: item.inspect
+    #nets = Netsuite.new
+    #render text: nets.initialize1
+  end
+
   # PUT /products/1
   # PUT /products/1.json
   def update

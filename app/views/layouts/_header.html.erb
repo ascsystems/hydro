@@ -6,7 +6,11 @@
 			</div>
 			<nav id="homepage-nav">
 				<ul>
-					<li><%= link_to "SHOP", shop_path %></li>
+					<li><%= link_to "SHOP", shop_path %>
+						<ul>
+							<%= render partial: 'layouts/category', collection: header_categories %>
+						</ul>
+					</li>
 					<li><%= link_to "HYDRO FLASK", controller: 'pages', action: 'show', id: 'hydro-flask-technology' %></li>
 					<li><%= link_to "SOCIAL", controller: 'pages', action: 'show', id: 'hydro-flask-social' %></li>
 					<li><%= link_to "5% BACK", controller: 'pages', action: 'show', id: "5-back" %></li>

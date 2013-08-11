@@ -4,7 +4,7 @@
   <tr>
     <th>Product</th>
     <th>Name</th>
-    <th>Order num</th>
+    <th>Path</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +14,7 @@
   <tr>
     <td><%= product_image.product_id %></td>
     <td><%= product_image.name %></td>
-    <td><%= product_image.order_num %></td>
+    <td><%= #product_image.path %></td>
     <td><%= link_to 'Show', product_image %></td>
     <td><%= link_to 'Edit', edit_product_image_path(product_image) %></td>
     <td><%= link_to 'Destroy', product_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>

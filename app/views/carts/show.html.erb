@@ -1,16 +1,45 @@
-<h1>My Cart</h1>
-<table>
-  <thead>
-    <tr><th>Product</th><th>Price</th><th>Quantity</th></tr>
-  </thead>
-  <tbody>
-  <% @cart.line_items.each do |item| %>
-    <tr><td><%= link_to image_tag("products/default.jpg", alt: item.product.name, title: item.product.name, style: "height:10%;float:left;"), item.product %><%= link_to item.product.name, item.product %></td><td><%= number_to_currency item.product.price %></td><td><%= item.quantity %></td></tr>
-  <% end %>
-</tbody>
-</table>
-<%= button_to 'Checkout', new_order_path, :method => :get %>
-<div class="admin_links">
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<div id="cart_page">
+  <h1>My Cart</h1>
+  <table id="cart_table">
+    <thead>
+      <tr><th></th><th>Product</th><th>Options</th><th>Price</th><th class="center">Quantity</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+    <% @cart.line_items.each do |item| %>
+      <tr>
+        <td class="center"><%= link_to image_tag("products/default.png", alt: item.product.name, title: item.product.name), item.product %></td>
+      	<td><%= link_to item.product.name, item.product %></td>
+      	<td>
+          <% item.line_item_options.each do |option| %>
+          <%= option.option_name %><br />
+          <% end %>
+        </td>
+      	<td><%= number_to_currency item.product.price %></td>
+      	<td class="center"><%= item.quantity %></td>
+        <td>Delete</td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  <div style="float:left; width:500px;">
+    <h2>Customers Also Bought</h2>
+  </div>
+  <div style="width:300px; float:right;">
+    <div id="shipping" style="background-color:#efefef; float:right;">
+      <div style="float:left;">Shipping:</div>
+      <div style="float:left;">
+        <input type="radio" /> Standard - FREE<br />
+        <input type="radio" /> 2nd Day - $20.00<br />
+        <input type="radio" /> Overnight - $50.00
+      </div>
+    </div>
+    <div style="float:right; background-color:#efefef;">
+      Promo Code? <input type="text">
+    </div>
+    <div id="checkout" class="content_box">
+      <div class="checkout_wrapper">
+        CONTINUE TO CHECKOUT &raquo;
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,0 +1,27 @@
+<h1>Listing product_option_value_images</h1>
+
+<table>
+  <tr>
+    <th>Product option value</th>
+    <th>Product image</th>
+    <th>Default image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @product_option_value_images.each do |product_option_value_image| %>
+  <tr>
+    <td><%= product_option_value_image.product_option_value_id %></td>
+    <td><%= product_option_value_image.product_image_id %></td>
+    <td><%= product_option_value_image.default_image %></td>
+    <td><%= link_to 'Show', product_option_value_image %></td>
+    <td><%= link_to 'Edit', edit_product_option_value_image_path(product_option_value_image) %></td>
+    <td><%= link_to 'Destroy', product_option_value_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product option value image', new_product_option_value_image_path %>

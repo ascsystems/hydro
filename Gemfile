@@ -21,6 +21,10 @@ end
 
 gem 'jquery-rails'
 gem 'friendly_id'
+gem 'jquery-ui-rails'
+gem "savon"
+gem 'netsuite'
+gem 'ckeditor'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

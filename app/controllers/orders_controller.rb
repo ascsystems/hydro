@@ -32,6 +32,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirm
+    @order = Order.new(params[:order])
+    unless @order.valid?
+      render action: :new
+    else       
+    end
+  end
+
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])

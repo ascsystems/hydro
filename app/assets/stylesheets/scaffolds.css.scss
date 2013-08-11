@@ -39,10 +39,14 @@ div {
   color: green;
 }
 
+
 .field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+  label {
+    color:red;
+  }
+  input[type="text"], input[type="password"] {
+    border: 1px solid red;
+  }
 }
 
 #error_explanation {
@@ -64,6 +68,6 @@ div {
   }
   ul li {
     font-size: 12px;
-    list-style: square;
+    list-style: none;
   }
 }

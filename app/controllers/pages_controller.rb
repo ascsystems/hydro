@@ -17,6 +17,9 @@ class PagesController < ApplicationController
     render 'shared/404', :status => 404 if @page.nil?
   end
 
+  def social
+  end
+
   # GET /pages/new
   # GET /pages/new.json
   def new

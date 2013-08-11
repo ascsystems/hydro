@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  product_option_value_id: 1
+  product_image_id: 1
+  default_image: 1
+
+two:
+  product_option_value_id: 1
+  product_image_id: 1
+  default_image: 1

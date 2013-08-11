@@ -1,0 +1,29 @@
+<%= form_for(@line_item_option) do |f| %>
+  <% if @line_item_option.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@line_item_option.errors.count, "error") %> prohibited this line_item_option from being saved:</h2>
+
+      <ul>
+      <% @line_item_option.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :line_item_id %><br />
+    <%= f.number_field :line_item_id %>
+  </div>
+  <div class="field">
+    <%= f.label :option_id %><br />
+    <%= f.number_field :option_id %>
+  </div>
+  <div class="field">
+    <%= f.label :option_name %><br />
+    <%= f.text_field :option_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

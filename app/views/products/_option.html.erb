@@ -1,0 +1,8 @@
+<div class="option_wrapper <%= if option_counter == 0 
+  'first' 
+end %>">
+	<div class="option_header">SELECT <%= option[0].name %>: <span class="option_text"><%= option[1][0].name %></span></div>
+	<div class="options"><input type="hidden" name="options[<%= option_counter %>]" class="option_value" value="<%= option[1][0].id %>">
+		<%= render partial: option[0].option_type.template, collection: option[1] %>
+	</div>
+</div>

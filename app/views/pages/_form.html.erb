@@ -17,15 +17,27 @@
   </div>
   <div class="field">
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.cktext_area :body, ckeditor: { allowedContent: true } %>
   </div>
   <div class="field">
     <%= f.label :header_content %><br />
-    <%= f.text_area :header_content %>
+    <%= f.cktext_area :header_content, ckeditor: { allowedContent: true } %>
   </div>
   <div class="field">
     <%= f.label :right_content %><br />
-    <%= f.text_area :right_content %>
+    <%= f.cktext_area :right_content, ckeditor: { allowedContent: true } %>
+  </div>
+  <div class="field">
+    <%= f.label :meta_title %><br />
+    <%= f.text_field :meta_title %>
+  </div>
+  <div class="field">
+    <%= f.label :meta_description %><br />
+    <%= f.text_field :meta_description %>
+  </div>
+  <div class="field">
+    <%= f.label :keywords %><br />
+    <%= f.text_field :keywords %>
   </div>
   <div class="actions">
     <%= f.submit %>

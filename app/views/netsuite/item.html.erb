@@ -1,0 +1,31 @@
+<div id="netsuite">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>ID:</b>
+  <%= @item.item_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @item.sales_description %>
+</p>
+
+<p>
+  <b>Manufacturer:</b>
+  <%= @item.manufacturer %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @item.cost %>
+</p>
+
+<p>
+  <b>Quantity Available:</b>
+  <%= @item.quantity_available %>
+</p>
+
+<p><%= j @item.inspect %></p>
+
+</div>

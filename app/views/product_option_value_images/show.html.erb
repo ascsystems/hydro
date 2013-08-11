@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Product option value:</b>
+  <%= @product_option_value_image.product_option_value_id %>
+</p>
+
+<p>
+  <b>Product image:</b>
+  <%= @product_option_value_image.product_image_id %>
+</p>
+
+<p>
+  <b>Default image:</b>
+  <%= @product_option_value_image.default_image %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_option_value_image_path(@product_option_value_image) %> |
+<%= link_to 'Back', product_option_value_images_path %>

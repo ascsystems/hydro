@@ -1,3 +1,80 @@
 // Place all the styles related to the carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "variables";
+
+#cart_page #cart_table {
+	width: 100%;
+	border-collapse:collapse;
+	margin:20px 0  20px 0;
+}
+
+#cart_page #cart_table img {
+	margin-top: -20px;
+	width: 60px;
+}
+
+#cart_page #cart_table thead tr {
+	background-color: $heading_color;
+	color: #fff;
+	font-size: 1em;
+}
+
+#cart_page #cart_table thead tr th{
+	padding:5px;
+	margin:0;
+}
+
+#cart_page #cart_table tbody tr td{
+	padding:5px;
+	margin:0;
+	vertical-align: top;
+}
+
+#cart_page .center {
+	text-align:center;
+}
+
+#cart_page .content_box {
+	background-color: $background_color;
+	margin-bottom:10px;
+	float:left;
+	.content_box_wrapper {
+		padding:10px;
+		float:left;
+	}
+}
+
+#cart_page #checkout {
+	background-color: $heading_color !important;
+	cursor: pointer;
+	color: #fff;
+	font-size: 1.1em;
+	float:right;
+	height: 34px;
+	line-height: 34px;
+	position: relative;
+	.cart_wrapper {
+		padding-left: 10px;
+	}
+}
+
+#cart_page .checkout_wrapper {
+	padding: 0 10px 0 10px;
+}
+
+.cart_item {
+    background-color: #EFEFEF;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    padding: 10px;
+	.cart_item_info {
+		float:left;
+	}
+	img {
+		width:20%;
+		margin-top: -20px;
+		float:left;
+	}
+}

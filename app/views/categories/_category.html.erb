@@ -1,0 +1,6 @@
+<% if category.products.exists? %>
+  <h2><%= category.name %></h2>
+  <div class="category_row">
+    <%= render :partial => 'product', :collection => category.products %>
+  <% end %>
+</div>

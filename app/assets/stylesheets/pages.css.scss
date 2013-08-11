@@ -1,14 +1,5 @@
 @import "variables";
 
-#page h1 {
-	color: $heading_color;
-	border-bottom: 1px $secondary_color solid;
-	margin: 5px 0 15px 0;
-	padding: 15px 0px 5px 0px;
-	font-weight:normal;
-	text-transform: uppercase;
-}
-
 #page #header_content {
 	width: 100%;
 	background-color: $background_color;

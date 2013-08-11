@@ -74,10 +74,21 @@ class ProductImagesController < ApplicationController
   def destroy
     @product_image = ProductImage.find(params[:id])
     @product_image.destroy
-
     respond_to do |format|
       format.html { redirect_to product_images_url }
       format.json { head :no_content }
     end
   end
+
+  def get_image
+    data = eval(params[:data])
+    options = data[:options]
+    if options.kind_of?(Array)
+      options = options.map(&:to_i)
+      pi = ProductImage.new
+      @image = pi.getImage(options, data[:product])
+      render json: @image
+    end
+  end
+
 end

@@ -8,18 +8,25 @@
 	margin-bottom: 20px;
 }
 
+#category_content h1 {
+    margin-top: 5px;
+}
+
 #category_content h2 {
-	color: #ffffff;
-	background-color:$heading_color;
-	width: 25%;
-	padding:12px;
-	margin:0 0 14px 0;
-	font-size: 1em;
-	text-transform:uppercase;
-	font-weight:bold;
-	clear:both;
-	float:left;
-	position:relative;
+    background-color: #00AAFF;
+    clear: both;
+    color: #FFFFFF;
+    float: left;
+    font-size: 1.3em;
+    font-family: Pragmatica2;
+    letter-spacing:2.4px;
+    height: $button_height;
+    line-height: $button_line_height;
+    margin: 0 0 14px;
+    padding-left: 10px;
+    position: relative;
+    text-transform: uppercase;
+    width: 25%;
 }
 
 #category_content h2:after {
@@ -29,14 +36,13 @@
     bottom: -10px;
     content: "";
     display: block;
-    left: 50px;
+    left: 15px;
     position: absolute;
     width: 0;
 }
 
 #category_content .category_row {
 	margin-top: -15px;
-	padding-top: 15px;
 	padding-bottom: 20px;
 }
 
@@ -87,4 +93,27 @@
 #category_content .category_product .content_wrapper .rating {
 	float:left;
 	width: 50%;
+}
+
+#category_content div.color_circle {
+    background: none repeat scroll 0 0 #000000;
+    border-radius: 6px 6px 6px 6px;
+    height: 12px;
+    line-height: 12px;
+    width: 12px;
+    float: left;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#category_content div.white_circle  {
+	border:1px solid #000;
+	width:10px; 
+	height:10px;
+}
+
+#category_content div.colors {
+    margin-top: 5px;
+    float:left;
+    width: 100%;
 }

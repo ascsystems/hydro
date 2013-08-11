@@ -1,5 +1,5 @@
 class Brand < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :title, :meta_description, :keywords
 
   has_many :products
 
