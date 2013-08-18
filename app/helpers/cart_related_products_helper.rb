@@ -1,0 +1,2 @@
+module CartRelatedProductsHelper
+end

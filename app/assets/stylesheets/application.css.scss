@@ -74,10 +74,15 @@
 }
 
 body {
-	background: none repeat scroll 0 0 #ffffff;
+	background: none repeat scroll 0 0 #efefef;
     font-size:12px;
     font-family: Pragmatica, Helvetica, Arial, sans-serif;
     letter-spacing: 1px;
+}
+
+#body_wrapper {
+  float:left;
+  background-color:#ffffff;
 }
 
 h1 {
@@ -110,8 +115,14 @@ ul {
 	list-style-type: none;
 }
 
+input[type="text"], input[type="password"] {
+    border: 1px solid #CCCCCC;
+    color: #777777;
+    height: 28px;
+    padding-left: 5px;
+}
+
 footer {
-  height:100%;
   background-color:$background_color;
 }
 
@@ -406,9 +417,12 @@ footer #wrapper {
     border-top: 2px solid #FFFFFF;
 }
 
+#breadcrumb {
+    font-size: 90%;
+}
+
 #breadcrumb a {
     color: $secondary_color;
-    font-size: 90%;
 }
 
 #breadcrumb a:hover {

@@ -111,7 +111,7 @@
 				<%= render partial: 'review', collection: @product.reviews %>
 			</div>
 			<div id="review_form" class="content_div">
-				<%= render 'reviews/form', review: Review.new %>
+				<%= render 'reviews/form', review: Review.new, product_id: @product.id %>
 			</div>
 		</div>
 	</div>

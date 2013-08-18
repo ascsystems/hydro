@@ -4,6 +4,7 @@ class ProductImage < ActiveRecord::Base
   belongs_to :product
   has_many :product_option_value_images
   has_many :product_option_values, through: :product_option_value_images
+  has_many :line_items
 
   def getImage(options, product_id)
   	if(options.empty? == false)

@@ -7,7 +7,7 @@
     <tbody>
     <% @cart.line_items.each do |item| %>
       <tr>
-        <td class="center"><%= link_to image_tag("products/default.png", alt: item.product.name, title: item.product.name), item.product %></td>
+        <td class="center"><%= link_to image_tag("#{item.product_image.path}#{item.product_image.name}", alt: item.product.name, title: item.product.name), item.product %></td>
       	<td><%= link_to item.product.name, item.product %></td>
       	<td>
           <% item.line_item_options.each do |option| %>
@@ -16,25 +16,27 @@
         </td>
       	<td><%= number_to_currency item.product.price %></td>
       	<td class="center"><%= item.quantity %></td>
-        <td>Delete</td>
+        <td><%= link_to "Remove", item, method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
   </table>
-  <div style="float:left; width:500px;">
+  <div id="customers_bought">
     <h2>Customers Also Bought</h2>
+      <%= render partial: 'cart_related_products/related_product', collection: CartRelatedProduct.related_products %>
   </div>
-  <div style="width:300px; float:right;">
-    <div id="shipping" style="background-color:#efefef; float:right;">
-      <div style="float:left;">Shipping:</div>
-      <div style="float:left;">
-        <input type="radio" /> Standard - FREE<br />
-        <input type="radio" /> 2nd Day - $20.00<br />
-        <input type="radio" /> Overnight - $50.00
+  <div id="cart_right_box">
+    <div id="shipping" class="right_box">
+      <div id="shipping_text"><label for="shipping">Shipping:</label></div>
+      <div style="float:right;">
+        <input type="radio" name="shipping" /> Standard - FREE<br />
+        <input type="radio" name="shipping" /> 2nd Day - $20.00<br />
+        <input type="radio" name="shipping" /> Overnight - $50.00
       </div>
     </div>
-    <div style="float:right; background-color:#efefef;">
-      Promo Code? <input type="text">
+    <div id="promo" class="right_box">
+      <div id="promo_text"><label for="promo">Promo Code?</label></div>
+      <div style="float:right;"><input type="text" name="promo"></div>
     </div>
     <div id="checkout" class="content_box">
       <div class="checkout_wrapper">

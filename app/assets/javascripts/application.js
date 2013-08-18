@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 //= require jquery.ui.all
 //= require ckeditor/init
 //= require fancybox/jquery.fancybox
+//= require raty/jquery.raty.min
+//= require site

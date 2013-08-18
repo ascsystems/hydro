@@ -5,11 +5,13 @@
 				<div id="footer-nav-div" class="inner-panel left">
 					<nav>
 						<ul id="footer-nav">
-							<li><%= link_to "Shop", shop_path %></li>
-							<li><%= link_to "Hydro Flask", controller: 'pages', action: 'show', id: 'hydro-flask-technology' %></li>
-							<li><%= link_to "Social", controller: 'pages', action: 'show', id: 'hydro-flask-social' %></li>
-							<li><%= link_to "5% Back", controller: 'pages', action: 'show', id: "5-back" %></li>
-							<li><%= link_to "Cart", mycart_path %></li>
+							<li><%= link_to "Contact", controller: 'pages', action: 'show', id: 'contact-hydro-flask' %></li>
+							<li><%= link_to "About Hydro Flask", controller: 'pages', action: 'show', id: 'about-hydro-flask' %></li>
+							<li><%= link_to "FAQs", controller: 'pages', action: 'show', id: 'frequently-asked-questions' %></li>
+							<li><%= link_to "Lifetime Warranty", controller: 'pages', action: 'show', id: 'lifetime-warranty' %></li>
+							<li><%= link_to "Shipping & Handling", controller: 'pages', action: 'show', id: 'shipping-and-handling' %></li>
+							<li><%= link_to "Returns", controller: 'pages', action: 'show', id: 'returns' %></li>
+							<li><%= link_to "Careers", controller: 'pages', action: 'show', id: 'careers' %></li>
 						</ul>
 					</nav>
 				</div>
@@ -23,7 +25,10 @@
 					</form>
 				</div>
 				<div id="footer-copy" class="clear">
-					<p>&copy; <%= Time.now.year %> Hydro Flask. All prices are in USD.</p>
+					<p>
+						&copy; <%= Time.now.year %> Hydro Flask. All prices are in USD.<br />
+						<%= link_to "Terms & Privacy", controller: 'pages', action: 'show', id: 'terms-and-privacy' %>&nbsp;|&nbsp;<%= link_to "Sitemap", controller: 'pages', action: 'show', id: 'sitemap' %>
+					</p>
 				</div>
 			</div>
 			<div class="panel fifty_percent">
@@ -34,9 +39,9 @@
 						<ul>
 							<li><a href="https://twitter.com/HydroFlask" target="_blank"><%= image_tag "twitter_square.png", alt: "Hydro Flask on Twitter" %></a></li>
 							<li><a href="http://www.facebook.com/hydroflask?ref=mf" target="_blank"><%= image_tag "facebook_square.png", alt: "Hydro Flask on Facebook" %></a></li>
-							<li><a href="#" target="_blank"><%= image_tag "instagram_square.png", alt: "Hydro Flask on Instagram" %></a></li>
-							<li><a href="#" target="_blank"><%= image_tag "pinterest_square.png", alt: "Hydro Flask on Pinterest" %></a></li>
-							<li><a href="http://feeds.feedburner.com/HydroFlask" target="_blank"><%= image_tag "rss_square.png", alt: "Hydro Flask Feedburner" %></a></li>
+							<li><a href="http://www.instagram.com/hydroflask" target="_blank"><%= image_tag "instagram_square.png", alt: "Hydro Flask on Instagram" %></a></li>
+							<li><a href="http://www.pinterest.com/hydroflask" target="_blank"><%= image_tag "pinterest_square.png", alt: "Hydro Flask on Pinterest" %></a></li>
+							<li><a href="http://blog.hydroflask.com" target="_blank"><%= image_tag "rss_square.png", alt: "Hydro Flask Feedburner" %></a></li>
 						</ul>
 					</nav>
 					<div id="hman-div" class="clear">

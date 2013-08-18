@@ -1,5 +1,5 @@
-<%= form_for(review) do |f| %>
-  <%= f.hidden_field :product_id %>
+<%= form_for review, remote: true do |f| %>
+  <%= f.hidden_field :product_id, value: product_id %>
   <% if review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -18,7 +18,7 @@
   </div>
   <div class="field">
     <%= f.label :rating %><br />
-    <%= f.number_field :rating %>
+    <div id="star" data-score="1"></div>
   </div>
   <div class="field">
     <%= f.label :title %><br />
@@ -29,6 +29,6 @@
     <%= f.text_area :body %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit("Submit Review", class: 'button', id: 'review_button') %>
   </div>
 <% end %>

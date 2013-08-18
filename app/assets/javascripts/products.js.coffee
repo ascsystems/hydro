@@ -34,9 +34,13 @@ $ ->
 		$(this).addClass('selected')
 		$(this).parent().siblings(".option_header").children(".option_text").html($(this).attr('title'))
 		#$(this).sibling(".option_text").html($(this).attr('title'))
-	$("#enlarge_link").on 'click', ->
+	$("#enlarge_link, #product_image").on 'click', ->
 		$.fancybox({href: $('#product_image').attr('src') })
 		return false
+	$('#star').raty({starOn: '/assets/star-on.png', starOff: '/assets/star-off.png', hints: ['','','','','']})
+	$("#reviews_button").on 'click', ->
+		 $(this).parents('form:first').submit()
+		 return false
 
 update_image = () ->
 	$("#loadingImage").fadeIn 600;

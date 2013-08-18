@@ -10,8 +10,7 @@
 }
 
 #cart_page #cart_table img {
-	margin-top: -20px;
-	width: 60px;
+	height: 120px;
 }
 
 #cart_page #cart_table thead tr {
@@ -70,11 +69,58 @@
     margin-right: 20px;
     padding: 10px;
 	.cart_item_info {
-		float:left;
+		width:200px;
+		height:120px;
+		vertical-align: middle;
+		display: table-cell;
 	}
 	img {
-		width:20%;
-		margin-top: -20px;
+		height:120px;
 		float:left;
+		margin-right:10px;
+	}
+}
+
+#cart_page #cart_right_box {
+	width:250px;
+	float:right;
+}
+
+#cart_page .right_box {
+    background-color: #EFEFEF;
+    float: right;
+    padding: 10px;
+    margin-bottom:10px;
+    width: 100%;
+}
+
+#cart_page #promo_text {
+    float: left;
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+}
+
+#cart_page #shipping_text {
+	float:left;
+}
+
+#cart_page #customers_bought {
+	float:left;
+	width:700px;
+}
+
+#cart_page .related_product {
+	float:left;
+	margin-right:30px;
+	width:140px;
+	.image {
+		text-align:center;
+	}
+	a {
+		color: #000000;
+	}
+	a:hover {
+		color: $primary_color;
 	}
 }

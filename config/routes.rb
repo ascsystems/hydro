@@ -1,4 +1,7 @@
 HydroFlask::Application.routes.draw do
+  resources :car_related_products
+
+
   resources :product_option_value_images
 
 

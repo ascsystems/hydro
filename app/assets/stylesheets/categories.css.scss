@@ -12,6 +12,10 @@
     margin-top: 5px;
 }
 
+#category_content h1.cat_header {
+    margin-bottom: 30px;
+}
+
 #category_content h2 {
     background-color: #00AAFF;
     clear: both;
@@ -60,7 +64,7 @@
 }
 
 #category_content .category_product .image img {
-	width:60%;
+	height:200px;
 }
 
 #category_content .category_product h3 {
@@ -116,4 +120,24 @@
     margin-top: 5px;
     float:left;
     width: 100%;
+}
+
+#category_content .back_to_top {
+    float:right;
+    a {
+        font-size: 1.1em;
+        color: #000000;
+        font-family: Pragmatica2;
+        line-height: 50px;
+    }
+    a:hover {
+        color:$primary_color;
+    }
+    select {
+        border:none;
+        background-color:#EFEFEF;
+        font-size:1em;
+        padding:5px;
+        margin:0;
+    }
 }

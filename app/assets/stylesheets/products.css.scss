@@ -19,6 +19,10 @@
 	width:33.3%;
 }
 
+#product #product_image {
+	cursor:pointer;
+}
+
 #product #product_content_column {
 	float:left;
 	width: 66.6%;
@@ -170,6 +174,17 @@
 		position: absolute;
 		width: 0;
 	}
+}
+
+#product .button {
+	height:$button_height;
+	line-height:$button_line_height;
+	cursor: pointer;
+	position:relative;
+  font-family: Pragmatica2;
+  font-size: 1.2em;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
 }
 
 #product #rating ul li{
@@ -360,11 +375,18 @@
 }
 
 #product #new_review input[type='text'] {
-    border: 1px solid #CCCCCC;
+    /*border: 1px solid #CCCCCC;
     color: #777777;
     height: 28px;
-    padding-left: 5px;
-    width: 240px;
+    padding-left: 5px;*/
+    width: 400px;
+}
+
+#product #new_review textarea {
+	width:395px;
+	padding:5px; 
+	height:190px;
+	border:1px solid #CCCCCC;
 }
 
 #product .related_products {
@@ -381,4 +403,20 @@
 
 #product #options .content_box_wrapper {
 	position:relative;
+}
+
+#product #star {
+	margin-top:10px;
+}
+
+#product h4 a {
+	color:#000000;
+}
+
+#product h4 a:hover {
+	color: $primary_color;
+}
+
+#product img.option {
+	cursor:pointer;
 }
