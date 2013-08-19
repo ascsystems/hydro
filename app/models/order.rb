@@ -15,4 +15,8 @@ class Order < ActiveRecord::Base
   validates :billing_state, presence: true
   validates :billing_zip, presence: true
 
+  def shipping_method
+    s = Shipping.find(self.shipping_method_id)
+    s.display_text
+  end
 end

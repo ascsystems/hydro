@@ -25,6 +25,9 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    shipping = Shipping.find(params["sm"])
+    @order.shipping_method_id = shipping.id
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }

@@ -4,5 +4,5 @@
 
 $ ->
 	$("#cart_page #checkout").on 'click', ->
-		console.log('click!')
-		window.location.href = '/orders/new'
+		shipping_value = $('[name="shipping"]').val()
+		window.location.href = '/orders/new?sm='+shipping_value

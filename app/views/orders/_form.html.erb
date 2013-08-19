@@ -74,6 +74,7 @@
     <%= f.label :ccv_number %><br />
     <%= f.text_field :ccv_number %>
   </div>
+  <%= f.hidden_field :shipping_method_id, :value => @order.shipping_method_id%>
   <div class="actions">
     <%= f.submit 'CONFIRM YOUR ORDER »', class: 'button'  %>
   </div>
