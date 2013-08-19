@@ -133,21 +133,3 @@ h2 {
 #fiveback_div{
     margin-bottom:10px;
 }
-#checkout_page .login_form{
-    float: right;
-    input[type="text"], input[type="password"]{
-        width:200px;
-    }
-    input[type="submit"]{
-        border: none;
-        background-color: #00aaff !important;
-        cursor: pointer;
-        color: #fff;
-        font-size: 14px;
-        height: 30px;
-        line-height: 30px;
-        position: relative;
-        padding: 0 10px 0 10px;
-        font-family: Pragmatica2, Helvetica, Arial, sans-serif;
-    }
-}

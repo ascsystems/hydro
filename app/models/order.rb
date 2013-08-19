@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city, :x_ship_to_state, :x_ship_to_zip, :x_email, :credit_card_number, :exp_date, :ccv_number
-  attr_accessible :credit_card_number, :address, :address2, :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, :city, :email, :first_name, :last_name, :shipping_method_id, :state, :zip, :exp_date, :ccv_number
+  attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city, :x_ship_to_state, :x_ship_to_zip, :x_email, :credit_card_number, :exp_date, :ccv_number, :total_amount
+  attr_accessible :credit_card_number, :address, :address2, :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, :city, :email, :first_name, :last_name, :shipping_method_id, :state, :zip, :exp_date, :ccv_number, :total_amount
   has_many :line_items
 
   validates :first_name, presence: true
@@ -25,8 +25,15 @@ class Order < ActiveRecord::Base
     s.cost.to_i == 0 ? "Free" : "$#{s.cost}"
   end
 
+
+
   def tax
     s = StateTaxRate.find_by_state_acronym(self.state)
     s.tax_rate
+  end
+
+  def make_payment
+    payment_handler = PaymentHandler::Billing.new(AUTHORIZE_CONFIG['api_login_id'],AUTHORIZE_CONFIG['transaction_key'], AUTHORIZE_CONFIG['gateway'])
+    payment_handler.make_payment(self)
   end
 end

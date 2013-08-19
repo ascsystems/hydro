@@ -17,4 +17,5 @@
 //= require fancybox/jquery.fancybox
 //= require raty/jquery.raty.min
 //= require accounts
+//= require orders
 //= require site

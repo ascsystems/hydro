@@ -6,7 +6,7 @@
 	</div>
 	<div id="form_panel">
 		<% unless current_account %>
-			<h2>Have an account?<%=render "sign_in_form"%></h2>
+			<h2>Have an account? <%=render "sign_in_form"%></h2>
 		<%else%>
 			<h2>Signed in as <%=current_account.email%></h2>
 		<%end%>

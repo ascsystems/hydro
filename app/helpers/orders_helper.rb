@@ -17,4 +17,10 @@ module OrdersHelper
     def total_amount(total, tax)
       total + tax
     end
+
+    def total_amount_with_tax(products,state)
+      total = products.sum(&:product_price)
+      tax = total_tax( total, state )
+      amount = total_amount(total, tax)
+    end
 end

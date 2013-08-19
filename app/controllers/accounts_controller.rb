@@ -80,4 +80,8 @@ class AccountsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def sign_out
+    binding.pry
+  end
 end

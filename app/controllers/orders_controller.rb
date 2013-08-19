@@ -47,6 +47,17 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def payment
+    @order = Order.new(params[:order])
+    if @order.valid?
+      @order.save
+      @response = @order.make_payment
+      current_cart.destroy
+    else
+      raise "Invalid Order"
+    end
+  end
+
   # POST /orders
   # POST /orders.json
   def create
