@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :items_in_cart,  :current_cart, :header_categories
+  helper_method :items_in_cart,  :current_cart, :header_categories, :authorize_net
 
   private
 

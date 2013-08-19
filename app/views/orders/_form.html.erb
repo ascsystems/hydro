@@ -62,6 +62,18 @@
     <%= f.label :billing_zip %><br />
     <%= f.text_field :billing_zip, class: 'short' %>
   </div>
+   <div class="field ">
+    <%= f.label :credit_card_number %><br />
+    <%= f.text_field :credit_card_number %>
+  </div>
+   <div class="field ">
+    <%= f.label :exp_date %><br />
+    <%= f.text_field :exp_date %>
+  </div>
+  <div class="field ">
+    <%= f.label :ccv_number %><br />
+    <%= f.text_field :ccv_number %>
+  </div>
   <div class="actions">
     <%= f.submit 'CONFIRM YOUR ORDER »', class: 'button'  %>
   </div>

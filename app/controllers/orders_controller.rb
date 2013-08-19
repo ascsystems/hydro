@@ -25,7 +25,6 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
@@ -36,7 +35,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     unless @order.valid?
       render action: :new
-    else       
+    else
     end
   end
 
