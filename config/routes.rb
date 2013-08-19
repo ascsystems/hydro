@@ -1,4 +1,7 @@
 HydroFlask::Application.routes.draw do
+
+  devise_for :accounts
+
   resources :car_related_products
 
 

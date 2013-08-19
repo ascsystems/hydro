@@ -1,0 +1,7 @@
+<div id="sign_in_errors">
+</div>
+<%= form_tag(account_session_path, {:class => 'login_form', :remote => true}) do %>
+	<%= text_field_tag(:username, nil, placeholder: "youremail@domain.com") %>
+	<%= password_field_tag(:password,nil,placeholder: "your password") %>
+	<%= submit_tag "Log in" %>
+<% end %>

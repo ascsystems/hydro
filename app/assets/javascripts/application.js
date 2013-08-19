@@ -16,4 +16,5 @@
 //= require ckeditor/init
 //= require fancybox/jquery.fancybox
 //= require raty/jquery.raty.min
+//= require accounts
 //= require site

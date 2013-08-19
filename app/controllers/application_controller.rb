@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
     Category.find(:all)
   end
 
+  def after_sign_in_path_for(user)
+    new_order_url
+  end
+
 end

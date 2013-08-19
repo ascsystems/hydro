@@ -5,7 +5,11 @@
   		<%= render partial: 'carts/item', collection: current_cart.line_items %>
 	</div>
 	<div id="form_panel">
-		<h2>Have an account?</h2>
+		<% unless current_account %>
+			<h2>Have an account?<%=render "sign_in_form"%></h2>
+		<%else%>
+			<h2>Signed in as <%=current_account.email%></h2>
+		<%end%>
 		<%= render 'form' %>
 	</div>
 </div>
