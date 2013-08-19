@@ -1,3 +1,3 @@
 class Shipping < ActiveRecord::Base
-  attr_accessible :display_text
+  attr_accessible :display_text, :cost
 end

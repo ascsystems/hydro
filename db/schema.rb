@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130819114236) do
+ActiveRecord::Schema.define(:version => 20130819130010) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -224,6 +224,14 @@ ActiveRecord::Schema.define(:version => 20130819114236) do
     t.string   "display_text"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.float    "cost"
+  end
+
+  create_table "state_tax_rates", :force => true do |t|
+    t.integer  "tax_rate"
+    t.string   "state_acronym"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

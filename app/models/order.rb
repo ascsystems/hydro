@@ -19,4 +19,14 @@ class Order < ActiveRecord::Base
     s = Shipping.find(self.shipping_method_id)
     s.display_text
   end
+
+  def shipping_charge
+    s = Shipping.find(self.shipping_method_id)
+    s.cost.to_i == 0 ? "Free" : "$#{s.cost}"
+  end
+
+  def tax
+    s = StateTaxRate.find_by_state_acronym(self.state)
+    s.tax_rate
+  end
 end

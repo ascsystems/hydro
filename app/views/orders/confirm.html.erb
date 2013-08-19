@@ -3,6 +3,7 @@
   <div id="cart_panel">
     <h2>Your Cart</h2>
       <%= render partial: 'carts/item', collection: current_cart.line_items %>
+      <%= render partial: 'shared/tax',:locals =>{:products => current_cart.line_items} %>
   </div>
   <div id="form_panel">
 <p id="notice"><%= notice %></p>
@@ -79,6 +80,13 @@
     <b>Credit card Number:</b>
     <%= @order.credit_card_number %>
   </p>
-
+  <p>
+    <b>Credit card expiry date:</b>
+    <%= @order.exp_date %>
+  </p>
+  <p>
+    <b>Credit card verification number:</b>
+    <%= @order.ccv_number %>
+  </p>
   </div>
 </div>
