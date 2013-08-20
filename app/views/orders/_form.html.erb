@@ -72,7 +72,7 @@
   </div>
   <div class="field ">
     <%= f.label :ccv_number %><br />
-    <%= f.text_field :ccv_number %>
+    <%= f.number_field :ccv_number, :in => 0...1000, :size => 3, placeholder: 111 %>
   </div>
   <%= f.hidden_field :shipping_method_id, :value => @order.shipping_method_id%>
   <div class="actions">

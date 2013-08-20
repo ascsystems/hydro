@@ -51,8 +51,8 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     if @order.valid?
       @order.save
-      @response = @order.make_payment
-      current_cart.destroy
+        @response = @order.make_payment
+        current_cart.destroy
     else
       raise "Invalid Order"
     end

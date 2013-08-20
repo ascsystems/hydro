@@ -68,9 +68,9 @@
   font-style: normal;
 }
 
-* {  
-	margin: 0;  
-	padding: 0;  
+* {
+	margin: 0;
+	padding: 0;
 }
 
 body {
@@ -131,7 +131,7 @@ footer input[type="text"], footer input[type="password"] {
     color: $input_text_color;
     padding-left:5px;
     border:none;
-} 
+}
 
 p {
 	margin: 0 0 .8em 0;
@@ -487,5 +487,21 @@ input[type='submit'].button, a.button {
   }
   input[type="text"], input[type="password"] {
     border: 1px solid red;
+  }
+}
+#form_handle.button{
+  font-size: 20px;
+  display: inline-block;
+}
+#print_handle.button{
+  display: inline-block;
+  font-size: 20px;
+  margin-bottom: 20px;
+  background: url(/assets/print_icon.png) no-repeat 90% center;
+  padding-right: 40px;
+}
+@media print{
+  footer, #print_handle.button, nav#homepage-nav{
+    display: none;
   }
 }

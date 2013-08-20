@@ -32,6 +32,11 @@ class Order < ActiveRecord::Base
     s.tax_rate
   end
 
+  def tax_amount
+    tax = self.total_amount.to_f * (self.tax.to_f/100)
+    tax.round(2)
+  end
+
   def make_payment
     payment_handler = PaymentHandler::Billing.new(AUTHORIZE_CONFIG['api_login_id'],AUTHORIZE_CONFIG['transaction_key'], AUTHORIZE_CONFIG['gateway'])
     payment_handler.make_payment(self)
