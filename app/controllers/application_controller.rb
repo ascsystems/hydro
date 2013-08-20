@@ -21,8 +21,28 @@ class ApplicationController < ActionController::Base
     Category.find(:all)
   end
 
-  def after_sign_in_path_for(user)
-    root_url
+  after_filter :store_location
+
+  def store_location
+   # store last url - this is needed for post-login redirect to whatever the user last visited.
+      if (request.fullpath != "/accounts/sign_in" && \
+          request.fullpath != "/accounts/sign_up" && \
+          request.fullpath != "/accounts/password" && \
+          !request.xhr?) # don't store ajax calls
+        session[:previous_url] = request.fullpath
+      end
   end
 
+  def after_sign_in_path_for(resource)
+    session[:previous_url] || root_path
+  end
+
+  def after_sign_out_path_for(resource)
+    session[:previous_url] || root_path
+  end
+
+  def redirect_url
+    session[:previous_url] || login_path
+    flash[:notice] = "Invalid login or password"
+  end
 end

@@ -5,3 +5,5 @@ $(document).ready ->
   $("a#form_handle").bind "click", (e) ->
     e.preventDefault()
     $('form#new_order').submit()
+
+
