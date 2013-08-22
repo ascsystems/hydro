@@ -34,11 +34,20 @@ class OrdersController < ApplicationController
     end
   end
 
+  # Order has just been submitted,
   def confirm
-    @order = Order.new(params[:order])
+    
+    #FIXME: to complete
+    #order_attrs = params[:order]
+    #if params[:billing_same_as_shipping] == 1
+    #  
+    #end
+    
+    @order = Order.new(params[:order])  #.merge(order_attrs)
     unless @order.valid?
       render action: :new
     else
+      #TODO: something goes here?
     end
   end
 

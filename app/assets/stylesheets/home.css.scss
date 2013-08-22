@@ -160,3 +160,25 @@ h2 {
         font-family: Pragmatica2, Helvetica, Arial, sans-serif;
     }
 }
+
+// blue background for email/pw sign-in and sign-up forms
+#hydro_account_panel {
+	padding: 20px;
+	padding-right: 200px;
+	background-color:#E0F2F7;
+	
+	// FIXME: this is repeated; change to be connected to a special class we'll give to all the login submit buttons
+	input[type="submit"]{
+        border: none;
+        background-color: #00aaff !important;
+        cursor: pointer;
+        color: #fff;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+        position: relative;
+        padding: 0 10px 0 10px;
+        font-family: Pragmatica2, Helvetica, Arial, sans-serif;
+    }
+	
+}

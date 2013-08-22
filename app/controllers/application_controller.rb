@@ -5,16 +5,22 @@ class ApplicationController < ActionController::Base
 
   private
 
+  #---------------------------------------------------------------------------
+  # Get the user's current cart (will auto-create blank one if none exists)
   def current_cart
-    Cart.find(session[:cart_id])
-  rescue ActiveRecord::RecordNotFound
-    cart = Cart.create
-    session[:cart_id] = cart.id
+    #raise session.inspect
+    cart = Cart.find_by_id(session[:cart_id])
+    unless cart
+      cart = Cart.create
+      session[:cart_id] = cart.id
+    end
     cart
   end
+  #---------------------------------------------------------------------------
 
   def items_in_cart
-    current_cart.line_items.count
+    # protect from nil current_cart, although it should never happen
+    current_cart ? current_cart.line_items.count : 0
   end
 
   def header_categories
@@ -33,6 +39,7 @@ class ApplicationController < ActionController::Base
       end
   end
 
+  # redirect to the page the user was on before sign-in, or if they were on the main sign-in view, redirect to root
   def after_sign_in_path_for(resource)
     session[:previous_url] || root_path
   end

@@ -4,7 +4,7 @@
 		<h2>Your Cart</h2>
   		<%= render partial: 'carts/item', collection: current_cart.line_items %>
 	</div>
-	<div id="account_panel" style='float:left; padding: 20px; padding-right: 200px; background-color:#E0F2F7;'>
+	<div id="hydro_account_panel" style='float:left;'>
 		<% unless current_account %>
 			<h2>Already have an account?</h2>
 			<%=render "sign_in_form"%>

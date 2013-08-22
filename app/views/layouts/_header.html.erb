@@ -15,14 +15,14 @@
 					<li><%= link_to "SOCIAL", page_path('hydro-flask-social') %></li>
 					<li><%= link_to "5% BACK", page_path("5-back") %></li>
 					<li><%= link_to "CONTACT", page_path("contact-hydro-flask") %></li>
+					<li>|</li>
 					<% if current_account.present? %>
 						<li><%= display_account %></li>
-						<li><%= link_to "Sign Out", destroy_account_session_path, :method => :delete %></li>
+						<li><%= link_to "SIGN OUT", destroy_account_session_path, :method => :delete %></li>
 					<%else%>
-						<li><%= link_to "Sign In", new_account_session_url %></li>
+						<li><%= link_to "SIGN IN", new_account_session_url %></li>
 					<%end%>
-					<li>|</li>
-					<li><%= link_to "CART #{items_in_cart}", mycart_path, class: "primary-color" %><div id="cart-img"></div></a></li>
+					<li><%= link_to "CART (#{items_in_cart})", mycart_path, class: "primary-color" %><div id="cart-img"></div></a></li>
 				</ul>
 			</nav>
 		</div>
