@@ -1,6 +1,14 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <%= f.email_field :email, :autofocus => true, placeholder: "youremail@domain.com" %>
-  <%= f.password_field :password, placeholder: "your password" %>
+  <%= f.label :email %><br />
+	<%= f.text_field :email, :autofocus => true, placeholder: "youremail@domain.com" %><br />
+  <%#= f.email_field :email, :autofocus => true, placeholder: "youremail@domain.com" %>
+	
+	<br />
+	<%= f.label :password %><br />
+	<%= f.text_field :password %><br />
+  <%#= f.password_field :password, placeholder: "your password" %>
+	
+	<br />
   <%= f.submit "Sign in" %>
   <div class="errors">
   	<%= flash[:notice]%>
