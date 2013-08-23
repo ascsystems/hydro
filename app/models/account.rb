@@ -1,5 +1,7 @@
 class Account < ActiveRecord::Base
   
+  has_many :orders
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -11,4 +13,6 @@ class Account < ActiveRecord::Base
   
   # Cannot create 2 different accounts with the same email
   validates_uniqueness_of :email, :case_sensitive => false
+  
+  
 end
