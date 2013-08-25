@@ -1,15 +1,27 @@
 <div id="checkout_page">
   <h1>Confirm Your Order</h1>
+  
   <div id="cart_panel">
     <h2>Your Cart</h2>
     <%= render partial: 'carts/item', collection: current_cart.line_items %>
-    <%= render partial: 'shared/tax',:locals =>{:products => current_cart.line_items} %>
-    <a href="#" class="button" id="form_handle">Make Payment</a>
   </div>
   
-  <%# renders the @order fields nicely %>
-  <%= render partial: 'orders/print_or_show' %>
-
+  <div id="form_panel">
+    <%# renders the @order fields nicely %>
+    <%= render partial: 'orders/print_or_show' %>
+    
+    <div id="payment_panel" style='float: right; padding-right: 200px; padding-left:20px; border: 2px solid black; margin-bottom: 50px;'>
+      <br/>
+      <h2>Cost Summary</h2>
+      <%= render partial: 'total_cost_breakdown',:locals =>{:products => current_cart.line_items} %>
+      <a href="#" class="button" id="form_handle">Make Payment</a>
+      <br/><br/>
+    </div>
+  </div>
+  
+  
+  
+  <%# Order params are resent to the "payment" method, to actually create the Order record (I'm not sure if there is a cleaner way to do this) %>
   <div class="">
     <%= form_for @order, :url => {:action => "payment"} do |f| %>
       <%= f.hidden_field :first_name%>

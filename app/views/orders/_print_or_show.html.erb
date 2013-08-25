@@ -1,77 +1,80 @@
-<div id="form_panel">
-  <p id="notice"><%= notice %></p>
-  <h2>Shipping Info</h2>
-  <p>
-    <b>First name:</b>
-    <%= @order.first_name %>
-    &nbsp; &nbsp; &nbsp; &nbsp; 
-    <b>Last name:</b>
-    <%= @order.last_name %>
-  </p>
 
-  <p>
-    <b>Email:</b>
-    <%= @order.email %>
-  </p>
+<p id="notice"><%= notice %></p>
+<h2>Shipping Info</h2>
+<p>
+  <b>First name:</b>
+  <%= @order.first_name %>
+  &nbsp; &nbsp; &nbsp; &nbsp; 
+  <b>Last name:</b>
+  <%= @order.last_name %>
+</p>
 
-  <p>
-    <b>Address:</b>
-    <%= @order.address %>
-  </p>
+<p>
+  <b>Email:</b>
+  <%= @order.email %>
+</p>
 
-  <p>
-    <b>Address2:</b>
-    <%= @order.address2 %>
-  </p>
+<p>
+  <b>Address:</b>
+  <%= @order.address %>
+</p>
 
-  <p>
-    <b>City:</b>
-    <%= @order.city %>
-    &nbsp; &nbsp; &nbsp; &nbsp; 
-    <b>State:</b>
-    <%= @order.state %>
-    &nbsp; &nbsp; &nbsp; &nbsp; 
-    <b>Zip:</b>
-    <%= @order.zip %>
-  </p>
+<p>
+  <b>Address2:</b>
+  <%= @order.address2 %>
+</p>
 
-  <p>
-    <b>Shipping method:</b>
-    <%= @order.shipping_method %>
-  </p>
+<p>
+  <b>City:</b>
+  <%= @order.city %>
+  &nbsp; &nbsp; &nbsp; &nbsp; 
+  <b>State:</b>
+  <%= @order.state %>
+  &nbsp; &nbsp; &nbsp; &nbsp; 
+  <b>Zip:</b>
+  <%= @order.zip %>
+</p>
 
-  <br/>
-  <h2>Billing Info</h2>
-  <p>
-    <b>Billing address:</b>
-    <%= @order.billing_address %>
-  </p>
+<p>
+  <b>Shipping method:</b>
+  <%= @order.shipping_method %>
+</p>
 
-  <p>
-    <b>Billing address2:</b>
-    <%= @order.billing_address2 %>
-  </p>
+<br/>
+<h2>Billing Address</h2>
+<p>
+  <b>Address:</b>
+  <%= @order.billing_address %>
+</p>
 
-  <p>
-    <b>Billing city:</b>
-    <%= @order.billing_city %>
-    &nbsp; &nbsp; &nbsp; &nbsp; 
-    <b>Billing state:</b>
-    <%= @order.billing_state %>
-    &nbsp; &nbsp; &nbsp; &nbsp; 
-    <b>Billing zip:</b>
-    <%= @order.billing_zip %>
-  </p>
-  <p>
-    <b>Credit card Number:</b>
-    <%= @order.credit_card_number %>
-  </p>
-  <p>
-    <b>Credit card expiry date:</b>
-    <%= @order.exp_date %>
-  </p>
-  <p>
-    <b>Credit card verification number:</b>
-    <%= @order.ccv_number %>
-  </p>
-</div>
+<p>
+  <b>Address2:</b>
+  <%= @order.billing_address2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @order.billing_city %>
+  &nbsp; &nbsp; &nbsp; &nbsp; 
+  <b>State:</b>
+  <%= @order.billing_state %>
+  &nbsp; &nbsp; &nbsp; &nbsp; 
+  <b>Zip:</b>
+  <%= @order.billing_zip %>
+</p>
+
+<br/>
+<h2>Payment Method</h2>
+<p>
+<p>
+  <b>Credit card Number:</b>
+  <%= @order.credit_card_number %>
+</p>
+<p>
+  <b>Credit card expiry date:</b>
+  <%= @order.exp_date %>
+</p>
+<p>
+  <b>Credit card verification number:</b>
+  <%= @order.ccv_number %>
+</p>

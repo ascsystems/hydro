@@ -1,5 +1,7 @@
-<%# renders the @order fields nicely %>
-<%= render partial: 'orders/print_or_show' %>
+<div id="form_panel">
+  <%# renders the @order fields nicely %>
+  <%= render partial: 'orders/print_or_show' %>
+</div>
 
 <%# Orders cannot be edited, and no regular user should be able to view all orders in the app %>
 <%#= link_to 'Edit', edit_order_path(@order) %> |

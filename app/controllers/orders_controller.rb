@@ -33,12 +33,28 @@ class OrdersController < ApplicationController
       format.json { render json: @order }
     end
   end
+  
+  # FIXME: create a better flow for the order fulfillment (so going back from errors is handled properly)
+  #---------------------------------------------------------------------------
+  def initiate
+    #@order = Order.new
+    #shipping = Shipping.find(params["sm"])
+    #@order.shipping_method_id = shipping.id
 
+    #respond_to do |format|
+    #  format.html # new.html.erb
+    #  format.json { render json: @order }
+    #end
+  end
+  #---------------------------------------------------------------------------
+  
+  #---------------------------------------------------------------------------
   # Order has just been submitted,
   def confirm
     
     #FIXME: to complete
     #order_attrs = params[:order]
+    #
     #if params[:billing_same_as_shipping] == 1
     #  
     #end
@@ -47,25 +63,42 @@ class OrdersController < ApplicationController
     unless @order.valid?
       render action: :new
     else
-      #TODO: something goes here?
+      # confirm.html.erb is rendered by default
     end
   end
+  #---------------------------------------------------------------------------
 
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
   end
 
+  #---------------------------------------------------------------------------
+  # Save the Order to the DB, and process the CC transaction
   def payment
     @order = Order.new(params[:order])
+    
     if @order.valid?
-      @order.save
+      #@order.status = ORDER_INITIATED
+      begin
+        @order.save!
         @response = @order.make_payment
+        flash[:notice] = "Successfully made a purchase (authorization code: #{@response.authorization_code})"
         current_cart.destroy
+        #@order.status = ORDER_COMPLETED
+        #@order.save!
+      rescue Exception => e
+        @order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
+        # go back to the order view, where they can edit fields and resubmit
+        render action: :new
+      end
     else
-      raise "Invalid Order"
+      # go back to the order view, where they can edit fields and resubmit
+      # @order.errors should contain the associated errors, and will be shown in flash.
+      render action: :new  
     end
   end
+  #---------------------------------------------------------------------------
 
   # POST /orders
   # POST /orders.json
