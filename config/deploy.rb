@@ -63,3 +63,5 @@ end
 
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
+
+after "bundle:install", "config:copy_shared_files"

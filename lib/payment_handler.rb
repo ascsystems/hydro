@@ -1,4 +1,7 @@
 # Perform the CC transaction (raises exception if not successful)
+#
+# NOTE: your server must be accessible from the internet in order for this to work,
+#       and when in production mode, the server port must be 80 or 443  (can't run production mode with localhost:3000)
 module PaymentHandler
 	class Billing
 
@@ -38,3 +41,6 @@ module PaymentHandler
     end
 	end
 end
+
+# example failure
+#<AuthorizeNet::AIM::Transaction:0xb08d74c @fields={}, @custom_fields={}, @test_mode=false, @version="3.1", @api_login_id="5m7Y75eF9N", @api_transaction_key="5Vdd57sE9ncd56TE", @response=nil, @delimiter=",", @type="AUTH_CAPTURE", @cp_version=nil, @gateway="https://test.authorize.net/gateway/transact.dll", @allow_split_transaction=false, @encapsulation_character=nil, @verify_ssl=false, @market_type=2, @device_type=1>
