@@ -22,6 +22,10 @@ end
 
 group :development do
 	gem 'pry-rails'
+	
+	# deployments
+  gem "capistrano"  
+  gem 'rvm-capistrano' 
 end
 
 gem 'jquery-rails'
