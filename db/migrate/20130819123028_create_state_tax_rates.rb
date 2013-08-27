@@ -2,7 +2,7 @@ class CreateStateTaxRates < ActiveRecord::Migration
   def change
     
     # order go botched up on the server, so I need to make this conditional
-    #if ActiveRecord::Base.connection.tables.include?(:state_tax_rates)
+    #unless ActiveRecord::Base.connection.tables.include?(:state_tax_rates)
     
       create_table :state_tax_rates do |t|
         t.integer :tax_rate
