@@ -8,7 +8,7 @@
 				<ul>
 					<li><%= link_to "SHOP", shop_path %>
 						<ul>
-							<%= render partial: 'layouts/category', collection: header_categories %>
+							<%= render partial: 'layouts/category', collection: header_categories, locals: { total: header_categories.count } %>
 						</ul>
 					</li>
 					<li><%= link_to "HYDRO FLASK", controller: 'pages', action: 'show', id: 'hydro-flask-technology' %></li>

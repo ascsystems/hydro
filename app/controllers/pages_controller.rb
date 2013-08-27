@@ -10,6 +10,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def five_back
+    @page = Page.find_by_slug("5-back")
+    @featured_charity = Charity.find_by_featured(1)
+  end
+
   # GET /pages/1
   # GET /pages/1.json
   def show

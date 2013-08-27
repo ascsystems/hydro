@@ -1,4 +1,10 @@
 HydroFlask::Application.routes.draw do
+  resources :donations
+
+
+  resources :charities
+
+
   resources :car_related_products
 
 
@@ -51,6 +57,8 @@ HydroFlask::Application.routes.draw do
   get "pages/index"
 
   get "pages/create"
+
+  match "pages/5-back" => "pages#five_back"
 
   resources :category_products
 

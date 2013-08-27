@@ -33,8 +33,10 @@ h2 {
 }
 
 #homeslideposition {
-	height: 87%;
-    min-width: 1620px;
+	/*height: 87%;
+    min-width: 1620px;*/
+    height:100%;
+    min-width:920px;
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -108,6 +110,113 @@ h2 {
     top: 295px;
     transition: opacity 0.4s ease-in-out 0s;
 }
+
+.touch .navarrow, .navarrow.touch {
+    opacity: 0.6;
+}
+#navarrowleft {
+    left: 5px;
+}
+#navarrowright {
+    right: 5px;
+}
+#homeslideposition:hover .navarrow {
+    opacity: 0.6;
+}
+#homeslideposition:hover .navarrow:hover {
+    opacity: 1;
+}
+#homeslidenavlinks {
+    bottom: 20px;
+    left: 10px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: left;
+    width: 100%;
+}
+#homeslidenavlinks li {
+    display: inline-block;
+}
+#homeslidenavlinks img {
+    background: url("/assets/pagination-dots.png") no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+#homeslidenavlinks img.active {
+    background-position: -60px 0;
+}
+#homeslidebox {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+.homeslide {
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#homeslideA {
+    left: -100%;
+}
+#homeslideC {
+    left: 100%;
+}
+.homeslidediv {
+    overflow: hidden;
+    position: relative;
+}
+.desktop .homeslidediv {
+    position: absolute;
+}
+.homeslidediv img {
+    width: 100%;
+}
+.homeslidewindowabs {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+.homeslidewindow {
+    margin: 0 auto;
+    position: relative;
+    width: 900px;
+}
+.homeslidepromobox {
+    bottom: 50px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 3;
+}
+a.homeslidepromo {
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.3);
+    color: #FFFFFF;
+    display: inline-block;
+    margin: 10px;
+    padding: 50px 30px;
+    text-transform: uppercase;
+    width: 180px;
+}
+a.homeslidelayer {
+    background: url("/assets/clear.gif") repeat scroll 0 0 transparent;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    text-indent: -5000px;
+    z-index: 3;
+}
+
+
 
 .featured-panel img {
     float:right;

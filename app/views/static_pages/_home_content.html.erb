@@ -1,0 +1,41 @@
+	<div id="homeContentWrapper" class="bottom">
+		<div id="homeContent">
+			<div class="panel featured-panel">
+				<div class="inner-panel">
+					<div class="featured-text">
+						<h2>FEATURED FLASK</h2>
+						<hr class="dividing_line">
+						<p class="bold">24 oz. Narrow Mouth</p>
+						<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
+						<p class="link"><a href="#">Shop this flask >></a></p>
+					</div>
+					<%= image_tag "featured_flask.png" %>
+				</div>
+			</div>
+			<div class="panel">
+				<div class="inner-panel">
+					<div class="center" id="fiveback_div">
+						<%= image_tag "five_percent_back.png" %>
+					</div>
+					<hr class="dividing_line">
+					<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
+					<p class="link"><a href="#">Learn more >></a></p>
+				</div>
+			</div>
+			<div class="panel no-background">
+				<div class="inner-panel">
+					<h2>FIND A STORE</h2>
+					<form>
+						<div class="form-row">
+							<input type="text" value="Enter zip code" /><input type="image" src="<%= asset_path "submit_button.png" %>" />
+						</div>
+					</form>
+					<h2 id="hydroflask_stories">HYDRO FLASK STORIES</h2>
+					<div class="left" id="hydroflask_stories_div">
+						<p class="alt_color left">Where has your flask taken you?</p>
+						<img class="right" src="<%= asset_path "share_button.png" %>" alt="Share">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

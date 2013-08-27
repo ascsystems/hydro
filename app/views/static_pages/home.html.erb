@@ -1,22 +1,165 @@
 <% provide(:title, 'Hydro Flask') %>
+<%= javascript_include_tag "prototype" %>
+<%= javascript_include_tag "scriptaculous" %>
+<%= javascript_include_tag "slider" %>
+<script>
+
+  document.observe("dom:loaded", function() {
+  	var slideImg0 = new Image();
+        slideImg0.onload = function(){ homeSlide.imageLoading(); };
+        slideImg0.src = '<%= asset_path "carousel/mountains.jpg" %>';
+    var slideImg1 = new Image();
+        slideImg1.onload = function(){ homeSlide.imageLoading(); };
+        slideImg1.src = '<%= asset_path "carousel/golf.jpg" %>';
+    var slideImg2 = new Image();
+        slideImg2.onload = function(){ homeSlide.imageLoading(); };
+        slideImg2.src = '<%= asset_path "carousel/dunes.jpg" %>';
+    var slideImg3 = new Image();
+        slideImg3.onload = function(){ homeSlide.imageLoading(); };
+        slideImg3.src = '<%= asset_path "carousel/camping.jpg" %>';
+    var slideImg4 = new Image();
+        slideImg4.onload = function(){ homeSlide.imageLoading(); };
+        slideImg4.src = '<%= asset_path "carousel/yoga.jpg" %>';
+    var slideImg5 = new Image();
+        slideImg5.onload = function(){ homeSlide.imageLoading(); };
+        slideImg5.src = '<%= asset_path "carousel/bridge.jpg" %>';
+    var slideImg6 = new Image();
+        slideImg6.onload = function(){ homeSlide.imageLoading(); };
+        slideImg6.src = '<%= asset_path "carousel/bridge_zoom.jpg" %>';
+    var slideImg7 = new Image();
+        slideImg7.onload = function(){ homeSlide.imageLoading(); };
+        slideImg7.src = '<%= asset_path "carousel/canoe.jpg" %>';
+    var slideImg8 = new Image();
+        slideImg8.onload = function(){ homeSlide.imageLoading(); };
+        slideImg8.src = '<%= asset_path "carousel/coffee.jpg" %>';
+    var slideImg9 = new Image();
+        slideImg9.onload = function(){ homeSlide.imageLoading(); };
+        slideImg9.src = '<%= asset_path "carousel/coffeeshop.jpg" %>';
+    var slideImg10 = new Image();
+        slideImg10.onload = function(){ homeSlide.imageLoading(); };
+        slideImg10.src = '<%= asset_path "carousel/dunes_drinker.jpg" %>';
+    var slideImg11 = new Image();
+        slideImg11.onload = function(){ homeSlide.imageLoading(); };
+        slideImg11.src = '<%= asset_path "carousel/espresso.jpg" %>';
+    var slideImg12 = new Image();
+        slideImg12.onload = function(){ homeSlide.imageLoading(); };
+        slideImg12.src = '<%= asset_path "carousel/golf_sunset.jpg" %>';
+    var slideImg13 = new Image();
+        slideImg13.onload = function(){ homeSlide.imageLoading(); };
+        slideImg13.src = '<%= asset_path "carousel/hiking.jpg" %>';
+    var slideImg14 = new Image();
+        slideImg14.onload = function(){ homeSlide.imageLoading(); };
+        slideImg14.src = '<%= asset_path "carousel/lake.jpg" %>';
+    var slideImg15 = new Image();
+        slideImg15.onload = function(){ homeSlide.imageLoading(); };
+        slideImg15.src = '<%= asset_path "carousel/lake_drinker.jpg" %>';
+    var slideImg16 = new Image();
+        slideImg16.onload = function(){ homeSlide.imageLoading(); };
+        slideImg16.src = '<%= asset_path "carousel/yoga_lake.jpg" %>';
+  
+  if(homeSlide.version == 'touch') {
+    homeSlide.touch.init();
+  } else {
+  	homeSlide.desktop.init();
+ 	}
+});
+
+	homeSlide.totalSlides = 17; 
+  //homeSlide.winWidth =  document.viewport.getWidth();
+  
+  //if(screen.width < 560){
+  //  var imgParam = '&wid=650'
+  //} else 
+  // if(homeSlide.winWidth < 1024){
+  //  var imgParam = '&wid=1152'
+  //} else 
+  // if(homeSlide.winWidth < 1280){
+  //  var imgParam = '&wid=1280'
+  //} else {
+    var imgParam = '&wid=1280'
+  //}
+    
+  var slides = new Array();
+  
+  slides[0] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/mountains.jpg" %>" alt="" class="homeslideimg" id="homeslideimg0" /></a></div>',
+  }
+  
+  slides[1] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/golf.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg1" /></a></div>',
+  }
+  
+  slides[2] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/dunes.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg2" /></a></div>',
+  }
+  
+  slides[3] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/camping.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg3" /></a></div>',
+  }
+  
+  slides[4] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/yoga.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg4" /></a></div>',
+  }
+
+  slides[5] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/bridge.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg5" /></a></div>',
+  }
+
+  slides[6] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/bridge_zoom.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg6" /></a></div>',
+  }
+
+  slides[7] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/canoe.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg7" /></a></div>',
+  }
+
+  slides[8] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/coffee.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg8" /></a></div>',
+  }
+  
+  slides[9] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/coffeeshop.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg9" /></a></div>',
+  }
+
+  slides[10] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/dunes_drinker.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg10" /></a></div>',
+  }
+
+  slides[11] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/espresso.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg11" /></a></div>',
+  }
+
+  slides[12] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/golf_sunset.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg12" /></a></div>',
+  }
+
+  slides[13] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/hiking.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg13" /></a></div>',
+  }
+
+  slides[14] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/lake.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg14" /></a></div>',
+  }
+
+  slides[15] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/lake_drinker.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg15" /></a></div>',
+  }
+
+  slides[16] = {
+    html: '<div class="homeslidediv" style=""><a href="/shop"><img src="<%= asset_path "carousel/yoga_lake.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg16" /></a></div>',
+  }
+</script>
 <div id="homeslideposition">
 	<div id="homeslidenavouter">
 		<div id="homeslidenav">
 			<img src="<%= asset_path "arrow_left.png" %>" class="navarrow" id="navarrowleft" onclick="homeSlide.prevNext(-1);"/>
 			<img src="<%= asset_path "arrow_right.png" %>" class="navarrow" id="navarrowright" onclick="homeSlide.prevNext(1);" />
-			<ul id="homeslidenavlinks" style="display: none;">
+			<ul id="homeslidenavlinks">
+				<% (0..16).each do |i| %>
 				<li>
-					<img src="<%= asset_path "clear.gif" %>" class="navlink active" id="navlink0" onclick="homeSlide.slideToPage(0);" alt="Hydroflask Mountains" title="Hydroflask Mountains" />
+					<img src="<%= asset_path "clear.gif" %>" class="navlink active" id="navlink<%= i %>" onclick="homeSlide.slideToPage(<%= i %>);" alt="" title="" />
 				</li>
-				<li>
-					<img src="<%= asset_path "clear.gif" %>" class="navlink" id="navlink1" onclick="homeSlide.slideToPage(1);" alt="" title="" />
-				</li>
-				<li>
-					<img src="<%= asset_path "clear.gif" %>" class="navlink" id="navlink2" onclick="homeSlide.slideToPage(2);" alt="" title="" />
-				</li>
-				<li>
-					<img src="<%= asset_path "clear.gif" %>" class="navlink" id="navlink3" onclick="homeSlide.slideToPage(3);" alt="" title="" />
-				</li>
+				<% end %>
 			</ul>
 		</div>
 	</div>
@@ -24,50 +167,10 @@
 		<div id="homeslidebox">
 			<div class="homeslide" id="homeslideB">
 				<div class="homeslidediv" style="">
-					<a href="/"><img src="<%= asset_path "mountains.png" %>" alt="Hydroflask Mountains" title="Hydroflask Mountains" class="homeslideimg" id="homeslideimg0" /></a>
+					<a href="/"><img src="<%= asset_path "carousel/mountains.jpg" %>" alt="Hydroflask Mountains" title="Hydroflask Mountains" class="homeslideimg" id="homeslideimg0" /></a>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="homeContentWrapper" class="bottom">
-		<div id="homeContent">
-			<div class="panel featured-panel">
-				<div class="inner-panel">
-					<div class="featured-text">
-						<h2>FEATURED FLASK</h2>
-						<hr class="dividing_line">
-						<p class="bold">24 oz. Narrow Mouth</p>
-						<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
-						<p class="link"><a href="#">Shop this flask >></a></p>
-					</div>
-					<%= image_tag "featured_flask.png" %>
-				</div>
-			</div>
-			<div class="panel">
-				<div class="inner-panel">
-					<div class="center" id="fiveback_div">
-						<%= image_tag "five_percent_back.png" %>
-					</div>
-					<hr class="dividing_line">
-					<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
-					<p class="link"><a href="#">Learn more >></a></p>
-				</div>
-			</div>
-			<div class="panel no-background">
-				<div class="inner-panel">
-					<h2>FIND A STORE</h2>
-					<form>
-						<div class="form-row">
-							<input type="text" value="Enter zip code" /><input type="image" src="<%= asset_path "submit_button.png" %>" />
-						</div>
-					</form>
-					<h2 id="hydroflask_stories">HYDRO FLASK STORIES</h2>
-					<div class="left" id="hydroflask_stories_div">
-						<p class="alt_color left">Where has your flask taken you?</p>
-						<img class="right" src="<%= asset_path "share_button.png" %>" alt="Share">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <%= render partial:"home_content" %>
 </div>

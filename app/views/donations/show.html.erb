@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @donation.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @donation.email %>
+</p>
+
+<p>
+  <b>Serial number:</b>
+  <%= @donation.serial_number %>
+</p>
+
+<p>
+  <b>Place of purchase:</b>
+  <%= @donation.place_of_purchase %>
+</p>
+
+<p>
+  <b>Flask purchased:</b>
+  <%= @donation.flask_purchased %>
+</p>
+
+<p>
+  <b>Charity:</b>
+  <%= @donation.charity_id %>
+</p>
+
+<p>
+  <b>Newsletter:</b>
+  <%= @donation.newsletter %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%= @donation.comments %>
+</p>
+
+
+<%= link_to 'Edit', edit_donation_path(@donation) %> |
+<%= link_to 'Back', donations_path %>

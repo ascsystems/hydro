@@ -1,0 +1,34 @@
+<% provide(:meta_title, @page.meta_title) %>
+<% provide(:meta_description, @page.meta_description) %>
+<% provide(:meta_keywords, @page.keywords) %>
+<div id="page">
+  <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
+  <h1><%= @page.title %></h1>
+  <% if !@page.header_content.empty? %>
+  <div id="header_content"><%= raw @page.header_content %></div>
+  <% end %>
+  <div id="left_content">
+    <div id="left_content_inner">
+      <%= raw @page.body %>
+    </div>
+  </div>
+  <div id="right_content">
+    <div>
+      <h3>Featured Charity</h3>
+      <%= image_tag @featured_charity.logo, alt: @featured_charity.name, title: @featured_charity.name, style: 'width:100%;' %>
+    </div>
+    <div>
+      <h3>All Charities</h3>
+      <ul>
+        <%= render partial: 'charities/charity', collection: Charity.all %>
+      </ul>
+    </div>
+    <div>
+      <a class="button">Donate</a>
+    </div>
+  </div>
+  <div class="admin_links">
+    <%= link_to 'Edit', edit_page_path(@page) %> |
+    <%= link_to 'Back', pages_path %>
+  </div>
+</div>

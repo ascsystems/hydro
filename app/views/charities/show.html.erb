@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @charity.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @charity.description %>
+</p>
+
+<p>
+  <b>Logo:</b>
+  <%= @charity.logo %>
+</p>
+
+<p>
+  <b>Featured:</b>
+  <%= @charity.featured %>
+</p>
+
+
+<%= link_to 'Edit', edit_charity_path(@charity) %> |
+<%= link_to 'Back', charities_path %>

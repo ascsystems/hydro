@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  serial_number: MyString
+  place_of_purchase: MyString
+  flask_purchased: MyString
+  charity_id: 1
+  newsletter: 1
+  comments: MyText
+
+two:
+  name: MyString
+  email: MyString
+  serial_number: MyString
+  place_of_purchase: MyString
+  flask_purchased: MyString
+  charity_id: 1
+  newsletter: 1
+  comments: MyText

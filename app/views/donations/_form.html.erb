@@ -1,0 +1,49 @@
+<%= form_for(@donation) do |f| %>
+  <% if @donation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
+
+      <ul>
+      <% @donation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :serial_number %><br />
+    <%= f.text_field :serial_number %>
+  </div>
+  <div class="field">
+    <%= f.label :place_of_purchase %><br />
+    <%= f.text_field :place_of_purchase %>
+  </div>
+  <div class="field">
+    <%= f.label :flask_purchased %><br />
+    <%= f.text_field :flask_purchased %>
+  </div>
+  <div class="field">
+    <%= f.label :charity_id %><br />
+    <%= f.number_field :charity_id %>
+  </div>
+  <div class="field">
+    <%= f.label :newsletter %><br />
+    <%= f.number_field :newsletter %>
+  </div>
+  <div class="field">
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

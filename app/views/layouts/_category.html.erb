@@ -1,4 +1,13 @@
-<ul class="nav_category">
-	<li class="category"><%= link_to category.name, category_path(category) %></li>
-	<%= render partial: 'layouts/product', collection: category.products %>
-</ul>
+<% if category_counter == 0 %>
+<li class="nav_column">
+<% end %>
+	<ul class="nav_category">
+		<li class="category"><%= link_to category.name, category_path(category) %></li>
+		<%= render partial: 'layouts/product', collection: category.products %>
+	</ul>
+<% if category_counter == 3 %>
+</li><li class="nav_column_right">
+<% end %>
+<% if category_counter == total - 1 %>
+</li>
+<% end %>

@@ -20,8 +20,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'friendly_id'
 gem 'jquery-ui-rails'
+gem 'friendly_id'
 gem "savon"
 gem 'netsuite'
 gem 'ckeditor'
