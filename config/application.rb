@@ -58,5 +58,8 @@ module HydroFlask
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Add file names here, for assets that are called in a special way, not covered by the main application.js loading
+    #config.assets.precompile += ['example.js']
   end
 end

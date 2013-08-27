@@ -1,4 +1,5 @@
-class Netsuite
+# Changed from "class" to "module" because it blew up when in production mode
+module Netsuite
 
   def initialize1
     client = Savon.client(wsdl: 'https://webservices.netsuite.com/wsdl/v2_5_0/netsuite.wsdl', namespace: 'urn:core_2_5.platform.webservices.netsuite.com')

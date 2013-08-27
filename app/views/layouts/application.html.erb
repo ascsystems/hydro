@@ -6,7 +6,8 @@
     <meta name="keywords" content="<%= yield(:meta_keywords) %>" />
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "application", controller_name %>
+		<%# Can't do it this way -- asset pipeline blows up on mising .js files %>
+    <%#= javascript_include_tag "application", controller_name %>
     <%= csrf_meta_tags %>
   </head>
   <body>
