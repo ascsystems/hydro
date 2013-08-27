@@ -19,5 +19,6 @@
 //= require accounts
 //= require orders
 //= require site
+//= require prototype
 //
 //= require_tree .
