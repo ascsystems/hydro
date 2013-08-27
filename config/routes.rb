@@ -4,6 +4,7 @@ HydroFlask::Application.routes.draw do
 
   resources :charities
 
+  devise_for :accounts
 
   resources :car_related_products
 
@@ -43,7 +44,12 @@ HydroFlask::Application.routes.draw do
   resources :options
 
 
-  resources :orders
+  resources :orders do
+    collection do
+      post 'payment'
+    end
+  end
+
   post "orders/confirm"
 
   resources :line_items

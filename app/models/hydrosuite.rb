@@ -1,4 +1,5 @@
-class HydroSuite < NetSuite
+# Changed from "class" to "module" because it blew up when in production mode
+module HydroSuite # < NetSuite
 
   def initialize
 	NetSuite.configure do

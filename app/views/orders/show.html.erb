@@ -1,75 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div id="form_panel">
+  <%# renders the @order fields nicely %>
+  <%= render partial: 'orders/print_or_show' %>
+</div>
 
-<p>
-  <b>First name:</b>
-  <%= @order.first_name %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @order.last_name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @order.email %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @order.address %>
-</p>
-
-<p>
-  <b>Address2:</b>
-  <%= @order.address2 %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @order.city %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= @order.state %>
-</p>
-
-<p>
-  <b>Zip:</b>
-  <%= @order.zip %>
-</p>
-
-<p>
-  <b>Shipping method:</b>
-  <%= @order.shipping_method_id %>
-</p>
-
-<p>
-  <b>Billing address:</b>
-  <%= @order.billing_address %>
-</p>
-
-<p>
-  <b>Billing address2:</b>
-  <%= @order.billing_address2 %>
-</p>
-
-<p>
-  <b>Billing city:</b>
-  <%= @order.billing_city %>
-</p>
-
-<p>
-  <b>Billing state:</b>
-  <%= @order.billing_state %>
-</p>
-
-<p>
-  <b>Billing zip:</b>
-  <%= @order.billing_zip %>
-</p>
-
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%# Orders cannot be edited, and no regular user should be able to view all orders in the app %>
+<%#= link_to 'Edit', edit_order_path(@order) %> |
+<%#= link_to 'Back', orders_path %>

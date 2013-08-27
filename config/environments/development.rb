@@ -12,9 +12,30 @@ HydroFlask::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
+  
+  #------------- MAIL -------------------------------------------------------
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  # Disable delivery errors, bad email addresses will be ignored
+  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
+  
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  # Settings from the "SMTP & API Credentials" Mandrill screen
+  # :domain must be specific to the environment file
+  #
+  # For Mandrill API info, see:  https://mandrillapp.com/api/docs/
+  config.action_mailer.smtp_settings = {
+    :address  => "smtp.mandrillapp.com",
+    :port  => '587', 
+    :domain  => "hydroflask.com", 
+    :user_name  => "marketing@hydroflask.com", # the Mandrill SMTP User Name
+    :password  => "b92f5602b14f6f3c601455e01b8cd94d-us1",  # the Mandrill SMTP API key
+    :authentication  => :login
+  }
+  #--------------------------------------------------------------------------
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -33,7 +54,7 @@ HydroFlask::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false  # set to true only to debug (it creates too much garbage data in the logs)
 
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 

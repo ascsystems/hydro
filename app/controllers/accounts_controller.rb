@@ -1,4 +1,8 @@
 class AccountsController < ApplicationController
+  
+  # User must be logged in to see their Account
+  before_filter :authenticate_account!
+  
   # GET /accounts
   # GET /accounts.json
   def index
@@ -14,6 +18,9 @@ class AccountsController < ApplicationController
   # GET /accounts/1.json
   def show
     @account = Account.find(params[:id])
+    
+    # Get this customer's orders too, to display in the view
+    @orders = @account.orders
 
     respond_to do |format|
       format.html # show.html.erb
@@ -79,5 +86,9 @@ class AccountsController < ApplicationController
       format.html { redirect_to accounts_url }
       format.json { head :no_content }
     end
+  end
+
+  def sign_out
+    binding.pry
   end
 end

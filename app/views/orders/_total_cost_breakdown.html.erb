@@ -1,0 +1,9 @@
+<div>
+	<p>Shipping cost : <%= @order.shipping_charge%><p>
+	<%total = total_price(products)%>
+	<p>Total price : $<%=total%> </p>
+	<%tax = total_tax(total,@order.state)%>
+	<p>Tax % : <%=@order.tax%>%</p>
+	<p>Tax : $<%=tax%></p>
+	<p>Gross total : $<%=total_amount(total, tax)%></p>
+</div>

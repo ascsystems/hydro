@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 
@@ -6,7 +6,8 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem 'devise'
+gem 'authorize-net', :git => "git://github.com/xecutioner/authorize-net.git"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -17,6 +18,14 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+	gem 'pry-rails'
+	
+	# deployments
+  gem "capistrano"  
+  gem 'rvm-capistrano' 
 end
 
 gem 'jquery-rails'

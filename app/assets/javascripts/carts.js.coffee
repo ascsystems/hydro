@@ -4,5 +4,8 @@
 
 $ ->
 	$("#cart_page #checkout").on 'click', ->
-		console.log('click!')
-		window.location.href = '/orders/new'
+		shipping_value = $('[name="shipping"]:checked').val()
+		if shipping_value == undefined
+			alert "Please select the shipping method"
+		else
+			window.location.href = '/orders/new?sm='+shipping_value

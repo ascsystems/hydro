@@ -1,59 +1,26 @@
 module OrdersHelper
 
-def us_states
-    [
-    ['AK', 'AK'],
-    ['AL', 'AL'],
-    ['AR', 'AR'],
-    ['AZ', 'AZ'],
-    ['CA', 'CA'],
-    ['CO', 'CO'],
-    ['CT', 'CT'],
-    ['DC', 'DC'],
-    ['DE', 'DE'],
-    ['FL', 'FL'],
-    ['GA', 'GA'],
-    ['HI', 'HI'],
-    ['IA', 'IA'],
-    ['ID', 'ID'],
-    ['IL', 'IL'],
-    ['IN', 'IN'],
-    ['KS', 'KS'],
-    ['KY', 'KY'],
-    ['LA', 'LA'],
-    ['MA', 'MA'],
-    ['MD', 'MD'],
-    ['ME', 'ME'],
-    ['MI', 'MI'],
-    ['MN', 'MN'],
-    ['MO', 'MO'],
-    ['MS', 'MS'],
-    ['MT', 'MT'],
-    ['NC', 'NC'],
-    ['ND', 'ND'],
-    ['NE', 'NE'],
-    ['NH', 'NH'],
-    ['NJ', 'NJ'],
-    ['NM', 'NM'],
-    ['NV', 'NV'],
-    ['NY', 'NY'],
-    ['OH', 'OH'],
-    ['OK', 'OK'],
-    ['OR', 'OR'],
-    ['PA', 'PA'],
-    ['RI', 'RI'],
-    ['SC', 'SC'],
-    ['SD', 'SD'],
-    ['TN', 'TN'],
-    ['TX', 'TX'],
-    ['UT', 'UT'],
-    ['VA', 'VA'],
-    ['VT', 'VT'],
-    ['WA', 'WA'],
-    ['WI', 'WI'],
-    ['WV', 'WV'],
-    ['WY', 'WY']
-    ]
-end
+    def us_states
+        StateTaxRate.all.map{|s|[s.state_acronym,s.state_acronym]}
+    end
 
+    def total_price(products)
+        products.sum(&:product_price)
+    end
+
+    def total_tax(total,state)
+      state_rate = StateTaxRate.find_by_state_acronym(state).try(:tax_rate)
+      tax = total.to_f * (state_rate.to_f/100)
+      tax.round(2)
+    end
+
+    def total_amount(total, tax)
+      total + tax
+    end
+
+    def total_amount_with_tax(products,state)
+      total = products.sum(&:product_price)
+      tax = total_tax( total, state )
+      amount = total_amount(total, tax)
+    end
 end

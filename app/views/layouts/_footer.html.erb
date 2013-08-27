@@ -6,13 +6,13 @@
 				<div id="footer-nav-div" class="inner-panel left">
 					<nav>
 						<ul id="footer-nav">
-							<li><%= link_to "Contact", controller: 'pages', action: 'show', id: 'contact-hydro-flask' %></li>
-							<li><%= link_to "About Hydro Flask", controller: 'pages', action: 'show', id: 'about-hydro-flask' %></li>
-							<li><%= link_to "FAQs", controller: 'pages', action: 'show', id: 'frequently-asked-questions' %></li>
-							<li><%= link_to "Lifetime Warranty", controller: 'pages', action: 'show', id: 'lifetime-warranty' %></li>
-							<li><%= link_to "Shipping & Handling", controller: 'pages', action: 'show', id: 'shipping-and-handling' %></li>
-							<li><%= link_to "Returns", controller: 'pages', action: 'show', id: 'returns' %></li>
-							<li><%= link_to "Careers", controller: 'pages', action: 'show', id: 'careers' %></li>
+							<li><%= link_to "Contact", page_path('contact-hydro-flask') %></li>
+							<li><%= link_to "About Hydro Flask", page_path('about-hydro-flask') %></li>
+							<li><%= link_to "FAQs", page_path('frequently-asked-questions') %></li>
+							<li><%= link_to "Lifetime Warranty", page_path('lifetime-warranty') %></li>
+							<li><%= link_to "Shipping & Handling", page_path('shipping-and-handling') %></li>
+							<li><%= link_to "Returns", page_path('returns') %></li>
+							<li><%= link_to "Careers", page_path('careers') %></li>
 						</ul>
 					</nav>
 				</div>
@@ -28,7 +28,7 @@
 				<div id="footer-copy" class="clear">
 					<p>
 						&copy; <%= Time.now.year %> Hydro Flask. All prices are in USD.<br />
-						<%= link_to "Terms & Privacy", controller: 'pages', action: 'show', id: 'terms-and-privacy' %>&nbsp;|&nbsp;<%= link_to "Sitemap", controller: 'pages', action: 'show', id: 'sitemap' %>
+						<%= link_to "Terms & Privacy", page_path('terms-and-privacy') %>&nbsp;|&nbsp;<%= link_to "Sitemap", page_path('sitemap') %>
 					</p>
 				</div>
 			</div>

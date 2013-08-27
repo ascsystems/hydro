@@ -29,9 +29,9 @@
     <div id="shipping" class="right_box">
       <div id="shipping_text"><label for="shipping">Shipping:</label></div>
       <div style="float:right;">
-        <input type="radio" name="shipping" /> Standard - FREE<br />
-        <input type="radio" name="shipping" /> 2nd Day - $20.00<br />
-        <input type="radio" name="shipping" /> Overnight - $50.00
+        <%Shipping.all.each do |s|%>
+          <input type="radio" name="shipping" value=<%= s.id%> /> <%= s.display_text%><br />
+        <%end%>
       </div>
     </div>
     <div id="promo" class="right_box">

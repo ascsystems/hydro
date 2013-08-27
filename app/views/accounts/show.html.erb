@@ -15,6 +15,18 @@
   <%= @account.email %>
 </p>
 
+<%= link_to 'Edit', edit_account_path(@account) %>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<br/>
+<br/>
+<br/>
+
+<h1>Your Orders</h1>
+<% if @orders %>
+  <%= render :partial => 'orders/list_of_orders' %>
+<% end %>
+
+<br/>
+<br/>
+<br/>
+
