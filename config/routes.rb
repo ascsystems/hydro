@@ -1,6 +1,11 @@
 HydroFlask::Application.routes.draw do
+  
+  get '/email_subscriptions/new', :to => 'email_subscriptions#new'
+  post '/email_subscriptions/subscribe', :to => 'email_subscriptions#subscribe', :as => 'subscribe_email'
+  # expects parameter "the_email_address"
+  get '/email_subscriptions/unsubscribe', :to => 'email_subscriptions#unsubscribe', :as => 'unsubscribe_email'
+  
   resources :donations
-
 
   resources :charities
 
@@ -8,41 +13,27 @@ HydroFlask::Application.routes.draw do
 
   resources :car_related_products
 
-
   resources :product_option_value_images
-
 
   resources :accounts
 
-
   resources :line_item_options
-
 
   resources :related_products
 
-
   resources :reviews
-
 
   resources :product_option_values
 
-
   resources :product_types
-
 
   resources :brands
 
-
   resources :option_types
-
-
-
 
   resources :option_values
 
-
   resources :options
-
 
   resources :orders do
     collection do
@@ -77,9 +68,7 @@ HydroFlask::Application.routes.draw do
     end
   end
 
-
   resources :categories
-
 
   resources :pages
 
