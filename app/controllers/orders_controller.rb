@@ -90,7 +90,7 @@ class OrdersController < ApplicationController
       rescue Exception => e
         @order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
         # go back to the order view, where they can edit fields and resubmit
-        render action: :new
+        render action: :new  #TODO should we render "edit" here?
       end
     else
       # go back to the order view, where they can edit fields and resubmit

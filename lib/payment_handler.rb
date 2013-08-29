@@ -2,6 +2,17 @@
 #
 # NOTE: your server must be accessible from the internet in order for this to work,
 #       and when in production mode, the server port must be 80 or 443  (can't run production mode with localhost:3000)
+#
+# See AIM description at: http://developer.authorize.net/integration/fifteenminutes/ruby/#custom
+#
+# See gem code info at: http://rubydoc.info/gems/authorize-net/1.5.2/AuthorizeNet/AIM/Transaction#initialize-instance_method
+#
+# FAQ info:  http://developer.authorize.net/testingfaqs/#connect
+#
+# Quickstart guide:  http://developer.authorize.net/integration/fifteenminutes/ruby/#custom
+# Detailed AIM documentation:  http://developer.authorize.net/api/aim/
+# AIM doc:  http://developer.authorize.net/guides/AIM/wwhelp/wwhimpl/js/html/wwhelp.htm
+
 module PaymentHandler
 	class Billing
 
@@ -14,7 +25,7 @@ module PaymentHandler
     def make_payment(order)
 			
       transaction = AuthorizeNet::AIM::Transaction.new( @api_login_id, @transaction_key,{:gateway => @gateway})
-      raise transaction.inspect
+      #raise transaction.inspect
       transaction.set_fields(:email_address => order.email)
       transaction.set_fields(:first_name => order.first_name)
       transaction.set_fields(:last_name => order.last_name)
@@ -33,10 +44,10 @@ module PaymentHandler
       
       # order.ccv_number is not used ???!!
       
-      # for testing use CC number '4111111111111111', and card date (MMYY) '1144'
-      credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.exp_date)
+      # for testing use CC number '4111111111111111', and card date (MMYY) '1122'
+      credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.exp_date, {:card_code => order.ccv_number})
       response = transaction.purchase(order.total_amount, credit_card)
-      raise response.response_reason_text.to_s if response.success? ==false
+      raise (response.response_reason_text.to_s + response.inspect) if response.success? == false
       response
     end
 	end
