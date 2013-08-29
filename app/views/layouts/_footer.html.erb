@@ -21,7 +21,16 @@
 					<p>Get the latest news from Hydro Flask!</p>
 					<form>
 						<div class="form-row">
-							<input type="text" value="Enter email address" id="footer_email_box" /><input type="image" src="<%= asset_path "submit_button.png" %>" />
+							<%= form_for(EmailSubscription.new, :url => subscribe_email_path) do |f| %>
+								<div class="field">
+									<%= f.text_field :email_address, :placeholder => "Enter email address" %>
+									<%= f.submit "Submit", :type => :image, :src => asset_path("submit_button.png")%>
+								</div>
+							<% end %>
+							<!-- old code
+							<input type="text" value="Enter email address" id="footer_email_box" />
+							<input type="image" src="<%= asset_path "submit_button.png" %>" />
+							-->
 						</div>
 					</form>
 				</div>

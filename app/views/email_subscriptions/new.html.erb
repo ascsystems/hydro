@@ -1,0 +1,9 @@
+<!-- Just for testing right now -->
+<div class="form-row">
+  <%= form_for(EmailSubscription.new, :url => subscribe_email_path) do |f| %>
+    <div class="field">
+      <%= f.text_field :email_address, :placeholder => "Enter email address" %>
+      <%= f.submit "Submit", :type => :image, :src => asset_path("submit_button.png")%>
+    </div>
+  <% end %>
+</div>

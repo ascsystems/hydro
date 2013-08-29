@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825021923) do
+ActiveRecord::Schema.define(:version => 20130829024517) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -94,6 +94,15 @@ ActiveRecord::Schema.define(:version => 20130825021923) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  create_table "email_subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "email_address", :limit => 50
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "email_subscriptions", ["user_id"], :name => "index_email_subscriptions_on_user_id"
 
   create_table "line_item_options", :force => true do |t|
     t.integer  "line_item_id"

@@ -60,6 +60,6 @@ module HydroFlask
     config.assets.version = '1.0'
     
     # Add file names here, for assets that are called in a special way, not covered by the main application.js loading
-    #config.assets.precompile += ['example.js']
+    config.assets.precompile += ['prototype.js', 'scriptaculous.js', 'slider.js']
   end
 end
