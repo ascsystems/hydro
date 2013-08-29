@@ -57,6 +57,9 @@ HydroFlask::Application.routes.draw do
 
   match "pages/5-back" => "pages#five_back"
 
+  match 'charities/charity_detail/:id' => 'charities#charity_detail'
+  match '/donate' => 'donations#new'
+
   resources :category_products
 
 
@@ -79,6 +82,7 @@ HydroFlask::Application.routes.draw do
   match '/netsuite/order/:id' => 'netsuite#order'
   match '/netsuite/orders' => 'netsuite#orders'
   match '/netsuite/add' => 'netsuite#addOrder'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root to: 'static_pages#home'

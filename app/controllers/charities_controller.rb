@@ -21,6 +21,14 @@ class CharitiesController < ApplicationController
     end
   end
 
+  def charity_detail
+    @charity = Charity.find(params[:id])
+    respond_to do |format|
+      format.js { render :layout => false }
+      format.html { render :layout => false }
+    end
+  end
+
   # GET /charities/new
   # GET /charities/new.json
   def new

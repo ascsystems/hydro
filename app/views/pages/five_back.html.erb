@@ -5,27 +5,29 @@
   <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
   <h1><%= @page.title %></h1>
   <% if !@page.header_content.empty? %>
-  <div id="header_content"><%= raw @page.header_content %></div>
+  <div class="header_content"><%= raw @page.header_content %></div>
   <% end %>
-  <div id="left_content">
-    <div id="left_content_inner">
+  <div class="main_content left_content">
+    <div class="main_content_inner">
       <%= raw @page.body %>
     </div>
   </div>
-  <div id="right_content">
-    <div>
+  <div class="right_content">
+    <div class="box">
       <h3>Featured Charity</h3>
       <%= image_tag @featured_charity.logo, alt: @featured_charity.name, title: @featured_charity.name, style: 'width:100%;' %>
     </div>
-    <div>
+    <div class="box">
       <h3>All Charities</h3>
       <ul>
         <%= render partial: 'charities/charity', collection: Charity.all %>
       </ul>
     </div>
-    <div>
-      <a class="button">Donate</a>
-    </div>
+    <a href="/donate">
+      <div id="donate_button" class="div_button">
+        <div class="button_wrapper"> DONATE &raquo; </div>
+      </div>
+    </a>
   </div>
   <div class="admin_links">
     <%= link_to 'Edit', edit_page_path(@page) %> |

@@ -33,17 +33,18 @@
   </div>
   <div class="field">
     <%= f.label :charity_id %><br />
-    <%= f.number_field :charity_id %>
+    <%= f.collection_select :charity_id, Charity.all, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :newsletter %><br />
-    <%= f.number_field :newsletter %>
+    <%= f.radio_button :newsletter, 1, checked: true %> Yes&nbsp;&nbsp;&nbsp;
+    <%= f.radio_button :newsletter, 0 %> No
   </div>
   <div class="field">
     <%= f.label :comments %><br />
-    <%= f.text_area :comments %>
+    <%= f.text_area :comments, style: 'width:300px; height:100px;' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit('DONATE', class: 'button') %>
   </div>
 <% end %>
