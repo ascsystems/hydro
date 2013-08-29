@@ -5,13 +5,19 @@
   <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
   <h1><%= @page.title %></h1>
   <% if !@page.header_content.empty? %>
-  <div id="header_content"><%= raw @page.header_content %></div>
+  <div class="header_content"><%= raw @page.header_content %></div>
   <% end %>
-  <div id="left_content">
-    <%= raw @page.body %>
+  <div class="main_content<% if !@page.right_content.empty? %> left_content<% end %>">
+    <% if !@page.header_content.empty? %>
+    <div class="main_content_inner">
+      <%= raw @page.body %>
+    </div>
+    <% else %>
+      <%= raw @page.body %>
+    <% end %>
   </div>
   <% if !@page.right_content.empty? %>
-  <div id="right_content">
+  <div class="right_content">
     <%= raw @page.right_content %>
   </div>
   <% end %>

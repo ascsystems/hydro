@@ -1,6 +1,6 @@
 @import "variables";
 
-#page #header_content {
+#page .header_content {
 	background-color: $background_color;
 	color: $heading_color;
 	font-size: 2.5em;
@@ -10,7 +10,7 @@
 	line-height: 38px;
 }
 
-#page #header_content:after {
+#page .header_content:after {
     border-color: $background_color transparent;
     border-style: solid;
     border-width: 10px 10px 0;
@@ -22,38 +22,76 @@
     width: 0;
 }
 
-#page #header_content p{
+#page .header_content p{
 	margin:0;
 }
 
-#page #left_content {
-	float:left;
-	width: 80%;
+#page .main_content {
+	float: left;
+	width: 100%;
 	font-size: 1.1em;
 }
 
-#page #left_content_inner {
-	float:left;
+#page .left_content {
+	width: 75%;
+}
+
+#page .main_content_inner {
+	float: left;
   margin-left: 28px;
   margin-right: 20px;
 }
 
-#page #right_content {
+#page .right_content {
 	float:left;
-	width:20%;
+	width:25%;
 }
 
-#page #right_content div {
+#page .right_content div.box {
 	background-color: $background_color;
-	margin-bottom:5px;
+	margin-bottom:20px;
 	padding:20px;	
 }
 
-#page #right_content h3 {
+#page .right_content h3 {
 	text-transform: uppercase;
 	color: $heading_color;
+	margin-bottom: 5px;
 }
 
-#page #right_content ul li a {
+#page .right_content ul li a {
 	color: #000000;
+}
+
+#page .div_button {
+    background-color: #00AAFF !important;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-size: 1.1em;
+    height: 34px;
+    line-height: 34px;
+    position: relative;
+    .button_wrapper {
+    	 padding: 0 10px;
+    }
+}
+
+#page #donate_button {
+	height: 46px;
+	line-height: 46px;
+	font-size: 1.4em;
+	width: 100%;
+	text-align: center;
+}
+
+.charity_detail {
+	img {
+		float:left;
+		margin-right:20px;
+	}
+	p {
+		float:left;
+		width: 400px;
+	}
 }
