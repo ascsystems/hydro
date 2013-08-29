@@ -108,10 +108,10 @@
 				<%= raw @product.description %>
 			</div>
 			<div id="reviews" class="content_div">
-				<%= render partial: 'review', collection: @product.reviews %>
+				<%= render partial: 'review', collection: @product_reviews %>
 			</div>
 			<div id="review_form" class="content_div">
-				<%= render 'reviews/form', review: Review.new, product_id: @product.id %>
+				<%= render :partial => 'reviews/form', :locals => {review: @new_review, product_id: @product.id}%>
 			</div>
 		</div>
 	</div>

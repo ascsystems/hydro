@@ -40,8 +40,9 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(params[:review])
-
+    rating_value = params[:score]
+    @review = Review.new(params[:review].merge(:rating => rating_value))
+    
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Review was successfully created.' }

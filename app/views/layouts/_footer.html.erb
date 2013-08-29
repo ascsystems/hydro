@@ -21,15 +21,17 @@
 					<p>Get the latest news from Hydro Flask!</p>
 					<form>
 						<div class="form-row">
-							<%= form_for(EmailSubscription.new, :url => subscribe_email_path) do |f| %>
+							<%# FIXME: not working! (rendering blank "form" tag in html) %>
+							<%#= form_tag(subscribe_email_path, :method = 'post') do |f| %>
+							<%= form_for(EmailSubscription.new, {:url => subscribe_email_path(), :html=> {:class => 'new_email_subscription_footer', :id=>"new_email_subscription_footer"}}) do |f| %>		
 								<div class="field">
 									<%= f.text_field :email_address, :placeholder => "Enter email address" %>
-									<%= f.submit "Submit", :type => :image, :src => asset_path("submit_button.png")%>
+									<%= f.submit "Submit Email", :type => :image, :src => asset_path("submit_button.png"), :name => 'subscribe_email', :id => 'submit_email_sub'%>
 								</div>
 							<% end %>
 							<!-- old code
 							<input type="text" value="Enter email address" id="footer_email_box" />
-							<input type="image" src="<%= asset_path "submit_button.png" %>" />
+							<input type="image" src="<%#= asset_path "submit_button.png" %>" />
 							-->
 						</div>
 					</form>
