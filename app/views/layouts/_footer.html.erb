@@ -19,10 +19,13 @@
 				<div id="footer-email-updates" class="inner-panel left">
 					<h3>EMAIL UPDATES</h3>
 					<p>Get the latest news from Hydro Flask!</p>
-					<form>
 						<div class="form-row">
 							<%# FIXME: not working! (rendering blank "form" tag in html) %>
-							<%#= form_tag(subscribe_email_path, :method = 'post') do |f| %>
+							<%#= form_tag(subscribe_email_path, :method => 'post') do |f| %>
+							  <%#= text_field_tag :email_address %>
+							  <%#= submit_tag "Submit Email", :name => 'subscribe_email', :id => 'submit_email_sub'%>
+								
+							
 							<%= form_for(EmailSubscription.new, {:url => subscribe_email_path(), :html=> {:class => 'new_email_subscription_footer', :id=>"new_email_subscription_footer"}}) do |f| %>		
 								<div class="field">
 									<%= f.text_field :email_address, :placeholder => "Enter email address" %>
@@ -34,7 +37,6 @@
 							<input type="image" src="<%#= asset_path "submit_button.png" %>" />
 							-->
 						</div>
-					</form>
 				</div>
 				<div id="footer-copy" class="clear">
 					<p>
