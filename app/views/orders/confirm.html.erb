@@ -41,6 +41,8 @@
       <%= f.hidden_field :credit_card_number %>
       <%= f.hidden_field :exp_date %>
       <%= f.hidden_field :ccv_number %>
+      <%= f.hidden_field :invoice_number %>
+      <%= f.hidden_field :status %>
       <%= f.hidden_field :total_amount, {:value =>total_amount_with_tax(current_cart.line_items,@order.state)} %>
     <%end%>
   </div>

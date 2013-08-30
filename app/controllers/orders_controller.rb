@@ -79,14 +79,13 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     
     if @order.valid?
-      #@order.status = ORDER_INITIATED
       begin
         @order.save!
         @response = @order.make_payment
         flash[:notice] = "Successfully made a purchase (authorization code: #{@response.authorization_code})"
         current_cart.destroy
-        #@order.status = ORDER_COMPLETED
-        #@order.save!
+        @order.status = Order::ORDER_COMPLETED
+        @order.save!
       rescue Exception => e
         @order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
         # go back to the order view, where they can edit fields and resubmit

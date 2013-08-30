@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130829024517) do
+ActiveRecord::Schema.define(:version => 20130830185121) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -175,6 +175,8 @@ ActiveRecord::Schema.define(:version => 20130829024517) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "account_id"
+    t.integer  "invoice_number"
+    t.string   "status"
   end
 
   add_index "orders", ["account_id"], :name => "index_orders_on_account_id"
