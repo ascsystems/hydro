@@ -1,0 +1,8 @@
+<% if @review.errors.any? %>
+  //render errors
+  alert("Your review could not be submitted: <%=raw escape_javascript(@review.errors.full_messages.to_sentence) %>");
+<% else %>
+  alert("Thank you!. Your product review has been submitted.");
+  // refresh this product view, so the list of reviews is reloaded, including the new review just added
+  $(window.location.replace("/products/<%= @review.product_id %>"));
+<% end %>

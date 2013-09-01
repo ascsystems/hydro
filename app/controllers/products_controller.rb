@@ -14,6 +14,12 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    
+    # set review object, in case user uses the review form on the product page
+    @new_review = Review.new
+    
+    # get sorted list of production reviews, to be displayed in the "Reviews" tab
+    @product_reviews = @product.reviews.most_recent
 
     respond_to do |format|
       format.html # show.html.erb

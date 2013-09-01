@@ -510,6 +510,12 @@ input[type='submit'].button, a.button {
     border: 1px solid red;
   }
 }
+
+// Hide br tags that immediately follow divs of class: field_with_errors
+div.field_with_errors + br {
+  display: none
+}
+
 #form_handle.button{
   font-size: 20px;
   display: inline-block;

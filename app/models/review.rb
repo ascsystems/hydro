@@ -8,5 +8,8 @@ class Review < ActiveRecord::Base
   validates :rating, presence: true
   validates :title, presence: true
   validates :body, presence: true
+  
+  # The 30 most recent reviews
+  scope :most_recent, order("created_at desc").limit(30)
 
 end
