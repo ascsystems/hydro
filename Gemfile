@@ -34,6 +34,7 @@ gem 'friendly_id'
 gem "savon"
 gem 'netsuite'
 gem 'ckeditor'
+gem "curb", "~> 0.8.4"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

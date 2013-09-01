@@ -56,6 +56,8 @@ HydroFlask::Application.routes.draw do
   get "pages/create"
 
   match "pages/5-back" => "pages#five_back"
+  match "pages/hydro-flask-technology" => "pages#hydro_flask_technology"
+  match '/pages/hydro-flask-social' => 'pages#hydro_flask_social'
 
   match 'charities/charity_detail/:id' => 'charities#charity_detail'
   match '/donate' => 'donations#new'
@@ -74,8 +76,6 @@ HydroFlask::Application.routes.draw do
   resources :categories
 
   resources :pages
-
-  match '/pages/hydro-flask-social' => 'pages#social'
 
   match '/netsuite/item/:id' => 'netsuite#item'
   match '/netsuite/items' => 'netsuite#items'

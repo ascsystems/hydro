@@ -14,8 +14,8 @@
 <<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130825021923) do
 =======
-ActiveRecord::Schema.define(:version => 20130822223746) do
->>>>>>> 9bbd3d0c8a1a61c7d342696998e66709d2f09c9d
+ActiveRecord::Schema.define(:version => 20130829024517) do
+>>>>>>> 8bd071a3a49973a161f522a420e12317514c01e5
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -98,6 +98,15 @@ ActiveRecord::Schema.define(:version => 20130822223746) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  create_table "email_subscriptions", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "email_address", :limit => 50
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "email_subscriptions", ["user_id"], :name => "index_email_subscriptions_on_user_id"
 
   create_table "line_item_options", :force => true do |t|
     t.integer  "line_item_id"

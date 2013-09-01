@@ -3,7 +3,7 @@
 <% provide(:meta_keywords, @page.keywords) %>
 <div id="page">
   <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
-  <h1><%= @page.title %></h1>
+  <h1><div style="float:left;"><%= @page.title %></div><!--<div style="float:right;"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a><a class="addthis_button_pinterest_pinit"></a></div>--></h1>
   <% if !@page.header_content.empty? %>
   <div class="header_content"><%= raw @page.header_content %></div>
   <% end %>
@@ -34,3 +34,4 @@
     <%= link_to 'Back', pages_path %>
   </div>
 </div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51d8b57643b8a401"></script>

@@ -15,6 +15,10 @@ class PagesController < ApplicationController
     @featured_charity = Charity.find_by_featured(1)
   end
 
+
+  def hydro_flask_technology
+    @page = Page.find_by_slug("hydro-flask-technology")
+  end
   # GET /pages/1
   # GET /pages/1.json
   def show
@@ -22,7 +26,10 @@ class PagesController < ApplicationController
     render 'shared/404', :status => 404 if @page.nil?
   end
 
-  def social
+  def hydro_flask_social
+    @page = Page.find_by_slug("hydro-flask-social")
+    storify = Storify.new
+    @articles = storify.getArticles
   end
 
   # GET /pages/new

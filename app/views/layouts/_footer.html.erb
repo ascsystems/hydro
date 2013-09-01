@@ -19,7 +19,6 @@
 				<div id="footer-email-updates" class="inner-panel left">
 					<h3>EMAIL UPDATES</h3>
 					<p>Get the latest news from Hydro Flask!</p>
-					<form>
 						<div class="form-row">
 							<%= form_for(EmailSubscription.new, :url => subscribe_email_path) do |f| %>
 								<div class="field">
@@ -32,7 +31,6 @@
 							<input type="image" src="<%= asset_path "submit_button.png" %>" />
 							-->
 						</div>
-					</form>
 				</div>
 				<div id="footer-copy" class="clear">
 					<p>
