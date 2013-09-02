@@ -1,11 +1,11 @@
 class Order < ActiveRecord::Base
   attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city, :x_ship_to_state, :x_ship_to_zip, :x_email, :x_invoice_number, :credit_card_number, :exp_date, :ccv_number, :total_amount
-  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email,  
-                  :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
-                  :shipping_method_id, :exp_date, :ccv_number, :total_amount, :invoice_number, :status
+  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip,
+                  :shipping_method_id, :exp_date, :ccv_number, :total_amount, :invoice_number, :status, :account_id
                   
   has_many :line_items
   belongs_to :account  # optional linkage (an order can be done by a "guest" not signed in)
+  belongs_to :shipping, :foreign_key => 'shipping_method_id'
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -37,13 +37,14 @@ class Order < ActiveRecord::Base
   end
 
   def shipping_method
-    s = Shipping.find(self.shipping_method_id)
-    s.display_text
+    #shipping = Shipping.find(self.shipping_method_id)
+    self.shipping.display_text
   end
 
   def shipping_charge
-    s = Shipping.find(self.shipping_method_id)
-    s.cost.to_i == 0 ? "Free" : "$#{s.cost}"
+    #shipping = Shipping.find(self.shipping_method_id)
+    shipping_cost = shipping.cost
+    shipping_cost.to_i == 0 ? "Free" : "$#{shipping_cost}"
   end
 
 
@@ -62,4 +63,28 @@ class Order < ActiveRecord::Base
     payment_handler = PaymentHandler::Billing.new(AUTHORIZE_CONFIG['api_login_id'],AUTHORIZE_CONFIG['transaction_key'], AUTHORIZE_CONFIG['gateway'])
     payment_handler.make_payment(self)
   end
+  
+  #---------------------------------------------------------------------------
+  # For each line_item in the current card, associate that line item to this order.
+  def accociate_cart_line_items(the_cart)
+    the_cart.line_items.each do |a_line_item|
+      self.line_items << a_line_item  # LineItem row is saved, with our order_id
+    end
+  end
+  #---------------------------------------------------------------------------
+  
+  
+  #---------------------------------------------------------------------------
+  # Helper method that copied shipping address hash values to billing address
+  def self.set_billing_same_as_shipping(order_params)
+    billing_params = {}
+    billing_params[:billing_address] = order_params[:address]
+    billing_params[:billing_address2] = order_params[:address2]
+    billing_params[:billing_city] = order_params[:city]
+    billing_params[:billing_state] = order_params[:state]
+    billing_params[:billing_zip] = order_params[:zip]
+    billing_params
+  end
+  #---------------------------------------------------------------------------
+  
 end

@@ -8,12 +8,22 @@ class ApplicationController < ActionController::Base
   #---------------------------------------------------------------------------
   # Get the user's current cart (will auto-create blank one if none exists)
   def current_cart
-    #raise session.inspect
+    # current web session has a cart, so just return it
     cart = Cart.find_by_id(session[:cart_id])
-    unless cart
-      cart = Cart.create
-      session[:cart_id] = cart.id
-    end
+    return cart if cart
+    
+    # if the cart has not been defined in the session, see if the logged-in user
+    # had a cart in progress from their last visit to the site.
+    cart = Cart.find_by_account_id(current_account.id) if (current_account && !cart)
+    
+    # No cart found in session of for user account, then create new one
+    cart = Cart.create unless cart
+    # Save user account against the cart, if the user is logged in
+    cart.account_id = current_account.id if current_account
+    
+    # Save cart in the session
+    session[:cart_id] = cart.id
+    
     cart
   end
   #---------------------------------------------------------------------------

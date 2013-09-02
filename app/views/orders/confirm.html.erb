@@ -22,8 +22,10 @@
   
   
   <%# Order params are resent to the "payment" method, to actually create the Order record (I'm not sure if there is a cleaner way to do this) %>
+  <%# Maybe it's done this way to prevent Orders from being viewed via a named route /orders/1/edit, etc. %>
   <div class="">
     <%= form_for @order, :url => {:action => "payment"} do |f| %>
+      <%= f.hidden_field :account_id%>
       <%= f.hidden_field :first_name%>
       <%= f.hidden_field :last_name %>
       <%= f.hidden_field :email %>
