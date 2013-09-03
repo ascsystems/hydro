@@ -1,3 +1,9 @@
+<script>
+  //jQuery(document).ready(function() {
+  //    $('.datepicker').datepicker();
+  //});
+</script>
+
 <%= form_for @order, url: {action: "confirm"} do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -79,7 +85,11 @@
   </div>
    <div class="field ">
     <%= f.label :exp_date %><br />
-    <%= f.text_field :exp_date %>
+    <%#= f.text_field :exp_date, :class => 'datepicker' %>
+    <% the_current_year = Time.now.year %>
+    <%= date_select("order", "exp_date", use_month_numbers: true, use_two_digit_numbers: true, 
+                    start_year: the_current_year, end_year: the_current_year + 20, discard_day: true,
+                    include_blank: true, order: [:month, :year]) %>
   </div>
   <div class="field ">
     <%= f.label :ccv_number %><br />
