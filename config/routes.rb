@@ -1,5 +1,9 @@
 HydroFlask::Application.routes.draw do
   
+  resources :ambassadors
+  get 'ambassadors/list', to: 'ambassadors#list'
+
+
   get '/email_subscriptions/new', :to => 'email_subscriptions#new'
   post '/email_subscriptions/subscribe', :to => 'email_subscriptions#subscribe', :as => 'subscribe_email'
   # expects parameter "the_email_address"

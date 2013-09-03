@@ -1,0 +1,37 @@
+<%= form_for(@ambassador) do |f| %>
+  <% if @ambassador.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ambassador.errors.count, "error") %> prohibited this ambassador from being saved:</h2>
+
+      <ul>
+      <% @ambassador.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :discipline %><br />
+    <%= f.text_field :discipline %>
+  </div>
+  <div class="field">
+    <%= f.label :image_path %><br />
+    <%= f.text_field :image_path %>
+  </div>
+  <div class="field">
+    <%= f.label :bio %><br />
+    <%= f.cktext_area :bio, ckeditor: { allowedContent:true } %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,5 @@
+<% @ambassadors.each do |ambassador| %>
+  <div class="ambassador">
+    <%= image_tag ambassador.image_path, alt: ambassador.last_name, title: ambassador.last_name %>
+  </div>
+<% end %>

@@ -13,7 +13,7 @@ slideTopMargin: 0, //reset on load and resize
 //minPageHeight: 700, reset onload and on resize
 minSlideWidth: 1000, //900px + 10 on each side to show bleed and more image.
 //ratios to set up slideshow for the optimal display
-imgRatio: 0.625, //height to width ratio of slide images 875/1400
+imgRatio: 0.667, //height to width ratio of slide images 875/1400
 slideScreenRatio: .87, //optimal slide to screen height ratio short screens ( 80% is slide )
 //slideshow properties
 firstInterval: 4000000, //millisecond interval before the first slide action NOTE that this fires after all images are loaded. (Temporarily increased from 4000 to 4000000).
@@ -26,11 +26,13 @@ isSliding: false,
 playSlideshow: true, //whether or not to restart the slideshow
 setup: function(){
 if(screen.width > screen.height && screen.width < 560) {
-document.body.addClassName('mobile');
+	document.body.addClassName('mobile');
 }
 homeSlide.updateCaption(0);
-homeSlide.headerHeight = $('navWrapper').getHeight();
-homeSlide.footerHeight = $('footer').getHeight() - $('footerfitzroy').getHeight(); //29 is the height of the mountains and shadow
+//homeSlide.headerHeight = $('navWrapper').getHeight();
+//homeSlide.footerHeight = $('footer').getHeight() - $('footerfitzroy').getHeight(); //29 is the height of the mountains and shadow
+homeSlide.headerHeight = 0;
+homeSlide.footerHeight = 0;
 homeSlide.resizeSlides();
 window.onresize = function() {
 homeSlide.resizeSlides();
@@ -84,13 +86,14 @@ el.style.width =  divWidth + 'px';
 }
 var slideNavTop = homeSlide.slideHeight - 59; //position nav circles 40px above the footer
 $('homeslidenavlinks').style.top = slideNavTop + 'px';
-$('photoposition').style.top = homeSlide.slideHeight + 'px';
+//$('photoposition').style.top = homeSlide.slideHeight + 'px';
+$('photoposition').style.top = '150px';
 var arrowPos = (((homeSlide.slideHeight - homeSlide.headerHeight) / 2) - (homeSlide.navArrowHeight / 2)) + homeSlide.headerHeight;
 $('navarrowleft').style.top = arrowPos + 'px';
 $('navarrowright').style.top = arrowPos + 'px';
 },
 updateCaption: function(idx){
-/*if($('homephotocredits').style.display != 'none'){
+if($('homephotocredits').style.display != 'none'){
 $('homephotocredits').fade({
 duration: .3,
 afterFinish: function(){
@@ -108,7 +111,7 @@ var ct = setTimeout(function(){
 $('homephotocredits').appear({duration: .3});
 },333);
 }
-}*/
+}
 },
 updateDots: function(idx){
 $$('#homeslidenavlinks .active').each(function(el){
@@ -208,7 +211,7 @@ homeSlide.desktop.slideshow();
 }
 },
 setIEFooter: function(){
-$('footer').style.position = 'relative';
+//$('footer').style.position = 'relative';
 $('homeslideposition').style.position = 'relative';
 $('homeslideposition').style.marginBottom = '-29px';
 },

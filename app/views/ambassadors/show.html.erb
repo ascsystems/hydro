@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First Name:</b>
+  <%= @ambassador.first_name %>
+</p>
+
+<p>
+  <b>Last Name:</b>
+  <%= @ambassador.last_name %>
+</p>
+
+<p>
+  <b>Discipline:</b>
+  <%= @ambassador.discipline %>
+</p>
+
+<p>
+  <b>Image path:</b>
+  <%= @ambassador.image_path %>
+</p>
+
+<p>
+  <b>Bio:</b>
+  <%= @ambassador.bio %>
+</p>
+
+
+<%= link_to 'Edit', edit_ambassador_path(@ambassador) %> |
+<%= link_to 'Back', ambassadors_path %>

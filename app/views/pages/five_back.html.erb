@@ -1,11 +1,12 @@
 <% provide(:meta_title, @page.meta_title) %>
 <% provide(:meta_description, @page.meta_description) %>
 <% provide(:meta_keywords, @page.keywords) %>
-<div id="page">
+<div id="page" class="five_back">
   <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
   <h1><div style="float:left;"><%= @page.title %></div><!--<div style="float:right;"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a><a class="addthis_button_pinterest_pinit"></a></div>--></h1>
   <% if !@page.header_content.empty? %>
-  <div class="header_content"><%= raw @page.header_content %></div>
+  <div class="header_content"><%= raw @page.header_content %><%= image_tag "five-back-landing.png", alt: "Five Percent Back", title: "Five Percent Back", style: "float:right;" %>
+</div>
   <% end %>
   <div class="main_content left_content">
     <div class="main_content_inner">
