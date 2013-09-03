@@ -1,9 +1,15 @@
 HydroFlask::Application.routes.draw do
   
+<<<<<<< HEAD
   resources :ambassadors
   get 'ambassadors/list', to: 'ambassadors#list'
 
 
+=======
+  devise_for :accounts
+  
+  
+>>>>>>> 4d8c79d8024a66242f84f3b23871419fa7c1de89
   get '/email_subscriptions/new', :to => 'email_subscriptions#new'
   post '/email_subscriptions/subscribe', :to => 'email_subscriptions#subscribe', :as => 'subscribe_email'
   # expects parameter "the_email_address"
@@ -12,9 +18,7 @@ HydroFlask::Application.routes.draw do
   resources :donations
 
   resources :charities
-
-  devise_for :accounts
-
+  
   resources :car_related_products
 
   resources :product_option_value_images

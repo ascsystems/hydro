@@ -85,7 +85,11 @@
     <%= f.label :ccv_number %><br />
     <%= f.number_field :ccv_number, :in => 0...1000, :size => 3, placeholder: 111 %>
   </div>
+  
+  <%# values we want set on the Order, but are not input fields %>
   <%= f.hidden_field :shipping_method_id, :value => @order.shipping_method_id%>
+  <%= f.hidden_field :account_id, :value => @order.account_id%>
+  
   <div class="actions">
     <%= f.submit 'CONFIRM YOUR ORDER »', class: 'button'  %>
   </div>

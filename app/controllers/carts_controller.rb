@@ -1,26 +1,31 @@
 class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
-  def index
-    @carts = Cart.all
+  #def index
+  #  @carts = Cart.all
+  #
+  #  respond_to do |format|
+  #    format.html # index.html.erb
+  #    format.json { render json: @carts }
+  #  end
+  #end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @carts }
-    end
-  end
-
+  # /mycart ------------------------------------------------------------------
   # GET /carts/1
   # GET /carts/1.json
   def show
-    @cart = Cart.find(session[:cart_id])
+    # new cart is created, unless cart for this session or user already exists
+    @cart = current_cart  # application_controller.rb method
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @cart }
     end
   end
-
+  #---------------------------------------------------------------------------
+  
+#FIXME: thse are all just left over from CRUD, right?
+=begin
   # GET /carts/new
   # GET /carts/new.json
   def new
@@ -80,4 +85,6 @@ class CartsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+=end
 end

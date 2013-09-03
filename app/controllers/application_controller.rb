@@ -8,12 +8,23 @@ class ApplicationController < ActionController::Base
   #---------------------------------------------------------------------------
   # Get the user's current cart (will auto-create blank one if none exists)
   def current_cart
-    #raise session.inspect
+    
+    # See if the logged-in user has a cart in progress
+    cart = Cart.find_by_account_id(current_account.id) if (current_account)
+    return cart if cart
+    
+    # See if the current web session has a cart
     cart = Cart.find_by_id(session[:cart_id])
-    unless cart
-      cart = Cart.create
-      session[:cart_id] = cart.id
-    end
+    
+    # No cart found in session or for user account, then create new one
+    cart = Cart.create unless cart
+    # Save user account against the cart, if the user is logged in
+    cart.account_id = current_account.id if current_account
+    cart.save
+    
+    # Save cart in the session
+    session[:cart_id] = cart.id
+    
     cart
   end
   #---------------------------------------------------------------------------
@@ -29,6 +40,8 @@ class ApplicationController < ActionController::Base
 
   after_filter :store_location
 
+  #FIXME: if the location the person is on is a POST url that has just been done, this will
+  #       error when the user tries to sign in.  e.g. email_subscriptions/subscribe
   def store_location
    # store last url - this is needed for post-login redirect to whatever the user last visited.
       if (request.fullpath != "/accounts/sign_in" && \

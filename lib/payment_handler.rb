@@ -24,6 +24,7 @@ module PaymentHandler
 
     def make_payment(order)
 			
+			# For test mode, send :test_mod => true in the same hash with the :gateway
       transaction = AuthorizeNet::AIM::Transaction.new( @api_login_id, @transaction_key,{:gateway => @gateway})
       #raise transaction.inspect
       transaction.set_fields(:email_address => order.email)
@@ -47,6 +48,9 @@ module PaymentHandler
       # for testing use CC number '4111111111111111', and card date (MMYY) '1122'
       credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.exp_date, {:card_code => order.ccv_number})
       response = transaction.purchase(order.total_amount, credit_card)
+      
+      # Raise an error with some detailed error text if the CC transaction failed
+      # FIXME: don't show the full response data in production
       raise (response.response_reason_text.to_s + response.inspect) if response.success? == false
       response
     end

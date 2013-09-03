@@ -64,5 +64,16 @@ class Product < ActiveRecord::Base
   def rating
     rating = reviews.average(:rating).to_f.round
   end
+  
+  # The products to feature, if no related products are found
+  def self.default_featured_products
+    featured_products = []
+    # Special IDs (Need to be finalized on the production environment)
+    [3, 4, 1, 2].each do |product_id|
+      a_product = Product.find(product_id)
+      featured_products << a_product
+    end
+    featured_products
+  end
 
 end

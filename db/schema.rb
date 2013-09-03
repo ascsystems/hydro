@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20130902173639) do
+=======
+ActiveRecord::Schema.define(:version => 20130902045332) do
+>>>>>>> 4d8c79d8024a66242f84f3b23871419fa7c1de89
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -61,9 +65,13 @@ ActiveRecord::Schema.define(:version => 20130902173639) do
   end
 
   create_table "carts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "account_id"
+    t.integer  "shipping_method_id"
   end
+
+  add_index "carts", ["account_id"], :name => "index_carts_on_account_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
