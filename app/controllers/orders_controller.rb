@@ -37,9 +37,10 @@ class OrdersController < ApplicationController
     @order.account_id = current_account.id if current_account
     
     # also save shipping method to the cart, in case the order is stopped, and the user goes back to the cart
-    current_cart.shipping_method_id = shipping.id
-    current_cart.save
-
+    the_cart = current_cart
+    the_cart.shipping_method_id = shipping.id
+    the_cart.save
+    
     #renders new.html.erb
   end
   #---------------------------------------------------------------------------

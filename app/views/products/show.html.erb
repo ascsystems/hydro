@@ -43,7 +43,8 @@
 			</div>
 		</div>
 		<div class="related_products">
-			<%= render partial: 'related_product', collection: @product.products unless @product.products.empty? %>
+			<% the_related_products = @product.products.empty? ? Product.default_featured_products : @product.products %>
+			<%= render partial: 'related_product', collection: the_related_products %>
 		</div>
 	</div>
 	<div id="product_content_column">

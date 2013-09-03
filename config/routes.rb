@@ -1,5 +1,8 @@
 HydroFlask::Application.routes.draw do
   
+  devise_for :accounts
+  
+  
   get '/email_subscriptions/new', :to => 'email_subscriptions#new'
   post '/email_subscriptions/subscribe', :to => 'email_subscriptions#subscribe', :as => 'subscribe_email'
   # expects parameter "the_email_address"
@@ -8,9 +11,7 @@ HydroFlask::Application.routes.draw do
   resources :donations
 
   resources :charities
-
-  devise_for :accounts
-
+  
   resources :car_related_products
 
   resources :product_option_value_images

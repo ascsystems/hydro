@@ -14,5 +14,4 @@ class Account < ActiveRecord::Base
   # Cannot create 2 different accounts with the same email
   validates_uniqueness_of :email, :case_sensitive => false
   
-  
 end

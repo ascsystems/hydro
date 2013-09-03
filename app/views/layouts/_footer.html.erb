@@ -26,7 +26,7 @@
 							  <%#= submit_tag "Submit Email", :name => 'subscribe_email', :id => 'submit_email_sub'%>
 								
 							
-							<%= form_for(EmailSubscription.new, {:url => subscribe_email_path(), :html=> {:class => 'new_email_subscription_footer', :id=>"new_email_subscription_footer"}}) do |f| %>		
+							<%= form_for(EmailSubscription.new, {:url => subscribe_email_path(), :method => :post, :html=> {:class => 'new_email_subscription_footer', :id=>"new_email_subscription_footer"}}) do |f| %>		
 								<div class="field">
 									<%= f.text_field :email_address, :placeholder => "Enter email address" %>
 									<%= f.submit "Submit Email", :type => :image, :src => asset_path("submit_button.png"), :name => 'subscribe_email', :id => 'submit_email_sub'%>
