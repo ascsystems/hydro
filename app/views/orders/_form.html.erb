@@ -84,10 +84,14 @@
     <%= f.text_field :credit_card_number %>
   </div>
    <div class="field ">
-    <%= f.label :exp_date %><br />
-    <%#= f.text_field :exp_date, :class => 'datepicker' %>
+    <%= f.label "Expiry Date (MM/YY)" %><br />
+    <%#= f.text_field :exp_date %>
+    <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
     <% the_current_year = Time.now.year %>
-    <%= date_select("order", "exp_date", use_month_numbers: true, use_two_digit_numbers: true, 
+    <%= f.select :cc_expiry_year, Order.years_for_expiry, { include_blank: true } %>
+    
+    <%# "default" is the Date version of exp_date (set in form failback scenarios) %>
+    <%#= date_select("order", "exp_date", use_month_numbers: true, use_two_digit_numbers: true, 
                     start_year: the_current_year, end_year: the_current_year + 20, discard_day: true,
                     include_blank: true, order: [:month, :year]) %>
   </div>

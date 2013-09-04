@@ -56,19 +56,20 @@ class OrdersController < ApplicationController
       billing_params = Order::set_billing_same_as_shipping(params[:order])
     end
     all_params = billing_params.merge!(params[:order])
-    month_with_leading_zero = "%02d" % all_params['exp_date(2i)']
-    year_as_two_digits = (all_params['exp_date(1i)']).to_s[2..3].to_s
-    month_and_year = "#{month_with_leading_zero}#{year_as_two_digits}"
+    
+    #month_with_leading_zero = "%02d" % all_params['exp_date(2i)']
+    #year_as_two_digits = (all_params['exp_date(1i)']).to_s[2..3].to_s
+    #month_and_year = "#{month_with_leading_zero}#{year_as_two_digits}"
     
     # add date + month as exp_date  (e.g.  '052015')
-    all_params[:exp_date] = month_and_year
+    #all_params[:exp_date] = month_and_year
     
     # remove the date params that were sent with form submission
-    all_params.except!('exp_date(1i)', 'exp_date(2i)', 'exp_date(3i)')
-    
+    #all_params.except!('exp_date(1i)', 'exp_date(2i)', 'exp_date(3i)')
     
     # create the order based on the supplied parameters plus modified parameters
     @order = Order.new(all_params)
+    
     unless @order.valid?
       render action: :new  # failure case; go back to new()
     else
@@ -85,6 +86,7 @@ class OrdersController < ApplicationController
   #---------------------------------------------------------------------------
   # Save the Order to the DB, and process the CC transaction (this happens after confirm)
   def payment
+    
     # rebuild the order (the order params are passed through in a hidden form on the confirm page)
     @order = Order.new(params[:order])
     
