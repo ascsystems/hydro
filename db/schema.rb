@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130902173639) do
+ActiveRecord::Schema.define(:version => 20130904170307) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -186,11 +186,12 @@ ActiveRecord::Schema.define(:version => 20130902173639) do
     t.string   "billing_city"
     t.string   "billing_state"
     t.string   "billing_zip"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "account_id"
     t.integer  "invoice_number"
     t.string   "status"
+    t.decimal  "payment_total_cost", :precision => 8, :scale => 2
   end
 
   add_index "orders", ["account_id"], :name => "index_orders_on_account_id"

@@ -50,8 +50,8 @@ module PaymentHandler
       response = transaction.purchase(order.total_amount, credit_card)
       
       # Raise an error with some detailed error text if the CC transaction failed
-      # FIXME: don't show the full response data in production
-      raise (response.response_reason_text.to_s + response.inspect) if response.success? == false
+      # Note: to show the full response data, add: + response.inspect
+      raise ('Credit card authorization error: ' + response.response_reason_text.to_s + ' (Code: ' + response.response_reason_code + ')') if response.success? == false
       response
     end
 	end

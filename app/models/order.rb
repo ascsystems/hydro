@@ -1,7 +1,11 @@
 class Order < ActiveRecord::Base
-  attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city, :x_ship_to_state, :x_ship_to_zip, :x_email, :x_invoice_number, :credit_card_number, :ccv_number, :total_amount, :cc_expiry_month, :cc_expiry_year
-  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip,
-                  :shipping_method_id, :invoice_number, :status, :account_id, :ccv_number, :total_amount, :cc_expiry_month, :cc_expiry_year
+  attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city,
+                :x_ship_to_state, :x_ship_to_zip, :x_email, :x_invoice_number, :credit_card_number,
+                :ccv_number, :total_amount, :cc_expiry_month, :cc_expiry_year
+  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, 
+                   :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
+                  :shipping_method_id, :invoice_number, :status, :account_id, :ccv_number, :total_amount,
+                  :cc_expiry_month, :cc_expiry_year, :payment_total_cost
   
               
   has_many :line_items
@@ -19,6 +23,10 @@ class Order < ActiveRecord::Base
   validates :billing_city, presence: true
   validates :billing_state, presence: true
   validates :billing_zip, presence: true
+  
+  # NOTE: there is a special validation method for the CC info,
+  #       since that data is not saved to the DB. (see validate_cc_fields)
+  
   
   # NOTE:
   # These values are submitted into the database table, so if they ever change,
@@ -39,6 +47,15 @@ class Order < ActiveRecord::Base
     self.status = ORDER_INITIATED
     self.save
   end
+  
+  # Validate the credit card fields (this is only called at certain points from the controller)
+  def validate_cc_fields!
+    #NOTE: these errors don't show up if they are added to individual virtual fields, so I've added them to :base
+    self.errors.add(:base, "Credit card number is required." ) unless self.credit_card_number.present?
+    self.errors.add(:base, "CCV number is required." ) unless self.ccv_number.present?
+    self.errors.add(:base, "Credit card expiry month is required." ) unless self.cc_expiry_month.present?
+    self.errors.add(:base, "Credit card expiry year is required." ) unless self.cc_expiry_year.present?
+  end
 
   def shipping_method
     #shipping = Shipping.find(self.shipping_method_id)
@@ -50,8 +67,6 @@ class Order < ActiveRecord::Base
     shipping_cost = shipping.cost
     shipping_cost.to_i == 0 ? "Free" : "$#{shipping_cost}"
   end
-
-
 
   def tax
     s = StateTaxRate.find_by_state_acronym(self.state)
