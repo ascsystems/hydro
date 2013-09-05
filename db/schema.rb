@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130902173639) do
-=======
-ActiveRecord::Schema.define(:version => 20130902045332) do
->>>>>>> 4d8c79d8024a66242f84f3b23871419fa7c1de89
+ActiveRecord::Schema.define(:version => 20130904202746) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -286,6 +282,21 @@ ActiveRecord::Schema.define(:version => 20130902045332) do
     t.string   "state_acronym"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "phone"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

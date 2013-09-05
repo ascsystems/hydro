@@ -1,6 +1,6 @@
  <div class="category_product">
   <div class="product_wrapper">
-    <div class="image"><%= link_to image_tag("#{product.product_image.path}#{product.product_image.name}", alt: product.name, title: product.name), product_path(product) %></div>
+    <div class="image"><%= link_to image_tag("#{product.product_image.path}small/#{product.product_image.name}", alt: product.name, title: product.name), product_path(product) %></div>
     <h3><%= link_to product.short_name, product_path(product) %></h3>
     <div class="content_wrapper">
       <div class="price"><%= number_to_currency product.price %></div>

@@ -115,7 +115,7 @@ ul {
 	list-style-type: none;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"] {
     border: 1px solid #CCCCCC;
     color: #777777;
     height: 28px;
@@ -531,4 +531,22 @@ div.field_with_errors + br {
   footer, #print_handle.button, nav#homepage-nav{
     display: none;
   }
+}
+
+#new_account input[type="submit"] {
+    background-color: #00AAFF !important;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: Pragmatica2,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    position: relative;
+}
+
+.hydro_subnav {
+  padding-top: 10px;
+  height: 180px;
 }
