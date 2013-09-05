@@ -27,6 +27,8 @@ module PaymentHandler
 			# For test mode, send :test_mod => true in the same hash with the :gateway
       transaction = AuthorizeNet::AIM::Transaction.new( @api_login_id, @transaction_key,{:gateway => @gateway})
       #raise transaction.inspect
+      
+      # FIXME:  do we need a different "name on card" field?
       transaction.set_fields(:email_address => order.email)
       transaction.set_fields(:first_name => order.first_name)
       transaction.set_fields(:last_name => order.last_name)

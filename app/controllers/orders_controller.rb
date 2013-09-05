@@ -31,14 +31,17 @@ class OrdersController < ApplicationController
     # order that is specified as a parameter
     @order = Order.find_by_id(params['the_order_id']) if params['the_order_id']
     
-    # The order specified has already been completed -- it cannot be redone
-    @order = nil if @order && (@order.status == Order::ORDER_COMPLETED)
-    @order = @order || Order.new
-    
-    #FIXME:  check here if the order is assoicated with a user, then verify
-    #        the current_user is logged in and matches that user
-    
-    
+    # if an order was specified in the params (either an order re-do from failure case, or hacked params)
+    if @order
+      # if this order was made by a user, but not this logged in user, or if the order set in the params
+      # is already at a COMPLETED state, don't allow that order to be used; just create a new one
+      if (@order.account && (@order.account != current_account)) || (@order.status == Order::ORDER_COMPLETED)
+        flash[:notice] = "The order you requested is not owned by you, or has already been completed.  A fresh order will be created."
+        @order = Order.new
+      end
+    else
+      @order = Order.new  # fresh order
+    end
     
     # set the shipping method based on the value selected by the user in the cart view
     shipping = Shipping.find(params["sm"])
@@ -67,16 +70,6 @@ class OrdersController < ApplicationController
       billing_params = Order::set_billing_same_as_shipping(params[:order])
     end
     all_params = billing_params.merge!(params[:order])
-    
-    #month_with_leading_zero = "%02d" % all_params['exp_date(2i)']
-    #year_as_two_digits = (all_params['exp_date(1i)']).to_s[2..3].to_s
-    #month_and_year = "#{month_with_leading_zero}#{year_as_two_digits}"
-    
-    # add date + month as exp_date  (e.g.  '052015')
-    #all_params[:exp_date] = month_and_year
-    
-    # remove the date params that were sent with form submission
-    #all_params.except!('exp_date(1i)', 'exp_date(2i)', 'exp_date(3i)')
     
     # create the order based on the supplied parameters plus modified parameters
     @order = Order.new(all_params)

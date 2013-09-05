@@ -119,12 +119,12 @@ class Order < ActiveRecord::Base
     array_of_years = []
     
     now_date = Time.now.to_date
-    first_year_allowed = now_date.year - 2000
+    first_year_allowed = now_date.year
     
     # Build array of 2 digit upcoming years
     # eg. [14..24].each do ...
     (first_year_allowed..(first_year_allowed + 10)).each do |the_year|
-      array_of_years << ([the_year.to_s, the_year.to_s])
+      array_of_years << ([the_year.to_s, (the_year - 2000).to_s])
     end
     array_of_years
   end
