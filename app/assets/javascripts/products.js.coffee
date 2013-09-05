@@ -49,7 +49,7 @@ update_image = () ->
 	$j("input[type='hidden'].option_value").each (index, element) =>
 		options.push($j(element).val())
 	$j.getJSON "/products/" + $j('#product_id').val() + "/product_images/get_image", { data: '{ options: [' + options.join(",") + '], product: ' + $j("#product_id").val() + '}'}, (data) ->
-		image_url = data[0].path + 'cropped/' + data[0].name
+		image_url = data[0].path + 'cropped/large/' + data[0].name
 		$j("#product_image").attr('src', image_url)
 		.load ->
 			$j("#loadingImage").fadeOut 600

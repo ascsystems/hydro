@@ -1,6 +1,6 @@
 <div class="related_product">
 	<div class="image">
-		<%= link_to image_tag("#{related_product.product_image.path}#{related_product.product_image.name}", alt: related_product.name, title: related_product.short_name, style: 'height:150px;'), product_path(related_product) %>
+		<%= link_to image_tag("#{related_product.product_image.path}small/#{related_product.product_image.name}", alt: related_product.name, title: related_product.short_name, style: 'height:120px;'), product_path(related_product) %>
 	</div>
 	<h4><%= link_to related_product.short_name, product_path(related_product) %></h4>
 	<p><%= number_to_currency related_product.price %></p>

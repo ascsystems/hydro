@@ -11,7 +11,36 @@
 							<%= render partial: 'layouts/category', collection: header_categories, locals: { total: header_categories.count } %>
 						</ul>
 					</li>
-					<li><%= link_to "HYDRO FLASK", page_path('hydro-flask-technology') %></li>
+					<li><%= link_to "HYDRO FLASK", page_path('about-hydro-flask') %>
+						<ul class="hydro_subnav">
+							<li class="nav_column">
+								<ul class="nav_category">
+									<li><%= link_to "About", page_path('about-hydro-flask') %></li>
+									<li><%= link_to "Technology", page_path('hydro-flask-technology') %></li>
+									<li><%= link_to "Press", page_path('press') %></li>
+									<li><%= link_to "Ambassadors", ambassador_path('') %></li>
+									<li><%= link_to "Store Locator", store_path('') %></li>
+									<li><%= link_to "FAQs", page_path('frequently-asked-questions') %></li>
+									<li><%= link_to "Shipping & Handling", page_path('shipping-and-handling') %></li>
+									<li><%= link_to "Caring for your Hydro Flask", page_path('caring-for-your-hydro-flask') %></li>
+									<li><%= link_to "Warranty & Returns", page_path('lifetime-warranty') %></li>
+									<li><%= link_to "Gift Certificates", page_path('gift-certificates') %></li>
+								</ul>
+							</li>
+							<li class="nav_column_right">
+								<ul class="nav_category">	
+									<li><%= link_to "Brand Protection", page_path('brand-protection') %></li>
+									<li><%= link_to "Pro Deal", page_path('pro-deal') %></li>
+									<li><%= link_to "Donations", donation_path('new') %></li>
+									<li><%= link_to "Sponsorships", page_path('sponsorships') %></li>
+									<li><%= link_to "Reseller Information", page_path('reseller-information') %></li>
+									<li><%= link_to "Careers", page_path('careers') %></li>
+									<li><%= link_to "Contact Us", page_path('contact-hydro-flask') %></li>
+									<li><%= link_to "Terms & Privacy", page_path('terms-and-privacy') %></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
 					<li><%= link_to "SOCIAL", page_path('hydro-flask-social') %></li>
 					<li><%= link_to "5% BACK", page_path("5-back") %></li>
 					<li><%= link_to "CONTACT", page_path("contact-hydro-flask") %></li>

@@ -1,27 +1,35 @@
-<h1>Listing ambassadors</h1>
-
-<table>
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Discipline</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @ambassadors.each do |ambassador| %>
-  <tr>
-    <td><%= ambassador.first_name %></td>
-    <td><%= ambassador.last_name %></td>
-    <td><%= ambassador.discipline %></td>
-    <td><%= link_to 'Show', ambassador %></td>
-    <td><%= link_to 'Edit', edit_ambassador_path(ambassador) %></td>
-    <td><%= link_to 'Destroy', ambassador, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Ambassador', new_ambassador_path %>
+<div class="page ambassadors">
+  <h1>Hydro Flask Ambassadors</h1>
+  <ul class="ambassador">
+  <% 
+    x = 1
+    @ambassadors.each do |ambassador| %>
+    <li class="amblandingthumb ambparent <% if x == 4 or x == 5 or x == 6 %>right<% end %>">
+      <%= image_tag ambassador.image_path, alt: ambassador.last_name, title: ambassador.last_name %>
+      <div class="ambpop">
+        <div class="ambpopcontent">
+          <div class="ambpopclose"></div>
+          <h2><%= ambassador.first_name  %> <%= ambassador.last_name  %></h2>
+          <%= raw ambassador.bio %>
+        </div>
+        <div class="ambpopthumb">
+          <%= image_tag ambassador.image_path, alt: ambassador.last_name, title: ambassador.last_name %>
+        </div>
+        <div class="ambpoparrow"></div>
+      </div>    
+    </li>
+  <% 
+  x = x + 1
+  if x == 7
+    x = 1
+  end
+  end %>
+  </ul>
+</div>
+<%= javascript_include_tag "ambassador" %>
+<script>
+$j = jQuery.noConflict();
+$j(document).ready(function() {
+  ambassadorLanding();
+} );
+</script>

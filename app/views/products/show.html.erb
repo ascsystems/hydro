@@ -31,7 +31,7 @@
 	<div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; Flasks &raquo; <%= @product.name %></div>
 	<h1><%= @product.name %></h1>
 	<div id="image_column">
-		<div class="image"><%= image_tag "products/default.png", alt: @product.name, title: @product.name, style: 'width:90%;', id: 'product_image' %><div id="loadingImage"><%= image_tag "ajax-loader.gif", class: "loading_image", id: "loading_image", alt: "loading" %></div></div>
+		<div class="image"><%= image_tag "default.gif", alt: @product.name, title: @product.name, style: 'width:90%;', id: 'product_image' %><div id="loadingImage"><%= image_tag "ajax-loader.gif", class: "loading_image", id: "loading_image", alt: "loading" %></div></div>
 		<div id="enlarge">
 			<a href="#" id="enlarge_link">
 				<%= image_tag 'enlarge.png', alt: 'view larger', title: 'view larger' %> view larger

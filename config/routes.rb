@@ -1,7 +1,8 @@
 HydroFlask::Application.routes.draw do
   
+  resources :stores
+
   resources :ambassadors
-  get 'ambassadors/list', to: 'ambassadors#list'
 
   devise_for :accounts
   

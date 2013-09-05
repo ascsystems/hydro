@@ -1,3 +1,103 @@
 // Place all the styles related to the Ambassadors controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ambassador {
+  clear: both;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 31px;
+  float: left;
+  img {
+    width: 161px;
+    height: 161px;
+    border-radius: 3px;
+  }
+}
+
+.ambassador li {
+  float: left;
+  height:161px;
+  width: 161px;
+  position: relative;
+  margin: 0 1px 1px 0;
+}
+
+.ambpop {
+    background: none repeat scroll 0 0 #EFEFEF;
+    border: 3px solid #00AAFF;
+    /*box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), 5px 5px 46px #303030 inset;*/
+    color: #000000;
+    display: none;
+    left: -5000px;
+    min-height: 195px;
+    height: 300px;
+    padding: 30px 30px 30px 20px;
+    position: absolute;
+    top: -20px;
+    width: 432px;
+    z-index: 20;
+    overflow: hidden;
+}
+
+.ambpopcontent {
+    float: left;
+    margin-right: 40px;
+    width: 229px;
+    overflow: hidden;
+}
+
+.ambpopthumb {
+    float: left;
+    height: 161px;
+    width: 161px;
+}
+
+.amblandingthumb .darkhover {
+    display: block;
+    height: 161px;
+    position: absolute;
+    width: 161px;
+    z-index: 2;
+}
+.amblandingthumb:hover .darkhover {
+    opacity: 1;
+}
+
+.ambparent {
+    position: relative;
+    z-index: 1;
+}
+.ambparent.hover{
+    z-index: 2;
+}
+
+.ambparent.hover > img {
+  opacity: .6;
+}
+
+.ambparent.hover .ambpop {
+    display: block;
+    left: 243px;
+    transition: left 0s linear 0.1s;
+    opacity: 1;
+}
+.ambparent.right .ambpop {
+    left: auto;
+    right: -5000px;
+}
+.ambparent.right.hover .ambpop {
+    left: auto;
+    right: 243px;
+    transition: right 0s linear 0.1s;
+}
+
+.ambparent.right .ambpop {
+    left: auto;
+    right: -5000px;
+}
+.ambparent.right.hover .ambpop {
+    left: auto;
+    right: 243px;
+    transition: right 0s linear 0.1s;
+}
