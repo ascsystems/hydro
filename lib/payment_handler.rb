@@ -44,6 +44,7 @@ module PaymentHandler
       transaction.set_fields(:zip_code => order.billing_zip)
       transaction.set_fields(:tax => order.tax_amount)
       transaction.set_fields(:exp_date => order.cc_expiry)
+      transaction.set_fields(:invoice_number => order.invoice_number)
       
       # order.ccv_number is not used ???!!
       
