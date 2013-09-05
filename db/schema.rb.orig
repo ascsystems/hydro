@@ -12,10 +12,10 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130825021923) do
+ActiveRecord::Schema.define(:version => 20130904202746) do
 =======
-ActiveRecord::Schema.define(:version => 20130829024517) do
->>>>>>> 8bd071a3a49973a161f522a420e12317514c01e5
+ActiveRecord::Schema.define(:version => 20130904170307) do
+>>>>>>> 754bcead5a392cb8b55e8900aeeab066cc2f9ce1
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -38,6 +38,16 @@ ActiveRecord::Schema.define(:version => 20130829024517) do
   add_index "accounts", ["email"], :name => "index_accounts_on_email", :unique => true
   add_index "accounts", ["reset_password_token"], :name => "index_accounts_on_reset_password_token", :unique => true
 
+  create_table "ambassadors", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "discipline"
+    t.string   "image_path"
+    t.text     "bio"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "brands", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",       :null => false
@@ -55,9 +65,13 @@ ActiveRecord::Schema.define(:version => 20130829024517) do
   end
 
   create_table "carts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "account_id"
+    t.integer  "shipping_method_id"
   end
+
+  add_index "carts", ["account_id"], :name => "index_carts_on_account_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -176,9 +190,12 @@ ActiveRecord::Schema.define(:version => 20130829024517) do
     t.string   "billing_city"
     t.string   "billing_state"
     t.string   "billing_zip"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "account_id"
+    t.integer  "invoice_number"
+    t.string   "status"
+    t.decimal  "payment_total_cost", :precision => 8, :scale => 2
   end
 
   add_index "orders", ["account_id"], :name => "index_orders_on_account_id"
@@ -270,6 +287,21 @@ ActiveRecord::Schema.define(:version => 20130829024517) do
     t.string   "state_acronym"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "phone"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

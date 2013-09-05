@@ -186,11 +186,12 @@ ActiveRecord::Schema.define(:version => 20130904202746) do
     t.string   "billing_city"
     t.string   "billing_state"
     t.string   "billing_zip"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
     t.integer  "account_id"
     t.integer  "invoice_number"
     t.string   "status"
+    t.decimal  "payment_total_cost", :precision => 8, :scale => 2
   end
 
   add_index "orders", ["account_id"], :name => "index_orders_on_account_id"

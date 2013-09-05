@@ -1,0 +1,20 @@
+<br/>
+<h2>Sorry, your order payment could not be processed.</h2>
+<br/>
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= link_to "Retry your order", new_order_path(:the_order_id => @order.id, :sm => @order.shipping_method_id) %>
+&nbsp; &nbsp;
+OR
+&nbsp; &nbsp;
+Contact Support
+<br/>
+<br/>

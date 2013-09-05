@@ -1,4 +1,24 @@
-<%= form_for @order, url: {action: "confirm"} do |f| %>
+<script>
+  //jQuery(document).ready(function() {
+  //    $('.datepicker').datepicker();
+  //});
+</script>
+
+<script type="text/javascript">
+  
+  jQuery(document).ready(function(){
+    jQuery("#billing_address_fields").show();
+    //jQuery(".show_hide").show();
+  
+    jQuery('#billing_same_as_shipping').click(function(){
+      jQuery("#billing_address_fields").slideToggle();
+    });
+  });
+  
+</script>
+
+
+<%= form_for(@order, url: {action: "confirm"}, html: {:method => 'post'}) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -35,7 +55,7 @@
   </div>
   <div class="field quarter">
     <%= f.label :zip %><br />
-    <%= f.text_field :zip, class: 'short' %>
+    <%= f.text_field :zip, style: 'width:70px;' %>
   </div>
    <div class="field">
     <%= f.label :email %><br />
@@ -48,42 +68,65 @@
   <br/>
   
   <div style='float: left; width: 150px;'><h2>Billing Info</h2></div>
+  
   <div style='float: left;'>
     <%= check_box_tag 'billing_same_as_shipping' %>
     Same as Shipping Address
   </div>
   
-  <div class="field">
-    <%= f.label :billing_address %><br />
-    <%= f.text_field :billing_address, class: 'long' %>
+  <div class='clear'/>
+  
+  <div id='billing_address_fields'>
+    
+    <div class="field">
+      <%= f.label :billing_address %><br />
+      <%= f.text_field :billing_address, class: 'long' %>
+    </div>
+    <div class="field">
+      <%= f.label :billing_address2 %><br />
+      <%= f.text_field :billing_address2, class: 'long' %>
+    </div>
+    <div class="field half">
+      <%= f.label :billing_city %><br />
+      <%= f.text_field :billing_city %>
+    </div>
+    <div class="field quarter">
+      <%= f.label :billing_state %><br />
+      <%= f.select(:billing_state, us_states, class: 'short') %>
+    </div>
+    <div class="field quarter">
+      <%= f.label :billing_zip %><br />
+      <%= f.text_field :billing_zip, style: 'width:70px;' %>
+    </div>
+    
   </div>
-  <div class="field">
-    <%= f.label :billing_address2 %><br />
-    <%= f.text_field :billing_address2, class: 'long' %>
-  </div>
-  <div class="field half">
-    <%= f.label :billing_city %><br />
-    <%= f.text_field :billing_city %>
-  </div>
-  <div class="field quarter">
-    <%= f.label :billing_state %><br />
-    <%= f.select :billing_state, us_states, class: 'short' %>
-  </div>
-  <div class="field quarter">
-    <%= f.label :billing_zip %><br />
-    <%= f.text_field :billing_zip, class: 'short' %>
-  </div>
-   <div class="field ">
+    
+  <div class='clear'/>
+  <br/>
+  <hr/>
+  <br/>
+  <div style='float: left; width: 150px;'><h2>Payment Info</h2></div>
+  
+  
+  <div class="field ">
     <%= f.label :credit_card_number %><br />
     <%= f.text_field :credit_card_number %>
   </div>
    <div class="field ">
-    <%= f.label :exp_date %><br />
-    <%= f.text_field :exp_date %>
+    <%= f.label "Expiration Date" %><br />
+    <%#= f.text_field :exp_date %>
+    <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
+    <% the_current_year = Time.now.year %>
+    <%= f.select :cc_expiry_year, Order.years_for_expiry, { include_blank: true } %>
+    
+    <%# "default" is the Date version of exp_date (set in form failback scenarios) %>
+    <%#= date_select("order", "exp_date", use_month_numbers: true, use_two_digit_numbers: true, 
+                    start_year: the_current_year, end_year: the_current_year + 20, discard_day: true,
+                    include_blank: true, order: [:month, :year]) %>
   </div>
   <div class="field ">
     <%= f.label :ccv_number %><br />
-    <%= f.number_field :ccv_number, :in => 0...1000, :size => 3, placeholder: 111 %>
+    <%= f.number_field(:ccv_number, :in => 0...1000, :size => 3, placeholder: 111, :style => 'width:50px;') %>
   </div>
   
   <%# values we want set on the Order, but are not input fields %>

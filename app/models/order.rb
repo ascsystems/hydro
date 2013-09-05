@@ -1,8 +1,13 @@
 class Order < ActiveRecord::Base
-  attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city, :x_ship_to_state, :x_ship_to_zip, :x_email, :x_invoice_number, :credit_card_number, :exp_date, :ccv_number, :total_amount
-  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip,
-                  :shipping_method_id, :exp_date, :ccv_number, :total_amount, :invoice_number, :status, :account_id
-                  
+  attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city,
+                :x_ship_to_state, :x_ship_to_zip, :x_email, :x_invoice_number, :credit_card_number,
+                :ccv_number, :total_amount, :cc_expiry_month, :cc_expiry_year
+  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, 
+                   :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
+                  :shipping_method_id, :invoice_number, :status, :account_id, :ccv_number, :total_amount,
+                  :cc_expiry_month, :cc_expiry_year, :payment_total_cost
+  
+              
   has_many :line_items
   belongs_to :account  # optional linkage (an order can be done by a "guest" not signed in)
   belongs_to :shipping, :foreign_key => 'shipping_method_id'
@@ -19,6 +24,10 @@ class Order < ActiveRecord::Base
   validates :billing_state, presence: true
   validates :billing_zip, presence: true
   
+  # NOTE: there is a special validation method for the CC info,
+  #       since that data is not saved to the DB. (see validate_cc_fields)
+  
+  
   # NOTE:
   # These values are submitted into the database table, so if they ever change,
   # you would need to do a bulk change on the orders table to change all matching
@@ -27,6 +36,9 @@ class Order < ActiveRecord::Base
   ORDER_COMPLETED = 'COMPLETED'
   ORDER_FAILED = 'FAILED'
   
+  MONTHS_FOR_EXPIRY = [['01', '01'], ['02', '02'], ['03', '03'], ['04', '04'], ['05', '05'], ['06', '06'], 
+                      ['07', '07'], ['08', '08'], ['09', '00'], ['10', '10'], ['11', '11'], ['12', '12']]
+  
   after_create :set_invoice_number
   
   # Create incrementing invoice number (starting at 777777)
@@ -34,6 +46,15 @@ class Order < ActiveRecord::Base
     self.invoice_number = self.id + 777777
     self.status = ORDER_INITIATED
     self.save
+  end
+  
+  # Validate the credit card fields (this is only called at certain points from the controller)
+  def validate_cc_fields!
+    #NOTE: these errors don't show up if they are added to individual virtual fields, so I've added them to :base
+    self.errors.add(:base, "Credit card number is required." ) unless self.credit_card_number.present?
+    self.errors.add(:base, "CCV number is required." ) unless self.ccv_number.present?
+    self.errors.add(:base, "Credit card expiry month is required." ) unless self.cc_expiry_month.present?
+    self.errors.add(:base, "Credit card expiry year is required." ) unless self.cc_expiry_year.present?
   end
 
   def shipping_method
@@ -47,8 +68,6 @@ class Order < ActiveRecord::Base
     shipping_cost.to_i == 0 ? "Free" : "$#{shipping_cost}"
   end
 
-
-
   def tax
     s = StateTaxRate.find_by_state_acronym(self.state)
     s.tax_rate
@@ -61,6 +80,8 @@ class Order < ActiveRecord::Base
 
   def make_payment
     payment_handler = PaymentHandler::Billing.new(AUTHORIZE_CONFIG['api_login_id'],AUTHORIZE_CONFIG['transaction_key'], AUTHORIZE_CONFIG['gateway'])
+    
+    # Communicate with authorize.net API to actually make the payment
     payment_handler.make_payment(self)
   end
   
@@ -86,5 +107,43 @@ class Order < ActiveRecord::Base
     billing_params
   end
   #---------------------------------------------------------------------------
+  
+  # mmYY string
+  def cc_expiry
+    self.cc_expiry_month + self.cc_expiry_year
+  end
+  
+  #---------------------------------------------------------------------------
+  # Construct array of upcoming years, for use in the expiry year dropdown
+  def self.years_for_expiry
+    array_of_years = []
+    
+    now_date = Time.now.to_date
+    first_year_allowed = now_date.year
+    
+    # Build array of 2 digit upcoming years
+    # eg. [14..24].each do ...
+    (first_year_allowed..(first_year_allowed + 10)).each do |the_year|
+      array_of_years << ([the_year.to_s, (the_year - 2000).to_s])
+    end
+    array_of_years
+  end
+  #---------------------------------------------------------------------------
+  
+  # Create a Date object from the "<mm><YY>" exp_date value (so it can be used in the form)
+  #def exp_date_as_date(four_digit_exp_date)
+  #  # Change the 2 digit year to 4 digit
+  #  four_digit_year = (four_digit_exp_date[2..3]).to_i + 2000
+  #  
+  #  # Date.new(year, month, day);  we don't care about the day
+  #  return Date.new( four_digit_year, four_digit_exp_date[0..1].to_i, 1)
+  #end
+  
+  # Create "<mm><YY>" exp_date string, from the Date value
+  #def exp_date_as_four_digits
+  #  month_with_leading_zero = "%02d" % exp_date.month
+  #  year_as_two_digits = exp_date.year - 2000
+  #  month_and_year = "#{month_with_leading_zero}#{year_as_two_digits}"
+  #end
   
 end

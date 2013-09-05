@@ -27,6 +27,8 @@ module PaymentHandler
 			# For test mode, send :test_mod => true in the same hash with the :gateway
       transaction = AuthorizeNet::AIM::Transaction.new( @api_login_id, @transaction_key,{:gateway => @gateway})
       #raise transaction.inspect
+      
+      # FIXME:  do we need a different "name on card" field?
       transaction.set_fields(:email_address => order.email)
       transaction.set_fields(:first_name => order.first_name)
       transaction.set_fields(:last_name => order.last_name)
@@ -41,17 +43,17 @@ module PaymentHandler
       transaction.set_fields(:state => order.billing_state)
       transaction.set_fields(:zip_code => order.billing_zip)
       transaction.set_fields(:tax => order.tax_amount)
-      transaction.set_fields(:exp_date => order.exp_date)
+      transaction.set_fields(:exp_date => order.cc_expiry)
       
       # order.ccv_number is not used ???!!
       
       # for testing use CC number '4111111111111111', and card date (MMYY) '1122'
-      credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.exp_date, {:card_code => order.ccv_number})
+      credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.cc_expiry, {:card_code => order.ccv_number})
       response = transaction.purchase(order.total_amount, credit_card)
       
       # Raise an error with some detailed error text if the CC transaction failed
-      # FIXME: don't show the full response data in production
-      raise (response.response_reason_text.to_s + response.inspect) if response.success? == false
+      # Note: to show the full response data, add: + response.inspect
+      raise ('Credit card authorization error: ' + response.response_reason_text.to_s + ' (Code: ' + response.response_reason_code + ')') if response.success? == false
       response
     end
 	end

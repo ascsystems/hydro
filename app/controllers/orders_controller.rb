@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  
   # GET /orders
   # GET /orders.json
   #def index
@@ -24,10 +25,23 @@ class OrdersController < ApplicationController
   #---------------------------------------------------------------------------
   # This is called (via JS) after the user clicks "Continue to Checkout" in their cart (carts/show.html.erb)
   # GET /orders/new
+  # Possible parameters:  'sm', and 'the_order_id'
   def new
     # if this is being rendered in a failure fallback case, then we use the
-    # @order variable that is already filled with the information.
-    @order = @order || Order.new
+    # order that is specified as a parameter
+    @order = Order.find_by_id(params['the_order_id']) if params['the_order_id']
+    
+    # if an order was specified in the params (either an order re-do from failure case, or hacked params)
+    if @order
+      # if this order was made by a user, but not this logged in user, or if the order set in the params
+      # is already at a COMPLETED state, don't allow that order to be used; just create a new one
+      if (@order.account && (@order.account != current_account)) || (@order.status == Order::ORDER_COMPLETED)
+        flash[:notice] = "The order you requested is not owned by you, or has already been completed.  A fresh order will be created."
+        @order = Order.new
+      end
+    else
+      @order = Order.new  # fresh order
+    end
     
     # set the shipping method based on the value selected by the user in the cart view
     shipping = Shipping.find(params["sm"])
@@ -46,7 +60,7 @@ class OrdersController < ApplicationController
   #---------------------------------------------------------------------------
   
   #---------------------------------------------------------------------------
-  # Order has just been submitted,
+  # Order has just been submitted (or re-submitted)
   def confirm
     
     # if user has said their billing address is the same as their shipping address,
@@ -56,11 +70,22 @@ class OrdersController < ApplicationController
       billing_params = Order::set_billing_same_as_shipping(params[:order])
     end
     all_params = billing_params.merge!(params[:order])
+    
+    # create the order based on the supplied parameters plus modified parameters
     @order = Order.new(all_params)
-    unless @order.valid?
-      render action: :new  # failure case; go back to new()
+    
+    @order.validate_cc_fields!  # check that CC info is present too
+    
+    if @order.valid?
+      # **MUST** be called after .valid? !  (because .valid? clears all errors)
+      @order.validate_cc_fields!  
+      if @order.errors.any?
+        render action: :new  # failure case; go back to new()
+      else
+        # confirm.html.erb is rendered
+      end
     else
-      # confirm.html.erb is rendered
+      render action: :new  # failure case; go back to new()
     end
   end
   #---------------------------------------------------------------------------
@@ -73,32 +98,56 @@ class OrdersController < ApplicationController
   #---------------------------------------------------------------------------
   # Save the Order to the DB, and process the CC transaction (this happens after confirm)
   def payment
+    
     # rebuild the order (the order params are passed through in a hidden form on the confirm page)
+    #FIXME:
+    # (or get existing order, if this one was created during a previous failed payment)
+    #@order = Order.find_by_id(params[:order])
     @order = Order.new(params[:order])
     
     # Associate the cart line items to this order
     @order.accociate_cart_line_items(current_cart)
     
-    if @order.valid?
+    # Set the total cost of the payment in the DB
+    # (total_amount virtual field now contains the full calculated cost)
+    @order.payment_total_cost = @order.total_amount
+    
+    is_valid_order = @order.valid?
+    
+    # Double-check that the CC info has been passed along to this point
+    # **MUST** be called after .valid? !  (because .valid? clears all errors)
+    @order.validate_cc_fields!
+    
+    is_valid_order = !(@order.errors.any?) && is_valid_order
+    
+    if (is_valid_order == true)
       begin
-        @order.save!
         @response = @order.make_payment
         flash[:notice] = "Successfully made a purchase (authorization code: #{@response.authorization_code})"
         current_cart.destroy
         @order.status = Order::ORDER_COMPLETED
         @order.save!
+      #FIXME:  change to detect PaymentHandler Exception type only
       rescue Exception => e
+        @order.status = Order::ORDER_FAILED
+        @order.save!
         @order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
+        
         # go back to the order view, where they can edit fields and resubmit
-        render action: :new  #TODO should we render "edit" here?
+        #render action: :new
+        render :payment_failed
       end
     else
-      # go back to the order view, where they can edit fields and resubmit
-      # @order.errors should contain the associated errors, and will be shown in flash.
-      render action: :new  
+      # not doing this anymore (something messes up)
+      #render action: :new
+      render :payment_failed
     end
+    
+    # payment.html.erb is rendered in the success case
   end
   #---------------------------------------------------------------------------
+  
+  
   
   # The normal update method does not work for our funny different stages, during error case
   #def update
@@ -107,7 +156,7 @@ class OrdersController < ApplicationController
   #  if @order.update_attributes(params[:order])
   #    render action: 'confirm'
   #  else
-  #    render action: 'edit'
+  #    render action: 'new'
   #  end
   #  
   #end
