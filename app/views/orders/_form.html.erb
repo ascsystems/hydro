@@ -57,11 +57,18 @@
     <%= f.label :zip %><br />
     <%= f.text_field :zip, style: 'width:70px;' %>
   </div>
-   <div class="field">
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-   
+  <%# if the user is not signed in, show a jpassword field which will auto-create a new account for them when the order is submitted %>
+  <% unless current_account %>
+    <div class="field">
+      Password (will create an account)
+      <br/>
+      <%= password_field_tag :new_account_password %>
+    </div>
+  <% end %>
   <div class='clear'/>
   <br/>
   <hr/>

@@ -28,8 +28,12 @@ module PaymentHandler
       transaction = AuthorizeNet::AIM::Transaction.new( @api_login_id, @transaction_key,{:gateway => @gateway})
       #raise transaction.inspect
       
+      #********************************************************
+      # NOTE: These field names are prefixed with "x_" within the gem, so the names must
+      #       correspond to the fields in the AIM spec:  http://developer.authorize.net/guides/AIM/wwhelp/wwhimpl/js/html/wwhelp.htm
+      
       # FIXME:  do we need a different "name on card" field?
-      transaction.set_fields(:email_address => order.email)
+      transaction.set_fields(:email => order.email)  # was :email_address
       transaction.set_fields(:first_name => order.first_name)
       transaction.set_fields(:last_name => order.last_name)
       transaction.set_fields(:ship_to_first_name => order.first_name)
@@ -37,16 +41,18 @@ module PaymentHandler
       transaction.set_fields(:ship_to_address => order.address)
       transaction.set_fields(:ship_to_city => order.city)
       transaction.set_fields(:ship_to_state => order.state)
-      transaction.set_fields(:ship_to_zip_code => order.zip)
+      transaction.set_fields(:ship_to_zip => order.zip)    # was :ship_to_zip_code
       transaction.set_fields(:address => order.billing_address)
       transaction.set_fields(:city => order.billing_city)
       transaction.set_fields(:state => order.billing_state)
-      transaction.set_fields(:zip_code => order.billing_zip)
+      transaction.set_fields(:zip => order.billing_zip)  # was :zip_code
       transaction.set_fields(:tax => order.tax_amount)
       transaction.set_fields(:exp_date => order.cc_expiry)
-      transaction.set_fields(:invoice_number => order.invoice_number)
+      transaction.set_fields(:invoice_num => order.invoice_number)
+      #TODO:  what about country?
       
-      # order.ccv_number is not used ???!!
+      #TODO: do we need to add the line items?  (it's possible to do so, through the gem)
+      #transaction.set_fields({:line_item => ["item1<|>golf balls<|><|>2<|>18.95<|>Y", "item2<|>golf bag<|>Wilson golf carry bag, red<|>1<|>39.99<|>"]})
       
       # for testing use CC number '4111111111111111', and card date (MMYY) '1122'
       credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.cc_expiry, {:card_code => order.ccv_number})
