@@ -11,24 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130904202746) do
+ActiveRecord::Schema.define(:version => 20130906220201) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "password"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
+    t.string   "encrypted_password",                   :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",                        :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "their_role",             :limit => 50
   end
 
   add_index "accounts", ["email"], :name => "index_accounts_on_email", :unique => true
@@ -252,6 +253,19 @@ ActiveRecord::Schema.define(:version => 20130904202746) do
     t.string   "meta_description"
     t.string   "keywords"
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 8
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "related_products", :force => true do |t|
     t.integer  "product_id"

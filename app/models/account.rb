@@ -14,4 +14,9 @@ class Account < ActiveRecord::Base
   # Cannot create 2 different accounts with the same email
   validates_uniqueness_of :email, :case_sensitive => false
   
+  # This user can access the admin section only if they have role 'super_user'
+  def is_cms_admin?
+    self.their_role == 'super_user'
+  end
+  
 end

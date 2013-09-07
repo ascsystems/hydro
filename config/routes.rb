@@ -1,10 +1,14 @@
 HydroFlask::Application.routes.draw do
   
+  
   resources :stores
 
   resources :ambassadors
 
   devise_for :accounts
+  
+  # needs to come after the "devise_for" route
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
   get '/email_subscriptions/new', :to => 'email_subscriptions#new'
   post '/email_subscriptions/subscribe', :to => 'email_subscriptions#subscribe', :as => 'subscribe_email'

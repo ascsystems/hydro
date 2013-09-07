@@ -26,7 +26,8 @@
   end %>
   </ul>
 </div>
-<%= javascript_include_tag "ambassador" %>
+<%# We do not include the ambassador.js explictly here, because it's precompiled with application.js %>
+<%#= javascript_include_tag "ambassador" %>
 <script>
 $j = jQuery.noConflict();
 $j(document).ready(function() {

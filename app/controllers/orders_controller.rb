@@ -63,6 +63,18 @@ class OrdersController < ApplicationController
   # Order has just been submitted (or re-submitted)
   def confirm
     
+    # First check to see if the user is creating a new account within the order form
+    # (if the user is not logged in, and they are passing the account password parameter)
+    if current_account.blank? && params[:new_account_password].present? && params[:order][:email].present?
+      
+      new_account = sign_in_user_and_associate_to_cart(current_cart, params[:order][:email], params[:new_account_password])
+      unless new_account.valid?
+        flash[:notice] = "Failed to create new account with provided email and password. Please try again, or leave password blank to submit your order without an account."
+        render :action => :new
+        return
+      end
+    end
+    
     # if user has said their billing address is the same as their shipping address,
     # copy the shipping address params into the billing address params
     billing_params = {}

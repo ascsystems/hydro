@@ -10,14 +10,23 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// HydroFlask NOTE:  do NOT add //=require_tree .   (messes up rails_admin)
+//
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require ckeditor/init
 //= require fancybox/jquery.fancybox
 //= require raty/jquery.raty.min
-//= require orders
-//= require site
 //= require prototype
-//
-//= require_tree .
+//= require ambassador
+//= require builder
+//= require carts
+//= require categories
+//= require effects
+//= require orders
+//= require pages
+//= require products
+//= require scriptaculous
+//= require site
+//= require slider
