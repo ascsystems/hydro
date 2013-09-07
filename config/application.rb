@@ -61,5 +61,13 @@ module HydroFlask
     
     # Add file names here, for assets that are called in a special way, not covered by the main application.js loading
     config.assets.precompile += ['prototype.js', 'scriptaculous.js', 'slider.js']
+    
+    # Required for rails_admin
+    config.assets.precompile += ['rails_admin/rails_admin.css', 'rails_admin/rails_admin.js']
+    
+    #TODO: do we need this?
+    # or any other fixes suggested at: http://stackoverflow.com/questions/9694917/integrating-ckeditor-with-rails-3-2  ?
+    #config.assets.precompile += Ckeditor.assets
+    
   end
 end

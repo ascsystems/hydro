@@ -11,7 +11,7 @@ gem 'authorize-net', :git => "git://github.com/xecutioner/authorize-net.git"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2.3'  # was '~> 3.2.3'  (but rails_admin 0.5.0 required higher version)
   gem 'coffee-rails', '~> 3.2.1'
   gem 'compass-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -29,12 +29,21 @@ group :development do
 end
 
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', "~> 3.0"  # was version 4.0 by default, but needed to down-version for rails_admin
 gem 'friendly_id'
 gem "savon"
 gem 'netsuite'
 gem 'ckeditor'
 gem "curb", "~> 0.8.4"
+
+# back-end admin
+#gem 'cancan' <-- only if we want very granular roles control
+#gem 'railties', '~> 4.0'
+gem 'rails_admin', '>= 0.4.9'  # needed to specify recent version
+
+
+
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
