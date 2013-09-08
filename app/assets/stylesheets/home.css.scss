@@ -241,15 +241,12 @@ a.homeslidelayer {
     margin-bottom:10px;
 }
 #checkout_page .new_account{
-    float: right;
     position: relative;
+    margin-bottom:40px;
     .errors{
-        position: absolute;
-        color: red;
-        font-family: arial;
-        font-size: 12px;
-        bottom: -20px;
-        left: 0;
+        color: #CC0000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
     }
     input[type="text"], input[type="email"], input[type="password"]{
         width:200px;
@@ -259,7 +256,7 @@ a.homeslidelayer {
         background-color: #00aaff !important;
         cursor: pointer;
         color: #fff;
-        font-size: 14px;
+        font-size: 1.1em;
         height: 30px;
         line-height: 30px;
         position: relative;
@@ -279,8 +276,8 @@ a.homeslidelayer {
         background-color: #00aaff !important;
         cursor: pointer;
         color: #fff;
-        font-size: 14px;
         height: 30px;
+        font-size: 1.1em;
         line-height: 30px;
         position: relative;
         padding: 0 10px 0 10px;
@@ -295,7 +292,6 @@ a.homeslidelayer {
 .photoCredits {
     bottom: 16px;
     color: #000000;
-    font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
     line-height: 1.5em;
     position: absolute;

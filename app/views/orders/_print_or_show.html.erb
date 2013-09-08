@@ -1,80 +1,76 @@
 
-<p id="notice"><%= notice %></p>
-<h2>Shipping Info</h2>
-<p>
-  <b>First name:</b>
-  <%= @order.first_name %>
-  &nbsp; &nbsp; &nbsp; &nbsp; 
-  <b>Last name:</b>
-  <%= @order.last_name %>
-</p>
+<div id="notice"><%= notice %></div>
+<div class="confirm_shipping">
+  <h2>Shipping Info</h2>
+  <p>
+    <span class="label">First name:</span>
+    <%= @order.first_name %>
+    &nbsp; &nbsp; &nbsp; &nbsp; 
+    <span class="label">Last name:</span>
+    <%= @order.last_name %>
+  </p>
 
-<p>
-  <b>Email:</b>
-  <%= @order.email %>
-</p>
+  <p>
+    <span class="label">Email:</span>
+    <%= @order.email %>
+  </p>
 
-<p>
-  <b>Address:</b>
-  <%= @order.address %>
-</p>
-
-<p>
-  <b>Address2:</b>
-  <%= @order.address2 %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @order.city %>
-  &nbsp; &nbsp; &nbsp; &nbsp; 
-  <b>State:</b>
-  <%= @order.state %>
-  &nbsp; &nbsp; &nbsp; &nbsp; 
-  <b>Zip:</b>
-  <%= @order.zip %>
-</p>
-
-<p>
-  <b>Shipping method:</b>
-  <%= @order.shipping_method %>
-</p>
-
-<br/>
-<h2>Billing Address</h2>
-<p>
-  <b>Address:</b>
-  <%= @order.billing_address %>
-</p>
-
-<p>
-  <b>Address2:</b>
-  <%= @order.billing_address2 %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @order.billing_city %>
-  &nbsp; &nbsp; &nbsp; &nbsp; 
-  <b>State:</b>
-  <%= @order.billing_state %>
-  &nbsp; &nbsp; &nbsp; &nbsp; 
-  <b>Zip:</b>
-  <%= @order.billing_zip %>
-</p>
-
-<br/>
-<h2>Payment Info</h2>
-<p>
-<p>
-  <b>Credit card Number:</b>
-  <%= @order.credit_card_number %>
-</p>
-<p>
-  <b>Credit card expiry date:</b>
-  <%= @order.cc_expiry %>
-</p>
-<p>
-  <b>Credit card verification number:</b>
-  <%= @order.ccv_number %>
-</p>
+  <p>
+    <span class="label">Address:</span>
+    <%= @order.address %>
+  </p>
+  <% if !@order.address2.empty? %>
+  <p>
+    <span class="label">Address2:</span>
+    <%= @order.address2 %>
+  </p>
+  <% end %>
+  <p>
+    <span class="label">City:</span>
+    <%= @order.city %>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <span class="label">State:</span>
+    <%= @order.state %>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <span class="label">Zip:</span>
+    <%= @order.zip %>
+  </p>
+</div>
+<div class="confirm_billing">
+  <h2>Billing Address</h2>
+  <p>
+    <span class="label">Address:</span>
+    <%= @order.billing_address %>
+  </p>
+  <% if !@order.billing_address2.empty? %>
+  <p>
+    <span class="label">Address 2:</span>
+    <%= @order.billing_address2 %>
+  </p>
+  <% end %>
+  <p>
+    <span class="label">City:</span>
+    <%= @order.billing_city %>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <span class="label">State:</span>
+    <%= @order.billing_state %>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <span class="label">Zip:</span>
+    <%= @order.billing_zip %>
+  </p>
+</div>
+<div class="confirm_payment">
+  <h2>Payment Info</h2>
+  <p>
+    <span class="label">Card number:</span>
+    <%= @order.credit_card_number %>
+  </p>
+  <p>
+    <span class="label">Expiration date:</span>
+    <%= @order.cc_expiry %>
+  </p>
+  <p>
+    <span class="label">Security Code:</span>
+    <%= @order.ccv_number %>
+  </p>
+</div>

@@ -10,20 +10,18 @@
     <%# renders the @order fields nicely %>
     <%= render partial: 'orders/print_or_show' %>
     
-    <div id="payment_panel" style='float: right; padding-right: 200px; padding-left:20px; border: 2px solid black; margin-bottom: 50px;'>
+    <div id="payment_panel">
       <br/>
       <h2>Cost Summary</h2>
-      <%= render partial: 'total_cost_breakdown',:locals =>{:products => current_cart.line_items} %>
-      <a href="#" class="button" id="form_handle">Make Payment</a>
-      <br/><br/>
+      <%= render partial: 'total_cost_breakdown', locals: {products:  current_cart.line_items} %>
+      <a href="#" class="button" id="form_handle" style="float:right;">COMPLETE ORDER &raquo;</a>
     </div>
   </div>
   
-  
-  
+    
   <%# Order params are resent to the "payment" method, to actually create the Order record (I'm not sure if there is a cleaner way to do this) %>
   <%# Maybe it's done this way to prevent Orders from being viewed via a named route /orders/1/edit, etc. %>
-  <div class="">
+  <div>
     <%= form_for @order, :url => {:action => "payment"} do |f| %>
       <%= f.hidden_field :account_id%>
       <%= f.hidden_field :first_name%>
@@ -47,6 +45,6 @@
       <%= f.hidden_field :invoice_number %>
       <%= f.hidden_field :status %>
       <%= f.hidden_field :total_amount, {:value =>total_amount_with_tax(current_cart.line_items,@order.state)} %>
-    <%end%>
+    <% end %>
   </div>
 </div>

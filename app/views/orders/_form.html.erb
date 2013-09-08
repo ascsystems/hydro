@@ -1,146 +1,123 @@
-<script>
-  //jQuery(document).ready(function() {
-  //    $('.datepicker').datepicker();
-  //});
-</script>
 
-<script type="text/javascript">
-  
-  jQuery(document).ready(function(){
-    jQuery("#billing_address_fields").show();
-    //jQuery(".show_hide").show();
-  
-    jQuery('#billing_same_as_shipping').click(function(){
-      jQuery("#billing_address_fields").slideToggle();
-    });
-  });
-  
-</script>
-
-
-<%= form_for(@order, url: {action: "confirm"}, html: {:method => 'post'}) do |f| %>
+<%= form_for(@order, url: {action: "confirm"}, html: {method: 'post'}) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+      <h2>The fields highlighted in red are required.</h2>
+      <!--<ul>
+        <% @order.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>-->
     </div>
   <% end %>
-  <h2>Shipping Info</h2>
-  <div class="field half">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field half">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= f.text_field :address, class: 'long' %>
-  </div>
-  <div class="field">
-    <%= f.label :address2 %><br />
-    <%= f.text_field :address2, class: 'long' %>
-  </div>
-  <div class="field half">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
-  <div class="field quarter">
-    <%= f.label :state %><br />
-    <%= f.select :state, us_states, class: 'short' %>
-  </div>
-  <div class="field quarter">
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip, style: 'width:70px;' %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <%# if the user is not signed in, show a jpassword field which will auto-create a new account for them when the order is submitted %>
-  <% unless current_account %>
-    <div class="field">
-      Password (will create an account)
-      <br/>
-      <%= password_field_tag :new_account_password %>
+  <div class="form_section_wrapper">
+    <h2>Shipping Info</h2>
+    <div class="field left_half">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %>
     </div>
-  <% end %>
-  <div class='clear'/>
-  <br/>
-  <hr/>
-  <br/>
-  
-  <div style='float: left; width: 150px;'><h2>Billing Info</h2></div>
-  
-  <div style='float: left;'>
-    <%= check_box_tag 'billing_same_as_shipping' %>
-    Same as Shipping Address
-  </div>
-  
-  <div class='clear'/>
-  
-  <div id='billing_address_fields'>
-    
-    <div class="field">
-      <%= f.label :billing_address %><br />
-      <%= f.text_field :billing_address, class: 'long' %>
+    <div class="field right_half">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
     </div>
     <div class="field">
-      <%= f.label :billing_address2 %><br />
-      <%= f.text_field :billing_address2, class: 'long' %>
+      <%= f.label :address %><br />
+      <%= f.text_field :address, class: 'long' %>
     </div>
-    <div class="field half">
-      <%= f.label :billing_city %><br />
-      <%= f.text_field :billing_city %>
+    <div class="field">
+      <%= f.label :address2 %><br />
+      <%= f.text_field :address2, class: 'long' %>
     </div>
-    <div class="field quarter">
-      <%= f.label :billing_state %><br />
-      <%= f.select(:billing_state, us_states, class: 'short') %>
+    <div class="field left_half city">
+      <%= f.label :city %><br />
+      <%= f.text_field :city %>
     </div>
-    <div class="field quarter">
-      <%= f.label :billing_zip %><br />
-      <%= f.text_field :billing_zip, style: 'width:70px;' %>
+    <div class="field quarter state">
+      <%= f.label :state %><br />
+      <%= f.select :state, us_states, class: 'short' %>
     </div>
-    
+    <div class="field quarter zip">
+      <%= f.label :zip %><br />
+      <%= f.text_field :zip %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </div>
+    <%# if the user is not signed in, show a jpassword field which will auto-create a new account for them when the order is submitted %>
+    <% unless current_account %>
+      <div class="field">
+        <%= f.label :new_account_password, "Password (will create an account)" %><br />
+        <%= password_field_tag :new_account_password %>
+      </div>
+    <% end %>
   </div>
-    
-  <div class='clear'/>
-  <br/>
-  <hr/>
-  <br/>
-  <div style='float: left; width: 150px;'><h2>Payment Info</h2></div>
-  
-  
-  <div class="field ">
-    <%= f.label :credit_card_number %><br />
-    <%= f.text_field :credit_card_number %>
+  <div class="form_section_wrapper">
+    <div style='float: left; width: 150px;'><h2>Billing Info</h2></div>
+    <div style='float: left; width: 450px;'>
+      <%= check_box_tag 'billing_same_as_shipping' %>
+      Same as Shipping Address
+    </div>    
+    <div id='billing_address_fields'>
+      
+      <div class="field">
+        <%= f.label :billing_address %><br />
+        <%= f.text_field :billing_address, class: 'long' %>
+      </div>
+      <div class="field">
+        <%= f.label :billing_address2 %><br />
+        <%= f.text_field :billing_address2, class: 'long' %>
+      </div>
+      <div class="field left_half city">
+        <%= f.label :billing_city %><br />
+        <%= f.text_field :billing_city %>
+      </div>
+      <div class="field quarter state">
+        <%= f.label :billing_state %><br />
+        <%= f.select(:billing_state, us_states, class: 'short') %>
+      </div>
+      <div class="field quarter zip">
+        <%= f.label :billing_zip %><br />
+        <%= f.text_field :billing_zip %>
+      </div>
+      
+    </div>
   </div>
-   <div class="field ">
-    <%= f.label "Expiration Date" %><br />
-    <%#= f.text_field :exp_date %>
-    <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
-    <% the_current_year = Time.now.year %>
-    <%= f.select :cc_expiry_year, Order.years_for_expiry, { include_blank: true } %>
-    
-    <%# "default" is the Date version of exp_date (set in form failback scenarios) %>
-    <%#= date_select("order", "exp_date", use_month_numbers: true, use_two_digit_numbers: true, 
-                    start_year: the_current_year, end_year: the_current_year + 20, discard_day: true,
-                    include_blank: true, order: [:month, :year]) %>
+  <div class="form_section_wrapper" style="border:none;">
+    <div style='float: left; width: 150px;'><h2>Payment Info</h2></div>
+    <div class="field ">
+      <%= f.label :credit_card_number %><br />
+      <%= f.text_field :credit_card_number %>
+    </div>
+     <div class="field expdate">
+      <%= f.label "Expiration Date" %><br />
+      <%#= f.text_field :exp_date %>
+      <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
+      <% the_current_year = Time.now.year %>
+      <%= f.select :cc_expiry_year, Order.years_for_expiry, { include_blank: true } %>
+      
+      <%# "default" is the Date version of exp_date (set in form failback scenarios) %>
+      <%#= date_select("order", "exp_date", use_month_numbers: true, use_two_digit_numbers: true, 
+                      start_year: the_current_year, end_year: the_current_year + 20, discard_day: true,
+                      include_blank: true, order: [:month, :year]) %>
+    </div>
+    <div class="field ccv">
+      <%= f.label :ccv_number, "Security code" %><br />
+      <%= f.number_field(:ccv_number, in: 0...1000, size: 3, style: 'width:102px;') %>
+    </div>
+    <%# values we want set on the Order, but are not input fields %>
+    <%= f.hidden_field :shipping_method_id, value: @order.shipping_method_id %>
+    <%= f.hidden_field :account_id, value: @order.account_id %>
   </div>
-  <div class="field ">
-    <%= f.label :ccv_number %><br />
-    <%= f.number_field(:ccv_number, :in => 0...1000, :size => 3, placeholder: 111, :style => 'width:50px;') %>
-  </div>
-  
-  <%# values we want set on the Order, but are not input fields %>
-  <%= f.hidden_field :shipping_method_id, :value => @order.shipping_method_id%>
-  <%= f.hidden_field :account_id, :value => @order.account_id%>
-  
   <div class="actions">
     <%= f.submit 'CONFIRM YOUR ORDER »', class: 'button'  %>
   </div>
 <% end %>
+<script type="text/javascript">  
+  jQuery(document).ready(function(){
+    jQuery("#billing_address_fields").show();  
+    jQuery('#billing_same_as_shipping').click(function(){
+      jQuery("#billing_address_fields").slideToggle();
+    });
+  });
+</script>

@@ -1,5 +1,9 @@
 <div id="cart_page">
   <h1>My Cart</h1>
+  <% if @cart.line_items.empty? %>
+  <p>You have no items in your cart.</p>
+  <p><%= link_to "Continue shopping", shop_path %></p>
+  <% else  %>
   <table id="cart_table">
     <thead>
       <tr><th></th><th>Product</th><th>Options</th><th>Price</th><th class="center">Quantity</th><th>Actions</th></tr>
@@ -45,4 +49,5 @@
       </div>
     </div>
   </div>
+  <% end %>
 </div>
