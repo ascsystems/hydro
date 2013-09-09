@@ -34,7 +34,7 @@
     </div>
     <div class="field quarter state">
       <%= f.label :state %><br />
-      <%= f.select :state, us_states, class: 'short' %>
+      <%= f.select :state, us_states, class: 'short', include_blank: true %>
     </div>
     <div class="field quarter zip">
       <%= f.label :zip %><br />
@@ -74,23 +74,23 @@
       </div>
       <div class="field quarter state">
         <%= f.label :billing_state %><br />
-        <%= f.select(:billing_state, us_states, class: 'short') %>
+        <%= f.select(:billing_state, us_states, class: 'short', include_blank: true) %>
       </div>
       <div class="field quarter zip">
         <%= f.label :billing_zip %><br />
         <%= f.text_field :billing_zip %>
       </div>
-      
     </div>
   </div>
+      
   <div class="form_section_wrapper" style="border:none;">
     <div style='float: left; width: 150px;'><h2>Payment Info</h2></div>
-    <div class="field ">
+    <div class="field credit_card_number">
       <%= f.label :credit_card_number %><br />
       <%= f.text_field :credit_card_number %>
     </div>
      <div class="field expdate">
-      <%= f.label "Expiration Date" %><br />
+      <%= f.label :cc_expiry_month, "Expiration Date" %><br />
       <%#= f.text_field :exp_date %>
       <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
       <% the_current_year = Time.now.year %>
@@ -101,7 +101,7 @@
                       start_year: the_current_year, end_year: the_current_year + 20, discard_day: true,
                       include_blank: true, order: [:month, :year]) %>
     </div>
-    <div class="field ccv">
+    <div class="field ccv_number">
       <%= f.label :ccv_number, "Security code" %><br />
       <%= f.number_field(:ccv_number, in: 0...1000, size: 3, style: 'width:102px;') %>
     </div>

@@ -51,10 +51,10 @@ class Order < ActiveRecord::Base
   # Validate the credit card fields (this is only called at certain points from the controller)
   def validate_cc_fields!
     #NOTE: these errors don't show up if they are added to individual virtual fields, so I've added them to :base
-    self.errors.add(:base, "Credit card number is required." ) unless self.credit_card_number.present?
-    self.errors.add(:base, "CCV number is required." ) unless self.ccv_number.present?
-    self.errors.add(:base, "Credit card expiry month is required." ) unless self.cc_expiry_month.present?
-    self.errors.add(:base, "Credit card expiry year is required." ) unless self.cc_expiry_year.present?
+    self.errors.add(:credit_card_number, "Credit card number is required." ) unless self.credit_card_number.present?
+    self.errors.add(:ccv_number, "CCV number is required." ) unless self.ccv_number.present?
+    self.errors.add(:cc_expiry_month, "Credit card expiry month is required." ) unless self.cc_expiry_month.present?
+    self.errors.add(:cc_expiry_year, "Credit card expiry year is required." ) unless self.cc_expiry_year.present?
   end
 
   def shipping_method
