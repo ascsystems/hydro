@@ -13,7 +13,7 @@
     <div id="payment_panel">
       <br/>
       <h2>Cost Summary</h2>
-      <%= render partial: 'total_cost_breakdown', locals: {products:  current_cart.line_items} %>
+      <%= render partial: 'total_cost_breakdown' %>
       <a href="#" class="button" id="form_handle" style="float:right;">COMPLETE ORDER &raquo;</a>
     </div>
   </div>
@@ -44,7 +44,7 @@
       <%= f.hidden_field :ccv_number %>
       <%= f.hidden_field :invoice_number %>
       <%= f.hidden_field :status %>
-      <%= f.hidden_field :total_amount, {:value =>total_amount_with_tax(current_cart.line_items,@order.state)} %>
+      <%= f.hidden_field :total_amount, {:value => total_including_tax_and_shipping(@order, current_cart.line_items)} %>
     <% end %>
   </div>
 </div>

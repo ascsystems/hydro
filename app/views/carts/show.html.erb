@@ -35,7 +35,9 @@
       <div style="float:right;">
 				<% selected_shipping_id = @cart.shipping.id if @cart.shipping %>
         <%Shipping.all.each do |s|%>
-          <input type="radio" name="shipping" value="<%= s.id %>" <%= "#{(selected_shipping_id == s.id) ? 'checked=checked' : ''}" %>> <%= s.display_text%><br />
+          <input type="radio" name="shipping" value="<%= s.id %>" <%= "#{(selected_shipping_id == s.id) ? 'checked=checked' : ''}" %>>
+					<%= s.display_text %>
+					<br />
         <%end%>
       </div>
     </div>

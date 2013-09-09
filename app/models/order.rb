@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
   ORDER_FAILED = 'FAILED'
   
   MONTHS_FOR_EXPIRY = [['01', '01'], ['02', '02'], ['03', '03'], ['04', '04'], ['05', '05'], ['06', '06'], 
-                      ['07', '07'], ['08', '08'], ['09', '00'], ['10', '10'], ['11', '11'], ['12', '12']]
+                      ['07', '07'], ['08', '08'], ['09', '09'], ['10', '10'], ['11', '11'], ['12', '12']]
   
   after_create :set_invoice_number
   
@@ -57,11 +57,13 @@ class Order < ActiveRecord::Base
     self.errors.add(:cc_expiry_year, "Credit card expiry year is required." ) unless self.cc_expiry_year.present?
   end
 
+  #FIXME: not used
   def shipping_method
     #shipping = Shipping.find(self.shipping_method_id)
     self.shipping.display_text
   end
 
+  #FIXME: not used
   def shipping_charge
     #shipping = Shipping.find(self.shipping_method_id)
     shipping_cost = shipping.cost
@@ -108,6 +110,7 @@ class Order < ActiveRecord::Base
   end
   #---------------------------------------------------------------------------
   
+  # This must remainin in this format -- it's used in the payment_hander CC api
   # mmYY string
   def cc_expiry
     self.cc_expiry_month + self.cc_expiry_year

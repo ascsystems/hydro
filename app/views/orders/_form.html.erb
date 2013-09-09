@@ -90,7 +90,7 @@
       <%= f.text_field :credit_card_number %>
     </div>
      <div class="field expdate">
-      <%= f.label :cc_expiry_month, "Expiration Date" %><br />
+      <%= f.label "Expiration Date" %><br />
       <%#= f.text_field :exp_date %>
       <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
       <% the_current_year = Time.now.year %>
