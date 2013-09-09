@@ -1,9 +1,8 @@
 <div>
-	<p>Shipping cost : <%= @order.shipping_charge%><p>
-	<%total = total_price(products)%>
-	<p>Total price : $<%=total%> </p>
-	<%tax = total_tax(total,@order.state)%>
-	<p>Tax % : <%=@order.tax%>%</p>
-	<p>Tax : $<%=tax%></p>
-	<p>Gross total : $<%=total_amount(total, tax)%></p>
+	<% total = total_price(products) %>
+	<p><span class="label">Subtotal:</span><span class="right"><%= number_to_currency total %></span></p>
+	<p><span class="label">Shipping - <%= @order.shipping_method %>:</span><span class="right"><%= number_to_currency @order.shipping_charge %></span></p>
+	<% tax = total_tax(total,@order.state) %>
+	<p><span class="label">Tax:</span><span class="right"><%= number_to_currency tax %></span></p>
+	<p><span class="label">Total:</span><span class="right"><%= number_to_currency total_amount(total, tax) %></span></p>
 </div>

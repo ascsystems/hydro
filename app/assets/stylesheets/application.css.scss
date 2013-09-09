@@ -517,9 +517,12 @@ div.field_with_errors + br {
 }
 
 #form_handle.button{
-  font-size: 20px;
+  font-size: 1.2em;
   display: inline-block;
+  margin-bottom:20px;
+  margin-top: 10px;
 }
+
 #print_handle.button{
   display: inline-block;
   font-size: 20px;

@@ -3,12 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #checkout_page #cart_panel {
-	width: 25%;
+	width: 33.3%;
 	float:left;
 }
 
 #checkout_page #form_panel {
-	width:75%;
+	width:66.6%;
 	float:left;
 }
 
@@ -17,22 +17,23 @@
     color: #777777;
     height: 28px;
     padding-left: 5px;
-    width:240px;
+    width:283px;
 }
 
 #checkout_page select {
-	border: 1px solid #cccccc;
+    border: 1px solid #cccccc;
     color: #777777;
     height: 28px;
     padding: 5px 0 0 5px;
+    width: 60px;
 }
 
 #checkout_page input[type="text"].long {
-	width: 480px;
+	width: 593px;
 }
 
 #checkout_page input[type="text"].short {
-	width: 120px;
+	width: 100%;
 }
 
 #checkout_page .field {
@@ -41,12 +42,41 @@
 	padding-bottom: 10px;
 }
 
-#checkout_page .half {
-	width:50%;
+#checkout_page .left_half {
+	float: left;
+	width: 290px;
+	margin-right: 10px;
+	input[type="text"] {
+		width: 283px;
+	}
+}
+
+#checkout_page .right_half {
+	float: left;
+	width: 290px;
+	margin-left: 10px;
+	input[type="text"] {
+		width: 283px;
+	}
+}
+
+#checkout_page .left_half.city {
+  margin-right: 75px;
+}
+
+#checkout_page .quarter.state {
+	width: 128px;
+}
+
+#checkout_page .quarter.zip {
+	width: 107px;
+	input[type="text"] {
+		width: 100px;
+	}
 }
 
 #checkout_page .quarter {
-	width:25%;
+	width:283px;
 }
 
 #checkout_page label {
@@ -58,4 +88,49 @@
 	float:left;
 	text-align:right;
 	width: 100%;
+}
+
+#checkout_page .form_section_wrapper {
+	border-bottom: 1px solid #000000;
+	width:600px;
+	padding-bottom:20px;
+	margin-bottom:20px;
+	float:left;
+}
+
+#checkout_page .expdate {
+	width: 30%;
+}
+
+#checkout_page .ccv {
+	width: 20%;
+}
+
+#checkout_page .form_section_wrapper:last-child {
+	border-bottom: none;
+}
+
+#checkout_page .confirm_billing, #checkout_page .confirm_shipping {
+    float: left;
+    width: 50%;
+}
+
+#checkout_page .confirm_payment{
+		border-bottom: 1px solid #000000;
+    float: left;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#checkout_page #payment_panel {
+    float: right;
+    width: 50%;
+}
+
+#checkout_page .label {
+	font-weight:bold;
+}
+
+#checkout_page .right {
+	float:right;
 }

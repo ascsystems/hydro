@@ -4,16 +4,14 @@
 		<h2>Your Cart</h2>
   		<%= render partial: 'carts/item', collection: current_cart.line_items %>
 	</div>
-	<div id="hydro_account_panel" style='float:left;'>
+	<!--<div id="hydro_account_panel" style='float:left;'>-->
+	<div id="form_panel">
 		<% unless current_account %>
 			<h2>Already have an account?</h2>
 			<%=render "sign_in_form"%>
-		<%else%>
+		<% else %>
 			<h2>Signed in as <%=current_account.email%></h2>
-		<%end%>
-	</div>
-	<div id="form_panel" style='float:right;'>
-		<br /><br />
+		<% end %>
 		<%= render 'form' %>
 	</div>
 </div>
