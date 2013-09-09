@@ -103,7 +103,8 @@
     </div>
     <div class="field ccv_number">
       <%= f.label :ccv_number, "Security code" %><br />
-      <%= f.number_field(:ccv_number, in: 0...1000, size: 3, style: 'width:102px;') %>
+      <%= f.password_field(:ccv_number, in: 0...1000, size: 3, style: 'width:50px;') %>
+      <%#= f.number_field(:ccv_number, in: 0...1000, size: 3, style: 'width:102px;') %>
     </div>
     <%# values we want set on the Order, but are not input fields %>
     <%= f.hidden_field :shipping_method_id, value: @order.shipping_method_id %>

@@ -32,13 +32,14 @@ class Product < ActiveRecord::Base
     end
   end
 
-  def related_products
-    if self.related_products.empty?
-      return Product.find(3,4,1,2)
-    else
-      return self.related_products
-    end
-  end
+  #FIXME: delete this -- it calls itself recursively
+  #def related_products
+  #  if self.related_products.empty?
+  #    return Product.find(3,4,1,2)
+  #  else
+  #    return self.related_products
+  #  end
+  #end
 
   def sorted_options
     options = self.option_values.group_by(&:option).to_a
