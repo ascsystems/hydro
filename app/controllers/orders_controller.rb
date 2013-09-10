@@ -143,11 +143,16 @@ class OrdersController < ApplicationController
       rescue Exception => e
         @order.status = Order::ORDER_FAILED
         @order.save!
-        @order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
+        
+        # Save to a special flash category, so we can check on the view and display the error fully
+        flash[:payment_failure] = e.message
+        #@order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
         
         # go back to the order view, where they can edit fields and resubmit
-        #render action: :new
-        render :payment_failed
+        redirect_to new_order_path(:the_order_id => @order.id, :sm => @order.shipping_method_id)
+        
+        # Not doing this anymore (a seperate failure view)
+        #render :payment_failed
       end
     else
       # not doing this anymore (something messes up)

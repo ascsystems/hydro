@@ -10,6 +10,13 @@
       </ul>-->
     </div>
   <% end %>
+  <% if flash[:payment_failure].present? %>
+    <div id="error_explanation">
+      <h2>Your transaction could not be processed:</h2>
+      <%= flash[:payment_failure] %>
+    </div>
+  <% end %>
+  
   <div class="form_section_wrapper">
     <h2>Shipping Info</h2>
     <div class="field left_half">
