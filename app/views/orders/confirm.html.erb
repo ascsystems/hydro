@@ -10,11 +10,24 @@
     <%# renders the @order fields nicely %>
     <%= render partial: 'orders/print_or_show' %>
     
+    <%#= link_to "EDIT ORDER", new_order_path(:the_order_id => @order.id, :sm => @order.shipping_method_id) %>
+    
+    
     <div id="payment_panel">
       <br/>
       <h2>Cost Summary</h2>
       <%= render partial: 'total_cost_breakdown' %>
-      <a href="#" class="button" id="form_handle" style="float:right;">COMPLETE ORDER &raquo;</a>
+      
+    </div>
+    
+    <div class="clear"></div>
+    
+    <div id="buttons_to_payment_or_edit">
+      <!-- we just use the "back" action, because order has not been created yet, and we want form fields to have their values -->
+      <a href="javascript:history.back()" class="button hydro_big_button" id="back_to_edit_order" style="float:left;">&lt; EDIT ORDER</a>
+      
+      <!-- This uses JS hook to submit the hidden form below -->
+      <a href="#" class="button hydro_big_button" id="form_handle" style="float:right;">COMPLETE ORDER &gt;</a>
     </div>
   </div>
   

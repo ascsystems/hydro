@@ -11,10 +11,9 @@
   </div>
 <% end %>
 
-<%= link_to "Retry your order", new_order_path(:the_order_id => @order.id, :sm => @order.shipping_method_id) %>
-&nbsp; &nbsp;
-OR
-&nbsp; &nbsp;
-Contact Support
+<%#= link_to "Retry your order", new_order_path(:the_order_id => @order.id, :sm => @order.shipping_method_id) %>
+<a href="<%= new_order_path(:the_order_id => @order.id, :sm => @order.shipping_method_id) %>" class="button hydro_big_button" id="retry_your_order" style="float:left;">&lt; RETRY YOUR ORDER</a>
+      
+<a href="pages/contact-hydro-flask" class="button hydro_big_button" id="retry_your_order" style="float:right;">CONTACT SUPPORT</a>
 <br/>
 <br/>
