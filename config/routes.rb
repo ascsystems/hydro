@@ -1,6 +1,8 @@
 HydroFlask::Application.routes.draw do
   
-  
+  # For paperclip file uploading with ckeditor
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :stores
 
   resources :ambassadors
