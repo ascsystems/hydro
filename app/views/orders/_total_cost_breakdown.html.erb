@@ -6,9 +6,9 @@
 	<p><span class="label">Subtotal:</span><span class="right"><%= number_to_currency(total_before_tax) %></span></p>
 	
 	
-	<p><span class="label">Shipping - <%= @order.shipping_method %>:</span><span class="right"><%= the_shipping_charge %></span></p>
+	<p><span class="label">Shipping - <%= @order.shipping_method %>:</span><span class="right"><%= number_to_currency(the_shipping_charge) %></span></p>
 	
-	<p><span class="label">Tax:</span><span class="right"><%= number_to_currency tax %></span></p>
+	<p><span class="label">Tax:</span><span class="right"><%= number_to_currency(tax) %></span></p>
 	<p>
 		<span class="label">Total:</span>
 		<span class="right">

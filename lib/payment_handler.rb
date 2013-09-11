@@ -55,12 +55,13 @@ module PaymentHandler
       #transaction.set_fields({:line_item => ["item1<|>golf balls<|><|>2<|>18.95<|>Y", "item2<|>golf bag<|>Wilson golf carry bag, red<|>1<|>39.99<|>"]})
       
       # for testing use CC number '4111111111111111', and card date (MMYY) '1122'
+      # NOTE: cc_expiry can be MMYYYY format, which is what we're using.
       credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.cc_expiry, {:card_code => order.ccv_number})
       response = transaction.purchase(order.total_amount, credit_card)
       
       # Raise an error with some detailed error text if the CC transaction failed
       # Note: to show the full response data, add: + response.inspect
-      raise ('Credit card authorization error: ' + response.response_reason_text.to_s + ' (Code: ' + response.response_reason_code + ')') if response.success? == false
+      raise('Credit card authorization error: ' + response.response_reason_text.to_s + ' (Code: ' + response.response_reason_code + ')' + response.inspect) if response.success? == false
       response
     end
 	end

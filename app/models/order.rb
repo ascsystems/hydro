@@ -110,43 +110,33 @@ class Order < ActiveRecord::Base
   end
   #---------------------------------------------------------------------------
   
-  # This must remainin in this format -- it's used in the payment_hander CC api
-  # mmYY string
+  # NOTE: This must remain in this format -- it's used in the payment_hander CC api
+  # mmYYYY string (can also be mmYY string, but having a 4-digit year is better)
   def cc_expiry
     self.cc_expiry_month + self.cc_expiry_year
   end
   
   #---------------------------------------------------------------------------
   # Construct array of upcoming years, for use in the expiry year dropdown
+  # e.g. returns:  [["2015", "2015"],["2016", "2016"],["2017", "2017"],["2018", "2018"],...]
   def self.years_for_expiry
-    array_of_years = []
+    first_year_allowed = Time.now.to_date.year
     
-    now_date = Time.now.to_date
-    first_year_allowed = now_date.year
-    
-    # Build array of 2 digit upcoming years
-    # eg. [14..24].each do ...
-    (first_year_allowed..(first_year_allowed + 10)).each do |the_year|
-      array_of_years << ([the_year.to_s, (the_year - 2000).to_s])
-    end
-    array_of_years
+    (first_year_allowed..(first_year_allowed + 10)).map{ |y| [y.to_s, y.to_s] }
   end
   #---------------------------------------------------------------------------
   
-  # Create a Date object from the "<mm><YY>" exp_date value (so it can be used in the form)
-  #def exp_date_as_date(four_digit_exp_date)
-  #  # Change the 2 digit year to 4 digit
-  #  four_digit_year = (four_digit_exp_date[2..3]).to_i + 2000
-  #  
-  #  # Date.new(year, month, day);  we don't care about the day
-  #  return Date.new( four_digit_year, four_digit_exp_date[0..1].to_i, 1)
-  #end
+  #---------------------------------------------------------------------------
+  # Hide some of the credit card numbers (all but first number and last 4 numbers),
+  # replacing the digits with 'X'.
+  def mostly_hidden_credit_card_number
+    cc_number_hidden = self.credit_card_number.dup
+    cc_length = cc_number_hidden.length
+    (1..cc_length-5).each{|x_it| cc_number_hidden[x_it] = 'X'}
+    
+    cc_number_hidden
+  end
+  #---------------------------------------------------------------------------
   
-  # Create "<mm><YY>" exp_date string, from the Date value
-  #def exp_date_as_four_digits
-  #  month_with_leading_zero = "%02d" % exp_date.month
-  #  year_as_two_digits = exp_date.year - 2000
-  #  month_and_year = "#{month_with_leading_zero}#{year_as_two_digits}"
-  #end
   
 end
