@@ -7,6 +7,14 @@
   </div>
   
   <div id="form_panel">
+    
+    <%# Show success or failure message for auto-sign-up action, if one happened %>
+    <% if flash[:auto_signup_notification].present? %>
+      <div id="error_explanation">
+        <h2><%= flash[:auto_signup_notification] %></h2>
+      </div>
+    <% end %>
+    
     <%# renders the @order fields nicely %>
     <%= render partial: 'orders/print_or_show' %>
     
