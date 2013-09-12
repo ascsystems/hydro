@@ -1,6 +1,8 @@
 HydroFlask::Application.routes.draw do
   
-  
+  # For paperclip file uploading with ckeditor
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :stores
   match 'stores/setLatLng' => 'stores#setLatLng'
 
@@ -66,6 +68,7 @@ HydroFlask::Application.routes.draw do
 
   get "pages/create"
 
+  #FIXME: these pages no longer allow editing from the "Edit" view -- this needs to be fixed
   match "pages/5-back" => "pages#five_back"
   match "pages/hydro-flask-technology" => "pages#hydro_flask_technology"
   match '/pages/hydro-flask-social' => 'pages#hydro_flask_social'

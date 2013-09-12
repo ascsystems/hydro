@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906220201) do
+ActiveRecord::Schema.define(:version => 20130910170610) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -96,6 +96,22 @@ ActiveRecord::Schema.define(:version => 20130906220201) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "ckeditor_assets", :force => true do |t|
+    t.string   "data_file_name",                  :null => false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    :limit => 30
+    t.string   "type",              :limit => 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "donations", :force => true do |t|
     t.string   "name"
@@ -284,6 +300,18 @@ ActiveRecord::Schema.define(:version => 20130906220201) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "shipping_cost_rates", :force => true do |t|
+    t.string   "country",         :limit => 25
+    t.string   "state",           :limit => 25
+    t.string   "zip",             :limit => 50
+    t.decimal  "total_cost_tier",               :precision => 8, :scale => 2
+    t.decimal  "shipping_cost",                 :precision => 8, :scale => 2
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
+  end
+
+  add_index "shipping_cost_rates", ["state"], :name => "index_shipping_cost_rates_on_state"
 
   create_table "shippings", :force => true do |t|
     t.string   "display_text"

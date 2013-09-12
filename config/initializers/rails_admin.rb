@@ -93,6 +93,9 @@ RailsAdmin.config do |config|
   #  end 
   #end
   
+  # See here for rails_admin ckeditor instructions, including connecting image uploader:
+  # https://github.com/sferik/rails_admin/wiki/CKEditor
+  # https://github.com/galetahub/ckeditor
   config.model Page do
     include_all_fields
     field :body, :text do

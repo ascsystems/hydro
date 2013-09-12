@@ -69,5 +69,8 @@ module HydroFlask
     # or any other fixes suggested at: http://stackoverflow.com/questions/9694917/integrating-ckeditor-with-rails-3-2  ?
     #config.assets.precompile += Ckeditor.assets
     
+    # Required for paperclip upload with ckeditor
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    
   end
 end

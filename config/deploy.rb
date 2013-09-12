@@ -44,6 +44,9 @@ namespace :config do
       run %Q[ln -nfs "#{from}" "#{to}"]
     end
     
+    # also softlink the public/ckeditor_assets dir, which is where ckeditor uploaded images are stored
+    run "ln -s #{shared_path}/ckeditor_assets #{release_path}/public/ckeditor_assets"
+    
   end
 end
 

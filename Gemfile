@@ -41,6 +41,9 @@ gem "curb", "~> 0.8.4"
 #gem 'railties', '~> 4.0'
 gem 'rails_admin', '>= 0.4.9'  # needed to specify recent version
 
+# for ckeditor image uploading
+gem 'paperclip'
+
 
 
 

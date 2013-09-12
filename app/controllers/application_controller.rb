@@ -57,17 +57,30 @@ class ApplicationController < ActionController::Base
   #---------------------------------------------------------------------------
   def sign_in_account_with_cart(cart, the_account)
     # Note: "sign_in" and "current_account" are Devise convenience methods
+    
+    # Important: we need to call sign_in 2 TIMES, to make devise update the session properly:
+    #            See: http://stackoverflow.com/questions/4660565/how-to-manually-create-a-new-user-and-user-session-in-devise
     sign_in(the_account)
     
+    # :bypass is set to ignore devise related callbacks and only save the
+    # user into session.
+    sign_in(the_account, :bypass => true)
+    
     # "current_account" will be set unless an error occurred
-    return the_account unless (current_account == the_account)
+    if (current_account != the_account)
+      the_account.errors(:base, "Sign-in failed. Please try again")
+      flash[:auto_signup_notification] = "Sign-in failed. Please try again"
+      return the_account
+    end
     
     # within sign_in, "current_account" was set, so assciate with the cart, and save
     cart.account_id = current_account.id  
-    cart.save
+    cart.save!
     
     # Save cart in the session
     session[:cart_id] = cart.id
+    
+    flash[:auto_signup_notification] = "Signed-in as #{current_account.email}" if current_account
     
     current_account  # should be the same as the_account at this point
   end
@@ -87,13 +100,17 @@ class ApplicationController < ActionController::Base
   #FIXME: if the location the person is on is a POST url that has just been done, this will
   #       error when the user tries to sign in.  e.g. email_subscriptions/subscribe
   def store_location
-   # store last url - this is needed for post-login redirect to whatever the user last visited.
-      if (request.fullpath != "/accounts/sign_in" && \
-          request.fullpath != "/accounts/sign_up" && \
-          request.fullpath != "/accounts/password" && \
-          !request.xhr?) # don't store ajax calls
-        session[:previous_url] = request.fullpath
-      end
+    # store last url - this is needed for post-login redirect to whatever the user last visited.
+    # But don't redirect back to any of the accounts pages after a logout (that causes redirect loop)
+    if (!request.fullpath.include?("/accounts") && \
+        !request.fullpath.include?("/accounts/sign_in") && \
+        !request.fullpath.include?("/accounts/sign_up") && \
+        !request.fullpath.include?("/accounts/password") && \
+        !request.xhr?) # don't store ajax calls
+      session[:previous_url] = request.fullpath
+    else
+      session[:previous_url] = root_path  # redirect to root_path after logout
+    end
   end
 
   # redirect to the page the user was on before sign-in, or if they were on the main sign-in view, redirect to root

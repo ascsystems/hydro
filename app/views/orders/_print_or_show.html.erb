@@ -63,14 +63,17 @@
   <h2>Payment Info</h2>
   <p>
     <span class="label">Card number:</span>
-    <%= @order.credit_card_number %>
+    <%= @order.mostly_hidden_credit_card_number %>
   </p>
   <p>
     <span class="label">Expiration date:</span>
-    <%= @order.cc_expiry %>
+    <%= "#{@order.cc_expiry_month} / #{@order.cc_expiry_year}" %>
+    
   </p>
   <p>
     <span class="label">Security Code:</span>
-    <%= @order.ccv_number %>
+    <%# NOTE: we want this completely X'd out %>
+    XXX
+    <%#= @order.ccv_number %>
   </p>
 </div>

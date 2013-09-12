@@ -10,6 +10,13 @@
       </ul>-->
     </div>
   <% end %>
+  <% if flash[:payment_failure].present? %>
+    <div id="error_explanation">
+      <h2>Your transaction could not be processed:</h2>
+      <%= flash[:payment_failure] %>
+    </div>
+  <% end %>
+  
   <div class="form_section_wrapper">
     <h2>Shipping Info</h2>
     <div class="field left_half">
@@ -90,7 +97,7 @@
       <%= f.text_field :credit_card_number %>
     </div>
      <div class="field expdate">
-      <%= f.label :cc_expiry_month, "Expiration Date" %><br />
+      <%= f.label "Expiration Date" %><br />
       <%#= f.text_field :exp_date %>
       <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
       <% the_current_year = Time.now.year %>
@@ -111,7 +118,7 @@
     <%= f.hidden_field :account_id, value: @order.account_id %>
   </div>
   <div class="actions">
-    <%= f.submit 'CONFIRM YOUR ORDER »', class: 'button'  %>
+    <%= f.submit 'CONFIRM YOUR ORDER >', class: 'button hydro_big_button'  %>
   </div>
 <% end %>
 <script type="text/javascript">  
