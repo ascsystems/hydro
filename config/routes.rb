@@ -2,6 +2,9 @@ HydroFlask::Application.routes.draw do
   
   
   resources :stores
+  match 'stores/setLatLng' => 'stores#setLatLng'
+
+  resources :search
 
   resources :ambassadors
 

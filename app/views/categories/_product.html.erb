@@ -1,4 +1,4 @@
- <div class="category_product">
+ <div class="category_product" <% if (product_counter + 1) % 4 == 1 && product_counter != 0 %>style="clear:both;"<% end %>>
   <div class="product_wrapper">
     <div class="image"><%= link_to image_tag("#{product.product_image.path}small/#{product.product_image.name}", alt: product.name, title: product.name), product_path(product) %></div>
     <h3><%= link_to product.short_name, product_path(product) %></h3>

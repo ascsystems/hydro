@@ -1,3 +1,38 @@
 // Place all the styles related to the Stores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+#stores #map-canvas {
+    float:right;
+    height: 425px;
+    margin-bottom: 20px;
+    width: 550px;
+}
+
+#stores .left_panel {
+ 	float:left;
+  width: 424px;
+}
+
+#stores #location {
+	width: 350px;
+	height: 32px;
+  vertical-align:top;
+}
+
+#stores #store_list {
+  font-size: 1.1em;
+  list-style-type: none;
+  margin: 10px;
+}
+
+#stores #store_list li {
+	margin-bottom:10px;
+}
+
+#stores #store_list li .store_name {
+	font-weight:bold;
+	color: $primary_color;
+}

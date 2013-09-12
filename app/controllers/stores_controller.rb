@@ -2,11 +2,14 @@ class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.all
-
+    store = Store.new
+    coords = store.getCoords(params[:location])
+    if !coords.nil?
+      @stores = store.getStores(coords)
+    end
+    @location = params[:location]
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @stores }
     end
   end
 
@@ -18,6 +21,23 @@ class StoresController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @store }
+    end
+  end
+
+  def setLatLng
+    require 'net/http'
+    stores = Store.where("lat = ? and lng = ?", 0, 0)
+    stores.each do |store|
+      address = "#{store.address1} #{store.address2} #{store.city} #{store.state} #{store.zip}"
+      #address.gsub!(' ', '%20')
+      address = Rack::Utils.escape(address)
+      url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}&sensor=false"
+      url_data = Net::HTTP.get(URI.parse(url))
+      json_data = JSON.parse(url_data)
+      store.lat = json_data["results"][0]["geometry"]["location"]["lat"]
+      store.lng = json_data["results"][0]["geometry"]["location"]["lng"]
+      store.save
+      sleep 1
     end
   end
 

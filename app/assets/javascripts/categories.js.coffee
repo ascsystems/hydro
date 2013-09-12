@@ -9,3 +9,5 @@ $j ->
 	$j(".back_to_top a").on 'click', ->
 		$j('html, body').animate({ scrollTop: $j("h2:first").offset().top }, 2000)
 		return false
+	$j("#search_order").on 'change', ->
+		$j("#search_form").submit()

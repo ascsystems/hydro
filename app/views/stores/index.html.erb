@@ -1,41 +1,108 @@
-<h1>Listing stores</h1>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script>
+  var stores = [];
+  var addresses = [];
+  var latLongs = [];
+</script>
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0; padding: 0 }
+  #map-canvas { height: 100% }
+  .address_popup {
+    width:220px;
+    height:100px;
+  }
+</style>    
+<div id="stores">
+	<h1>Find a store</h1>
+  <div class="left_panel">
+    <form>
+      <input type="text" name="location" id="location" placeholder="Enter your address or zip code to find a store near you." value="<%= @location %>">
+      <input type="submit" value="Search" class="button">
+    </form>
+    <% if !@stores.nil? && !@stores.empty? %>
+    <ol id="store_list">
+      <%
+      x = 0
+      lat = 0
+      lng = 0
+      @stores.each do |store| %>
+        <li>
+          <span class="store_name"><a class="store_click" style="cursor:pointer;" lat="<%= store.lat %>" lng="<%= store.lng %>"><%= store.name %></a></span><br />
+          <%= store.address1 %><br />
+          <% if !store.address2.nil? && !store.address2.empty? %>
+          <%= store.address2 %><br />
+          <% end %>
+          <%= store.city %> <%= store.state %>, <%= store.zip %><br />
+          Distance: <%= store.distance.round(1) %> miles
+          <script type="text/javascript">
+          stores.push(new google.maps.LatLng(<%= store.lat %>, <%= store.lng %>));
+          addresses.push("<div class=\"address_popup\"><%= store.name %><br /><%= store.address1 %><br /><% if !store.address2.nil? && !store.address2.empty? %><%= store.address2 %><br /><% end %><%= store.city %> <%= store.state %>, <%= store.zip %>");
+          </script>
+        </li>
+        <% 
+        x = x + 1
+        if x == 1
+          lat = store.lat
+          lng = store.lng
+        end
+        if x == 4
+          break
+        end
+      end %>
+    </ol>
+    <% else %>
+    <p style="margin-top:20px;">No stores matched your search. Please try again.</p>
+    <% end %>
+  </div>
+	<div id="map-canvas"></div>
+</div>
+<script type="text/javascript">
+  var markers = [];
+  var iterator = 0;
+  var map;
+  var bounds = new google.maps.LatLngBounds();
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Address1</th>
-    <th>Address2</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip</th>
-    <th>Country</th>
-    <th>Phone</th>
-    <th>Lat</th>
-    <th>Lng</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  function initialize() {
 
-<% @stores.each do |store| %>
-  <tr>
-    <td><%= store.name %></td>
-    <td><%= store.address1 %></td>
-    <td><%= store.address2 %></td>
-    <td><%= store.city %></td>
-    <td><%= store.state %></td>
-    <td><%= store.zip %></td>
-    <td><%= store.country %></td>
-    <td><%= store.phone %></td>
-    <td><%= store.lat %></td>
-    <td><%= store.lng %></td>
-    <td><%= link_to 'Show', store %></td>
-    <td><%= link_to 'Edit', edit_store_path(store) %></td>
-    <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    var mapOptions = {
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"),
+        mapOptions);
+    for (var i = 0; i < stores.length; i++) {
+      addMarker();
+    }
+    map.fitBounds(bounds);
+  }
 
-<br />
+  function addMarker() {
+    var infowindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+      position: stores[iterator],
+      map: map,
+      draggable: false,
+      icon: '/assets/h_man_marker.png',
+      animation: google.maps.Animation.DROP
+    });
+    bounds.extend(stores[iterator]);
+    makeInfoWindowEvent(map, infowindow, addresses[iterator], marker);
+    markers.push(marker);
+    iterator++;
+  }
 
-<%= link_to 'New Store', new_store_path %>
+  function makeInfoWindowEvent(map, infowindow, contentString, marker) {
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent(contentString);
+      infowindow.open(map, marker);
+    });
+  }
+
+  function storeClick(lat, lng) {
+    var latLn = new google.maps.LatLng(lat, lng);
+    map.panTo(latLn);
+    map.setZoom(17);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

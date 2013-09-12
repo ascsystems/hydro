@@ -28,8 +28,7 @@
 							
 							<%= form_for(EmailSubscription.new, {:url => subscribe_email_path(), :method => :post, :html=> {:class => 'new_email_subscription_footer', :id=>"new_email_subscription_footer"}}) do |f| %>		
 								<div class="field">
-									<%= f.text_field :email_address, :placeholder => "Enter email address" %>
-									<%= f.submit "Submit Email", :type => :image, :src => asset_path("submit_button.png"), :name => 'subscribe_email', :id => 'submit_email_sub'%>
+									<%= f.text_field :email_address, :placeholder => "Enter email address" %><%= f.submit "Submit Email", :type => :image, :src => asset_path("submit_button.png"), :name => 'subscribe_email', :id => 'submit_email_sub'%>
 								</div>
 							<% end %>
 							<!-- old code
@@ -67,11 +66,11 @@
 				<div class="inner-panel left">
 					<h3>SEARCH</h3>
 					<p>Find info on the Hydro Flask site.</p>
-					<form>
+					<%= form_tag "/search", method: "get" do %>
 						<div class="form-row">
-							<input type="text" value="Search" id="footer_search_box"/><input type="image" src="<%= asset_path "search_button.png" %>" />
+							<input type="text" placeholder="Search" name="query" id="footer_search_box"/><input type="image" src="<%= asset_path "search_button.png" %>" />
 						</div>
-					</form>
+					<% end %>
 				</div>
 			</div>
 		</div>

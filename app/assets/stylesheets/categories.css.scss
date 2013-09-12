@@ -47,7 +47,7 @@
 
 #category_content .category_row {
 	margin-top: -15px;
-	padding-bottom: 20px;
+	padding-bottom: 15px;
 }
 
 #category_content .category_product {
@@ -101,19 +101,20 @@
 
 #category_content div.color_circle {
     background: none repeat scroll 0 0 #000000;
-    border-radius: 6px 6px 6px 6px;
-    height: 12px;
-    line-height: 12px;
-    width: 12px;
+    border-radius: 7px;
+    height: 14px;
+    line-height: 14px;
+    width: 14px;
     float: left;
     margin-right: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
 }
 
 #category_content div.white_circle  {
 	border:1px solid #000;
-	width:10px; 
-	height:10px;
+	width:12px; 
+	height:12px;
 }
 
 #category_content div.colors {
@@ -140,4 +141,12 @@
         padding:5px;
         margin:0;
     }
+}
+
+#search_order {
+    border:none;
+    background-color:#EFEFEF;
+    font-size:1em;
+    padding:5px;
+    margin:0;
 }

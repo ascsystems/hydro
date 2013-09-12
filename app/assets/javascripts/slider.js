@@ -28,7 +28,7 @@ setup: function(){
 if(screen.width > screen.height && screen.width < 560) {
 	document.body.addClassName('mobile');
 }
-homeSlide.updateCaption(0);
+//homeSlide.updateCaption(0);
 //homeSlide.headerHeight = $('navWrapper').getHeight();
 //homeSlide.footerHeight = $('footer').getHeight() - $('footerfitzroy').getHeight(); //29 is the height of the mountains and shadow
 homeSlide.headerHeight = 0;
@@ -87,12 +87,12 @@ el.style.width =  divWidth + 'px';
 var slideNavTop = homeSlide.slideHeight - 59; //position nav circles 40px above the footer
 $('homeslidenavlinks').style.top = slideNavTop + 'px';
 //$('photoposition').style.top = homeSlide.slideHeight + 'px';
-$('photoposition').style.top = '150px';
+//$('photoposition').style.top = '150px';
 var arrowPos = (((homeSlide.slideHeight - homeSlide.headerHeight) / 2) - (homeSlide.navArrowHeight / 2)) + homeSlide.headerHeight;
 $('navarrowleft').style.top = arrowPos + 'px';
 $('navarrowright').style.top = arrowPos + 'px';
 },
-updateCaption: function(idx){
+/*updateCaption: function(idx){
 if($('homephotocredits').style.display != 'none'){
 $('homephotocredits').fade({
 duration: .3,
@@ -118,7 +118,7 @@ $$('#homeslidenavlinks .active').each(function(el){
 el.className = '';
 });
 $('navlink' + idx).className = 'active';
-},
+},*/
 loadVideo: function(el){
 homeSlide.pause();
 var videoLink = el.href,
@@ -288,8 +288,8 @@ $('homeslideC').innerHTML = nextHTML;
 homeSlide.isSliding = false;
 }
 });
-homeSlide.updateCaption(homeSlide.currentPos);
-homeSlide.updateDots(homeSlide.currentPos);
+//homeSlide.updateCaption(homeSlide.currentPos);
+//homeSlide.updateDots(homeSlide.currentPos);
 } //end isSliding
 }, //end slideTo
 slideToPage: function(idx){
@@ -346,9 +346,9 @@ el = homeSlide.touch.gallery.masterPages[i]
 el.innerHTML = slides[upcoming].html;
 }
 }
-homeSlide.updateCaption(homeSlide.touch.gallery.pageIndex);
+//homeSlide.updateCaption(homeSlide.touch.gallery.pageIndex);
 if(!homeSlide.touch.directPage) {
-homeSlide.updateCaption(homeSlide.touch.gallery.pageIndex);
+//homeSlide.updateCaption(homeSlide.touch.gallery.pageIndex);
 document.querySelector('#homeslidenavlinks .active').className = '';
 $('navlink' + homeSlide.touch.gallery.pageIndex).className = 'active';
 }
@@ -395,7 +395,7 @@ return;
 }
 document.querySelector('.swipeview-active').innerHTML = slides[idx].html;
 homeSlide.touch.directPage = true;
-homeSlide.updateDots(idx);
+//homeSlide.updateDots(idx);
 }
 },
 slideshow: function(){

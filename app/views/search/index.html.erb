@@ -1,0 +1,23 @@
+<div id="category_content">
+	<div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; Search</div>
+	<h1>Search</h1>
+	<%= form_tag '/search', id: "search_form", method: 'get' do %>
+	<div class="fields" style="display:table-cell;">
+		<input type="text" name="query" id="query" value="<%= @query %>" placeholder="Enter your search terms here" style="height:32px; width:400px; vertical-align:top;"><input type="submit" class="button" value="Search">
+	</div>
+	<p style="font-size:1.1em; float:left; margin-bottom: 20px; margin-top: 20px;"><%= @search_results.length %> results returned for "<%= @query %>"</p>
+	<% if !@search_results.empty? %>
+	<div style="float:right; margin-top:20px;">
+		Order by:
+		<select name="search_order" id="search_order">
+	     <option value="relevance">Relevance</option>
+	     <option value="price asc" <% if @search_order == 'price asc' %>selected="selected"<% end %>>Price - Low to High</option>
+	     <option value="price desc" <% if @search_order == 'price desc' %>selected="selected"<% end %>>Price - High to Low</option>
+  	</select>
+	</div>
+	<div class="category_row" style="margin-top:0">
+    <%= render partial: 'categories/product', collection: @search_results %>
+  </div>
+  <% end %>
+  <% end %>
+</div>
