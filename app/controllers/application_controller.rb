@@ -122,8 +122,11 @@ class ApplicationController < ActionController::Base
     session[:previous_url] || root_path
   end
 
+  #FIXME: this does not seem to be working at all
   def redirect_url
-    session[:previous_url] || login_path
-    flash[:notice] = "Invalid login or password"
+    flash[:error] = "Invalid login or password"
+    
+    #session[:previous_url] || login_path
+    login_path  # always want login failures to go back to the login screen
   end
 end
