@@ -586,3 +586,9 @@ div.field_with_errors + br {
 	background-color: #56BA45; // green
 }
 
+// for the root_page only (display flash message section with no background color)
+#root_flash_wrapper {
+  float:left;
+	background: transparent;
+}
+
