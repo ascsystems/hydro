@@ -6,7 +6,7 @@
       <div class="price"><%= number_to_currency product.price %></div>
       <div class="rating"><%= image_tag "stars_#{product.rating}.png", alt: 'star rating', title: 'star rating' %></div>
     </div>
-    <div class="colors">
+    <div class="colors" product_id="<%= product.id %>">
       <%= render :partial => 'products/color', :collection => product.product_colors %>
     </div>
   </div>

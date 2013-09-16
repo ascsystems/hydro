@@ -44,8 +44,8 @@ $j ->
 		 return false
 
 update_image = () ->
-	$j("#loadingImage").fadeIn 600;
-	options = [];
+	$j("#loadingImage").fadeIn 600
+	options = []
 	$j("input[type='hidden'].option_value").each (index, element) =>
 		options.push($j(element).val())
 	$j.getJSON "/products/" + $j('#product_id').val() + "/product_images/get_image", { data: '{ options: [' + options.join(",") + '], product: ' + $j("#product_id").val() + '}'}, (data) ->

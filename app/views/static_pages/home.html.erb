@@ -5,57 +5,21 @@
 <script>
 
   document.observe("dom:loaded", function() {
-  	var slideImg0 = new Image();
+    var slideImg0 = new Image();
         slideImg0.onload = function(){ homeSlide.imageLoading(); };
-        slideImg0.src = '<%= asset_path "carousel/mountains.jpg" %>';
+        slideImg0.src = '<%= asset_path "carousel/lake_drinker.jpg" %>';
     var slideImg1 = new Image();
         slideImg1.onload = function(){ homeSlide.imageLoading(); };
-        slideImg1.src = '<%= asset_path "carousel/golf.jpg" %>';
+        slideImg1.src = '<%= asset_path "carousel/golf_sunset.jpg" %>';
     var slideImg2 = new Image();
         slideImg2.onload = function(){ homeSlide.imageLoading(); };
-        slideImg2.src = '<%= asset_path "carousel/dunes.jpg" %>';
+        slideImg2.src = '<%= asset_path "carousel/hiking.jpg" %>';
     var slideImg3 = new Image();
         slideImg3.onload = function(){ homeSlide.imageLoading(); };
-        slideImg3.src = '<%= asset_path "carousel/camping.jpg" %>';
+        slideImg3.src = '<%= asset_path "carousel/bridge_zoom.jpg" %>';
     var slideImg4 = new Image();
         slideImg4.onload = function(){ homeSlide.imageLoading(); };
         slideImg4.src = '<%= asset_path "carousel/yoga.jpg" %>';
-    var slideImg5 = new Image();
-        slideImg5.onload = function(){ homeSlide.imageLoading(); };
-        slideImg5.src = '<%= asset_path "carousel/bridge.jpg" %>';
-    var slideImg6 = new Image();
-        slideImg6.onload = function(){ homeSlide.imageLoading(); };
-        slideImg6.src = '<%= asset_path "carousel/bridge_zoom.jpg" %>';
-    var slideImg7 = new Image();
-        slideImg7.onload = function(){ homeSlide.imageLoading(); };
-        slideImg7.src = '<%= asset_path "carousel/canoe.jpg" %>';
-    var slideImg8 = new Image();
-        slideImg8.onload = function(){ homeSlide.imageLoading(); };
-        slideImg8.src = '<%= asset_path "carousel/coffee.jpg" %>';
-    var slideImg9 = new Image();
-        slideImg9.onload = function(){ homeSlide.imageLoading(); };
-        slideImg9.src = '<%= asset_path "carousel/coffeeshop.jpg" %>';
-    var slideImg10 = new Image();
-        slideImg10.onload = function(){ homeSlide.imageLoading(); };
-        slideImg10.src = '<%= asset_path "carousel/dunes_drinker.jpg" %>';
-    var slideImg11 = new Image();
-        slideImg11.onload = function(){ homeSlide.imageLoading(); };
-        slideImg11.src = '<%= asset_path "carousel/espresso.jpg" %>';
-    var slideImg12 = new Image();
-        slideImg12.onload = function(){ homeSlide.imageLoading(); };
-        slideImg12.src = '<%= asset_path "carousel/golf_sunset.jpg" %>';
-    var slideImg13 = new Image();
-        slideImg13.onload = function(){ homeSlide.imageLoading(); };
-        slideImg13.src = '<%= asset_path "carousel/hiking.jpg" %>';
-    var slideImg14 = new Image();
-        slideImg14.onload = function(){ homeSlide.imageLoading(); };
-        slideImg14.src = '<%= asset_path "carousel/lake.jpg" %>';
-    var slideImg15 = new Image();
-        slideImg15.onload = function(){ homeSlide.imageLoading(); };
-        slideImg15.src = '<%= asset_path "carousel/lake_drinker.jpg" %>';
-    var slideImg16 = new Image();
-        slideImg16.onload = function(){ homeSlide.imageLoading(); };
-        slideImg16.src = '<%= asset_path "carousel/yoga_lake.jpg" %>';
   
   if(homeSlide.version == 'touch') {
     homeSlide.touch.init();
@@ -64,7 +28,7 @@
  	}
 });
 
-	homeSlide.totalSlides = 17; 
+	homeSlide.totalSlides = 5; 
   homeSlide.winWidth =  document.viewport.getWidth();
   
   if(screen.width < 560){
@@ -82,91 +46,30 @@
   var slides = new Array();
   
   slides[0] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/mountains.jpg" %>" alt="" class="homeslideimg" id="homeslideimg0" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/lake_drinker.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg15" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-
   }
   
   slides[1] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/golf.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg1" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/golf_sunset.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg1" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
   
   slides[2] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/dunes.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg2" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/hiking.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg13" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
-  
-  slides[3] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/camping.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg3" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
 
+  slides[3] = {
+    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/bridge_zoom.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg6" /></div>'
+    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
-  
+
   slides[4] = {
     html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/yoga.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg4" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
 
-  slides[5] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/bridge.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg5" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[6] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/bridge_zoom.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg6" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[7] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/canoe.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg7" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[8] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/coffee.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg8" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-  
-  slides[9] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/coffeeshop.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg9" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[10] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/dunes_drinker.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg10" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[11] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/espresso.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg11" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[12] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/golf_sunset.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg12" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[13] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/hiking.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg13" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[14] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/lake.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg14" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[15] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/lake_drinker.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg15" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-
-  slides[16] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/yoga_lake.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg16" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
 </script>
 <div id="homeslideposition">
 	<div id="homeslidenavouter">
@@ -194,7 +97,7 @@
 		<div id="homeslidebox">
 			<div class="homeslide" id="homeslideB">
 				<div class="homeslidediv" style="">
-				  <img src="<%= asset_path "carousel/mountains.jpg" %>" alt="Hydroflask Mountains" title="Hydroflask Mountains" class="homeslideimg" id="homeslideimg0" />
+				  <img src="<%= asset_path "carousel/lake_drinker.jpg" %>" alt="Hydroflask Lake" title="Hydroflask Lake" class="homeslideimg" id="homeslideimg0" />
 				</div>
 			</div>
 		</div>

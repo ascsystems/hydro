@@ -17,7 +17,7 @@ class Cart < ActiveRecord::Base
       quantity = 1
     end
     pi = ProductImage.new
-    current_image = pi.getImage(options, product.id)
+    current_image = pi.getImage(options.values, product.id)
     current_item = line_items.build(product_id: product.id, product_name: product.name, quantity: quantity, product_image_id: current_image[0].id, product_price: product.price)
     if(options.present?)
       current_options = OptionValue.find_all_by_id(options.values)

@@ -11,3 +11,14 @@ $j ->
 		return false
 	$j("#search_order").on 'change', ->
 		$j("#search_form").submit()
+	$j(".category_product .colors .color_circle").on 'mouseover', ->
+		product_id = $j(this).closest("div.colors").attr("product_id")
+		image = $j(this).closest("div.colors").siblings('div.image').children('a').children('img')
+		update_category_image(product_id, $j(this).attr('option_id'), image)
+
+update_category_image = (product_id, option_id, image) ->
+	options = []
+	options.push(option_id)
+	$j.getJSON "/products/" + product_id + "/product_images/get_image", { data: '{ options: [' + options.join(",") + '], product:' + product_id + '}'}, (data) ->
+		image_url = data[0].path + 'small/' + data[0].name
+		$j(image).attr('src', image_url)

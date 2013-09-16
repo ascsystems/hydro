@@ -349,15 +349,40 @@ a.homeslidelayer {
     left:50.8%;
     z-index:99;
     li {
-        border-radius: 4px 4px 0 0;
-        box-shadow: 0 0 7px -1px #999999;
-        padding:10px 10px 6px 10px;
+        .tab{
+            padding:10px 10px 6px 10px;
+            border-radius: 4px 4px 0 0;
+            box-shadow: 0 0 7px -1px #999999;
+            width:130px;
+            height:22px;
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+        }
+        .tab_content {
+            border-radius: 0 4px 0 0;
+            /*box-shadow: 0 0 7px -1px #999999;*/
+            background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+            /*margin-bottom: -38px;*/
+            padding:10px;
+            text-align:left;
+            float:left;
+            a:hover{
+                color: #fff;
+            }
+        }
+        /*box-shadow: 0 0 7px -1px #999999;
+        padding:10px 10px 0px 10px;*/
         font-size:1.1em;
         margin-right:10px;
         float:left;
         color:#ffffff;
-        width:130px;
+        /*width:130px;*/
         cursor:pointer;
-        background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
     }
+}
+
+#tabs {
+    position:absolute;
+    bottom:0;
+    z-index:999;
+    width:100%;
 }

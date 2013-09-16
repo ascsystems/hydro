@@ -1,10 +1,38 @@
 <div id="tabs">
 	<ul>
-		<li>FEATURED FLASK</li>
-		<li>5% BACK</li>
-		<li>FIND A STORE</li>
+		<li>
+			<div class="tab">FEATURED FLASK</div>
+			<div class="tab_content" id="fragment-1" style="display:none;width:300px;">
+				<p class="bold" style="float:left; width:200px;">24 oz. Narrow Mouth</p>
+				<p style="float:left; width:200px; text-align:justify;">Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
+				<p class="link" style="float:left; width:200px;"><a href="/products/5">Shop this flask >></a></p>
+				<%= image_tag "products/24oz/cropped/small/24oz-Orange-Zest.png", alt: "Featured flask", title: "Featured flask", style: "margin-left:20px;" %>
+			</div>
+		</li>
+		<li>
+			<div class="tab">5% BACK</div>
+			<div class="tab_content" id="fragment-2" style="display:none;width:300px;">
+				<div class="center" id="fiveback_div">
+					<%= image_tag "five-back-new.png", alt: "Five Percent Back", title: "Five Percent Back" %>
+				</div>
+				<hr class="dividing_line">
+				<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
+				<p class="link"><a href="/pages/5-back">Learn more >></a></p>
+			</div>
+		</li>
+		<li>
+			<div class="tab">FIND A STORE</div>
+			<div class="tab_content" id="fragment-3" style="display:none;height:100px;width:300px">
+				<p>Enter your zip code below to find a store near you.</p>
+				<%= form_tag "/stores", method: "get" do %>
+				<div class="form-row" style="height:50px;float:left;width:100%;text-align:center;">
+					<input type="text" name="location" id="location" placeholder="Enter zip code" /><input type="image" src="<%= asset_path "submit_button.png" %>" />
+				</div>
+				<% end %>
+			</div>
+		</li>
 	</ul>
-	<div id="fragment-1">
+	<!--<div id="fragment-1">
 		<hr class="dividing_line">
 		<p class="bold">24 oz. Narrow Mouth</p>
 		<p>Consectetur adipising elit. Donec eleithend tincidunt malesuada. Nullam sit amet quarn est.</p>
@@ -29,5 +57,5 @@
 			<p class="alt_color left">Where has your flask taken you?</p>
 			<%= image_tag "share_button.png", class: "right", alt: "Share", title: "Share" %>
 		</div>
-	</div>
+	</div>-->
 </div>
