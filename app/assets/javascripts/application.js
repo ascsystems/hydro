@@ -10,7 +10,9 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-// HydroFlask NOTE:  do NOT add //=require_tree .   (messes up rails_admin)
+// HydroFlask NOTES:
+// do NOT add //=require_tree .   (messes up rails_admin)
+// products.js is required manually on only the products/show page
 //
 //= require jquery
 //= require jquery_ujs
@@ -26,7 +28,6 @@
 //= require effects
 //= require orders
 //= require pages
-//= require products
 //= require scriptaculous
 //= require site
 //= require slider

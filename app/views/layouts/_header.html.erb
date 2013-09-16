@@ -58,6 +58,14 @@
 					<li><%= link_to "CART (#{items_in_cart})", mycart_path, class: "primary-color" %><div id="cart-img"></div></a></li>
 				</ul>
 			</nav>
+			<% if current_page? root_url %>
+				<!--<div class='clear'></div>-->
+				<div id="root_flash_wrapper" class="wrapper">
+          <div id="contentWrapper">
+				    <%= render partial: "shared/show_flash_messages", flash: flash %>
+				  </div>
+        </div>
+			<% end %>
 		</div>
 	</div>
 </header>

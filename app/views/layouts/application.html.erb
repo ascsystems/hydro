@@ -12,11 +12,12 @@
   </head>
   <body>
       <%= render 'layouts/header' %>
-      <% if current_page? root_url %>
+			<% if current_page? root_url %>			
         <%= yield %>
       <% else %>
         <div id="body_wrapper" class="wrapper">
           <div id="contentWrapper">
+						<%= render partial: "shared/show_flash_messages", flash: flash %>
             <%= yield %>
           </div>
         </div>
