@@ -102,6 +102,10 @@ h1 {
 
 }
 
+img {
+  border:none;
+}
+
 a {
 	color: $primary_color;
 	text-decoration: none;
@@ -591,4 +595,3 @@ div.field_with_errors + br {
   float:left;
 	background: transparent;
 }
-
