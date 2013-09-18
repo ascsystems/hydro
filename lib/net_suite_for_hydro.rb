@@ -17,9 +17,54 @@ module NetSuiteForHydro
     end
     
     def self.get_customer_test
+      # If not found, it returns exception: NetSuite::RecordNotFound
       NetSuite::Records::Customer.get(:internal_id => 4)
+      
+      #NetSuite::Records::Contact.get(:internal_id => 4)
     end
-   
+    
+    # Contact:
+    #actions :get, :add, :delete, :search
+    #
+    #fields :salutation, :first_name, :middle_name, :last_name, :title, :phone, :fax, :email, :default_address,
+    #         :entity_id, :phonetic_name, :alt_email, :office_phone, :home_phone, :mobile_phone, :supervisor_phone,
+    #         :assistant_phone, :comments, :bill_pay, :is_private, :is_inactive
+    def self.create_contact_test
+      contact = NetSuite::Records::Contact.new(first_name: 'Homer', last_name: 'Simpson', email: 'homers@testing.com')  #, phone: '403-456-7890')
+      
+      # FIXME: I'm getting "false" for this! why?!
+      contact.add
+      #contact
+    end
+    
+    def self.find_a_customer_test
+      search = NetSuite::Records::Customer.search({
+        basic: [
+          {
+            field: 'email',
+            operator: 'is',
+            value: 'david@ascsystems.com'
+          }
+        ]
+      })
+      
+      search.results.inspect
+    end
+    
+    def self.find_a_contact
+      search = NetSuite::Records::Contact.search({
+        basic: [
+          {
+            field: 'email',
+            operator: 'contains',
+            value: 'david@ascsystems.com'
+          }
+        ]
+      })
+      
+      #search.results.inspect if search.present?
+    end
+    
     
   end
 end
