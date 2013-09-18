@@ -54,12 +54,14 @@
 			<div id="top_content_wrapper">
 				<%= form_tag( { controller: 'line_items', action: 'create' }, method:'post', id: 'product_form') do %>
 					<input type="hidden" name="product_id" id="product_id" value="<%= @product.id %>">
+					<input type="hidden" name="product_id" id="product_price" value="<%= @product.price %>">
 					<div id="options" class="content_box">
 						<div class="content_box_wrapper">
 							<%= render partial: 'option', collection: @product.sorted_options %>
 							<div id="quantity_div">
 								<div class="option_header">QUANTITY: <span class="option_text" id="quantity_text">1</span></div>
-								<div><input name="quantity" id="quantity" type="text"></div>
+								<div style="text-align:right;"><input name="quantity" id="quantity" type="text" value="1"></div>
+								<p style="margin-top:10px;font-size:1.2em;text-align:right;" id="price"><%= number_to_currency @product.price %></p>
 							</div>
 						</div>
 					</div>
