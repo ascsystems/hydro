@@ -339,3 +339,15 @@
 		margin-bottom:0;
 	}
 }
+
+#page .main_content ol, #page .main_content ul {
+	margin-left:20px;
+	margin-bottom:1em;
+	li {
+		margin-bottom:.5em;
+	}
+}
+
+#page .main_content ul {
+	list-style-type: disc;
+}

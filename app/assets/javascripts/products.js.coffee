@@ -24,6 +24,7 @@ $j ->
 			$j('#' + active_div).show()
 	$j( "#quantity" ).spinner({ value: 1, min: 1, max:9999, stop: ->
 		$j("#quantity_text").html($j("#quantity").val())
+		$j("#price").html("$" + ($j("#quantity").val() * $j("#product_price").val()).toFixed(2))
 	})
 	$j( "#quantity" ).readOnly = true
 

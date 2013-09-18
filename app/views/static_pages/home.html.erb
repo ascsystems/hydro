@@ -7,13 +7,13 @@
   document.observe("dom:loaded", function() {
     var slideImg0 = new Image();
         slideImg0.onload = function(){ homeSlide.imageLoading(); };
-        slideImg0.src = '<%= asset_path "carousel/lake_drinker.jpg" %>';
+        slideImg0.src = '<%= asset_path "carousel/hiking.jpg" %>';
     var slideImg1 = new Image();
         slideImg1.onload = function(){ homeSlide.imageLoading(); };
-        slideImg1.src = '<%= asset_path "carousel/golf_sunset.jpg" %>';
+        slideImg1.src = '<%= asset_path "carousel/lake_drinker.jpg" %>';
     var slideImg2 = new Image();
         slideImg2.onload = function(){ homeSlide.imageLoading(); };
-        slideImg2.src = '<%= asset_path "carousel/hiking.jpg" %>';
+        slideImg2.src = '<%= asset_path "carousel/golf_sunset.jpg" %>';
     var slideImg3 = new Image();
         slideImg3.onload = function(){ homeSlide.imageLoading(); };
         slideImg3.src = '<%= asset_path "carousel/bridge_zoom.jpg" %>';
@@ -46,17 +46,17 @@
   var slides = new Array();
   
   slides[0] = {
+    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/hiking.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg13" /></div>'
+    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
+  }
+
+  slides[1] = {
     html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/lake_drinker.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg15" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
   
-  slides[1] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/golf_sunset.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg1" /></div>'
-    //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
-  }
-  
   slides[2] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/hiking.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg13" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/golf_sunset.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg1" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
 
