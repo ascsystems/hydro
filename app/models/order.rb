@@ -153,7 +153,7 @@ class Order < ActiveRecord::Base
       customer_id = self.newNetSuiteCustomer
     end
     line_items = []
-    self.line_items.each |li| do
+    self.line_items.each do |li|
       line_items.push({quantity: li.quantity, item: NetSuite::Records::RecordRef.new(internal_id: li.product_translations.netsuite_id, type: 'inventoryItem')})
     end
     so = NetSuite::Records::SalesOrder.new(entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, other_ref_num: 12345, item_list: { item: line_items })
