@@ -20,11 +20,12 @@ set :keep_releases, 5
 
 #-----------------------------------------------------------------------------
 # Special config options for SSH with 'pem' file
-default_run_options[:pty] = true   # Must be set for the password prompt from git to work
+#default_run_options[:pty] = false   # Must be set for the password prompt from git to work
 ssh_options[:forward_agent] = true  # uses local keys
-
-ssh_options[:auth_methods] = ["publickey"]
-ssh_options[:keys] = ["~/pem_files/hfkey.pem"]
+#set :ssh_options, {:forward_agent => true}
+#ssh_options[:auth_methods] = ["publickey"]
+#ssh_options[:keys] = ["~/.ssh/hfkey.pem"]
+#ssh_options[:keys] = ["~/pem_files/hfkey.pem"]
 #-----------------------------------------------------------------------------
 
 # see this link for capistrano multistage:

@@ -9,6 +9,7 @@ role :web, domain                         # Your HTTP server, Apache/etc
 role :app, domain                         # This may be the same as your `Web` server
 role :db,  domain, :primary => true # This is where Rails migrations will run
 
+ssh_options[:keys] = ["~/.ssh/hfkey.pem"]
 
 # rvm gemset to use on the server (different than production gemset)
 set :rvm_ruby_string, '2.0.0-p247@hydroflask-staging'

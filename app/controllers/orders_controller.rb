@@ -118,7 +118,7 @@ class OrdersController < ApplicationController
     @order = Order.new(params[:order])
     
     # Associate the cart line items to this order
-    @order.accociate_cart_line_items(current_cart)
+    @order.associate_cart_line_items(current_cart)
     
     # Set the total cost of the payment in the DB
     # (total_amount virtual field now contains the full calculated cost)
@@ -134,18 +134,21 @@ class OrdersController < ApplicationController
     
     if (is_valid_order == true)
       begin
-        @response = @order.make_payment
-        flash[:notice] = "Successfully made a purchase (authorization code: #{@response.authorization_code})"
+        #@response = @order.make_payment
+        #flash[:notice] = "Successfully made a purchase (authorization code: #{@response.authorization_code})"
         current_cart.destroy
         @order.status = Order::ORDER_COMPLETED
+        #@order.save!
+        #Pass order info over to netsuite!
+        @order.netsuite_id = @order.submitToNetSuite
         @order.save!
-      #FIXME:  change to detect PaymentHandler Exception type only
+       #FIXME:  change to detect PaymentHandler Exception type only
       rescue Exception => e
         @order.status = Order::ORDER_FAILED
         @order.save!
         
         # Save to a special flash category, so we can check on the view and display the error fully
-        flash[:payment_failure] = e.message
+        #flash[:payment_failure] = e.message
         #@order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
         
         # go back to the order view, where they can edit fields and resubmit

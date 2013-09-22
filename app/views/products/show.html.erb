@@ -54,7 +54,7 @@
 			<div id="top_content_wrapper">
 				<%= form_tag( { controller: 'line_items', action: 'create' }, method:'post', id: 'product_form') do %>
 					<input type="hidden" name="product_id" id="product_id" value="<%= @product.id %>">
-					<input type="hidden" name="product_id" id="product_price" value="<%= @product.price %>">
+					<input type="hidden" name="product_price" id="product_price" value="<%= @product.price %>">
 					<div id="options" class="content_box">
 						<div class="content_box_wrapper">
 							<%= render partial: 'option', collection: @product.sorted_options %>

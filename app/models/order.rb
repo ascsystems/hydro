@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city,
                 :x_ship_to_state, :x_ship_to_zip, :x_email, :x_invoice_number, :credit_card_number,
                 :ccv_number, :total_amount, :cc_expiry_month, :cc_expiry_year
-  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, 
+  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, :phone, 
                    :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
                   :shipping_method_id, :invoice_number, :status, :account_id, :ccv_number, :total_amount,
                   :cc_expiry_month, :cc_expiry_year, :payment_total_cost
@@ -89,7 +89,7 @@ class Order < ActiveRecord::Base
   
   #---------------------------------------------------------------------------
   # For each line_item in the current card, associate that line item to this order.
-  def accociate_cart_line_items(the_cart)
+  def associate_cart_line_items(the_cart)
     the_cart.line_items.each do |a_line_item|
       self.line_items << a_line_item  # LineItem row is saved, with our order_id
     end
@@ -133,10 +133,37 @@ class Order < ActiveRecord::Base
     cc_number_hidden = self.credit_card_number.dup
     cc_length = cc_number_hidden.length
     (1..cc_length-5).each{|x_it| cc_number_hidden[x_it] = 'X'}
-    
+
     cc_number_hidden
   end
   #---------------------------------------------------------------------------
   
-  
+  def getNetSuiteCustomer
+    customer = NetSuite::Records::Customer.search({basic: [{ field: 'email', operator: 'contains', value: self.email }, { field: 'firstName', operator: 'contains', value: self.first_name }, { field: 'lastName', operator: 'contains', value: self.last_name}]})
+    if customer.results[0] != nil
+      return customer.results[0].internal_id
+    else
+      return nil
+    end
+  end
+
+  def submitToNetSuite
+    customer_id = self.getNetSuiteCustomer
+    if customer_id == nil
+      customer_id = self.newNetSuiteCustomer
+    end
+    line_items = []
+    self.line_items.each |li| do
+      line_items.push({quantity: li.quantity, item: NetSuite::Records::RecordRef.new(internal_id: li.product_translations.netsuite_id, type: 'inventoryItem')})
+    end
+    so = NetSuite::Records::SalesOrder.new(entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, other_ref_num: 12345, item_list: { item: line_items })
+    so.add
+  end
+
+  def newNetSuiteCustomer
+    customer = NetSuite::Records::Customer.new(custom_field_list: { custom_field: [{ internal_id: "custentity4", value: self.email, type: "platformCore:StringCustomFieldRef" }, { internal_id: "custentity2", value: "23", type: "platformCore:StringCustomFieldRef" }] }, email: self.email, phone: self.phone, category: NetSuite::Records::RecordRef.new({ internal_id: 11, type: 'customerCategory' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), is_person: TRUE, first_name: self.first_name, last_name: self.last_name, addressbook_list: { addressbook: [{ default_shipping: TRUE, default_billing: FALSE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone, addr1: self.address, addr2: self.address2, city: self.city, state: self.state, zip: self.zip, country:"_unitedStates" }, { { default_shipping: FALSE, default_billing: TRUE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone, addr1: self.billing_address, addr2: self.billing_address2, city: self.billing_city, state: self.billing_state, zip: self.billing_zip, country:"_unitedStates" }] })
+    customer.add
+    customer.internal_id
+  end
+
 end

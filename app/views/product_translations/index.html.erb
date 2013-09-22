@@ -1,0 +1,27 @@
+<h1>Listing product_translations</h1>
+
+<table>
+  <tr>
+    <th>Sku</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @product_translations.each do |product_translation| %>
+  <tr>
+    <td><%= product_translation.sku %></td>
+    <td><%= product_translation.description %></td>
+    <td><%= product_translation.price %></td>
+    <td><%= link_to 'Show', product_translation %></td>
+    <td><%= link_to 'Edit', edit_product_translation_path(product_translation) %></td>
+    <td><%= link_to 'Destroy', product_translation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Product translation', new_product_translation_path %>
