@@ -1,4 +1,3 @@
-
 <%= form_for(@order, url: {action: "confirm"}, html: {method: 'post'}) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -9,11 +8,16 @@
         <% end %>
       </ul>-->
     </div>
+  <% 
+    elsif @custom_error.present? %>
+        <div id="error_explanation">
+      <h2><%= @custom_error %></h2>
+       </div>
   <% end %>
   <% if flash[:payment_failure].present? %>
     <div id="error_explanation">
-      <h2>Your transaction could not be processed:</h2>
-      <%= flash[:payment_failure] %>
+      <h2>Your credit card transaction was declined, please try again with another card.</h2>
+      <%#= flash[:payment_failure] %>
     </div>
   <% end %>
   
@@ -51,14 +55,14 @@
       <%= f.label :phone %><br />
       <%= f.text_field :phone %>
     </div>
-    <div class="field left_half">
+    <div class="field right_half">
       <%= f.label :email %><br />
       <%= f.text_field :email %>
     </div>
     <%# if the user is not signed in, show a jpassword field which will auto-create a new account for them when the order is submitted %>
     <% unless current_account %>
       <div class="field">
-        <%= f.label :new_account_password, "Password (will create an account)" %><br />
+        <%= f.label :new_account_password, "Password(will create account)" %><br />
         <%= password_field_tag :new_account_password %>
       </div>
     <% end %>

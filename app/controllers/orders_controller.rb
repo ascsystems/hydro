@@ -63,13 +63,26 @@ class OrdersController < ApplicationController
   # Order has just been submitted (or re-submitted)
   def confirm
     
+    billing_params = {}
+    if params[:billing_same_as_shipping] == '1'
+      billing_params = Order::set_billing_same_as_shipping(params[:order])
+    end
+    all_params = billing_params.merge!(params[:order])
+    @order = Order.new(all_params)
     # First check to see if the user is creating a new account within the order form
     # (if the user is not logged in, and they are passing the account password parameter)
     if current_account.blank? && params[:new_account_password].present? && params[:order][:email].present?
-      
+      if params[:new_account_password].length < 8
+        @custom_error = "Your password must be at least 8 characters long."
+        #flash[:notice] = "Your password must be at least 8 characters long."
+        render :action => :new
+        return
+      end
       new_account = sign_in_user_and_associate_to_cart(current_cart, params[:order][:email], params[:new_account_password])
       unless new_account.valid?
-        flash[:notice] = "Failed to create new account with provided email and password. Please try again, or leave password blank to submit your order without an account."
+        @custom_error = "Failed to create a new account."
+        #@order[:errors].push("Failed to create new account.")
+        #flash[:notice] = "Failed to create new account with provided email and password. Please try again, or leave password blank to submit your order without an account."
         render :action => :new
         return
       end
@@ -77,14 +90,9 @@ class OrdersController < ApplicationController
     
     # if user has said their billing address is the same as their shipping address,
     # copy the shipping address params into the billing address params
-    billing_params = {}
-    if params[:billing_same_as_shipping] == '1'
-      billing_params = Order::set_billing_same_as_shipping(params[:order])
-    end
-    all_params = billing_params.merge!(params[:order])
+
     
     # create the order based on the supplied parameters plus modified parameters
-    @order = Order.new(all_params)
     
     @order.validate_cc_fields!  # check that CC info is present too
     
