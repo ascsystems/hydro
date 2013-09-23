@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
 
   helper_method :items_in_cart,  :current_cart, :header_categories, :authorize_net
 
+  before_filter :authenticate
+
+  protected
+
+  def authenticate
+   authenticate_or_request_with_http_basic do |username, password|
+     username == "hydroflask" && password == "Hydr0fl4sk!"
+   end
+  end
+
   private
 
   #---------------------------------------------------------------------------

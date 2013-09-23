@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
       # if this order was made by a user, but not this logged in user, or if the order set in the params
       # is already at a COMPLETED state, don't allow that order to be used; just create a new one
       if (@order.account && (@order.account != current_account)) || (@order.status == Order::ORDER_COMPLETED)
-        flash[:notice] = "The order you requested is not owned by you, or has already been completed.  A fresh order will be created."
+        #flash[:notice] = "The order you requested is not owned by you, or has already been completed.  A fresh order will be created."
         @order = Order.new
       end
     else
@@ -142,7 +142,7 @@ class OrdersController < ApplicationController
     
     if (is_valid_order == true)
       begin
-        #@response = @order.make_payment
+        @response = @order.make_payment
         #flash[:notice] = "Successfully made a purchase (authorization code: #{@response.authorization_code})"
         current_cart.destroy
         @order.status = Order::ORDER_COMPLETED
