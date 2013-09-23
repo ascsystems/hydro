@@ -1,6 +1,6 @@
 class LineItem < ActiveRecord::Base
 
-  attr_accessible :product_id, :cart_id, :quantity, :product_name, :product_image_id, :product_price
+  attr_accessible :product_id, :netsuite_id, :cart_id, :quantity, :product_name, :product_image_id, :product_price
 
   belongs_to :product
   belongs_to :cart

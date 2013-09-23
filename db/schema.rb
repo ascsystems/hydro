@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923070551) do
+ActiveRecord::Schema.define(:version => 20130923092359) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20130923070551) do
     t.string   "product_name"
     t.integer  "product_image_id"
     t.decimal  "product_price",    :precision => 10, :scale => 0
+    t.integer  "netsuite_id"
   end
 
   create_table "mailing_lists", :force => true do |t|
@@ -254,12 +255,12 @@ ActiveRecord::Schema.define(:version => 20130923070551) do
   create_table "product_translations", :force => true do |t|
     t.string   "sku"
     t.string   "description"
-    t.decimal  "price",                         :precision => 10, :scale => 2
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
+    t.decimal  "price",            :precision => 10, :scale => 2
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.integer  "netsuite_id"
     t.integer  "quantity"
-    t.integer  "product_option_value_image_id"
+    t.integer  "product_image_id"
   end
 
   create_table "product_types", :force => true do |t|

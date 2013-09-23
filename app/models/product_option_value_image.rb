@@ -3,6 +3,5 @@ class ProductOptionValueImage < ActiveRecord::Base
 
   belongs_to :product_image
   belongs_to :product_option_value
-  has_one :product_translation
 
 end
