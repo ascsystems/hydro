@@ -5,16 +5,21 @@
   <p>
     <span class="label">First name:</span>
     <%= @order.first_name %>
-    &nbsp; &nbsp; &nbsp; &nbsp; 
+  </p>
+  <p>
     <span class="label">Last name:</span>
     <%= @order.last_name %>
   </p>
-
+  <p>
+    <span class="label">Phone:</span>
+    <%= @order.phone %>
+  </p>
+  <% if !@order.email.empty? %>
   <p>
     <span class="label">Email:</span>
     <%= @order.email %>
   </p>
-
+  <% end %>
   <p>
     <span class="label">Address:</span>
     <%= @order.address %>
@@ -28,10 +33,12 @@
   <p>
     <span class="label">City:</span>
     <%= @order.city %>
-    &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
+  <p>
     <span class="label">State:</span>
     <%= @order.state %>
-    &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
+  <p>
     <span class="label">Zip:</span>
     <%= @order.zip %>
   </p>
@@ -51,10 +58,12 @@
   <p>
     <span class="label">City:</span>
     <%= @order.billing_city %>
-    &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
+  <p>
     <span class="label">State:</span>
     <%= @order.billing_state %>
-    &nbsp; &nbsp; &nbsp; &nbsp;
+  </p>
+  <p>
     <span class="label">Zip:</span>
     <%= @order.billing_zip %>
   </p>

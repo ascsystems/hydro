@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921035045) do
+ActiveRecord::Schema.define(:version => 20130923003928) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -209,6 +209,7 @@ ActiveRecord::Schema.define(:version => 20130921035045) do
     t.integer  "invoice_number"
     t.string   "status"
     t.decimal  "payment_total_cost", :precision => 8, :scale => 2
+    t.string   "phone"
   end
 
   add_index "orders", ["account_id"], :name => "index_orders_on_account_id"
@@ -257,6 +258,7 @@ ActiveRecord::Schema.define(:version => 20130921035045) do
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.integer  "netsuite_id"
+    t.integer  "quantity"
   end
 
   create_table "product_types", :force => true do |t|

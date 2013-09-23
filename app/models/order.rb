@@ -2,8 +2,8 @@ class Order < ActiveRecord::Base
   attr_accessor :x_ship_to_first_name, :x_ship_to_last_name, :x_ship_to_address, :x_ship_to_city,
                 :x_ship_to_state, :x_ship_to_zip, :x_email, :x_invoice_number, :credit_card_number,
                 :ccv_number, :total_amount, :cc_expiry_month, :cc_expiry_year
-  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :email, :phone, 
-                   :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
+  attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :phone, :email,
+                  :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
                   :shipping_method_id, :invoice_number, :status, :account_id, :ccv_number, :total_amount,
                   :cc_expiry_month, :cc_expiry_year, :payment_total_cost
   
@@ -18,6 +18,7 @@ class Order < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
   validates :zip, presence: true
+  validates :phone, presence: true
   validates :email, presence: true
   validates :billing_address, presence: true
   validates :billing_city, presence: true
