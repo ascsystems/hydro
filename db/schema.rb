@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923092359) do
+ActiveRecord::Schema.define(:version => 20130923100551) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -231,10 +231,11 @@ ActiveRecord::Schema.define(:version => 20130923092359) do
   create_table "product_images", :force => true do |t|
     t.integer  "product_id"
     t.string   "name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "path"
     t.integer  "default_image"
+    t.integer  "product_translation_id"
   end
 
   create_table "product_option_value_images", :force => true do |t|

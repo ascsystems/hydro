@@ -1,6 +1,6 @@
 class ProductTranslation < ActiveRecord::Base
   attr_accessible :description, :price, :sku, :product_image_id, :quantity
 
-  belongs_to :product_image
+  has_many :product_images
 
 end

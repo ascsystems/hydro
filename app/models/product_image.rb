@@ -2,7 +2,7 @@ class ProductImage < ActiveRecord::Base
   attr_accessible :name, :product_id, :path, :default_image
 
   belongs_to :product
-  has_one :product_translation
+  belongs_to :product_translation
   has_many :product_option_value_images
   has_many :product_option_values, through: :product_option_value_images
   has_many :line_items
