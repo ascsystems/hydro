@@ -44,7 +44,7 @@ gem 'rails_admin', '>= 0.4.9'  # needed to specify recent version
 # for ckeditor image uploading
 gem 'paperclip'
 
-
+gem 'active_shipping'
 
 
 # To use ActiveModel has_secure_password
