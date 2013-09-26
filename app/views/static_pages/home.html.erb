@@ -77,7 +77,7 @@
 			<img src="<%= asset_path "arrow_left.png" %>" class="navarrow" id="navarrowleft" onclick="homeSlide.prevNext(-1);"/>
 			<img src="<%= asset_path "arrow_right.png" %>" class="navarrow" id="navarrowright" onclick="homeSlide.prevNext(1);" />
 			<ul id="homeslidenavlinks">
-				<% (0..16).each do |i| %>
+				<% (0..4).each do |i| %>
 				<li>
 					<img src="<%= asset_path "clear.gif" %>" class="navlink active" id="navlink<%= i %>" onclick="homeSlide.slideToPage(<%= i %>);" alt="" title="" />
 				</li>

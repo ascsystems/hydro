@@ -30,4 +30,5 @@
 //= require pages
 //= require scriptaculous
 //= require site
+//= require swiper
 //= require slider

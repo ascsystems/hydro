@@ -3,7 +3,7 @@ include ActiveMerchant::Shipping
 class Shipping < ActiveRecord::Base
   attr_accessible :display_text, :cost
 
-  def getShippingRates(zip, weight)
+  def getShippingRates(zip, weight, subtotal)
     #weight = current_cart.weight.sum
     if !defined? weight
       weight = 1
@@ -14,8 +14,15 @@ class Shipping < ActiveRecord::Base
 		fedex = FedEx.new(login:'100152071', password:'6KS4ljy8gONQ7D8FmqPSmaLyl', account: '510087607', key: 'nEDHoSL6I2XafWXv', test: true)
   	response = fedex.find_rates(origin, destination, package)
     rates = []
+    shipping_types = Shipping.all
+    standard_shipping = ShippingCostRate::find_best_shipping_cost('*', subtotal )
+    rates.push({id: shipping_types[0][:id], name: shipping_types[0][:display_text], price: standard_shipping[:shipping_cost] })
   	response.rates.each do |rate|
-  		rates.push({name: rate.service_name, price: rate.total_price})
+      shipping_types.each do |type|
+        if rate.service_name == type[:key_text]
+  		    rates.push({id: type[:id], name: type[:display_text], price: (rate.total_price * 0.01)})
+        end
+      end
   	end
   	rates
   end
