@@ -2,7 +2,7 @@
 	<div class="wrapper<% if current_page? root_url %> home_wrapper no-background<% end %>">
 		<div id="headerWrapper">
 			<div id="logo" style="height:90px;">
-				<%= link_to image_tag("hydroflask_logo.png", alt: "Hydro Flask", style: "height:100px;margin-top:-10px;"), root_url %>
+				<%= link_to image_tag("hydroflask_logo.png", alt: "Hydro Flask", style: "margin-top:-10px;"), root_url %>
 			</div>
 			<nav id="homepage-nav">
 				<ul>
@@ -30,10 +30,10 @@
 							<li class="nav_column_right">
 								<ul class="nav_category">	
 									<li><%= link_to "Brand Protection", page_path('brand-protection') %></li>
-									<li><%= link_to "Pro Deal", page_path('pro-deal') %></li>
+									<!--<li><%= link_to "Pro Deal", page_path('pro-deal') %></li>-->
 									<li><%= link_to "Donations", donation_path('new') %></li>
-									<li><%= link_to "Sponsorships", page_path('sponsorships') %></li>
-									<li><%= link_to "Reseller Information", page_path('reseller-information') %></li>
+									<!--<li><%= link_to "Sponsorships", page_path('sponsorships') %></li>
+									<li><%= link_to "Reseller Information", page_path('reseller-information') %></li>-->
 									<li><%= link_to "Careers", page_path('careers') %></li>
 									<li><%= link_to "Contact Us", page_path('contact-hydro-flask') %></li>
 									<li><%= link_to "Terms & Privacy", page_path('terms-and-privacy') %></li>

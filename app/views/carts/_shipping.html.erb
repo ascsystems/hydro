@@ -1,0 +1,20 @@
+    <div id="shipping" class="right_box">
+    <% if !defined? shipping_options %>
+    <p><label for="shipping_zip">Enter your zip code to view your shipping options:</label></p>
+    <form method="get" style="text-align:right;">
+      <input type="text" style="width:75px;height:33px;vertical-align:middle;" name="shipping_zip" id="shipping_zip">
+      <input type="submit" value="Calculate" class="button" style="vertical-align:middle;" id="calculate_shipping">
+    </form>
+    <% else %>
+      <p>Select your shipping option:</div>
+      <div style="float:right;">
+        <ul class="shipping-list">
+				<% selected_shipping_id = @cart.shipping.id if @cart.shipping %>
+        <% shipping_options.each do |s|%>
+          <li><input type="radio" name="shipping" value="<%= s.id %>" <%= "#{(selected_shipping_id == s.id) ? 'checked=checked' : ''}" %> />
+					<div><%= s.display_name %> - <%= s.price %></div></li>
+        <%end%>
+        </ul>
+      </div>
+    <% end %>
+    </div>

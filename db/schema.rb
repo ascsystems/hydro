@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923100551) do
+ActiveRecord::Schema.define(:version => 20130925060405) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20130923100551) do
     t.integer  "product_image_id"
     t.decimal  "product_price",    :precision => 10, :scale => 0
     t.integer  "netsuite_id"
+    t.integer  "weight"
   end
 
   create_table "mailing_lists", :force => true do |t|
@@ -262,6 +263,7 @@ ActiveRecord::Schema.define(:version => 20130923100551) do
     t.integer  "netsuite_id"
     t.integer  "quantity"
     t.integer  "product_image_id"
+    t.integer  "weight"
   end
 
   create_table "product_types", :force => true do |t|

@@ -1,6 +1,9 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
+
+  caches_page :shop, :show
+
   def index
     @categories = Category.all
 

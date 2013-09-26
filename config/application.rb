@@ -72,6 +72,6 @@ module HydroFlask
     
     # Required for paperclip upload with ckeditor
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
-    
+    config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/deploy"
   end
 end

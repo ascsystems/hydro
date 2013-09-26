@@ -23,6 +23,8 @@ HydroFlask::Application.routes.draw do
   # expects parameter "the_email_address"
   get '/email_subscriptions/unsubscribe', :to => 'email_subscriptions#unsubscribe', :as => 'unsubscribe_email'
   
+  get '/carts/get_shipping', to: 'carts#getShipping';
+
   resources :donations
 
   resources :charities
@@ -63,13 +65,6 @@ HydroFlask::Application.routes.draw do
   post "line_items/create"
 
   resources :carts
-
-
-  get "pages/edit"
-
-  get "pages/index"
-
-  get "pages/create"
 
   #FIXME: these pages no longer allow editing from the "Edit" view -- this needs to be fixed
   match "pages/5-back" => "pages#five_back"

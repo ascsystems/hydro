@@ -24,6 +24,13 @@ class CartsController < ApplicationController
   end
   #---------------------------------------------------------------------------
   
+  def getShipping
+    ship = Shipping.new
+    weight = current_cart.line_items.map(&:weight).sum
+    rates = ship.getShippingRates(params[:shipping_zip], weight)
+    render json: rates
+  end
+
 #FIXME: thse are all just left over from CRUD, right?
 =begin
   # GET /carts/new

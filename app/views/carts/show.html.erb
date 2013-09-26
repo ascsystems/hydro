@@ -6,10 +6,12 @@
   <% else  %>
   <table id="cart_table">
     <thead>
-      <tr><th></th><th>Product</th><th>Options</th><th>Price</th><th class="center">Quantity</th><th>Actions</th></tr>
+      <tr><th>&nbsp;</th><th>Product</th><th>Options</th><th>Price</th><th class="center">Quantity</th><th>Actions</th></tr>
     </thead>
     <tbody>
-    <% @cart.line_items.each do |item| %>
+    <% 
+    x = 1
+    @cart.line_items.each do |item| %>
       <tr>
         <td class="center"><%= link_to image_tag("#{item.product_image.path}small/#{item.product_image.name}", alt: item.product.name, title: item.product.name), item.product %></td>
       	<td><%= link_to item.product.name, item.product %></td>
@@ -19,10 +21,12 @@
           <% end %>
         </td>
       	<td><%= number_to_currency item.product.price %></td>
-      	<td class="center"><%= item.quantity %></td>
+      	<td class="center"><input type="text" name="quantity[<%= x %>]" value="<%= item.quantity %>" style="width:30px;text-align:center;padding:0;" /></td>
         <td><%= link_to "Remove", item, method: :delete %></td>
       </tr>
-    <% end %>
+    <% 
+      x += 1
+    end %>
   </tbody>
   </table>
   <div id="customers_bought">
@@ -30,21 +34,11 @@
       <%= render partial: 'cart_related_products/related_product', collection: CartRelatedProduct.related_products %>
   </div>
   <div id="cart_right_box">
-    <div id="shipping" class="right_box">
-      <div id="shipping_text"><label for="shipping">Shipping:</label></div>
-      <div style="float:right;">
-				<% selected_shipping_id = @cart.shipping.id if @cart.shipping %>
-        <%Shipping.all.each do |s|%>
-          <input type="radio" name="shipping" value="<%= s.id %>" <%= "#{(selected_shipping_id == s.id) ? 'checked=checked' : ''}" %>>
-					<%= s.display_text %>
-					<br />
-        <%end%>
-      </div>
-    </div>
-    <div id="promo" class="right_box">
+    <%= render partial: 'shipping' %>
+    <!--<div id="promo" class="right_box">
       <div id="promo_text"><label for="promo">Promo Code?</label></div>
       <div style="float:right;"><input type="text" name="promo"></div>
-    </div>
+    </div>-->
     <div id="checkout" class="content_box">
       <div class="checkout_wrapper">
         CONTINUE TO CHECKOUT &raquo;

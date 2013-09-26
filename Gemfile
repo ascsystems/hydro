@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -35,7 +35,9 @@ gem "savon"
 gem 'netsuite'
 gem 'ckeditor'
 gem "curb", "~> 0.8.4"
-
+#gem 'actionpack', "~> 4.0.0"
+#gem 'actionpack-page_caching'
+#gem 'actionpack-action_caching'
 # back-end admin
 #gem 'cancan' <-- only if we want very granular roles control
 #gem 'railties', '~> 4.0'

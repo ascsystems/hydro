@@ -1,6 +1,8 @@
 class AmbassadorsController < ApplicationController
   # GET /ambassadors
   # GET /ambassadors.json
+  caches_page :index, :show, :list
+
   def index
     @ambassadors = Ambassador.all
 

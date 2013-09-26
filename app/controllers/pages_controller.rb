@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
+
+  caches_page :five_back, :hydro_flask_social, :hydro_flask_technology, :show
+
   def index
     @pages = Page.all
 

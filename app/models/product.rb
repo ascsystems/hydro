@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   has_many :line_items
   has_many :product_images
   has_many :product_option_values
-  has_many :option_values, through: :product_option_values, order: "option_values.order_num"
+  has_many :option_values, through: :product_option_values, order: "product_option_values.order_num"
   has_many :options, through: :option_values, order: "options.order_num", uniq: true
   has_many :related_products
   has_many :products, through: :related_products, source: :related_product

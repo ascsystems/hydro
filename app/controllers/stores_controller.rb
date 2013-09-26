@@ -1,6 +1,8 @@
 class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json
+  caches_page :index, :show
+
   def index
     store = Store.new
     coords = store.getCoords(params[:location])
