@@ -95,8 +95,9 @@
 
 #page .main_content {
 	float: left;
-	width: 100%;
+	width: 98%;
 	font-size: 1.1em;
+	margin-left: 10px;
 }
 
 #page .left_content {
@@ -275,11 +276,20 @@
 	padding-bottom:20px;
 	border-bottom: 1px solid black;
 	p.shared_by {
+		float:left;
+		width:100%;
 		font-style:italic;
+		margin-top:5px;
 		margin-bottom:3px;
 		color: #777777;
 		.shared_by_name {
 			font-style: normal;
+			float:left;
+			text-align:center;
+			img {
+				height:100px;
+				display:block;
+			}
 		}
 	}
 	p.posted {

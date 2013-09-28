@@ -4,74 +4,7 @@
 <div id="page" class="tech">
   <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
   <h1><div style="float:left;"><%= @page.title %></div><div style="float:right;"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a><a class="addthis_button_pinterest_pinit"></a></div></h1>
-  <% if !@page.header_content.empty? %>
-  <div class="header_content"><%= raw @page.header_content %><%= image_tag "thermometer.png", alt: "Cold up to 24 hours. Hot up to 12 hours", title: "Cold up to 24 hours. Hot up to 12 hours" %></div>
-  <% end %>
-  <div class="main_content left_content">
-    <div class="main_content_inner">
-      <%#= raw @page.body %>
-
-      <ol id="whats_inside">
-        <li>
-          <div class="number primary-background-color"><p>1</p></div>
-          <div class="content">
-            <div class="inner">
-              <h2 class="primary-color">Vacuum Insulation</h2>
-              <p>The entire Hydro Flask line is vacuum insulated, which means there is an absence of matter between the two stainless steel walls. The vacuum acts as a barrier to heat transfer so that the temperature outside of the flask doesn&rsquo;t affect the temperature of the contents inside the flask.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="number"><p>2</p></div>
-          <div class="content">
-            <div class="inner">
-              <h2>Cold Up to 24 Hours | Hot Up to 12 Hours</h2>
-              <p>Hydro Flask&rsquo;s double wall vacuum insulated bottles will keep your cold beverages cold up to 24 hours and your hot beverages hot up to 12 hours.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="number"><p>3</p></div>
-          <div class="content">
-            <div class="inner">
-              <h2>18/8 Stainless Steel</h2>
-              <p>All of our flasks are made from 18/8 food grade stainless steel, are BPA-free and highly resistant to absorbing odor, taste and bacteria. Hydro Flasks are easy to clean, don&rsquo;t have a liner to scratch and are 100% recyclable.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="number"><p>4</p></div>
-          <div class="content">
-            <div class="inner">
-              <h2>Lifetime Warranty</h2>
-              <p>We guarantee every Hydro Flask against manufacturer&#39;s defects for 100 years or one lifetime, whichever comes first.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="number"><p>5</p></div>
-          <div class="content">
-            <div class="inner">
-              <h2>Powder Coating</h2>
-              <p>Hydro Flask offers a multitude of color choices in a durable, attractive powder coat finish as well as the Classic Stainless finish.</p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="number"><p>6</p></div>
-          <div class="content">
-            <div class="inner">
-              <h2>Sweat Free</h2>
-              <p>Our double wall vacuum insulation prevents condensation from forming with your cold drinks and heat transfer from occurring with your hot drinks. This means that no matter the beverage inside your Hydro Flask, the outside will always be comfortable and easy to hold.</p>
-            </div>
-          </div>
-        </li>
-      </ol>
-
-    </div>
-  </div>
-  <div class="right_content">
-    <%= image_tag "hydroflask-technology.jpg", alt: "Hydro Flask Technology", title: "Hydro Flask Technology"  %>
+  <div class="main_content" style="background-image:url(/assets/tech-flask.png), url(/assets/tech-water.jpg);background-repeat:no-repeat;background-position: right top, left bottom; min-height: 895px;"><h2>Innovation in a Flask</h2><p>You never knew science could be so cool...<br>or even hot on the other hand.</p>
   </div>
 </div>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51d8b57643b8a401"></script>

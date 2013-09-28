@@ -68,6 +68,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Myriad';
+  src:font-url('MyriadPro-Regular.otf') format("opentype");
+  font-weight:normal;
+  font-style: normal;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -76,8 +83,8 @@
 body {
 	background: none repeat scroll 0 0 #efefef;
     font-size:12px;
-    font-family: Pragmatica, Helvetica, Arial, sans-serif;
-    letter-spacing: 1px;
+    font-family: Myriad, Pragmatica, Helvetica, Arial, sans-serif;
+    /*letter-spacing: 1px;*/
 }
 
 #body_wrapper {
@@ -99,7 +106,7 @@ h1 {
 
     font-family: Pragmatica2;
     font-size: 2.3em;
-    letter-spacing: 3px;
+    /*letter-spacing: 3px;*/
 
 }
 
@@ -243,6 +250,7 @@ header nav {
             padding-right: 10px;
     		    float: left;
             font-family: Pragmatica2;
+			letter-spacing: 1px;
             a {
                 color: $secondary_color;
             }
@@ -253,7 +261,7 @@ header nav {
                 color: $primary_color;
             }
             ul {
-              margin:-2px 0 0 -20px;
+              margin:-2px 0 0 -10px;
               padding:0 20px 20px 20px;
               z-index:999;
               @include border-radius(0,4px);
