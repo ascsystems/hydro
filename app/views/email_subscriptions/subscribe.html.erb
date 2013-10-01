@@ -1,6 +1,7 @@
+<% if @email_subscription.errors.any? %>
+<h2>We're Sorry</h2>
+<p>You are already subscribed to the mailing list.</p>
+<% else %>
 <h2>Thank you</h2>
-
-You have been subscribed to the mailing list.
-
-<br/>
-<br/>
+<p>You have been subscribed to the mailing list.</p>
+<% end %>

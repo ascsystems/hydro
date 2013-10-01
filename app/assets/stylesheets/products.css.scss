@@ -75,10 +75,9 @@
 		height: $button_height;
 		padding: 0px 15px 0 15px;
 		float:left;
-	    font-family: Pragmatica2;
 	    font-size: 1.2em;
 		line-height: $button_line_height;
-    	letter-spacing: 2.3px;
+    	letter-spacing: 1px;
 		position:relative;
 		cursor: pointer;
 	}
@@ -139,7 +138,6 @@
 	line-height: $button_line_height;
 	.cart_wrapper {
 		padding-left: 15px;
-	    font-family: Pragmatica2;
 	    font-size: 1.2em;
 	    letter-spacing: 1.2px;
 	}
@@ -160,7 +158,6 @@
 	cursor: default;
 	position:relative;
 	margin-top:15px;
-    font-family: Pragmatica2;
     font-size: 1em;
     letter-spacing: 1.2px;
 	&:after {
@@ -181,7 +178,6 @@
 	line-height:$button_line_height;
 	cursor: pointer;
 	position:relative;
-  font-family: Pragmatica2;
   font-size: 1.2em;
   letter-spacing: 1.2px;
   text-transform: uppercase;
@@ -301,8 +297,7 @@
 
 #product .option_header {
 	font-size: 1.2em;
-	font-family: Pragmatica2;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	margin-bottom:5px;
 	margin-top:15px;
 	text-transform: uppercase;

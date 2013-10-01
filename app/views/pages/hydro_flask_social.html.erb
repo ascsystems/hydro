@@ -16,7 +16,7 @@
   <div class="right_content">
       <% @articles['stories'].each do |a| 
         article_date = DateTime.parse(a['date']['published'])
-        %>
+        %><%= a %>
         <div class="article">
           <h2><%= link_to a['title'], a['permalink'], target: "_blank" %></h2>
           <p class="shared_by"><span style="float:left;margin-right:5px;">Shared by: </span><span class="shared_by_name"><%= image_tag a['meta']['quoted'][0]['avatar'] %><%= a['meta']['quoted'][0]['name'] %><br><br></span></p>

@@ -27,3 +27,15 @@ $j ->
 			$j(this_tab).children('div.tab_content').slideToggle 'slow', ->
 				$j(this_tab).siblings().css({'visibility': 'visible'});
 				$j(this_tab).removeClass('active')
+	$j('#new_email_subscription_footer').on 'submit', ->
+		if($j("#email_subscription_email_address").val() == '')
+			alert 'Email cannot be blank.'
+			return false
+		else if(IsEmail($j("#email_subscription_email_address").val()) == false)
+			alert 'Invalid email address.'
+			return false
+		return true
+
+IsEmail = (email) ->
+	regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+	return regex.test(email)

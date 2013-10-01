@@ -22,8 +22,7 @@
     color: #FFFFFF;
     float: left;
     font-size: 1.3em;
-    font-family: Pragmatica2;
-    /*letter-spacing:2.4px;*/
+    letter-spacing: 1px;
     height: $button_height;
     line-height: $button_line_height;
     margin: 0 0 14px;
@@ -128,7 +127,6 @@
     a {
         font-size: 1.1em;
         color: #000000;
-        font-family: Pragmatica2;
         line-height: 50px;
     }
     a:hover {

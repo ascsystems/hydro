@@ -42,7 +42,7 @@ gem "curb", "~> 0.8.4"
 #gem 'cancan' <-- only if we want very granular roles control
 #gem 'railties', '~> 4.0'
 gem 'rails_admin', '>= 0.4.9'  # needed to specify recent version
-
+gem "gibbon"
 # for ckeditor image uploading
 gem 'paperclip'
 

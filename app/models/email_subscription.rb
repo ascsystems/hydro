@@ -5,6 +5,6 @@ class EmailSubscription < ActiveRecord::Base
   #FIXME: this needs to be "account"
   #belongs_to :user  # optional
 
-  validates :email_address, presence: true
+  validates :email_address, presence: true, uniqueness: true
   
 end
