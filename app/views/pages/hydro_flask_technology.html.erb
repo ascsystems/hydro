@@ -4,7 +4,42 @@
 <div id="page" class="tech">
   <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @page.title %></div>
   <h1><div style="float:left;"><%= @page.title %></div><div style="float:right;"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_google_plusone" g:plusone:size="medium"></a><a class="addthis_button_pinterest_pinit"></a></div></h1>
-  <div class="main_content" style="background-image:url(/assets/tech-flask.png), url(/assets/tech-water.jpg);background-repeat:no-repeat;background-position: right top, left bottom; min-height: 895px;"><h2>Innovation in a Flask</h2><p>You never knew science could be so cool...<br>or even hot on the other hand.</p>
+  <div class="main_content" style="position:relative;">
+  	<div style="float:right;"><%= image_tag "hot-cold.png", alt: "Hot for 12 hours, cold for 24." %></div>
+  	<h2>Innovation in a Flask</h2>
+  	<p>You never knew science could be so cool...<br>or even hot on the other hand.</p>
+  	<div class="about" id="number_1">
+  		<div class="number">1</div>
+			<h3>Vacuum Insulation</h3>
+			<p>The entire Hydro Flask line is vacuum insulated, which means there is an absence os matter between the two stainless steel walls. Since there is no matter, the temperature outside of the flask has a difficult time affecting the temperature of the contents inside the flask.</p>
+  	</div>
+  	<div class="about" id="number_2">
+  		<div class="number">2</div>
+			<h3>Cold Up to 24 Hours.<br />Hot Up to 12 Hours.</h3>
+			<p>Due to the fact that our flasks are vacuum insulated, your hot beverages stay hot up to 12 hours and your cold beverages stay cold up to 24 hours.</p>
+  	</div>
+  	<div class="about" id="number_3">
+  		<div class="number">3</div>
+			<h3>18/8 Stainless Steel.</h3>
+			<p>All of our flasks are made of 18/8 stainless steel, BPA free and highly resistsant to absorbing odor, taste and bacteria. They are simple to clean, don't have a liner to scratch and are completely recyclable.</p>
+  	</div>
+  	<div class="about" id="number_4">
+  		<div class="number">4</div>
+			<h3>Lifetime Warranty.</h3>
+			<p>We guarantee every Hydro Flask against manufacturer's defects for 100 years or one lifetime, whichever comes first.</p>
+  	</div>
+   	<div class="about" id="number_5">
+  		<div class="number">5</div>
+			<h3>Powder Coating.</h3>
+			<p>All Hydro Flasks are made of 18/8 stainless steel. We offer a multitude of color choices with a powder coat finish as well as the Classic Stainless.</p>
+  	</div>
+   	<div class="about" id="number_6">
+  		<div class="number">6</div>
+			<h3>Sweat Free.</h3>
+			<p>Our double wall vacuum insulation prevents condensation with your cold drinks. And, when you are drinking a hot beverage, the vacuum insulation prevents the heat from tranferring to the outside of the Hydro Flask, so your hands should always be comfortable.</p>
+  	</div>
+  	<div style="background-image:url(/assets/tech-diagram-0.png);position:absolute; width:400px; height:450px; top:300px; left:300px;"></div>
+  	</div>
   </div>
 </div>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51d8b57643b8a401"></script>

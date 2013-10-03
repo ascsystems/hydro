@@ -30,7 +30,7 @@
 }
 </style>
 <div id="product">
-	<div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; Flasks &raquo; <%= @product.name %></div>
+	<div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= link_to @product.categories.first.name, @product.categories.first %> &raquo; <%= @product.short_name %></div>
 	<h1><%= @product.name %></h1>
 	<div id="image_column">
 		<div class="image"><%= image_tag "clear.gif", alt: @product.name, title: @product.name, style: 'width:90%;', id: 'product_image' %><div id="loadingImage"><%= image_tag "ajax-loader.gif", class: "loading_image", id: "loading_image", alt: "loading" %></div></div>

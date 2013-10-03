@@ -12,7 +12,7 @@ class Account < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, :remember_me
   
   # Cannot create 2 different accounts with the same email
-  validates_uniqueness_of :email, :case_sensitive => false
+  #validates_uniqueness_of :email, :case_sensitive => false
   
   # This user can access the admin section only if they have role 'super_user'
   def is_cms_admin?

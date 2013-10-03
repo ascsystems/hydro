@@ -1,5 +1,8 @@
 <div class="page ambassadors">
   <h1>Hydro Flask Ambassadors</h1>
+  <div class="main_content_inner">
+    <%= raw @page.body %>
+  </div>
   <ul class="ambassador">
   <% 
     x = 1
@@ -13,7 +16,7 @@
           <%= raw ambassador.bio %>
         </div>
         <div class="ambpopthumb">
-          <%= image_tag ambassador.image_path, alt: ambassador.last_name, title: ambassador.last_name %>
+          <%= image_tag ambassador.image_path.sub!('.jpg', '-title.jpg'), alt: ambassador.last_name, title: ambassador.last_name %>
         </div>
         <div class="ambpoparrow"></div>
       </div>    

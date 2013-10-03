@@ -66,7 +66,7 @@
 				<div class="inner-panel left">
 					<h3>SEARCH</h3>
 					<p>Find info on the Hydro Flask site.</p>
-					<%= form_tag "/search", method: "get" do %>
+					<%= form_tag "/search", method: "get", id: "footer_search" do %>
 						<div class="form-row">
 							<input type="text" placeholder="Search" name="query" id="footer_search_box"/><input type="image" src="<%= asset_path "search_button.png" %>" />
 						</div>

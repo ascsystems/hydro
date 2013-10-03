@@ -1,17 +1,5 @@
 $j = jQuery.noConflict();
 $j ->
-	$j('#footer_email_box').on 'click', ->
-		if($j(this).val() == 'Enter email address')
-			$j(this).val('')
-	$j('#footer_email_box').on 'blur', ->
-		if($j(this).val() == '')
-			$j(this).val('Enter email address')
-	$j('#footer_search_box').on 'click', ->
-		if($j(this).val() == 'Search')
-			$j(this).val('')
-	$j('#footer_search_box').on 'blur', ->
-		if($j(this).val() == '')
-			$j(this).val('Search')
 	$j('.store_click').on 'click', ->
 		storeClick($j(this).attr('lat'), $j(this).attr('lng'))
 		return false
@@ -33,6 +21,16 @@ $j ->
 			return false
 		else if(IsEmail($j("#email_subscription_email_address").val()) == false)
 			alert 'Invalid email address.'
+			return false
+		return true
+	$j('#footer_search').on 'submit', ->
+		if($j("#footer_search_box").val() == '')
+			alert 'Search cannot be blank.'
+			return false
+		return true
+	$j('#search_form').on 'submit', ->
+		if($j("#query").val() == '')
+			alert 'Search cannot be blank.'
 			return false
 		return true
 

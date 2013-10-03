@@ -5,7 +5,7 @@ class AmbassadorsController < ApplicationController
 
   def index
     @ambassadors = Ambassador.all
-
+    @page = Page.find(19)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @ambassadors }

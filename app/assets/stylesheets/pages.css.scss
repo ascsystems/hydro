@@ -100,6 +100,8 @@
 	margin-left: 10px;
 }
 
+
+
 #page .left_content {
 	width: 75%;
 }
@@ -360,4 +362,57 @@
 
 #page .main_content ul {
 	list-style-type: disc;
+}
+
+#page.tech h2 {
+  color: $heading_color;
+  font-size: 2.6em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: 0.3em;
+  margin-bottom: 0.6em;
+}
+
+#page.tech p {
+  color: #00AAFF;
+  font-size: 1.4em;
+  line-height: 32px;
+  margin: 0 0 1em;
+}
+
+#page.tech .main_content {
+  background-image: url("/assets/tech-flask.png"), url("/assets/tech-water.jpg");
+  background-position: 310px -26px, left 76px;
+  background-repeat: no-repeat;
+  min-height: 950px;
+}
+
+#page.tech div.about {
+	float:left;
+	width: 350px;
+	margin-top:150px;
+	display:none;
+	p {
+		color: #000000;
+		font-size: 1em;
+		line-height:24px;
+	}
+}
+
+#page.tech	div.number {
+	float:left;
+	background-color: $primary_color;
+	color: #ffffff;
+	text-align:center;
+  font-size: 2.4em;
+  min-height: 150px;
+  padding: 20px 15px;
+  text-align: center;
+  margin-right:15px;
+}
+
+#page.tech h3 {
+  color: $primary_color;
+  font-size: 1.4em;
+  line-height:24px;
 }

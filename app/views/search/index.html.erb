@@ -5,8 +5,8 @@
 	<div class="fields" style="display:table-cell;">
 		<input type="text" name="query" id="query" value="<%= @query %>" placeholder="Enter your search terms here" style="height:32px; width:400px; vertical-align:top;"><input type="submit" class="button" value="Search">
 	</div>
-	<p style="font-size:1.1em; float:left; margin-bottom: 20px; margin-top: 20px;"><%= @search_results.length %> results returned for "<%= @query %>"</p>
-	<% if !@search_results.empty? %>
+	<p style="font-size:1.1em; float:left; margin-bottom: 20px; margin-top: 20px;"><% if @search_results.blank? %>0<% else %><%= @search_results.length %><% end %> results returned for "<%= @query %>"</p>
+	<% if !@search_results.blank? %>
 	<div style="float:right; margin-top:20px;">
 		Order by:
 		<select name="search_order" id="search_order">
