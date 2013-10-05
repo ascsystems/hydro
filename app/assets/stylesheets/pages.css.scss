@@ -368,7 +368,7 @@
   color: $heading_color;
   font-size: 2.6em;
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: .8px;
   margin-top: 0.3em;
   margin-bottom: 0.6em;
 }
@@ -415,4 +415,34 @@
   color: $primary_color;
   font-size: 1.4em;
   line-height:24px;
+}
+
+#page.tech div.tech_number{
+	position: absolute;
+	height: 32px;
+	width: 32px;
+	cursor: pointer;
+  border-radius: 16px 16px 16px 16px;
+  cursor: pointer;
+  float: left;
+  line-height: 32px;
+  background-color: $heading_color;
+	font-size:1.8em;
+	text-align:center;
+	line-height:36px;
+	color:#ffffff;
+	box-shadow: 2px 2px 3px #000000;
+}
+
+#page.tech div.tech_number:hover {
+	background-color: $primary_color;
+}
+
+#page.tech #tech_circle {
+	background-image:url(/assets/tech-circle.png);
+	width:400px;
+	height:450px;
+	margin-left: 295px;
+	margin-top: 185px;
+	position: relative;
 }

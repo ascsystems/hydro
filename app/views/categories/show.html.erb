@@ -1,5 +1,5 @@
 <div id="category_content">
-  <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= @category.name %></div>
+  <div id="breadcrumb"><%= link_to "Home", root_url %> &raquo; <%= link_to "Shop", shop_url %> &raquo; <%= @category.name %></div>
   <h1 class="cat_header"><%= @category.name %></h1>
 	<% if @category.products.exists? %>
   <div class="category_row">

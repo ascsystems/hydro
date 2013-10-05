@@ -52,7 +52,18 @@ update_image = () ->
 		options.push($j(element).val())
 	$j.getJSON "/products/" + $j('#product_id').val() + "/product_images/get_image", { data: '{ options: [' + options.join(",") + '], product: ' + $j("#product_id").val() + '}'}, (data) ->
 		image_url = data[0].path + 'cropped/large/' + data[0].name
+		big_image_url = data[0].path + 'cropped/original/' + data[0].name
+		$j('.jqzoom').attr('href', big_image_url)
 		$j("#product_image").attr('src', image_url)
 		.load ->
 			$j("#loadingImage").fadeOut 600
+			$j('.jqzoom').removeData('jqzoom')
+			$j('.jqzoom').jqzoom({
+            zoomType: 'standard',
+            lens:true,
+            preloadImages: true,
+            zoomWidth: 600,
+            zoomHeight: 600,
+            alwaysOn:false
+        });
 		return

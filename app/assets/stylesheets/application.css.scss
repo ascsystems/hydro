@@ -11,6 +11,7 @@
  *= require_self
  *= require_tree .
  *= require fancybox/jquery.fancybox
+ *= require jqzoom/jquery.jqzoom
  */
 /*
  *= require jquery.ui.all
@@ -83,15 +84,14 @@
 body {
 	background: none repeat scroll 0 0 #efefef;
     font-size:14px;
-	line-height: 120%;
+	line-height: 20px;
     font-family: Myriad, Pragmatica, Helvetica, Arial, sans-serif;
-    /*letter-spacing: 1px;*/
+    letter-spacing: .7px;
 }
 
 #body_wrapper {
   float:left;
   background-color:#ffffff;
-  padding-bottom:30px;
 }
 
 h1 {
@@ -103,11 +103,9 @@ h1 {
     line-height: 58px;
     margin: 20px 0;
     padding: 0 10px;
-    text-transform: uppercase;
-
+    /*text-transform: uppercase;*/
     font-size: 2.3em;
-    letter-spacing: 1px;
-
+    letter-spacing: .8px;
 }
 
 img {
