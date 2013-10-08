@@ -4,7 +4,7 @@ end %>">
 	<% if option_counter != 0 %><div class="option_header<%= if option[0].id == 3
 		' additional_lids' 
 		end %>"><% if option[0].id == 3 %><%= option[0].name %>:<% else %>Select <%= option[0].name %>: <span class="option_text"><%= option[1][0].name %></span><% end %></div><% end %>
-	<div class="options"><input type="hidden" name="options[<%= option_counter %>]" class="option_value" value="<%= option[1][0].id %>">
-		<%= render partial: option[0].option_type.template, collection: option[1] %>
+	<div class="options">
+		<%= render partial: option[0].option_type.template, collection: option[1], locals: {multi: option[0].multi, option_type: option[0].id } %>
 	</div>
 </div>

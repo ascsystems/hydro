@@ -14,25 +14,29 @@ class PagesController < ApplicationController
   end
 
   def five_back
-    @page = Page.find_by_slug("5-back")
+    @page = Page.find(1)
     @featured_charity = Charity.find_by_featured(1)
   end
 
 
   def hydro_flask_technology
-    @page = Page.find_by_slug("hydro-flask-technology")
+    @page = Page.find(3)
   end
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = Page.find(params[:id])
+    @page = Page.friendly.find(params[:id])
     render 'shared/404', :status => 404 if @page.nil?
   end
 
   def hydro_flask_social
-    @page = Page.find_by_slug("hydro-flask-social")
+    @page = Page.find(2)
     storify = Storify.new
-    @articles = storify.getArticles
+    tmp_articles = storify.getArticles
+    @articles = []
+    tmp_articles['stories'].each do |a|
+      @articles.push(storify.getArticle(a['slug']))
+    end
   end
 
   # GET /pages/new
@@ -48,7 +52,7 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
-    @page = Page.find(params[:id])
+    @page = Page.friendly.find(params[:id])
   end
 
   # POST /pages
@@ -70,7 +74,7 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.json
   def update
-    @page = Page.find(params[:id])
+    @page = Page.friendly.find(params[:id])
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
@@ -86,7 +90,7 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy
-    @page = Page.find(params[:id])
+    @page = Page.friendly.find(params[:id])
     @page.destroy
 
     respond_to do |format|

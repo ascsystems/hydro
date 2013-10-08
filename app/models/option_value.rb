@@ -1,5 +1,5 @@
 class OptionValue < ActiveRecord::Base
-  attr_accessible :name, :option_id, :display_data, :order_num
+  attr_accessible :name, :option_id, :display_data, :order_num, :multi
 
   belongs_to :option
   has_many :product_option_values

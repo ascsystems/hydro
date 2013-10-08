@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
+  extend FriendlyId
   attr_accessible :description, :name, :price, :brand_id, :product_type_id, :short_name, :title, :meta_description, :keywords
+  friendly_id :name, use: :slugged
 
   belongs_to :brand
   belongs_to :product_type
@@ -19,7 +21,7 @@ class Product < ActiveRecord::Base
 
   validates :name, uniqueness: true, presence: true
   validates :short_name, uniqueness: true, presence: true
-  validates :price, presence: true, numericality: true, format: { with: /^\d{1,4}(\.\d{0,2})?$/ }
+  validates :price, presence: true, numericality: true, format: { with: /\A\d{1,4}(\.\d{0,2})?\z/ }
   validates :brand_id, presence: true
   validates :product_type_id, presence: true
 
@@ -75,6 +77,24 @@ class Product < ActiveRecord::Base
       featured_products << a_product
     end
     featured_products
+  end
+
+  def get_base_options
+    final_options = []
+    options = self.sorted_options
+    options.each do |o|
+      if o[0][:multi] != 1
+        final_options.push(o[1][0][:id])
+      end
+    end
+    final_options
+  end
+
+  def get_default_image
+    options = self.get_base_options
+    pi = ProductImage.new
+    image = pi.getImage(options, self.id)
+    return image
   end
 
 end

@@ -14,15 +14,27 @@
     </ul>
   </div>
   <div class="right_content">
-      <% @articles['stories'].each do |a| 
-        article_date = DateTime.parse(a['date']['published'])
-        %><%= a %>
+      <% @articles.each do |a|
+        article_date = DateTime.parse(a['date']['published']) %>
         <div class="article">
-          <h2><%= link_to a['title'], a['permalink'], target: "_blank" %></h2>
-          <p class="shared_by"><span style="float:left;margin-right:5px;">Shared by: </span><span class="shared_by_name"><%= image_tag a['meta']['quoted'][0]['avatar'] %><%= a['meta']['quoted'][0]['name'] %><br><br></span></p>
+          <h2><%= link_to a['title'], a['elements'][0]['permalink'], target: "_blank" %></h2>
+          <p class="shared_by"><span style="float:left;margin-right:5px;">Shared by: </span><span class="shared_by_name"><% if !a['meta']['quoted'][0]['avatar'].blank? %><%= image_tag a['meta']['quoted'][0]['avatar'] %><% end %><%= a['meta']['quoted'][0]['name'] %><br><br></span></p>
           <p class="posted"><%= article_date.strftime("%d %B %Y") %></p>
-          <p class="image"><%= image_tag a['thumbnail'], alt: a['title'], title: a['title'] %></p>
-          <p class="content"><%= a['description'] %></p>
+          <% if a['thumbnail'] != "http://storify.com/public/img/default-thumb.gif" %><p class="image"><%= image_tag a['thumbnail'], alt: a['title'], title: a['title'] %></p><% end %>
+          <p class="content"><%= if a['elements'][0]['data']['image'].blank?
+              if a['elements'][0]['data']['quote'].blank?
+                if a['elements'][0]['data']['video'].blank?
+                  a["description"]
+                else
+                  a['elements'][0]['data']['video']['title']
+                end
+              else 
+                a['elements'][0]['data']['quote']['text']
+              end
+            else
+              a['elements'][0]['data']['image']['caption']
+            end 
+          %></p>
           <p class="share"><span class="share_text">SHARE:</span><a class="addthis_button_facebook_like" addthis:url="<%= a['shortlink'] %>" addthis:title="<%= a['title'] %>" fb:like:layout="button_count"></a> <a class="addthis_button_tweet" addthis:url="<%= a['shortlink'] %>" addthis:title="<%= a['title'] %>"></a> <a class="addthis_button_google_plusone" addthis:url="<%= a['shortlink'] %>" addthis:title="<%= a['title'] %>" g:plusone:size="medium"></a><a class="addthis_button_pinterest_pinit" addthis:url="<%= a['shortlink'] %>" addthis:title="<%= a['title'] %>"></a></p>
         </div>
       <% end %>

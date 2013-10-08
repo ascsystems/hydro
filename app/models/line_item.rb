@@ -1,6 +1,6 @@
 class LineItem < ActiveRecord::Base
 
-  attr_accessible :product_id, :netsuite_id, :cart_id, :quantity, :product_name, :product_image_id, :product_price
+  attr_accessible :product_id, :netsuite_id, :cart_id, :quantity, :product_name, :product_image_id, :product_price, :product_subtotal
 
   belongs_to :product
   belongs_to :cart
@@ -11,5 +11,6 @@ class LineItem < ActiveRecord::Base
   validates :quantity, presence: true
   validates :product_image_id, presence: true
   validates :product_price, presence: true
+  validates :product_subtotal, presence: true
 
 end

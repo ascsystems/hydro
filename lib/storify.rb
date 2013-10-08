@@ -21,4 +21,10 @@ class Storify
   	return articles['content']
   end
 
+  def getArticle(slug)
+    url_text = open("http://api.storify.com/v1/stories/HydroFlask/#{slug}").read()
+    article = JSON.parse(url_text)
+    return article['content']
+  end
+
 end

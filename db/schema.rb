@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130925060405) do
+ActiveRecord::Schema.define(:version => 20131008035502) do
 
   create_table "accounts", :force => true do |t|
     t.string   "first_name"
@@ -62,10 +62,11 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
   end
 
   create_table "carts", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "account_id"
     t.integer  "shipping_method_id"
+    t.decimal  "subtotal",           :precision => 10, :scale => 2
   end
 
   add_index "carts", ["account_id"], :name => "index_carts_on_account_id"
@@ -135,12 +136,25 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
 
   add_index "email_subscriptions", ["user_id"], :name => "index_email_subscriptions_on_user_id"
 
+  create_table "friendly_id_slugs", :force => true do |t|
+    t.string   "slug",                         :null => false
+    t.integer  "sluggable_id",                 :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
+  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
+  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
   create_table "line_item_options", :force => true do |t|
     t.integer  "line_item_id"
     t.integer  "option_id"
     t.string   "option_name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "option_type"
+    t.integer  "option_type_id"
   end
 
   create_table "line_items", :force => true do |t|
@@ -152,9 +166,10 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
     t.integer  "order_id"
     t.string   "product_name"
     t.integer  "product_image_id"
-    t.decimal  "product_price",    :precision => 10, :scale => 0
+    t.decimal  "product_price",    :precision => 10, :scale => 2
     t.integer  "netsuite_id"
     t.integer  "weight"
+    t.decimal  "product_subtotal", :precision => 10, :scale => 2
   end
 
   create_table "mailing_lists", :force => true do |t|
@@ -177,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "display_data"
+    t.integer  "product_id"
   end
 
   create_table "options", :force => true do |t|
@@ -186,6 +202,7 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
     t.datetime "updated_at",      :null => false
     t.integer  "option_type_id"
     t.integer  "product_type_id"
+    t.integer  "multi"
   end
 
   create_table "orders", :force => true do |t|
@@ -246,12 +263,15 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
     t.datetime "updated_at",              :null => false
   end
 
+  add_index "product_option_value_images", ["product_option_value_id", "product_image_id"], :name => "povi_index"
+
   create_table "product_option_values", :force => true do |t|
     t.integer  "option_value_id"
     t.integer  "product_id"
     t.decimal  "price",           :precision => 10, :scale => 0
     t.datetime "created_at",                                     :null => false
     t.datetime "updated_at",                                     :null => false
+    t.integer  "order_num"
   end
 
   create_table "product_translations", :force => true do |t|
@@ -263,7 +283,8 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
     t.integer  "netsuite_id"
     t.integer  "quantity"
     t.integer  "product_image_id"
-    t.integer  "weight"
+    t.decimal  "weight",           :precision => 10, :scale => 2
+    t.integer  "threshhold"
   end
 
   create_table "product_types", :force => true do |t|
@@ -331,9 +352,10 @@ ActiveRecord::Schema.define(:version => 20130925060405) do
 
   create_table "shippings", :force => true do |t|
     t.string   "display_text"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.float    "cost"
+    t.string   "key_text",     :limit => 50
   end
 
   create_table "state_tax_rates", :force => true do |t|

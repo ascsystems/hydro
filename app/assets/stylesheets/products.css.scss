@@ -24,6 +24,10 @@
 	cursor:pointer;
 }
 
+#product .align_right {
+	text-align: right;
+}
+
 #product #product_content_column {
 	float:left;
 	width: 66.6%;
@@ -319,9 +323,9 @@
 }
 
 #product #quantity_div {
-	position:absolute;
-	right:35px;
-	top:5px;
+  position: absolute;
+  right: 20px;
+  top: 0;
 }
 
 #product #quantity {
@@ -447,7 +451,20 @@
 }
 
 #product #price  {
-	margin-top: 10px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	font-size: 1.1em;
+	text-align: right;
+	letter-spacing:0;
+	border-bottom: 1px solid #000000;
+	p {
+		margin-bottom: 5px;
+	}
+}
+
+#product #subtotal {
+	letter-spacing: 0;
+	color: $heading_color;
 	font-size: 1.1em;
 	text-align: right;
 }
@@ -497,10 +514,6 @@
 	text-align:center
 }
 
-#product #price {
-	margin-top: 20px;
-}
-
-#product #price_text {
-	margin-right: 20px;
+#product #price_text, #product #subtotal_text, #product .option_price_text {
+	margin-right: 10px;
 }

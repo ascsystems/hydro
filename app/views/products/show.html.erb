@@ -33,7 +33,7 @@
 	<h1><%= @product.name %></h1>
 	<div id="top_content">
 		<div id="image_column">
-			<div class="image"><a href="/assets/clear.gif" class="jqzoom" rel='gal1'  title="<%= @product.short_name %>" ><%= image_tag "clear.gif", alt: @product.name, title: @product.name, style: 'width:90%;', id: 'product_image' %></a><div id="loadingImage"><%= image_tag "ajax-loader.gif", class: "loading_image", id: "loading_image", alt: "loading" %></div></div>
+			<div class="image"><a href="<%= "#{@product_image[0].path}cropped/original/#{@product_image[0].name}" %>" class="jqzoom" rel='gal1'  title="<%= @product.short_name %>" ><%= image_tag "#{@product_image[0].path}cropped/large/#{@product_image[0].name}", alt: @product.name, title: @product.name, id: 'product_image' %></a><div id="loadingImage"><%= image_tag "ajax-loader.gif", class: "loading_image", id: "loading_image", alt: "loading" %></div></div>
 			<!--<div id="enlarge">
 				<a href="#" id="enlarge_link">
 					<%#= image_tag 'enlarge.png', alt: 'view larger', title: 'view larger' %> view larger
@@ -46,14 +46,30 @@
 					<%= form_tag( { controller: 'line_items', action: 'create' }, method:'post', id: 'product_form') do %>
 						<input type="hidden" name="product_id" id="product_id" value="<%= @product.id %>">
 						<input type="hidden" name="product_price" id="product_price" value="<%= @product.price %>">
+						<% counter = 0 
+							@product.sorted_options.each do |o|
+							if o[0].multi == 0 %>
+							<input type="hidden" name="options[<%= counter %>]" class="option_value base" value="<%= o[1][0].id %>" option_type_id="<%= o[0].id %>">
+						<% counter += 1
+							else
+								o[1].each do |so| %>
+								<input type="hidden" name="options[<%= counter %>]" class="option_value multiselect" value="" price="<%= so.product_option_values[0].price %>" qty="1" product_id="<%= so.id %>">
+								<% counter += 1
+								end
+							end
+						end %>
 						<div id="options" class="content_box<% if @product.sorted_options.length == 0 %> no_options<% end %>">
 							<div id="option_main_header"><% if @product.sorted_options.length > 0 %>Select <%= @product.sorted_options[0][0].name %>: <span class="option_text"><%= @product.sorted_options[0][1][0].name %></span><% end %></div>
 							<div class="content_box_wrapper">
 								<%= render partial: 'option', collection: @product.sorted_options %>
 								<div id="quantity_div">
-									<div class="option_header">Quantity: <span class="option_text" id="quantity_text">1</span></div>
+									<div class="option_header<% if @product.sorted_options.length > 0 %> align_right<% end %>">Quantity: <span class="option_text" id="quantity_text">1</span></div>
 									<div id="quantity_input"><input name="quantity" id="quantity" type="text" value="1"></div>
-									<p id="price"><span id="price_text">Price:</span><span id="price_value"><%= number_to_currency @product.price %></span></p>
+									<div id="price">
+										<p><span id="price_text">Price:</span><span id="price_value"><%= number_to_currency @product.price %></span></p>
+										<div id="optional_pricing"></div>
+									</div>
+									<p id="subtotal"><span id="subtotal_text">Subtotal:</span><span id="subtotal_value"><%= number_to_currency @product.price %></span></p>
 								</div>
 							</div>
 						</div>

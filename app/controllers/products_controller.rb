@@ -16,8 +16,8 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
-    
+    @product = Product.friendly.find(params[:id])
+    @product_image = @product.get_default_image
     # set review object, in case user uses the review form on the product page
     @new_review = Review.new
     

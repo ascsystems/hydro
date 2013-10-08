@@ -1,4 +1,7 @@
 HydroFlask::Application.routes.draw do
+
+  ActiveAdmin.routes(self)
+ devise_for :accounts
   
   resources :product_translations
 
@@ -7,17 +10,12 @@ HydroFlask::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
   resources :stores
-  match 'stores/setLatLng' => 'stores#setLatLng'
+  get 'stores/setLatLng' => 'stores#setLatLng'
 
   resources :search
 
   resources :ambassadors
 
-  devise_for :accounts
-  
-  # needs to come after the "devise_for" route
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  
   get '/email_subscriptions/new', :to => 'email_subscriptions#new'
   post '/email_subscriptions/subscribe', :to => 'email_subscriptions#subscribe', :as => 'subscribe_email'
   # expects parameter "the_email_address"
@@ -67,12 +65,12 @@ HydroFlask::Application.routes.draw do
   resources :carts
 
   #FIXME: these pages no longer allow editing from the "Edit" view -- this needs to be fixed
-  match "pages/5-back" => "pages#five_back"
-  match "pages/hydro-flask-technology" => "pages#hydro_flask_technology"
-  match '/pages/hydro-flask-social' => 'pages#hydro_flask_social'
+  get "pages/5-back" => "pages#five_back"
+  get "pages/hydro-flask-technology" => "pages#hydro_flask_technology"
+  get "/pages/hydro-flask-social" => "pages#hydro_flask_social"
 
-  match 'charities/charity_detail/:id' => 'charities#charity_detail'
-  match '/donate' => 'donations#new'
+  get "charities/charity_detail/:id" => "charities#charity_detail"
+  get "/donate" => "donations#new"
 
   resources :category_products
 
@@ -89,11 +87,11 @@ HydroFlask::Application.routes.draw do
 
   resources :pages
 
-  match '/netsuite/item/:id' => 'netsuite#item'
-  match '/netsuite/items' => 'netsuite#items'
-  match '/netsuite/order/:id' => 'netsuite#order'
-  match '/netsuite/orders' => 'netsuite#orders'
-  match '/netsuite/add' => 'netsuite#addOrder'
+  #match '/netsuite/item/:id' => 'netsuite#item'
+  #match '/netsuite/items' => 'netsuite#items'
+  #match '/netsuite/order/:id' => 'netsuite#order'
+  #match '/netsuite/orders' => 'netsuite#orders'
+  #match '/netsuite/add' => 'netsuite#addOrder'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -101,11 +99,11 @@ HydroFlask::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  match '/mycart' => 'carts#show'
+  get '/mycart' => 'carts#show'
 
-  match '/shop' => 'categories#shop'
+  get '/shop' => 'categories#shop'
 
-  match '/:id' => 'pages#show'
+  get '/:id' => 'pages#show'
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

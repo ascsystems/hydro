@@ -1,7 +1,11 @@
-<% if lid_counter == 0 
+<% if lid_counter == 0 && multi != 1
 		selected = 'selected'
 	else
-		selected = ''
+		if multi == 1
+			selected = 'multi'
+		else
+			selected = ''
+		end
 	end
 %>
 <%= image_tag "options/#{lid.display_data}", alt: lid.name, title: lid.name, class: "lid option #{selected}", option_id: lid.id %>
