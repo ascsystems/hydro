@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  *= require fancybox/jquery.fancybox
  *= require jqzoom/jquery.jqzoom
  */
@@ -618,3 +617,19 @@ ul.hydro_subnav {
   float:left;
 	background: transparent;
 }
+
+@import 'products';
+@import 'accounts';
+@import 'ambassadors';
+@import 'carts';
+@import 'cart_related_products';
+@import 'categories';
+@import 'category_products';
+@import 'charities';
+@import 'donations';
+@import 'home';
+@import 'orders';
+@import 'pages';
+@import 'products';
+@import 'scaffolds';
+@import 'stores';
