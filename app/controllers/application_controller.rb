@@ -37,6 +37,14 @@ class ApplicationController < ActionController::Base
     
     cart
   end
+
+  def current_order
+    
+    # See if the logged-in user has a cart in progress
+    return session[:order] if !session[:order].blank?
+    
+  end
+
   #---------------------------------------------------------------------------
   
   #---------------------------------------------------------------------------

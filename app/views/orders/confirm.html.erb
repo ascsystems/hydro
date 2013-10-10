@@ -30,10 +30,10 @@
     
     <div id="buttons_to_payment_or_edit">
       <!-- we just use the "back" action, because order has not been created yet, and we want form fields to have their values -->
-      <a href="javascript:history.back()" class="button hydro_big_button" id="back_to_edit_order" style="float:left;">&lt; EDIT ORDER</a>
+      <a href="/orders/new" class="button hydro_big_button" id="back_to_edit_order" style="float:left;">&lt; EDIT ORDER</a>
       
       <!-- This uses JS hook to submit the hidden form below -->
-      <a href="#" class="button hydro_big_button" id="form_handle" style="float:right;">COMPLETE ORDER &gt;</a>
+      <a href="#" class="button hydro_big_button" id="complete_order" style="float:right;">COMPLETE ORDER &gt;</a>
     </div>
   </div>
   
@@ -41,29 +41,29 @@
   <%# Order params are resent to the "payment" method, to actually create the Order record (I'm not sure if there is a cleaner way to do this) %>
   <%# Maybe it's done this way to prevent Orders from being viewed via a named route /orders/1/edit, etc. %>
   <div>
-    <%= form_for @order, :url => {:action => "payment"} do |f| %>
-      <%= f.hidden_field :account_id %>
-      <%= f.hidden_field :first_name %>
-      <%= f.hidden_field :last_name %>
-      <%= f.hidden_field :email %>
-      <%= f.hidden_field :phone %>
-      <%= f.hidden_field :address %>
-      <%= f.hidden_field :address2 %>
-      <%= f.hidden_field :city %>
-      <%= f.hidden_field :state %>
-      <%= f.hidden_field :zip %>
-      <%= f.hidden_field :shipping_method_id %>
-      <%= f.hidden_field :billing_address %>
-      <%= f.hidden_field :billing_address2 %>
-      <%= f.hidden_field :billing_city %>
-      <%= f.hidden_field :billing_state %>
-      <%= f.hidden_field :billing_zip %>
-      <%= f.hidden_field :credit_card_number %>
-      <%= f.hidden_field :cc_expiry_month %>
-      <%= f.hidden_field :cc_expiry_year %>
-      <%= f.hidden_field :ccv_number %>
-      <%= f.hidden_field :invoice_number %>
-      <%= f.hidden_field :status %>
+    <%= form_tag '/orders/payment', id: 'final_order' do %>
+      <%#= f.hidden_field :account_id %>
+      <%#= f.hidden_field :first_name %>
+      <%#= f.hidden_field :last_name %>
+      <%#= f.hidden_field :email %>
+      <%#= f.hidden_field :phone %>
+      <%#= f.hidden_field :address %>
+      <%#= f.hidden_field :address2 %>
+      <%#= f.hidden_field :city %>
+      <%#= f.hidden_field :state %>
+      <%#= f.hidden_field :zip %>
+      <%#= f.hidden_field :shipping_method_id %>
+      <%#= f.hidden_field :billing_address %>
+      <%#= f.hidden_field :billing_address2 %>
+      <%#= f.hidden_field :billing_city %>
+      <%#= f.hidden_field :billing_state %>
+      <%#= f.hidden_field :billing_zip %>
+      <%#= f.hidden_field :credit_card_number %>
+      <%#= f.hidden_field :cc_expiry_month %>
+      <%#= f.hidden_field :cc_expiry_year %>
+      <%#= f.hidden_field :ccv_number %>
+      <%#= f.hidden_field :invoice_number %>
+      <%#= f.hidden_field :status %>
       <%#= f.hidden_field :total_amount, {:value => total_including_tax_and_shipping(@order, current_cart.line_items)} %>
     <% end %>
   </div>

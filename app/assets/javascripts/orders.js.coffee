@@ -8,6 +8,10 @@ $j ->
     $j("#billing_address_fields").slideDown()
     $j('form#new_order').submit()
 
+  $j("a#complete_order").on 'click', ->
+    $j('form#final_order').submit()
+    return false
+
   $j('#billing_same_as_shipping').on 'click', ->
   	if($j(this).is(':checked'))
   		$j("#order_billing_address").val($j("#order_address").val())
@@ -18,3 +22,8 @@ $j ->
   		$j("#billing_address_fields").slideUp()
   	else
   		$j("#billing_address_fields").slideDown()
+
+  $j("#payment_panel").on 'click', 'ul.shipping-list li input[type="radio"]', ->
+    $j.get '/carts/update_shipping', 'id=' + $j(this).val() + '&price=' + $j(this).attr('price')
+    total = ($j(this).attr('price') * 1) + ($j("#grand_total_value").val() * 1)
+    $j("#grand_total").html('$' + total.toFixed(2))

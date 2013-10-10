@@ -32,11 +32,11 @@ class CartsController < ApplicationController
   end
 
   def update_shipping
-    cart = current_cart
-    cart.shipping_method_id = params[:id]
-    cart.shipping_cost = params[:price]
-    cart.save!
-    render json: cart
+    #cart = current_cart
+    session[:order][:shipping_method_id] = params[:id]
+    session[:order][:shipping_cost] = params[:price]
+    #cart.save!
+    render json: ''
   end
 
   def update_quantity

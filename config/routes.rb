@@ -59,7 +59,9 @@ HydroFlask::Application.routes.draw do
     end
   end
 
-  post "orders/confirm"
+  get "/orders/confirm" => "orders#confirm"
+  post "/orders/confirm" => "orders#confirm"
+ 
 
   resources :line_items
   post "line_items/create"

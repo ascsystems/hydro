@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :phone, :email,
                   :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
                   :shipping_method_id, :invoice_number, :status, :account_id, :ccv_number, :total_amount,
-                  :cc_expiry_month, :cc_expiry_year, :payment_total_cost
+                  :cc_expiry_month, :cc_expiry_year, :payment_total_cost, :shipping_cost, :tax
   
               
   has_many :line_items
@@ -146,6 +146,12 @@ class Order < ActiveRecord::Base
     else
       return nil
     end
+  end
+
+  def self.total_tax(total,state)
+    state_rate = StateTaxRate.find_by_state_acronym(state).try(:tax_rate)
+    tax = total.to_f * (state_rate.to_f/100)
+    tax.round(2)
   end
 
   def submitToNetSuite

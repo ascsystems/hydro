@@ -1,16 +1,5 @@
-<h1>Message: <%= @response.response_reason_text %></h1>
+<h1>Thank you. Your order has been placed.</h1>
 
-<p>Authorization code <%=  @response.fields[:authorization_code] %></p>
-<p>Transaction ID <%=  @response.fields[:transaction_id] %></p>
-<p>Name : <%= "#{@response.fields[:first_name]} #{@response.fields[:last_name]}"%></p>
-<p>Address: <%="#{@response.fields[:address]} #{@response.fields[:city]} #{@response.fields[:state]}"  %></p>
-<p>Zip Code : <%= @response.fields[:zip_code]%></p>
+<%= render partial: 'orders/print_or_show' %>
 
-<p>Amount <%=  @response.fields[:amount].to_f %></p>
-
-<h2>Shipping Information</h2>
-<p>Name : <%= "#{@response.fields[:ship_to_first_name]} #{@response.fields[:ship_to_last_name]}"%></p>
-<p>Address : <%="#{@response.fields[:ship_to_address]} #{@response.fields[:ship_to_city]} #{@response.fields[:ship_to_state]}"  %></p>
-<p>Zip Code : <%=  @response.fields[:ship_to_zip_code] %></p>
-
-<a href="#" id="print_handle" class="button" onclick='window.print()'>Print this</a>
+<a href="#" id="print_handle" class="button" onclick='window.print()'>Print Receipt</a>
