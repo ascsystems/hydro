@@ -140,6 +140,7 @@ footer input[type="text"], footer input[type="password"] {
     color: $input_text_color;
     padding-left:5px;
     border:none;
+    width:190px;
 }
 
 p {
@@ -618,7 +619,6 @@ ul.hydro_subnav {
 	background: transparent;
 }
 
-@import 'products';
 @import 'accounts';
 @import 'ambassadors';
 @import 'carts';

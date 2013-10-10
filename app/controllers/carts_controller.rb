@@ -31,6 +31,29 @@ class CartsController < ApplicationController
     render json: rates
   end
 
+  def update_shipping
+    cart = current_cart
+    cart.shipping_method_id = params[:id]
+    cart.shipping_cost = params[:price]
+    cart.save!
+    render json: cart
+  end
+
+  def update_quantity
+    line_item = LineItem.find(params[:line_item_id])
+    quantity = params[:quantity].to_i
+    if quantity < 1
+      quantity = 1
+    end
+    line_item.quantity = quantity
+    line_item.product_subtotal = quantity * line_item.product_price
+    line_item.save!
+    cart = current_cart
+    cart.set_subtotal
+    cart_update = {total: cart.subtotal, quantity: line_item.quantity, item_total: line_item.product_subtotal}
+    render json: cart_update
+  end
+
 #FIXME: thse are all just left over from CRUD, right?
 =begin
   # GET /carts/new

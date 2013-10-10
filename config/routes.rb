@@ -22,6 +22,8 @@ HydroFlask::Application.routes.draw do
   get '/email_subscriptions/unsubscribe', :to => 'email_subscriptions#unsubscribe', :as => 'unsubscribe_email'
   
   get '/carts/get_shipping', to: 'carts#getShipping';
+  get '/carts/update_shipping', to: 'carts#update_shipping';
+  get '/carts/update_quantity', to: 'carts#update_quantity';
 
   resources :donations
 

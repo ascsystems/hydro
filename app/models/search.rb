@@ -3,6 +3,7 @@ class Search
   def getResults(query, search_order)
     if !query.blank?
      	query = Rack::Utils.escape(query)
+        query.sub!('+','%7C')
         url = "http://search-hydrosearch-1-fpm4c3xnn5ya6gy2lbqctgpagm.us-west-2.cloudsearch.amazonaws.com/2011-02-01/search?q=#{query}&return-fields=author%2Cdescription%2Cid%2Ckeywords%2Cname%2Ctext_relevance"
         url_data = Net::HTTP.get(URI.parse(url))
         json_data = JSON.parse(url_data)

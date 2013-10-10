@@ -43,18 +43,18 @@ class OrdersController < ApplicationController
       @order = Order.new  # fresh order
     end
     
+    the_cart = current_cart
     # set the shipping method based on the value selected by the user in the cart view
-    shipping = Shipping.find(params["sm"])
-    @order.shipping_method_id = shipping.id
-    
+    if(!params["sm"].blank?)
+      shipping = Shipping.find(params["sm"])
+      @order.shipping_method_id = shipping.id
+      the_cart.shipping_method_id = shipping.id
+    end
     # Set the user account (unless the user is not logged in - in which case the cart is anoymous)
     @order.account_id = current_account.id if current_account
     
     # also save shipping method to the cart, in case the order is stopped, and the user goes back to the cart
-    the_cart = current_cart
-    the_cart.shipping_method_id = shipping.id
     the_cart.save
-    
     #renders new.html.erb
   end
   #---------------------------------------------------------------------------
@@ -100,6 +100,7 @@ class OrdersController < ApplicationController
       # **MUST** be called after .valid? !  (because .valid? clears all errors)
       @order.validate_cc_fields!  
       if @order.errors.any?
+        
         render action: :new  # failure case; go back to new()
       else
         # confirm.html.erb is rendered
@@ -160,7 +161,7 @@ class OrdersController < ApplicationController
         #@order.errors.add(:base, e.message)  # e.backtrace.inspect to debug
         
         # go back to the order view, where they can edit fields and resubmit
-        redirect_to new_order_path(:the_order_id => @order.id, :sm => @order.shipping_method_id)
+        redirect_to new_order_path(:the_order_id => @order.id)
         
         # Not doing this anymore (a seperate failure view)
         #render :payment_failed

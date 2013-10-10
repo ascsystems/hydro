@@ -37,7 +37,8 @@ $j ->
 	$j( "#quantity" ).readOnly = true
 
 	$j("#product #cart").on 'click', ->
-		$j("#product_form").submit();
+		if(!$j(this).hasClass('disabled'))
+			$j("#product_form").submit();
 	$j(".option").on 'click', ->
 		if(!$j(this).hasClass('multi'))
 			$j("input[option_type_id='" + $j(this).attr('option_type_id') + "']").val($j(this).attr('option_id'))
@@ -83,8 +84,14 @@ update_image = () ->
 	$j("input[type='hidden'].option_value.base").each (index, element) =>
 		options.push($j(element).val())
 	$j.getJSON "/products/" + $j('#product_id').val() + "/product_images/get_image", { data: '{ options: [' + options.join(",") + '], product: ' + $j("#product_id").val() + '}'}, (data) ->
-		image_url = data[0].path + 'cropped/large/' + data[0].name
-		big_image_url = data[0].path + 'cropped/original/' + data[0].name
+		if(data.translation.quantity - data.translation.threshhold <= 0)
+			$j("#cart").addClass('disabled')
+			$j("#option_main_header").addClass('disabled').html('Out Of Stock')
+		else
+			$j("#cart").removeClass('disabled')
+			$j("#option_main_header").removeClass('disabled').html('Select ' + $j("#option_main_header").attr('cat') + ': ' + $j(".option.selected:first").attr('title'))
+		image_url = data.image.path + 'cropped/large/' + data.image.name
+		big_image_url = data.image.path + 'cropped/original/' + data.image.name
 		$j('.jqzoom').attr('href', big_image_url)
 		$j("#product_image").attr('src', image_url)
 		.load ->

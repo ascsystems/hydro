@@ -21,8 +21,8 @@
           <% end %>
         </td>
       	<td><%= number_to_currency item.product_price %></td>
-      	<td class="center"><input type="text" name="quantity[<%= x %>]" value="<%= item.quantity %>" style="width:30px;text-align:center;padding:0;" /></td>
-        <td><%= number_to_currency item.product_subtotal %></td>
+      	<td class="center"><input type="text" class="quantity" item="<%= item.id %>" name="quantity[<%= x %>]" value="<%= item.quantity %>" style="width:40px;text-align:center;padding:0;" /><div class="update"></div></td>
+        <td class="item_subtotal"><%= number_to_currency item.product_subtotal %></td>
         <td><%= link_to "Remove", item, method: :delete %></td>
       </tr>
     <% 
@@ -30,7 +30,7 @@
     end %>
     <tr>
       <td style="text-align:right;" colspan="4">Subtotal:</td>
-      <td><%= number_to_currency @cart.subtotal %></td>
+      <td id="cart_subtotal"><%= number_to_currency @cart.subtotal %></td>
       <td>&nbsp;</td>
     </tr>
   </tbody>

@@ -86,8 +86,9 @@ class ProductImagesController < ApplicationController
     if options.kind_of?(Array)
       options = options.map(&:to_i)
       pi = ProductImage.new
-      @image = pi.getImage(options, data[:product])
-      render json: @image
+      image = pi.getImage(options, data[:product])
+      image_json = {image: image[0], translation: ProductTranslation.find(image[0].product_translation_id)}
+      render json: image_json
     end
   end
 

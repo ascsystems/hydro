@@ -496,11 +496,6 @@
 	background-color: #EFEFEF;
 }
 
-#product #options #option_main_header.out_of_stock {
-	background-color: $primary_color;
-	text-align:center;
-}
-
 #product #quantity_div .option_header {
 	margin-bottom:10px;
 }
@@ -516,4 +511,13 @@
 
 #product #price_text, #product #subtotal_text, #product .option_price_text {
 	margin-right: 10px;
+}
+
+#product #cart.content_box.disabled {
+	background-color: #EFEFEF !important;
+}
+
+#product #options #option_main_header.disabled {
+	background-color: $primary_color;
+	text-align:center;
 }

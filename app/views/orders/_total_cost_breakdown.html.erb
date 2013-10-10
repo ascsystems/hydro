@@ -1,6 +1,11 @@
 <% total_before_tax = total_price(current_cart.line_items) %>
 <% tax = total_tax(total_before_tax, @order.state) %>
-<% the_shipping_charge = computed_shipping_charge(@order, total_before_tax) %>
+<%
+	if !current_cart.shipping_method_id.blank? 
+		the_shipping_charge = computed_shipping_charge(@order, total_before_tax)
+	else
+	end
+%>
 
 <div>
 	<p><span class="label">Subtotal:</span><span class="right"><%= number_to_currency(total_before_tax) %></span></p>

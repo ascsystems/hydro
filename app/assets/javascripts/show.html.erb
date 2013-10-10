@@ -59,7 +59,7 @@
 							end
 						end %>
 						<div id="options" class="content_box<% if @product.sorted_options.length == 0 %> no_options<% end %>">
-							<div id="option_main_header" cat="<% if @product.sorted_options.length > 0 %><%= @product.sorted_options[0][0].name %><% end %>"><% if @product.sorted_options.length > 0 %>Select <%= @product.sorted_options[0][0].name %>: <span class="option_text"><%= @product.sorted_options[0][1][0].name %></span><% end %></div>
+							<div id="option_main_header" cat="<%= if @product.sorted_options.length @product.sorted_options[0][0].name end %>"><% if @product.sorted_options.length > 0 %>Select <%= @product.sorted_options[0][0].name %>: <span class="option_text"><%= @product.sorted_options[0][1][0].name %></span><% end %></div>
 							<div class="content_box_wrapper">
 								<%= render partial: 'option', collection: @product.sorted_options %>
 								<div id="quantity_div">
