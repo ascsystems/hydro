@@ -27,8 +27,7 @@ class CartsController < ApplicationController
   def getShipping
     ship = Shipping.new
     weight = current_cart.line_items.map(&:weight).sum
-    subtotal = current_cart.line_items.map(&:product_price).sum
-    rates = ship.getShippingRates(params[:shipping_zip], weight, subtotal)
+    rates = ship.getShippingRates(params[:shipping_zip], weight, current_cart.subtotal.to_f)
     render json: rates
   end
 

@@ -36,7 +36,7 @@ class Cart < ActiveRecord::Base
       current_image = pi.getCartImage(standard_options, product.id)
       #end
       current_image = current_image.first
-      current_item = line_items.build(product_id: product.id, product_name: product.name, quantity: quantity.to_i, product_image_id: current_image.id, netsuite_id: current_image.product_translation.netsuite_id, product_price: product.price, product_subtotal: product.price * quantity.to_i)
+      current_item = line_items.build(product_id: product.id, product_name: product.name, quantity: quantity.to_i, product_image_id: current_image.id, netsuite_id: current_image.product_translation.netsuite_id, weight: current_image.product_translation.weight, product_price: product.price, product_subtotal: product.price * quantity.to_i)
       if(current_options.present?)
         #current_options = OptionValue.find_all_by_id(options.values)
         current_options.each do |o|
