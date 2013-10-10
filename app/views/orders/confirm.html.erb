@@ -22,8 +22,6 @@
     
     
     <div id="payment_panel">
-      <br/>
-      <h2>Cost Summary</h2>
       <%= render partial: 'total_cost_breakdown' %>
       
     </div>
@@ -44,8 +42,8 @@
   <%# Maybe it's done this way to prevent Orders from being viewed via a named route /orders/1/edit, etc. %>
   <div>
     <%= form_for @order, :url => {:action => "payment"} do |f| %>
-      <%= f.hidden_field :account_id%>
-      <%= f.hidden_field :first_name%>
+      <%= f.hidden_field :account_id %>
+      <%= f.hidden_field :first_name %>
       <%= f.hidden_field :last_name %>
       <%= f.hidden_field :email %>
       <%= f.hidden_field :phone %>
@@ -66,7 +64,7 @@
       <%= f.hidden_field :ccv_number %>
       <%= f.hidden_field :invoice_number %>
       <%= f.hidden_field :status %>
-      <%= f.hidden_field :total_amount, {:value => total_including_tax_and_shipping(@order, current_cart.line_items)} %>
+      <%#= f.hidden_field :total_amount, {:value => total_including_tax_and_shipping(@order, current_cart.line_items)} %>
     <% end %>
   </div>
 </div>

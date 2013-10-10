@@ -63,12 +63,13 @@ class OrdersController < ApplicationController
   # Order has just been submitted (or re-submitted)
   def confirm
     
-    billing_params = {}
-    if params[:billing_same_as_shipping] == '1'
-      billing_params = Order::set_billing_same_as_shipping(params[:order])
-    end
-    all_params = billing_params.merge!(params[:order])
-    @order = Order.new(all_params)
+    #billing_params = {}
+    #if params[:billing_same_as_shipping] == '1'
+    #  billing_params = Order::set_billing_same_as_shipping(params[:order])
+    #end
+    #all_params = billing_params.merge!(params[:order])
+    #@order = Order.new(all_params)
+    @order = Order.new(params[:order])
     # First check to see if the user is creating a new account within the order form
     # (if the user is not logged in, and they are passing the account password parameter)
     if current_account.blank? && params[:new_account_password].present? && params[:order][:email].present?
@@ -103,6 +104,9 @@ class OrdersController < ApplicationController
         
         render action: :new  # failure case; go back to new()
       else
+        ship = Shipping.new
+        weight = current_cart.line_items.map(&:weight).sum
+        @shipping_options = ship.getShippingRates(params[:order][:zip], weight, current_cart.subtotal.to_f)
         # confirm.html.erb is rendered
       end
     else

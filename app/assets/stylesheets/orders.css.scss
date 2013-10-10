@@ -134,3 +134,21 @@
 #checkout_page .right {
 	float:right;
 }
+
+#checkout_page .shipping-list {
+	li {
+		text-align:right;
+	}
+}
+
+#checkout_page .right_box {
+    /*background-color: #EFEFEF;*/
+    float: right;
+    padding: 10px;
+    margin-bottom:10px;
+    width: 100%;
+}
+
+#checkout_page #shipping_text {
+	float:left;
+}

@@ -1,23 +1,26 @@
-<% total_before_tax = total_price(current_cart.line_items) %>
+<% total_before_tax = current_cart.subtotal %>
 <% tax = total_tax(total_before_tax, @order.state) %>
 <%
-	if !current_cart.shipping_method_id.blank? 
-		the_shipping_charge = computed_shipping_charge(@order, total_before_tax)
-	else
-	end
+	#if !current_cart.shipping_method_id.blank? 
+	#	the_shipping_charge = computed_shipping_charge(@order, total_before_tax)
+	#else
+	#end
 %>
 
 <div>
-	<p><span class="label">Subtotal:</span><span class="right"><%= number_to_currency(total_before_tax) %></span></p>
-	
-	
-	<p><span class="label">Shipping - <%= @order.shipping_method %>:</span><span class="right"><%= number_to_currency(the_shipping_charge) %></span></p>
-	
-	<p><span class="label">Tax:</span><span class="right"><%= number_to_currency(tax) %></span></p>
+	<p style="margin-bottom:.5em;"><span class="label">Subtotal:</span><span class="right"><%= number_to_currency(total_before_tax) %></span></p>
+  <p style="margin-bottom:.5em;"><span class="label">Select your shipping option:</span></p>
+  <ul class="shipping-list" style="float:right;margin-bottom:1em;">
+		<% selected_shipping_id = current_cart.shipping_method_id %>
+    <% @shipping_options.each do |s| %>
+    	<li><%= s[:name] %> - <%= number_to_currency s[:price] %>&nbsp;&nbsp;&nbsp;<input type="radio" name="shipping" price="<%= s[:price] %>" value="<%= s[:id] %>" <%= "#{(selected_shipping_id == s[:id]) ? 'checked=checked' : ''}" %> /></li>
+    <% end %>
+  </ul>
+	<p style="clear:both;margin-bottom:.5em;"><span class="label">Tax:</span><span class="right"><%= number_to_currency(tax) %></span></p>
 	<p>
 		<span class="label">Total:</span>
 		<span class="right">
-			<%= number_to_currency(total_before_tax + tax + the_shipping_charge) %>
+			<%= number_to_currency(total_before_tax + tax) %>
 		</span>
   </p>
 </div>
