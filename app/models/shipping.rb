@@ -11,8 +11,8 @@ class Shipping < ActiveRecord::Base
 		package = [Package.new(weight,[], cylinder: false)]
 		origin = Location.new(country: 'US', state: 'OR', city: 'Portland', zip: '97230')
 		destination = Location.new(zip: zip, country:'US')
-		fedex = FedEx.new(login:'100152071', password:'6KS4ljy8gONQ7D8FmqPSmaLyl', account: '510087607', key: 'nEDHoSL6I2XafWXv', test: true)
-  	response = fedex.find_rates(origin, destination, package)
+		fedex = FedEx.new(login:'105709763', password:'CRk5Sbid93FAg1w3QoKQpZ0j6', account: '481980844', key: '8SNeVuvDbqN8KOGt', test: false)
+    response = fedex.find_rates(origin, destination, package)
     rates = []
     shipping_types = Shipping.all
     standard_shipping = ShippingCostRate::find_best_shipping_cost('*', subtotal )

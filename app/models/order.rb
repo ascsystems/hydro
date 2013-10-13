@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   
               
   has_many :line_items
+  has_one :cart
   belongs_to :account  # optional linkage (an order can be done by a "guest" not signed in)
   belongs_to :shipping, :foreign_key => 'shipping_method_id'
 
@@ -94,6 +95,8 @@ class Order < ActiveRecord::Base
     the_cart.line_items.each do |a_line_item|
       self.line_items << a_line_item  # LineItem row is saved, with our order_id
     end
+    the_cart.order_id = self.id
+    the_cart.save
   end
   #---------------------------------------------------------------------------
   
@@ -163,7 +166,7 @@ class Order < ActiveRecord::Base
     self.line_items.each do |li|
       line_items.push({quantity: li.quantity, item: NetSuite::Records::RecordRef.new(internal_id: li.netsuite_id, type: 'inventoryItem')})
     end
-    so = NetSuite::Records::SalesOrder.new(entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: 'nl3', custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, other_ref_num: 12345, item_list: { item: line_items })
+    so = NetSuite::Records::SalesOrder.new(entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, other_ref_num: 12345, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: 2600}))
     so.add
   end
 

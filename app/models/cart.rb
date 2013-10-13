@@ -3,6 +3,7 @@ class Cart < ActiveRecord::Base
   attr_accessible :shipping_method_id, :account_id
   
   has_many :line_items, :dependent => :destroy
+  has_one :order
   belongs_to :account
   belongs_to :shipping, :foreign_key => 'shipping_method_id'
 

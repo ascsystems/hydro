@@ -74,7 +74,7 @@ class OrdersController < ApplicationController
     #all_params = billing_params.merge!(params[:order])
     #@order = Order.new(all_params)
     if(!params[:order].blank?)
-      session[:order] = params[:order]
+      session[:order].merge!(params[:order])
     elsif session[:order].blank?
       render :action => :new
     end
@@ -103,13 +103,14 @@ class OrdersController < ApplicationController
 
     
     # create the order based on the supplied parameters plus modified parameters
-    @order.validate_cc_fields!  # check that CC info is present too
+    #@order.validate_cc_fields!  # check that CC info is present too
     
     if @order.valid?
       # **MUST** be called after .valid? !  (because .valid? clears all errors)
       @order.validate_cc_fields!  
       if @order.errors.any?
         render action: :new  # failure case; go back to new()
+        return
       else
         @tax = Order::total_tax(current_cart.subtotal, @order.state)
         session[:order][:tax] = @tax.to_f
@@ -126,6 +127,7 @@ class OrdersController < ApplicationController
             end
           end
         end
+        @selected_shipping_id = current_order[:shipping_method_id].to_i
         # confirm.html.erb is rendered
       end
     else

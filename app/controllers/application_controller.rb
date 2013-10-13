@@ -1,3 +1,5 @@
+ActionView::Base.field_error_proc = Proc.new{ |html_tag, instance| "<div class=\"field_with_errors\">#{html_tag}</div>".html_safe }
+
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
@@ -20,8 +22,8 @@ class ApplicationController < ActionController::Base
   def current_cart
     
     # See if the logged-in user has a cart in progress
-    cart = Cart.find_by_account_id(current_account.id) if (current_account)
-    return cart if cart
+    #cart = Cart.find_by_account_id(current_account.id) if (current_account)
+    #return cart if cart
     
     # See if the current web session has a cart
     cart = Cart.find_by_id(session[:cart_id])
@@ -40,8 +42,11 @@ class ApplicationController < ActionController::Base
 
   def current_order
     
+    if session[:order].blank?
+      session[:order] = {}
+    end
     # See if the logged-in user has a cart in progress
-    return session[:order] if !session[:order].blank?
+    return session[:order]
     
   end
 

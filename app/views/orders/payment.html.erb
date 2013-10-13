@@ -1,5 +1,18 @@
-<h1>Thank you. Your order has been placed.</h1>
-
-<%= render partial: 'orders/print_or_show' %>
-
-<a href="#" id="print_handle" class="button" onclick='window.print()'>Print Receipt</a>
+<div id="checkout_page">
+	<h1>Thank you. Your order has been placed.</h1>
+  <div id="cart_panel">
+    <h2>Your Cart</h2>
+    <%= render partial: 'carts/item', collection: @order.line_items %>
+  </div>
+  <div id="form_panel">
+    <h3>Order #: <%= @order.id %></h3>
+		<%= render partial: 'orders/print_or_show' %>
+	</div>
+  <div id="payment_panel" style="margin-top:10px;">
+    <%= render partial: 'total_cost_breakdown_final' %>
+  </div>
+  <div class="clear"></div>
+  <div id="buttons_to_payment_or_edit">
+		<a href="#" class="button" onclick='window.print()' style="float:right;">Print Receipt</a>
+	</div>
+</div>

@@ -33,6 +33,7 @@ class CartsController < ApplicationController
 
   def update_shipping
     #cart = current_cart
+    order = current_order
     session[:order][:shipping_method_id] = params[:id]
     session[:order][:shipping_cost] = params[:price]
     #cart.save!

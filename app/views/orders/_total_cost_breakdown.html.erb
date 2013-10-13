@@ -1,18 +1,17 @@
 <p style="margin-bottom:.5em;"><span class="label">Subtotal:</span><span class="right"><%= number_to_currency(current_cart.subtotal) %></span></p>
 <p style="margin-bottom:.5em;"><span class="label">Select your shipping option:</span></p>
 <ul class="shipping-list" style="float:right;margin-bottom:1em;">
-	<% selected_shipping_id = current_cart.shipping_method_id
+	<%
 		shipping_counter = 0
 		shipping_total = 0
-	 %>
-  <% @shipping_options.each do |s| 
-		if selected_shipping_id.blank? && shipping_counter == 0
-			shipping_total = s[:price]
-		elsif selected_shipping_id == s[:id]
-			shipping_total = s[:price]
-		end
+   	@shipping_options.each do |s|
+		  if @selected_shipping_id.blank? && shipping_counter == 0
+			  shipping_total = s[:price]
+		  elsif @selected_shipping_id == s[:id]
+			  shipping_total = s[:price]
+		  end
   %>
-  	<li><%= s[:name] %> - <%= number_to_currency s[:price] %>&nbsp;&nbsp;&nbsp;<input type="radio" name="shipping" price="<%= s[:price] %>" value="<%= s[:id] %>" <%= "#{(selected_shipping_id == s[:id]) ? 'checked=checked' : ''}" %> /></li>
+  	<li><%= s[:name] %> - <%= number_to_currency s[:price] %>&nbsp;&nbsp;&nbsp;<input type="radio" name="shipping" price="<%= s[:price] %>" value="<%= s[:id] %>" <% if @selected_shipping_id == s[:id] %>checked="checked"<% end %> /></li>
   <% end %>
 </ul>
 <p style="clear:both;margin-bottom:.5em;"><span class="label">Tax:</span><span class="right"><%= number_to_currency(@tax) %></span></p>
