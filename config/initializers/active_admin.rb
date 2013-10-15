@@ -55,14 +55,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the controller.
-  config.authentication_method = :authenticate_admin_user!
-
-  def authenticate_admin_user!
-    if (current_account && !(current_account.is_cms_admin?))
-      flash[:notice] = "You are not an authorized admin user."
-      redirect_to main_app.root_path
-    end 
-  end
+  config.authentication_method = :authenticate_account!
 
   # == User Authorization
   #
@@ -89,12 +82,8 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # to return the currently logged in user.
-  config.current_user_method = :current_admin_user
+  config.current_user_method = :current_account
   
-  def current_admin_user
-	current_account
-  end
-
   # == Logging Out
   #
   # Active Admin displays a logout link on each screen. These
@@ -105,10 +94,8 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  config.logout_link_path = :destroy_admin_user_session_path
+  config.logout_link_path = :destroy_account_session_path
 
-  def destroy_admin_user_session_path
-  end
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
   #
@@ -246,7 +233,7 @@ ActiveAdmin.setup do |config|
 
 end
 
-ActiveAdmin::ResourceController.class_eval do
+ActiveAdmin::BaseController.class_eval do
   protected
 
   def revert_friendly_id
@@ -258,5 +245,5 @@ ActiveAdmin::ResourceController.class_eval do
       end
     end
     rescue NameError
-   end
+  end
 end
