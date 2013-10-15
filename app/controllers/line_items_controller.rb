@@ -74,8 +74,10 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
-    @line_item = LineItem.find(params[:id])
+    cart = current_cart
+    @line_item = LineItem.where(id: params[:id]).where(cart_id: cart.id).first
     @line_item.destroy
+    cart.set_subtotal
 
     respond_to do |format|
       format.html { redirect_to '/mycart' }
