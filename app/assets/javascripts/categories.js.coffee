@@ -20,5 +20,5 @@ update_category_image = (product_id, option_id, image) ->
 	options = []
 	options.push(option_id)
 	$j.getJSON "/products/" + product_id + "/product_images/get_image", { data: '{ options: [' + options.join(",") + '], product:' + product_id + '}'}, (data) ->
-		image_url = data[0].path + 'small/' + data[0].name
+		image_url = data.image.path + 'small/' + data.image.name
 		$j(image).attr('src', image_url)

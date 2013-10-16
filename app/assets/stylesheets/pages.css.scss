@@ -383,7 +383,7 @@
 }
 
 #page.tech .main_content {
-  background-image: url("/assets/tech-flask.png"), url("/assets/tech-water.jpg");
+  background-image: url("/images/tech-flask.png"), url("/images/tech-water.jpg");
   background-position: 310px -26px, left 76px;
   background-repeat: no-repeat;
   min-height: 950px;
@@ -391,7 +391,7 @@
 
 #page.tech div.about {
 	float:left;
-	width: 350px;
+	width: 340px;
 	margin-top:150px;
 	display:none;
 	p {
@@ -407,7 +407,7 @@
 	color: #ffffff;
 	text-align:center;
   font-size: 2.4em;
-  min-height: 150px;
+  min-height: 175px;
   padding: 20px 15px;
   text-align: center;
   margin-right:15px;
@@ -441,7 +441,7 @@
 }
 
 #page.tech #tech_circle {
-	background-image:url(/assets/tech-circle.png);
+	background-image:url(/images/tech-circle.png);
 	width:400px;
 	height:450px;
 	margin-left: 295px;
