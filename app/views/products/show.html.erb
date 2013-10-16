@@ -59,7 +59,7 @@
 							end
 						end %>
 						<div id="options" class="content_box<% if @product.sorted_options.length == 0 %> no_options<% end %>">
-							<div id="option_main_header" cat="<% if @product.sorted_options.length > 0 %><%= @product.sorted_options[0][0].name %><% end %>"><% if @product.sorted_options.length > 0 %>Select <%= @product.sorted_options[0][0].name %>: <span class="option_text"><%= @product.sorted_options[0][1][0].name %></span><% end %></div>
+							<div id="option_main_header" <% if @in_stock == false %>class="disabled"<% end %> cat="<% if @product.sorted_options.length > 0 %><%= @product.sorted_options[0][0].name %><% end %>"><% if @in_stock == false %>Out of Stock<% else if @product.sorted_options.length > 0 %>Select <%= @product.sorted_options[0][0].name %>: <span class="option_text"><%= @product.sorted_options[0][1][0].name %></span><% end end %></div>
 							<div class="content_box_wrapper">
 								<%= render partial: 'option', collection: @product.sorted_options %>
 								<div id="quantity_div">
@@ -75,7 +75,7 @@
 						</div>
 						<div id="cart_content" <% if @product.sorted_options.length == 0 %>class="no_options"<% end %>>
 							<div id="top_right_wrapper">
-								<div id="cart" class="content_box">
+								<div id="cart" class="content_box<% if @in_stock == false %> disabled<% end %>">
 									<div class="cart_wrapper">
 										Add to Cart <%= image_tag 'cart_white.png', alt: 'Add to cart', title: 'Add to cart' %>
 									</div>

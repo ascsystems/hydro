@@ -133,6 +133,7 @@ input[type="text"], input[type="password"], input[type="email"] {
 
 footer {
   background-color:$background_color;
+  font-size: .9em;
 }
 
 footer input[type="text"], footer input[type="password"] {
@@ -344,7 +345,7 @@ header nav {
 footer h3 {
     font-weight:normal;
     margin-bottom:.5em;
-    font-size:14px;
+    font-size:13px;
 }
 
 #footer-nav-div {
@@ -352,7 +353,8 @@ footer h3 {
 }
 
 #footer-email-updates {
-    width:auto;
+  margin-left: 20px;
+  width: auto;
 }
 
 #footer-nav {
@@ -376,6 +378,9 @@ footer h3 {
     font-size: 0.9em;
     margin-top: 30px;
     margin-left:2%;
+    span {
+      color: $primary_color;
+    }
 }
 
 footer p {

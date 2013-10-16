@@ -1,11 +1,21 @@
-<% if lid_counter == 0 && multi != 1
+<% 
+  selected = ''
+  if lid_counter == 0 && multi != 1
 		selected = 'selected'
 	else
 		if multi == 1
-			selected = 'multi'
+			product = Product.find(lid.product_id)
+	    product_image = product.get_default_image
+	    if product_image[0].product_translation.quantity.to_i - product_image[0].product_translation.threshhold.to_i > 0
+	      in_stock = true
+	    else
+	      in_stock = false
+	      selected = 'disabled'
+	    end
+			selected = "#{selected} multi"
 		else
-			selected = ''
+			in_stock = true
 		end
 	end
 %>
-<%= image_tag "/images/options/#{lid.display_data}", alt: lid.name, title: lid.name, class: "lid option #{selected}", option_id: lid.id %>
+<div class="multi_option_wrapper<% if in_stock == false %> disabled<% end %>"><%= image_tag "/images/options/#{lid.display_data}", alt: lid.name, title: lid.name, class: "lid option #{selected}", option_id: lid.id %><% if in_stock == false %><div class="outofstock">Out of Stock</div><% end %></div>

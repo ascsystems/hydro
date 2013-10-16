@@ -32,7 +32,7 @@ $j ->
 			$j("#" + $j(this).attr('slide')).stop().hide();
 			$j("#tech_circle").css('background-image','url(/images/tech-circle.png)');
 			if(slide == 'number_4' || slide == 'number_5' || slide == 'number_6')
-				$j(".main_content").css('background-image', 'url("/images/tech-flask.png"), url("/assets/tech-water.jpg")');
+				$j(".main_content").css('background-image', 'url("/images/tech-flask.png"), url("/images/tech-water.jpg")');
 				$j(".main_content").css('background-position', '310px -26px, left 76px');
 	)
 	if(window.location.pathname == '/pages/hydro-flask-technology')

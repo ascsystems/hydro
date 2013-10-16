@@ -18,6 +18,11 @@ class ProductsController < ApplicationController
   def show
     @product = Product.friendly.find(params[:id])
     @product_image = @product.get_default_image
+    if @product_image[0].product_translation.quantity.to_i - @product_image[0].product_translation.threshhold.to_i > 0
+      @in_stock = true
+    else
+      @in_stock = false
+    end
     # set review object, in case user uses the review form on the product page
     @new_review = Review.new
     

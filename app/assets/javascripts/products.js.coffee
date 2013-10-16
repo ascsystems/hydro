@@ -46,12 +46,13 @@ $j ->
 			$j(this).addClass('selected')
 			update_image()
 		else
-			if($j(this).hasClass('selected'))
-				$j(this).removeClass('selected')
-				$j("input[product_id='" + $j(this).attr('option_id') + "']").val('')
-			else
-				$j("input[product_id='" + $j(this).attr('option_id') + "']").val($j(this).attr('option_id'))
-				$j(this).addClass('selected')
+			if(!$j(this).hasClass('disabled'))
+				if($j(this).hasClass('selected'))
+					$j(this).removeClass('selected')
+					$j("input[product_id='" + $j(this).attr('option_id') + "']").val('')
+				else
+					$j("input[product_id='" + $j(this).attr('option_id') + "']").val($j(this).attr('option_id'))
+					$j(this).addClass('selected')
 			update_pricing()
 		$j(this).parent().siblings(".option_header").children(".option_text").html($j(this).attr('title'))
 		#$j(this).sibling(".option_text").html($j(this).attr('title'))

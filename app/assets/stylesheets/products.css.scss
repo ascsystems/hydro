@@ -289,7 +289,10 @@
 	width:80px;
 	background-color:#ffffff;
 	border:3px solid #ffffff;
-	margin-right:10px;
+}
+
+#product img.option.disabled {
+	cursor:auto;
 }
 
 #product img.selected {
@@ -520,4 +523,24 @@
 #product #options #option_main_header.disabled {
 	background-color: $primary_color;
 	text-align:center;
+	cursor: auto;
 }
+
+#product .multi_option_wrapper {
+	float:left;
+	position:relative;
+	margin-right:10px;
+}
+
+#product .multi_option_wrapper .outofstock {
+	cursor: auto;
+	background-color: $primary-color;
+  bottom: 8px;
+  color: #FFFFFF;
+  font-size: 0.7em;
+  font-weight: bold;
+  height: 20px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+} 
