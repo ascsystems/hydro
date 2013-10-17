@@ -143,7 +143,7 @@ class Order < ActiveRecord::Base
   #---------------------------------------------------------------------------
   
   def getNetSuiteCustomer
-    customer = NetSuite::Records::Customer.search({basic: [{ field: 'email', operator: 'contains', value: self.email }, { field: 'firstName', operator: 'contains', value: self.first_name }, { field: 'lastName', operator: 'contains', value: self.last_name}]})
+    customer = NetSuite::Records::Customer.search({basic: [{ field: 'email', operator: 'contains', value: self.email.strip }, { field: 'firstName', operator: 'contains', value: self.first_name.strip }, { field: 'lastName', operator: 'contains', value: self.last_name.strip }]})
     if customer.results[0] != nil
       return customer.results[0].internal_id
     else
@@ -171,7 +171,7 @@ class Order < ActiveRecord::Base
   end
 
   def newNetSuiteCustomer
-    customer = NetSuite::Records::Customer.new(custom_field_list: { custom_field: [{ internal_id: "custentity4", value: self.email, type: "platformCore:StringCustomFieldRef" }, { internal_id: "custentity2", value: "23", type: "platformCore:StringCustomFieldRef" }] }, email: self.email, phone: self.phone, category: NetSuite::Records::RecordRef.new({ internal_id: 11, type: 'customerCategory' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), is_person: TRUE, first_name: self.first_name, last_name: self.last_name, addressbook_list: { addressbook: [{ default_shipping: TRUE, default_billing: FALSE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone, addr1: self.address, addr2: self.address2, city: self.city, state: self.state, zip: self.zip, country:"_unitedStates" }, { default_shipping: FALSE, default_billing: TRUE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone, addr1: self.billing_address, addr2: self.billing_address2, city: self.billing_city, state: self.billing_state, zip: self.billing_zip, country:"_unitedStates" }] })
+    customer = NetSuite::Records::Customer.new(custom_field_list: { custom_field: [{ internal_id: "custentity4", value: self.email, type: "platformCore:StringCustomFieldRef" }, { internal_id: "custentity2", value: "23", type: "platformCore:StringCustomFieldRef" }] }, email: self.email.strip, phone: self.phone, category: NetSuite::Records::RecordRef.new({ internal_id: 11, type: 'customerCategory' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), is_person: TRUE, first_name: self.first_name.strip, last_name: self.last_name.strip, addressbook_list: { addressbook: [{ default_shipping: TRUE, default_billing: FALSE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone, addr1: self.address, addr2: self.address2, city: self.city, state: self.state, zip: self.zip, country:"_unitedStates" }, { default_shipping: FALSE, default_billing: TRUE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone, addr1: self.billing_address, addr2: self.billing_address2, city: self.billing_city, state: self.billing_state, zip: self.billing_zip, country:"_unitedStates" }] }, parent: NetSuite::Records::RecordRef.new({ internal_id: 38043 }))
     customer.add
     customer.internal_id
   end

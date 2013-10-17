@@ -1,5 +1,7 @@
 HydroFlask::Application.routes.draw do
 
+  resources :socials
+
   ActiveAdmin.routes(self)
  devise_for :accounts
   
@@ -11,6 +13,7 @@ HydroFlask::Application.routes.draw do
 
   resources :stores
   get 'stores/setLatLng' => 'stores#setLatLng'
+  get 'socials/update_social' => 'socials#update_social'
 
   resources :search
 
@@ -71,7 +74,7 @@ HydroFlask::Application.routes.draw do
   #FIXME: these pages no longer allow editing from the "Edit" view -- this needs to be fixed
   get "pages/5-back" => "pages#five_back"
   get "pages/hydro-flask-technology" => "pages#hydro_flask_technology"
-  get "/pages/hydro-flask-social" => "pages#hydro_flask_social"
+  get "/pages/hydro-flask-social" => "socials#index"
 
   get "charities/charity_detail/:id" => "charities#charity_detail"
   get "/donate" => "donations#new"
