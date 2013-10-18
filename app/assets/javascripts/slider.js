@@ -1,4 +1,3 @@
-
 homeSlide = {
 //dimension properties
 footerHeight: 329, //resets onload
@@ -7,13 +6,13 @@ navArrowHeight: 86, //Have to set here because they are not visible
 winWidth: 1024, //resets onload
 slideWidth: 1400, //resets onload / only different in portait mode (typically tablets)
 winHeight: 768, //resets onload
-slideHeight: 600,
+slideHeight: 933,
 slideLeftOffset: 0, //used in portrait mode otherwise 0
 slideTopMargin: 0, //reset on load and resize
 //minPageHeight: 700, reset onload and on resize
 minSlideWidth: 1000, //900px + 10 on each side to show bleed and more image.
 //ratios to set up slideshow for the optimal display
-imgRatio: 0.667, //height to width ratio of slide images 875/1400
+imgRatio: 0.66643, //height to width ratio of slide images 875/1400
 slideScreenRatio: .87, //optimal slide to screen height ratio short screens ( 80% is slide )
 //slideshow properties
 firstInterval: 4000000, //millisecond interval before the first slide action NOTE that this fires after all images are loaded. (Temporarily increased from 4000 to 4000000).
@@ -145,7 +144,6 @@ closeCSS = 'style="' + closeCSS +  '"';
 }
 parentEl.insert({'bottom': '<div id="homevideowrap" onclick="homeSlide.unloadVideo(this);"><a href="#" id="homevidclose" ' + closeCSS + ' onclick="homeSlide.unloadVideo(this);" return false;"></a><iframe src="' + videoLink + '/player/cvp/init_autoplay/1" ' + iframeCSS + '  id="homevideoiframe" frameborder="0" scrolling="no"></iframe></div>'});
 if(homeSlide.winHeight <= 768){
-console.log('smaller: ' + homeSlide.winHeight);
 $('homevideoiframe').addClassName('small');
 $('homevidclose').addClassName('small');
 }

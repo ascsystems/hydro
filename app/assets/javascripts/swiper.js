@@ -100,7 +100,7 @@ this.wrapperHeight = this.wrapper.clientHeight;
 this.pageWidth = this.wrapperWidth;
 this.maxX = -this.options.numberOfPages * this.pageWidth + this.wrapperWidth;
 this.snapThreshold = this.options.snapThreshold === null
-? Math.round(this.pageWidth * .15)
+? Math.round(this.pageWidth * 0)
 : /%/.test(this.options.snapThreshold)
 ? Math.round(this.pageWidth * this.options.snapThreshold.replace('%', '') / 100)
 : this.options.snapThreshold;

@@ -225,9 +225,55 @@ header .no-background {
 }
 
 #logo {
-	height: 114px;
-    background: rgba(0, 0, 0, 0.7);
+	height: 86px;
+  background: rgba(0, 0, 0, 0.7);
 	float: left;
+  img {
+    margin-top:-5px;
+    height:100%;
+  }
+}
+
+@media screen and (max-width: 1680px) { /* Specific to this particular image */
+  #logo {
+    height: 76px;
+  }
+}
+
+@media screen and (max-width: 1600px) { /* Specific to this particular image */
+  #logo {
+    height: 72px;
+  }
+}
+
+@media screen and (max-width: 1440px) { /* Specific to this particular image */
+  #logo {
+    height: 64px;
+  }
+}
+
+@media screen and (max-width: 1366px) { /* Specific to this particular image */
+  #logo {
+    height: 62px;
+  }
+}
+
+@media screen and (max-width: 1280px) { /* Specific to this particular image */
+  #logo {
+    height: 58px;
+  }
+}
+
+@media screen and (max-width: 768px) { /* Specific to this particular image */
+  #logo {
+    height: 34px;
+  }
+}
+
+@media screen and (max-width: 320px) { /* Specific to this particular image */
+  #logo {
+    height: 16px;
+  }
 }
 
 header nav {
@@ -622,6 +668,10 @@ ul.hydro_subnav {
 #root_flash_wrapper {
   float:left;
 	background: transparent;
+}
+
+.front {
+  z-index:999;
 }
 
 @import 'accounts';
