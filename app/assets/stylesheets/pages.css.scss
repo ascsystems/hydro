@@ -127,16 +127,6 @@
 	width: 40%;
 }
 
-#page.social .left_content {
-	width: 220px;
-	float:left;
-}
-
-#page.social .right_content {
-   min-width: 700px;
-   padding-left: 20px;
-}
-
 #page.tech .left_content ol {
 	list-style-type:none;
 }
@@ -237,97 +227,6 @@
 		float:left;
 		width: 400px;
 	}
-}
-
-#page.social h3 {
-	color: $heading_color;
-	font-weight:normal;
-	border-bottom: 1px solid #000000;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-	width:160px;
-}
-
-#page.social #join_us li{
-	a {
-		color: #000000;
-		img{
-			float:left;
-			margin-right:5px;
-		}
-		div {
-			float:left;
-			padding-top:7px;
-		}
-	}
-	a:hover {
-		color: $primary_color;
-	}
-	height:30px;
-	margin-bottom: 10px;
-}
-
-#page.social #add_content {
-	margin-bottom: 20px;
-}
-
-#page.social div.article {
-	h2 {
-		font-size: 1.6em;
-		margin-bottom: 0;
-	}
-	margin-bottom:20px;
-	padding-bottom:20px;
-	border-bottom: 1px solid black;
-	p.shared_by {
-		float:left;
-		width:100%;
-		font-style:italic;
-		margin-top:5px;
-		margin-bottom:3px;
-		color: #777777;
-		.shared_by_name {
-			font-style: normal;
-			float:left;
-			text-align:center;
-			img {
-				height:100px;
-				display:block;
-			}
-		}
-	}
-	p.posted {
-		color: #777777;
-	}
-	p.image {
-		margin: 20px 0 20px 0;
-	}
-	p.content {
-		font-size: 1.2em;
-		 margin-bottom: 20px;
-	}
-	p.share {
-		margin-bottom: 20px;
-		color: $heading_color;
-    margin-bottom: 50px;
-		width: 100%;
-		.share_text {
-			float:left;
-    	margin-right: 20px;
-   		padding-top: 3px;
-		}
-		a {
-			float:left;
-			margin-right: 20px;
-		}
-		.addthis_button_google_plusone{
-			width: 60px;
-		}
-	}
-}
-
-#page.social div.article:last-child {
-	border-bottom:none;
 }
 
 #page h2.question {

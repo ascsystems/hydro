@@ -29,6 +29,7 @@
 //= require effects
 //= require orders
 //= require pages
+//= require socials
 //= require scriptaculous
 //= require site
 //= require swiper

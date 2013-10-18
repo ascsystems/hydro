@@ -265,7 +265,7 @@ header nav {
               @include border-radius(0,4px);
               position:absolute;
               background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
-              width:336px;
+              width:370px;
               height:330px;
               display:none;
               box-shadow:none;
@@ -276,7 +276,7 @@ header nav {
                 height:auto;
                 float:left;
                 color:#ffffff;
-                width:154px;
+                width:174px;
                 a {
                   color: #ffffff;
                   font-size:.9em;
@@ -635,6 +635,7 @@ ul.hydro_subnav {
 @import 'home';
 @import 'orders';
 @import 'pages';
+@import 'socials';
 @import 'products';
 @import 'scaffolds';
 @import 'stores';
