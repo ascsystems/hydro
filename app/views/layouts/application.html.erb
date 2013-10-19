@@ -4,6 +4,8 @@
     <title><%= full_title(yield(:meta_title)) %></title>
     <meta name="description" content="<%= yield(:meta_description) %>" />
     <meta name="keywords" content="<%= yield(:meta_keywords) %>" />
+    <link rel="icon" href="http://www.hydroflask.com/media/favicon/default/favicon.jpeg" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://www.hydroflask.com/media/favicon/default/favicon.jpeg" type="image/x-icon" />
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
 		<%# Can't do it this way -- asset pipeline blows up on mising .js files %>

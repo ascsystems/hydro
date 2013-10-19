@@ -21,19 +21,14 @@
 //= require fancybox/jquery.fancybox
 //= require raty/jquery.raty.min
 //= require jqzoom/jquery.jqzoom-core
-//= require prototype
 //= require ambassador
 //= require builder
 //= require carts
 //= require categories
-//= require effects
 //= require orders
 //= require pages
 //= require socials
-//= require scriptaculous
 //= require site
-//= require swiper
-//= require slider
 
 $j = jQuery.noConflict();
 

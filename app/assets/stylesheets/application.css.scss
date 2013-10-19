@@ -18,6 +18,11 @@
 @import "compass/css3/border-radius";
 @import "variables";
 
+@viewport{
+    zoom: 1.0;
+    width: extend-to-zoom;
+}
+
 @font-face {
   font-family: 'Pragmatica';
   src:font-url('27A4D40.eot');

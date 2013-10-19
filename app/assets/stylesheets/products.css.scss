@@ -238,7 +238,6 @@
 
 #product #description p {
 	line-height: 20px;
-	text-align:justify;
 }
 
 #product #description ul {
@@ -250,7 +249,7 @@
 }
 
 #product #description p.highlight {
-	font-size: 1.3em;
+	font-size: 1.25em;
 	color: $heading_color;
 	line-height: 25px;
 }

@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   extend FriendlyId
-  attr_accessible :description, :name, :price, :brand_id, :product_type_id, :short_name, :title, :meta_description, :keywords
+  attr_accessible :description, :name, :price, :brand_id, :product_type_id, :short_name, :title, :meta_description, :keywords, :slug
   friendly_id :name, use: :slugged
 
   belongs_to :brand
