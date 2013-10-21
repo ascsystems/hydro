@@ -17,7 +17,7 @@
       <% @articles.each do |a| %>
         <div class="article">
           <h2><%= link_to a['title'], a['permalink'], target: "_blank" %></h2>
-          <p class="shared_by"><span style="float:left;margin-right:5px;">Shared by: </span><span class="shared_by_name"><% if !a['avatar'].blank? %><%= image_tag a['avatar'] %><% end %><%= a['author'] %><br><br></span></p>
+          <p class="shared_by"><span>Shared by: </span><span class="shared_by_name"><% if !a['avatar'].blank? %><%= image_tag a['avatar'] %><% end %><%= a['author'] %></span></p>
           <p class="posted"><%= a['article_date'].strftime("%d %B %Y") %></p>
           <% if !a['thumbnail'].blank? && a['thumbnail'] != "http://storify.com/public/img/default-thumb.gif" %><p class="image"><%= image_tag a['thumbnail'], alt: a['title'], title: a['title'] %></p><% end %>
           <p class="content"><%= if a['image_caption'].blank?

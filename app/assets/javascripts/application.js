@@ -21,7 +21,6 @@
 //= require fancybox/jquery.fancybox
 //= require raty/jquery.raty.min
 //= require jqzoom/jquery.jqzoom-core
-//= require ambassador
 //= require builder
 //= require carts
 //= require categories

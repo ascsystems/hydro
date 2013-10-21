@@ -36,3 +36,42 @@
 	font-weight:bold;
 	color: $primary_color;
 }
+
+#stores .next_page {
+  float:right;
+}
+
+.apple_pagination {
+  padding: 1em;
+  cursor: default; 
+}
+
+.apple_pagination a, .apple_pagination span {
+  padding: 0.2em 0.3em; 
+}
+
+.apple_pagination .disabled {
+  color: #aaaaaa;
+}
+
+.apple_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background-color: #00AAFF;
+  color: #FFFFFF;
+  text-align:center;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.55;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+}
+.apple_pagination a {
+  text-decoration: none;
+  color: black;
+}
+
+  .apple_pagination a:hover, .apple_pagination a:focus {
+    text-decoration: underline; }

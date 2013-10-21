@@ -51,6 +51,9 @@
         end
       end %>
     </ol>
+    <div class="apple_pagination">
+    <%= will_paginate @stores %>
+    </div>
     <% else %>
     <p style="margin-top:20px;">No stores matched your search. Please try again.</p>
     <% end %>

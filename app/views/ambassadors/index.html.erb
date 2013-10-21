@@ -11,14 +11,12 @@
     <li class="amblandingthumb ambparent <% if x == 4 or x == 5 or x == 6 %>right<% end %>">
       <%= image_tag ambassador.image_path.sub!('.', '-title.'), alt: ambassador.last_name, title: ambassador.last_name %>
       <div class="ambpop">
-        <div class="ambpopcontent">
+        <div>
           <div class="ambpopclose"></div>
           <h2><%= ambassador.first_name  %> <%= ambassador.last_name  %></h2>
-          <%= raw ambassador.bio %>
         </div>
-        <div class="ambpopthumb">
-          <%= image_tag ambassador.image_path.sub!('-title.', '.'), alt: ambassador.last_name, title: ambassador.last_name %>
-        </div>
+        <%= image_tag ambassador.image_path.sub!('-title.', '.'), alt: ambassador.last_name, title: ambassador.last_name, style: 'float:right; margin: 0 0 1em 1em;' %>
+        <%= raw ambassador.bio %>
         <div class="ambpoparrow"></div>
       </div>
     </li>
@@ -30,8 +28,10 @@
   end %>
   </ul>
 </div>
-<%# We do not include the ambassador.js explictly here, because it's precompiled with application.js %>
-<%#= javascript_include_tag "ambassador" %>
+<%= javascript_include_tag "prototype" %>
+<%= javascript_include_tag "scriptaculous" %>
+<%= javascript_include_tag "effects" %>
+<%= javascript_include_tag "ambassador" %>
 <script>
 $j = jQuery.noConflict();
 $j(document).ready(function() {

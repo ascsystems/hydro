@@ -53,18 +53,20 @@
 						<% counter += 1
 							else
 								o[1].each do |so| %>
-								<input type="hidden" name="options[<%= counter %>]" class="option_value multiselect" value="" price="<%= so.product_option_values[0].price %>" qty="1" product_id="<%= so.id %>">
+								<input type="hidden" name="options[<%= counter %>]" class="option_value multiselect" value="" price="<%= so.product_option_values[0].price %>" title="<%= so.name %>" qty="1" product_id="<%= so.id %>">
 								<% counter += 1
 								end
 							end
 						end %>
 						<div id="options" class="content_box<% if @product.sorted_options.length == 0 %> no_options<% end %>">
-							<div id="option_main_header" <% if @in_stock == false %>class="disabled"<% end %> cat="<% if @product.sorted_options.length > 0 %><%= @product.sorted_options[0][0].name %><% end %>"><% if @in_stock == false %>Out of Stock<% else if @product.sorted_options.length > 0 %>Select <%= @product.sorted_options[0][0].name %>: <span class="option_text"><%= @product.sorted_options[0][1][0].name %></span><% end end %></div>
+							<div id="option_main_header" <% if @in_stock == false %>class="disabled"<% end %> cat="<% if @product.sorted_options.length > 0 %><%= @product.sorted_options[0][0].name %><% end %>"><% if @in_stock == false %>Out of Stock<% elsif @product.sorted_options.length > 0 %>Select <%= @product.sorted_options[0][0].name %>: <span class="option_text"><%= @product.sorted_options[0][1][0].name %></span><% end %></div>
 							<div class="content_box_wrapper">
 								<%= render partial: 'option', collection: @product.sorted_options %>
 								<div id="quantity_div">
-									<div class="option_header<% if @product.sorted_options.length > 0 %> align_right<% end %>">Quantity: <span class="option_text" id="quantity_text">1</span></div>
+									<div class="option_header">Quantity: <span class="option_text" id="quantity_text">1</span></div>
 									<div id="quantity_input"><input name="quantity" id="quantity" type="text" value="1"></div>
+								</div>
+								<div id="price_wrapper">
 									<div id="price">
 										<p><span id="price_text">Price:</span><span id="price_value"><%= number_to_currency @product.price %></span></p>
 										<div id="optional_pricing"></div>
@@ -121,7 +123,7 @@
 					<%= raw @product.description %>
 				</div>
 				<div id="reviews" class="content_div">
-					<%= render partial: 'review', collection: @product_reviews %>
+					<%= render partial: 'review', collection: @product.reviews %>
 				</div>
 				<div id="review_form" class="content_div">
 					<%= render :partial => 'reviews/form', :locals => {review: @new_review, product_id: @product.id}%>
@@ -133,9 +135,10 @@
 		<div id="related_products_header" class="content_box">
 			<div class="cart_wrapper">You Might Also Be Interested In</div>
 		</div>
-		<div class="related_products">
-			<% the_related_products = @product.products.empty? ? Product.default_featured_products : @product.products %>
-			<%= render partial: 'related_product', collection: the_related_products %>
-		</div>
+	</div>
+	<div class="related_products">
+		<% the_related_products = @product.products.empty? ? Product.default_featured_products : @product.products %>
+		<%= render partial: 'related_product', collection: the_related_products %>
+	</div>
 	</div>
 </div>

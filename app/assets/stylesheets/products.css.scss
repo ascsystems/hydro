@@ -135,8 +135,12 @@
 	height:28px;
 }
 
-#product #cart, #product #related_products_header {
+
+#product #related_products_header {
 	background-color: $heading_color !important;
+}
+
+#product #cart, #product #related_products_header {
 	cursor: pointer;
 	color: #fff;
 	height: $button_height;
@@ -149,7 +153,8 @@
 }
 
 #product #cart {
-	position: relative; 
+	position: relative;
+	background-color: #444444 !important;
 	img {
 		position: absolute;
 		top: 11px;
@@ -273,11 +278,11 @@
 	font-size: 90%;
 }
 
-#product div.white_circle  {
+/*#product div.white_circle  {
 	border:1px solid #000;
 	width:16px; 
 	height:16px;
-}
+}*/
 
 #product div.colors {
     float:left;
@@ -298,8 +303,11 @@
 	border:3px solid #000000;
 }
 
+#product img.multi.selected {
+	border: 3px solid $heading_color;
+}
+
 #product .option_wrapper {
-	clear:both;
 	float:left;
 }
 
@@ -308,16 +316,17 @@
 	letter-spacing: 1px;
 	margin-bottom:5px;
 	margin-top:15px;
-	color: #696969;
+	color: $heading_color;
 
 }
 
 #product .option_header.additional_lids {
-	color: $heading_color
+	color: $heading_color;
+	margin-top:0;
 }
 
 #product .option_wrapper.first {
-	width:65%;
+	margin-right:40px;
 }
 
 #product .option_wrapper.first .option_header{
@@ -325,9 +334,7 @@
 }
 
 #product #quantity_div {
-  position: absolute;
-  right: 20px;
-  top: 0;
+	float:left;
 }
 
 #product #quantity {
@@ -399,10 +406,12 @@
 }
 
 #product .related_products {
+	clear:both;
 	float:left;
+	width:100%;
 	.related_product {
 		float:left;
-		width:50%;
+		width:20%;
 		font-size: 90%;
 	}
 	.image {
@@ -471,10 +480,6 @@
 	text-align: right;
 }
 
-#product #quantity_input {
-	text-align: right;
-}
-
 #product #options.no_options #quantity_div {
 	position: static;
 	top: auto;
@@ -502,13 +507,14 @@
 	margin-bottom:10px;
 }
 
-#product #options.no_options #quantity_input, #product #options.no_options #price{
+/*#product #options.no_options #quantity_input, #product #options.no_options #price{
 	text-align: center;
-}
+}*/
 
 #product #options.no_options {
 	width: 40%;
-	text-align:center
+	text-align:center;
+	min-height: 247px;
 }
 
 #product #price_text, #product #subtotal_text, #product .option_price_text {
@@ -542,4 +548,12 @@
   position: absolute;
   text-align: center;
   width: 100%;
-} 
+}
+
+#product #price_wrapper {
+	float:right;
+}
+
+#product #subtotal {
+	margin:0;
+}

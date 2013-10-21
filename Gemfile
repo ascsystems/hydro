@@ -59,7 +59,7 @@ gem 'paperclip'
 
 gem 'active_shipping'
 gem 'whenever', require: false
-
+gem 'will_paginate', '~> 3.0.5'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

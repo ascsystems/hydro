@@ -74,7 +74,8 @@ update_pricing = () ->
 	$j("input[type='hidden'].option_value.multiselect").each (index, item)->
 		if($j(item).val() != '')
 			option_price = $j(item).attr('price') * quantity
-			$j('<p><span class="option_price_text">Lid Option:</span><span class="option_price">+$' + option_price.toFixed(2) + '</span></p>').appendTo("#optional_pricing")
+			option_title = $j(item).attr('title')
+			$j('<p><span class="option_price_text">' + option_title + ':</span><span class="option_price">+$' + option_price.toFixed(2) + '</span></p>').appendTo("#optional_pricing")
 			options_price += option_price
 	grand_total = product_price + options_price
 	$j("#subtotal_value").html("$" + grand_total.toFixed(2))

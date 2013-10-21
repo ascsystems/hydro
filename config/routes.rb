@@ -74,7 +74,7 @@ HydroFlask::Application.routes.draw do
   #FIXME: these pages no longer allow editing from the "Edit" view -- this needs to be fixed
   get "pages/5-back" => "pages#five_back"
   get "pages/hydro-flask-technology" => "pages#hydro_flask_technology"
-  get "/pages/hydro-flask-social" => "socials#index"
+  get "/hydro-flask-social" => "socials#index"
 
   get "charities/charity_detail/:id" => "charities#charity_detail"
   get "/donate" => "donations#new"

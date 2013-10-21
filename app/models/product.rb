@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   belongs_to :product_type
   has_many :category_products, dependent: :destroy
   has_many :categories, through: :category_products
-  has_many :reviews
+  has_many :reviews, :order => 'created_at DESC'
   has_many :line_items
   has_many :product_images
   has_many :product_option_values
