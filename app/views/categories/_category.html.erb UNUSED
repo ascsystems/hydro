@@ -1,0 +1,17 @@
+<% if category.products.exists? %>
+  <h2 id="<%= category.name.gsub(/[ &]/, "") %>"><%= category.name %></h2>
+  <% if category_counter == 0 %>
+  	<div class="back_to_top">
+  		<select name="category_select" id="category_select">
+    	 <% Category.all.each do |cat| %>
+        <option value="#<%= cat.name.gsub(/[ &]/, "") %>"><%= cat.name %></option>
+       <% end %>
+  		</select>
+  	</div>
+  <% else %>
+  	<div class="back_to_top"><a href="#">BACK TO TOP</a></div>
+  <% end %>
+  <div class="category_row">
+    <%= render partial: 'product', collection: category.products %>
+  <% end %>
+</div>

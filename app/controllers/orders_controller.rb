@@ -168,7 +168,7 @@ class OrdersController < ApplicationController
     
     if (is_valid_order == true)
       begin
-        #@response = @order.make_payment
+        @response = @order.make_payment
         #flash[:notice] = "Successfully made a purchase (authorization code: #{@response.authorization_code})"
         current_cart.destroy
         @order.status = Order::ORDER_COMPLETED

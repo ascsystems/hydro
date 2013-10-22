@@ -1,0 +1,117 @@
+have_func: checking for rb_thread_blocking_region()... -------------------- yes
+
+"gcc -o conftest -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/x86_64-linux -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/backward -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -Wl,-R/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -o conftest -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/x86_64-linux -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/backward -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -Wl,-R/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5: warning: ‘rb_thread_blocking_region’ is deprecated (declared at /home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/intern.h:839)
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_blocking_region; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_func: checking for rb_wait_for_single_fd()... -------------------- yes
+
+"gcc -o conftest -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/x86_64-linux -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/backward -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -Wl,-R/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘rb_wait_for_single_fd’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_wait_for_single_fd; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"gcc -o conftest -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/x86_64-linux -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/backward -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0 -I.     -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -Wl,-R/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L. -fstack-protector -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -L/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5: warning: implicit declaration of function ‘rb_wait_for_single_fd’
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { rb_wait_for_single_fd(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_header: checking for mysql.h... -------------------- yes
+
+"gcc -E -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/x86_64-linux -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/backward -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0 -I.    -I/usr/include/mysql  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv -fPIC   -DUNIV_LINUX -DUNIV_LINUX  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <mysql.h>
+/* end */
+
+--------------------
+
+have_header: checking for errmsg.h... -------------------- yes
+
+"gcc -E -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/x86_64-linux -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/backward -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0 -I.    -I/usr/include/mysql  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv -fPIC   -DUNIV_LINUX -DUNIV_LINUX  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <errmsg.h>
+/* end */
+
+--------------------
+
+have_header: checking for mysqld_error.h... -------------------- yes
+
+"gcc -E -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/x86_64-linux -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0/ruby/backward -I/home/ec2-user/.rvm/rubies/ruby-2.0.0-p247/include/ruby-2.0.0 -I.    -I/usr/include/mysql  -g -pipe -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -fno-strict-aliasing -fwrapv -fPIC   -DUNIV_LINUX -DUNIV_LINUX  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wunused-variable -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <mysqld_error.h>
+/* end */
+
+--------------------
+

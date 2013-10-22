@@ -106,3 +106,41 @@
 .no-close .ui-dialog-titlebar {
 	display: none;
 }
+
+#add_content_dialog {
+	box-shadow: 1px 1px 4px #444444;
+	width:400px;
+	height:500px;
+	ul {
+		height: $button_height;
+		background-color: $background_color;
+		li {
+			height: $button_height;
+			padding: 0px 15px 0 15px;
+			float:left;
+		    font-size: 1.1em;
+			line-height: $button_line_height;
+	    	letter-spacing: 1px;
+			position:relative;
+			cursor: pointer;
+		}
+		li.selected {
+			color: #fff;
+			background-color: $heading_color;
+			&:after {
+				border-color: $heading_color transparent;
+			    border-style: solid;
+			    border-width: 10px 10px 0;
+			    bottom: -10px;
+			    content: "";
+			    display: block;
+			    left: 15px;
+			    position: absolute;
+			    width: 0;
+			}
+		}
+	}
+	input[type="text"], textarea {
+		background-color: #cccccc;
+	}
+}
