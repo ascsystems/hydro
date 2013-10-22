@@ -51,6 +51,9 @@ namespace :config do
   end
 end
 
+set :whenever_environment, defer { stage }
+set :whenever_identifier, defer { "#{application}_#{stage}"  }
+require "whenever/capistrano"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
