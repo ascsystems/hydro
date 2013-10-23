@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131017171624) do
+ActiveRecord::Schema.define(version: 20131023031748) do
 
   create_table "accounts", force: true do |t|
     t.string   "first_name"
@@ -327,6 +327,16 @@ ActiveRecord::Schema.define(version: 20131017171624) do
     t.string   "meta_description"
     t.string   "keywords"
     t.string   "slug"
+  end
+
+  create_table "promotions", force: true do |t|
+    t.string   "promo_code"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.decimal  "amount",     precision: 10, scale: 0
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rails_admin_histories", force: true do |t|

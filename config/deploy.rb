@@ -36,6 +36,12 @@ require 'capistrano/ext/multistage'
 # Files that remain on the server; we just update the softlinks when code is deployed
 set :shared_files, %w(config/database.yml)  #  config/facebook.yml
 
+
+set :whenever_environment, defer { stage }
+set :whenever_identifier, defer { "#{application}_#{stage}"  }
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 namespace :config do
   desc "Copy shared files after deploy"
   task :copy_shared_files, :roles => :app do
@@ -50,10 +56,6 @@ namespace :config do
     
   end
 end
-
-set :whenever_environment, defer { stage }
-set :whenever_identifier, defer { "#{application}_#{stage}"  }
-require "whenever/capistrano"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts

@@ -3,3 +3,11 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      order:
+        ccv_number: "Security code"
+        cc_expiry_month: "Expiration month"
+        cc_expiry_year: "Expiration year"
+        address2: "Address 2"
+        billing_address2: "Billing address 2"

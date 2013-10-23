@@ -42,8 +42,11 @@
   <div id="cart_right_box">
     <%= render partial: 'shipping' %>
     <div id="promo" class="right_box">
-      <div id="promo_text"><label for="promo">Promo Code?</label></div>
-      <div style="float:right;"><input type="text" name="promo"></div>
+      <p id="promo_text"><label for="promo_code">Do you have a promo code?</label></p>
+      <form method="get" style="text-align:right;">
+        <input type="text" style="width:75px;height:33px;vertical-align:middle;" name="promo_code" id="promo_code">
+        <input type="submit" value="Apply" class="button" style="vertical-align:middle;" id="apply_promo">
+      </form>
     </div>
     <div id="checkout" class="content_box">
       <div class="checkout_wrapper">

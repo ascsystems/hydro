@@ -1,5 +1,5 @@
+<h1>My Account</h1>
 <p id="notice"><%= notice %></p>
-
 <p>
   <b>First name:</b>
   <%= @account.first_name %>
@@ -14,19 +14,11 @@
   <b>Email:</b>
   <%= @account.email %>
 </p>
+<%= link_to 'Edit Contact Info', edit_account_path(@account) %>
 
-<%= link_to 'Edit', edit_account_path(@account) %>
-
-<br/>
-<br/>
-<br/>
-
-<h1>Your Orders</h1>
-<% if @orders %>
+<h2 style="margin-top:40px;">Your Orders</h2>
+<% if @orders.blank? %>
+<p>You currently have no orders</p>
+<% else %>
   <%= render :partial => 'orders/list_of_orders' %>
 <% end %>
-
-<br/>
-<br/>
-<br/>
-

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  promo_code: MyString
+  start_date: 2013-10-22
+  end_date: 2013-10-22
+  amount: 9.99
+  type: 
+
+two:
+  promo_code: MyString
+  start_date: 2013-10-22
+  end_date: 2013-10-22
+  amount: 9.99
+  type: 

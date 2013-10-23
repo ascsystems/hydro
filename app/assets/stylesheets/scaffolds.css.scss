@@ -49,6 +49,10 @@ div {
   }
 }
 
+.expdate div {
+  float:left;
+}
+
 #error_explanation {
   margin-bottom: 20px;
   h2 {
@@ -58,7 +62,9 @@ div {
     color: #c00;
   }
   ul li {
-    font-size: 12px;
+    font-size: 1em;
+    color: #c00;
+    text-align:left;
     list-style: none;
     margin-bottom:3px;
   }

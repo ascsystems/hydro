@@ -40,6 +40,10 @@ class CartsController < ApplicationController
     render json: ''
   end
 
+  def apply_promo
+    render json: ''
+  end
+
   def update_quantity
     line_item = LineItem.find(params[:line_item_id])
     quantity = params[:quantity].to_i

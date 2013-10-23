@@ -1,12 +1,11 @@
 <ul>
-  <li>POST A PHOTO</li>
-  <li>POST A STORY</li>
+  <li class="selected" id="post_photo">POST A PHOTO</li>
+  <li id="post_story">POST A STORY</li>
 </ul>
+<div id="social_form">
 <%= form_for(@social) do |f| %>
   <% if @social.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@social.errors.count, "error") %> prohibited this social from being saved:</h2>
-
       <ul>
       <% @social.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -14,19 +13,19 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field field_left">
     <%= label_tag "First Name:" %><br>
     <%= text_field_tag "first_name" %>
   </div>
-  <div class="field">
+  <div class="field field_right">
     <%= label_tag :last_name, "Last Name:" %><br>
     <%= text_field_tag "last_name" %>
   </div>
-  <div class="field">
+  <div class="field field_left">
     <%= f.label :title, "Post Title:" %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
+  <div class="field field_right">
     <%= f.label :thumbnail, "Choose Photo:" %><br>
     <%= f.file_field :thumbnail %>
   </div>
@@ -34,10 +33,46 @@
     <%= f.label :description, "Tell Us About Your Photo" %><br>
     <%= f.text_area :description %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
   <div class="field">
-    <%= check_box_tag "terms" %> I've read and agree to the <%= link_to "Terms & Privacy", page_path('terms-and-privacy') %>
+    <%= f.submit "CANCEL", class: "button cancel_button" %><%= f.submit "SUBMIT", class: "button" %>
+  </div>
+  <div class="field fine_print">
+    <%= check_box_tag "terms" %> I've read and agree to the <%= link_to "Terms & Privacy", page_path('terms-and-privacy'), target: "_blank" %>
   </div>
 <% end %>
+</div>
+<div id="social_story_form" style="display:none;">
+<%= form_for(@social) do |f| %>
+  <% if @social.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @social.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field field_left">
+    <%= label_tag "First Name:" %><br>
+    <%= text_field_tag "first_name" %>
+  </div>
+  <div class="field field_right">
+    <%= label_tag :last_name, "Last Name:" %><br>
+    <%= text_field_tag "last_name" %>
+  </div>
+  <div class="field field_left">
+    <%= f.label :title, "Post Title:" %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Tell Us Your Story" %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.submit "CANCEL", class: "button cancel_button" %><%= f.submit "SUBMIT", class: "button" %>
+  </div>
+  <div class="field fine_print">
+    <%= check_box_tag "terms" %> I've read and agree to the <%= link_to "Terms & Privacy", page_path('terms-and-privacy'), target: "_blank" %>
+  </div>
+<% end %>
+</div>

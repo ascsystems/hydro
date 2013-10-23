@@ -58,12 +58,14 @@ HydroFlask::Application.routes.draw do
 
   resources :orders do
     collection do
+      get 'confirm'
+      post 'confirm'
       post 'payment'
     end
   end
 
-  get "/orders/confirm" => "orders#confirm"
-  post "/orders/confirm" => "orders#confirm"
+  #get "/orders/confirm" => "orders#confirm"
+  #post "/orders/confirm" => "orders#confirm"
  
 
   resources :line_items

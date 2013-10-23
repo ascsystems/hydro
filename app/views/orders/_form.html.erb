@@ -1,12 +1,11 @@
 <%= form_for(@order, url: {action: "confirm"}, html: {method: 'post'}) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
-      <h2>The fields highlighted in red are required.</h2>
-      <!--<ul>
-        <%# @order.errors.full_messages.each do |msg| %>
-          <li><%#= msg %></li>
-        <%# end %>
-      </ul>-->
+      <ul>
+        <% clean_error_messages(@order.errors.full_messages).each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
   <% 
     elsif @custom_error.present? %>
@@ -16,11 +15,11 @@
   <% end %>
   <% if flash[:payment_failure].present? %>
     <div id="error_explanation">
-      <h2>Your credit card transaction was declined, please try again with another card.</h2>
-      <%#= flash[:payment_failure] %>
+      <ul>
+        <li>Your credit card transaction was declined, please try again with another card.</li>
+      </ul>
     </div>
   <% end %>
-  
   <div class="form_section_wrapper">
     <h2>Shipping Info</h2>
     <div class="field left_half">
@@ -59,7 +58,6 @@
       <%= f.label :email %><br />
       <%= f.text_field :email %>
     </div>
-    <%# if the user is not signed in, show a jpassword field which will auto-create a new account for them when the order is submitted %>
     <% unless current_account %>
       <div class="field">
         <%= f.label :new_account_password, "Password(will create account)" %><br />
@@ -74,7 +72,6 @@
       Same as Shipping Address
     </div>    
     <div id='billing_address_fields'>
-      
       <div class="field">
         <%= f.label :billing_address %><br />
         <%= f.text_field :billing_address, class: 'long' %>
@@ -97,7 +94,6 @@
       </div>
     </div>
   </div>
-      
   <div class="form_section_wrapper" style="border:none;">
     <div style='float: left; width: 150px;'><h2>Payment Info</h2></div>
     <div class="field credit_card_number">
@@ -105,23 +101,21 @@
       <%= f.text_field :credit_card_number, value: "" %>
     </div>
      <div class="field expdate">
-      <%= f.label "Expiration Date" %><br />
-      <%#= f.text_field :exp_date %>
-      <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true } %>
-      <% the_current_year = Time.now.year %>
-      <%= f.select :cc_expiry_year, Order.years_for_expiry, { include_blank: true } %>
-      
-      <%# "default" is the Date version of exp_date (set in form failback scenarios) %>
-      <%#= date_select("order", "exp_date", use_month_numbers: true, use_two_digit_numbers: true, 
-                      start_year: the_current_year, end_year: the_current_year + 20, discard_day: true,
-                      include_blank: true, order: [:month, :year]) %>
+      <div <% if (@order.errors.any? && (@order.cc_expiry_month.blank? || @order.cc_expiry_year.blank?)) %>class="field_with_errors" style="float:none;"<% end %>>
+        <%= f.label "Expiration Date" %>
+      </div>
+      <br />
+      <div>
+       <%= f.select :cc_expiry_month, Order::MONTHS_FOR_EXPIRY, { include_blank: true }, style: "margin-right: 10px;" %>
+      </div>
+      <div>
+        <%= f.select :cc_expiry_year, Order.years_for_expiry, { include_blank: true } %>
+      </div>
     </div>
     <div class="field ccv_number">
       <%= f.label :ccv_number, "Security code" %><br />
       <%= f.text_field :ccv_number, in: 0...9999, size: 4, style: 'width:50px;', value: "" %>
-      <%#= f.number_field(:ccv_number, in: 0...1000, size: 3, style: 'width:102px;') %>
     </div>
-    <%# values we want set on the Order, but are not input fields %>
     <%= f.hidden_field :shipping_method_id, value: @order.shipping_method_id %>
     <%= f.hidden_field :account_id, value: @order.account_id %>
   </div>

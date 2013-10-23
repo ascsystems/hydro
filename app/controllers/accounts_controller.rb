@@ -3,17 +3,6 @@ class AccountsController < ApplicationController
   # User must be logged in to see their Account
   before_filter :authenticate_account!
   
-  # GET /accounts
-  # GET /accounts.json
-  def index
-    @accounts = Account.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @accounts }
-    end
-  end
-
   # GET /accounts/1
   # GET /accounts/1.json
   def show

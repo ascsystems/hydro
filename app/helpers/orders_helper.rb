@@ -77,5 +77,20 @@ module OrdersHelper
     #  shipping_cost = the_order.shipping.cost
     #  shipping_cost.to_i == 0 ? "Free" : "$#{number_with_precision(shipping_cost, :precision => 2)}"
     #end
-    
+    def clean_error_messages(messages)
+      blank = false
+      new_messages = []
+      messages.each do |m|
+        if m.include? "can't be blank"
+          blank = true
+        else
+          new_messages.push(m)
+        end
+      end
+      if blank == true
+        new_messages.unshift("The fields highlighted in red are required")
+      end
+      new_messages
+    end
+
 end

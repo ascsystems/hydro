@@ -20,6 +20,7 @@
 }
 
 #cart_page #cart_table thead tr th{
+  font-weight: normal;
 	padding:5px;
 	margin:0;
 }
@@ -95,6 +96,9 @@
 #cart_page #cart_right_box {
 	width:250px;
 	float:right;
+	p {
+		margin:0;
+	}
 }
 
 #cart_page .right_box {
@@ -117,12 +121,13 @@
 }
 
 #cart_page #customers_bought {
-    background-color: #EFEFEF;
-    float: left;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    padding: 10px;
-    width: 680px;
+  background-color: #EFEFEF;
+  float: left;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  width: 680px;
+	min-height: 228px;
 }
 
 #cart_page .related_product {

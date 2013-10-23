@@ -48,7 +48,7 @@
 					<li>|</li>
 					<% if current_account.present? %>
 						<li><%= link_to "MY ACCOUNT", account_path(current_account.id) %>
-							<ul style="width:65px;height: 50px;">
+							<ul style="width:71px;<% if current_account.their_role == 'super_user' %>height: 50px;<% else %>height: 20px;<% end %>">
 								<% if current_account.their_role == 'super_user' %><li><%= link_to "Admin", '/admin' %></li><% end %>
 								<li><%= link_to "Sign Out", destroy_account_session_path, :method => :delete %></li>
 							</ul>

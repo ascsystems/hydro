@@ -103,29 +103,38 @@
 	border-bottom:none;
 }
 
+.no-close {
+	box-shadow: 1px 1px 20px #444444;
+}
+
 .no-close .ui-dialog-titlebar {
 	display: none;
 }
 
+#social_form, #social_story_form {
+	margin-top:20px;
+}
+
 #add_content_dialog {
-	box-shadow: 1px 1px 4px #444444;
-	width:400px;
-	height:500px;
 	ul {
+		margin-top:8px;
+		width: 460px;
 		height: $button_height;
-		background-color: $background_color;
+		background-color: #AAAAAA;
 		li {
+			width: 200px;
+			text-align:center;
 			height: $button_height;
 			padding: 0px 15px 0 15px;
 			float:left;
-		    font-size: 1.1em;
-			line-height: $button_line_height;
-	    	letter-spacing: 1px;
+		  font-size: 1.1em;
+			line-height: 40px;
+	    letter-spacing: 1px;
 			position:relative;
+			color: #fff;
 			cursor: pointer;
 		}
 		li.selected {
-			color: #fff;
 			background-color: $heading_color;
 			&:after {
 				border-color: $heading_color transparent;
@@ -134,13 +143,55 @@
 			    bottom: -10px;
 			    content: "";
 			    display: block;
-			    left: 15px;
+			    left: 100px;
 			    position: absolute;
 			    width: 0;
 			}
 		}
 	}
-	input[type="text"], textarea {
-		background-color: #cccccc;
+	input[type="text"],input[type="file"] {
+		background-color: #efefef;
+		width:215px;
+		border:none;
+	}
+	textarea {
+		width:450px;
+		height: 100px;
+		background-color: #efefef;		
+		border:none;
+	}
+}
+
+.field {
+	font-size:.9em;
+}
+
+.field_left {
+	width:220px;
+	float:left;
+	margin-right: 18px;
+}
+
+.field_right {
+	width:220px;
+	float:left;
+}
+
+#social_form .button, #social_story_form .button {
+	font-size: 1em;
+}
+
+#social_form .cancel_button, #social_story_form .cancel_button {
+	background-color:#AAAAAA !important;
+	margin-right:20px;
+}
+
+.fine_print{
+	margin-top:10px;
+	color: #aaa;
+	font-size:.8em;
+	a {
+		text-decoration:underline;
+		color: #aaa;
 	}
 }
