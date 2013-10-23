@@ -66,12 +66,13 @@ HydroFlask::Application.configure do
   #
   # For Mandrill API info, see:  https://mandrillapp.com/api/docs/
   config.action_mailer.smtp_settings = {
-    :address  => "smtp.mandrillapp.com",
-    :port  => '587', 
-    :domain  => "hydroflask.com", 
-    :user_name  => "marketing@hydroflask.com", # the Mandrill SMTP User Name
-    :password  => "b92f5602b14f6f3c601455e01b8cd94d-us1",  # the Mandrill SMTP API key
-    :authentication  => :login
+    address: "smtp.mandrillapp.com",
+    port: '587', 
+    enable_starttls_auto: true,
+    domain: "hydroflask.com", 
+    user_name: "david@aztec-apps.com", # the Mandrill SMTP User Name
+    password:  "apXxhrev9ONKex6lWTejMw",  # the Mandrill SMTP API key
+    authentication  :login
   }
   #--------------------------------------------------------------------------
 
