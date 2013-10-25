@@ -7,7 +7,8 @@ class StoresController < ApplicationController
 
   def index
     store = Store.new
-    @stores = store.get_stores_by_location(params[:location]).paginate(page: params[:page], per_page: 4)
+    @stores = store.get_stores_by_location(params[:location])
+    @stores = @stores.paginate(page: params[:page], per_page: 4) if !@stores.blank?
     @location = params[:location]
     respond_to do |format|
       format.html # index.html.erb

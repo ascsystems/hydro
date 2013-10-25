@@ -6,7 +6,7 @@ class ShippingCostRate < ActiveRecord::Base
   #---------------------------------------------------------------------------
   # Get the list of shipping cost per order_cost tier, for a particular State (or the global '*' entries)
   def self.find_shipping_costs_by_state(the_state, order_cost)
-    where(:state => the_state).where('total_cost_tier < ?', order_cost).order('total_cost_tier DESC')
+    where(:state => the_state).where('total_cost_tier <= ?', order_cost).order('total_cost_tier DESC')
   end
   #---------------------------------------------------------------------------
   

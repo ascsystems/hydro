@@ -60,11 +60,11 @@ module PaymentHandler
       response = transaction.purchase(order.payment_total_cost.to_f, credit_card)
       
       # Raise an error with some detailed error text if the CC transaction failed
-      #raise(response) if response.success? == false
+      raise(response) if response.success? == false
       
       # Use this to show the exact error, for debugging only:
       # Note: to show the full response data, also add: + response.inspect
-      #raise('Credit card authorization error: ' + response.response_reason_text.to_s + ' (Code: ' + response.response_reason_code + ')') if response.success? == false
+      raise('Credit card authorization error: ' + response.response_reason_text.to_s + ' (Code: ' + response.response_reason_code + ')' + response.inspect) if response.success? == false
       
       response
     end
