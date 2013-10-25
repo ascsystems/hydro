@@ -20,7 +20,7 @@ module PaymentHandler
       @api_login_id = api_login_id
       @transaction_key = transaction_key
       @gateway = gateway.to_sym
-		end
+    end
 
     def make_payment(order)
 			
@@ -46,7 +46,7 @@ module PaymentHandler
       transaction.set_fields(:city => order.billing_city)
       transaction.set_fields(:state => order.billing_state)
       transaction.set_fields(:zip => order.billing_zip)  # was :zip_code
-      transaction.set_fields(:tax => order.tax_amount)
+      transaction.set_fields(:tax => order.tax_amount.to_f)
       transaction.set_fields(:exp_date => order.cc_expiry)
       transaction.set_fields(:invoice_num => order.invoice_number)
       #TODO:  what about country?
@@ -57,10 +57,10 @@ module PaymentHandler
       # for testing use CC number '4111111111111111', and card date (MMYY) '1122'
       # NOTE: cc_expiry can be MMYYYY format, which is what we're using.
       credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.cc_expiry, {:card_code => order.ccv_number})
-      response = transaction.purchase(order.total_amount, credit_card)
+      response = transaction.purchase(order.payment_total_cost.to_f, credit_card)
       
       # Raise an error with some detailed error text if the CC transaction failed
-      raise('Please verify your credit card information and try again.') if response.success? == false
+      #raise(response) if response.success? == false
       
       # Use this to show the exact error, for debugging only:
       # Note: to show the full response data, also add: + response.inspect
