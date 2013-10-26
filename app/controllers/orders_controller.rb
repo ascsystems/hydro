@@ -75,9 +75,9 @@ class OrdersController < ApplicationController
       begin
         @response = @order.make_payment
         @order.status = Order::ORDER_COMPLETED
-        @order.netsuite_id = @order.submitToNetSuite
         @order.save!
         @order.associate_cart_line_items(current_cart)
+        @order.submitToNetSuite
         current_cart.destroy
       rescue Exception => e
         @custom_error = "Your credit card transaction was declined, please try again with another card."

@@ -48,7 +48,7 @@ module PaymentHandler
       transaction.set_fields(:zip => order.billing_zip)  # was :zip_code
       transaction.set_fields(:tax => order.tax_amount.to_f)
       transaction.set_fields(:exp_date => order.cc_expiry)
-      transaction.set_fields(:invoice_num => order.invoice_number)
+      #transaction.set_fields(:invoice_num => order.invoice_number)
       #TODO:  what about country?
       
       #TODO: do we need to add the line items?  (it's possible to do so, through the gem)

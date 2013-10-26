@@ -15,7 +15,7 @@ class CartsController < ApplicationController
   # GET /carts/1.json
   def show
     if(!params[:promo_code].blank?)
-      self.applyPromo(params[:promo])
+      self.applyPromo(params[:promo_code])
     end
     # new cart is created, unless cart for this session or user already exists
     @cart = current_cart  # application_controller.rb method
@@ -33,23 +33,24 @@ class CartsController < ApplicationController
     render json: rates
   end
 
-  def applyPromo(promo)
+  def applyPromo(promo_code)
     if(session[:promo].blank?)
-      promo = Promo.new
-      this_promo = promo.getPromo(promo)
+      promo = Promotion.new
+      this_promo = promo.getPromo(promo_code.downcase)
       if this_promo.blank?
-        flash[:notice] = "Invalid Promo"
+        flash.now[:error] = "Invalid Promo"
       else
-        session[:promo] = true
+        session[:promo] = this_promo.netsuite_id
         current_cart.line_items.each do |i|
-          i.product_price = i.product_price * ((100 - this_promo.amount) * .01)
+          i.product_price = (i.product_price * ((100 - this_promo.amount) * 0.01)).round(2)
           i.product_subtotal = i.quantity * i.product_price
+          i.save
         end
-        current_cart.save
-        flash[:notice] = "Promo Accepted"
+        current_cart.set_subtotal
+        flash.now[:notice] = "Promo Accepted"
       end
     else
-      flash[:notice] = "Your promo has already been applied"
+      flash.now[:notice] = "Your promo has already been applied"
     end
   end
 

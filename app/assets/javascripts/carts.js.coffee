@@ -35,9 +35,6 @@ $j ->
 	$j("#shipping").on 'click', 'ul.shipping-list li input[type="radio"]', ->
 		$j.get '/carts/update_shipping', 'id=' + $j(this).val() + '&price=' + $j(this).attr('price')
 	$j("#cart_page #apply_promo").on 'click', ->
-		if($j('#promo_code').val() != '')
-			$j.getJSON '/carts/apply_promo.json', 'promo_code=' + $j('#promo_code').val(), (data) ->
-				console.log('applying promo')
-			return false
-		else
+		if($j('#promo_code').val() == '')
 			alert("Promo code field is blank.")
+			return false
