@@ -5,7 +5,7 @@
     <%= render partial: 'carts/item', collection: @order.line_items %>
   </div>
   <div id="form_panel">
-    <h3>Order #: <% if !@order.netsuite_id.blank? %><%= @order.netsuite_id %><% else %><%= @order.id %><% end %></h3>
+    <h3>Order #: <%= @order.invoice_number %></h3>
 		<%= render partial: 'orders/print_or_show' %>
 	</div>
   <div id="payment_panel" style="margin-top:10px;">

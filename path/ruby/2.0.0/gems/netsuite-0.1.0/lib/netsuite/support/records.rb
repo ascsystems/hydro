@@ -18,7 +18,7 @@ module NetSuite
           end
           
           hash[kname] = v
-          hash
+	  hash
         end
       end
 

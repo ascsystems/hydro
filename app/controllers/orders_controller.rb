@@ -1,5 +1,9 @@
 class OrdersController < ApplicationController
   
+  def show
+    @order = Order.where("id = ? and account_id = ? ", params[:id], current_account.id).first
+  end
+
   def new
 
     @order = Order.new(current_order)
@@ -65,7 +69,6 @@ class OrdersController < ApplicationController
     
     @order = Order.new(current_order)
     
-    @order.associate_cart_line_items(current_cart)
     @order.payment_total_cost = current_cart[:subtotal].to_f + current_order[:shipping_cost].to_f + current_order[:tax].to_f;
             
     if (@order.valid?)
@@ -74,6 +77,7 @@ class OrdersController < ApplicationController
         @order.status = Order::ORDER_COMPLETED
         @order.netsuite_id = @order.submitToNetSuite
         @order.save!
+        @order.associate_cart_line_items(current_cart)
         current_cart.destroy
       rescue Exception => e
         @custom_error = "Your credit card transaction was declined, please try again with another card."

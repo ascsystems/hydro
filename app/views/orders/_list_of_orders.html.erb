@@ -1,49 +1,18 @@
 <%# NOTE: this is used for scoped orders as well -- ie. only the orders for a particular customer account %>
-<table>
+<table style="width:30%;">
   <tr>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Address2</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Zip</th>
-    <th>Shipping method</th>
-    <th>Billing address</th>
-    <th>Billing address2</th>
-    <th>Billing city</th>
-    <th>Billing state</th>
-    <th>Billing zip</th>
-    <th></th>
-    <th></th>
+    <th>Order #</th>
+    <th>Order Date</th>
+    <th style="text-align:right;">Sales Total</th>
     <th></th>
   </tr>
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= order.first_name %></td>
-    <td><%= order.last_name %></td>
-    <td><%= order.email %></td>
-    <td><%= order.address %></td>
-    <td><%= order.address2 %></td>
-    <td><%= order.city %></td>
-    <td><%= order.state %></td>
-    <td><%= order.zip %></td>
-    <td><%= order.shipping_method_id %></td>
-    <td><%= order.billing_address %></td>
-    <td><%= order.billing_address2 %></td>
-    <td><%= order.billing_city %></td>
-    <td><%= order.billing_state %></td>
-    <td><%= order.billing_zip %></td>
-    <td><%= link_to 'Show', order %></td>
-    <%# Can't edit or destroy completed orders %>
-    <td><%#= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%#= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= order.invoice_number %></td>
+    <td><%= order.created_at.strftime("%m/%d/%Y") %></td>
+    <td style="text-align:right;"><%= number_to_currency order.payment_total_cost %></td>
+    <td style="text-align:right;"><%= link_to 'Show', order %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Order', new_order_path %>

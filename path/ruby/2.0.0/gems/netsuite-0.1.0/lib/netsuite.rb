@@ -87,6 +87,7 @@ module NetSuite
     autoload :KitItem,                    'netsuite/records/kit_item'
     autoload :Location,                   'netsuite/records/location'
     autoload :NonInventorySaleItem,       'netsuite/records/non_inventory_sale_item'
+    autoload :Partner, 			  'netsuite/records/partner'
     autoload :PaymentMethod,              'netsuite/records/payment_method'
     autoload :PricingMatrix,              'netsuite/records/pricing_matrix'
     autoload :RecordRef,                  'netsuite/records/record_ref'
@@ -98,6 +99,8 @@ module NetSuite
     autoload :Task,                       'netsuite/records/task'
     autoload :Term,                       'netsuite/records/term'
     autoload :Transaction,                'netsuite/records/transaction'
+    autoload :InventoryNumber,            'netsuite/records/inventory_number'
+    autoload :LocationsList,  'netsuite/records/locations_list'
   end
 
   def self.configure(&block)

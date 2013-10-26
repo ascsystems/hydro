@@ -18,13 +18,13 @@ module NetSuite
           h[k.to_s.lower_camelcase] = v
           h
         end)
-
         NetSuite::Configuration.connection(
           namespaces: {
             'xmlns:platformMsgs' => "urn:messages_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCore' => "urn:core_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:platformCommon' => "urn:common_#{NetSuite::Configuration.api_version}.platform.webservices.netsuite.com",
             'xmlns:listRel' => "urn:relationships_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
+	    'xmlns:listAcct' => "urn:accounting_#{NetSuite::Configuration.api_version}.lists.webservices.netsuite.com",
             'xmlns:tranSales' => "urn:sales_#{NetSuite::Configuration.api_version}.transactions.webservices.netsuite.com",
           },
           soap_header: preferences
@@ -54,7 +54,9 @@ module NetSuite
 
         # extract the class name without the module
         class_name = @klass.to_s.split("::").last
-
+	if class_name == "InventoryItem"
+	  class_name = "Item"
+	end
         search_record = {}
 
         criteria.each_pair do |condition_category, conditions|

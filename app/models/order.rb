@@ -50,7 +50,6 @@ class Order < ActiveRecord::Base
   # Create incrementing invoice number (starting at 777777)
   def set_invoice_number
     self.invoice_number = self.id + 777777
-    self.status = ORDER_INITIATED
     self.save
   end
   
@@ -101,6 +100,7 @@ class Order < ActiveRecord::Base
     end
     the_cart.order_id = self.id
     the_cart.save
+    self.save
   end
   #---------------------------------------------------------------------------
   
@@ -170,7 +170,7 @@ class Order < ActiveRecord::Base
     self.line_items.each do |li|
       line_items.push({quantity: li.quantity, item: NetSuite::Records::RecordRef.new(internal_id: li.netsuite_id, type: 'inventoryItem')})
     end
-    so = NetSuite::Records::SalesOrder.new(entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, other_ref_num: 12345, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: 2600}))
+    so = NetSuite::Records::SalesOrder.new(entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', other_ref_num: self.invoice_number, custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, other_ref_num: 12345, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: 2600}))
     so.add
   end
 

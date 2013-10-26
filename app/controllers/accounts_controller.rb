@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   # GET /accounts/1
   # GET /accounts/1.json
   def show
-    @account = Account.find(params[:id])
+    @account = Account.find(current_account.id)
     
     # Get this customer's orders too, to display in the view
     @orders = @account.orders
