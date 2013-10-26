@@ -14,9 +14,11 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    if(!params[:promo_code].blank?)
+      self.applyPromo(params[:promo])
+    end
     # new cart is created, unless cart for this session or user already exists
     @cart = current_cart  # application_controller.rb method
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @cart }
@@ -29,6 +31,26 @@ class CartsController < ApplicationController
     weight = current_cart.line_items.map(&:weight).sum
     rates = ship.getShippingRates(params[:shipping_zip], weight, current_cart.subtotal.to_f)
     render json: rates
+  end
+
+  def applyPromo(promo)
+    if(session[:promo].blank?)
+      promo = Promo.new
+      this_promo = promo.getPromo(promo)
+      if this_promo.blank?
+        flash[:notice] = "Invalid Promo"
+      else
+        session[:promo] = true
+        current_cart.line_items.each do |i|
+          i.product_price = i.product_price * ((100 - this_promo.amount) * .01)
+          i.product_subtotal = i.quantity * i.product_price
+        end
+        current_cart.save
+        flash[:notice] = "Promo Accepted"
+      end
+    else
+      flash[:notice] = "Your promo has already been applied"
+    end
   end
 
   def update_shipping
