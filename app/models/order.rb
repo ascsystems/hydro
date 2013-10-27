@@ -161,7 +161,7 @@ class Order < ActiveRecord::Base
     tax.round(2)
   end
 
-  def submitToNetSuite(session)
+  def submitToNetSuite
     customer_id = self.getNetSuiteCustomer
     if customer_id == nil
       customer_id = self.newNetSuiteCustomer
@@ -171,7 +171,7 @@ class Order < ActiveRecord::Base
     self.line_items.each do |li|
       line_items.push({quantity: li.quantity, item: NetSuite::Records::RecordRef.new(internal_id: li.netsuite_id, type: 'inventoryItem')})
     end
-    netsuite_sales_order = {entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', other_ref_num: self.invoice_number, custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, other_ref_num: 12345, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: shipping_method.netsuite_id})}
+    netsuite_sales_order = {entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', other_ref_num: self.invoice_number, custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: shipping_method.netsuite_id})}
     if !session[:promo].blank?
       netsuite_sales_order[:promoCode] = NetSuite::Records::RecordRef.new({ internal_id: session[:promo] })
     end
