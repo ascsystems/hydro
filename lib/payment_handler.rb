@@ -58,9 +58,8 @@ module PaymentHandler
       # NOTE: cc_expiry can be MMYYYY format, which is what we're using.
       credit_card = AuthorizeNet::CreditCard.new(order.credit_card_number, order.cc_expiry, {:card_code => order.ccv_number})
       response = transaction.purchase(order.payment_total_cost.to_f, credit_card)
-      
       # Raise an error with some detailed error text if the CC transaction failed
-      raise(response) if response.success? == false
+      #raise(response) if response.success? == false
       
       # Use this to show the exact error, for debugging only:
       # Note: to show the full response data, also add: + response.inspect
