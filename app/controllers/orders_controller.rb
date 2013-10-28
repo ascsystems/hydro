@@ -80,6 +80,7 @@ class OrdersController < ApplicationController
         @order.submitToNetSuite(session)
         current_cart.destroy
       rescue Exception => e
+        #@custom_error = e
         @custom_error = "Your credit card transaction was declined, please try again with another card."
         render action: :new
       end

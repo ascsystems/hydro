@@ -161,7 +161,7 @@ class Order < ActiveRecord::Base
     tax.round(2)
   end
 
-  def submitToNetSuite
+  def submitToNetSuite(session)
     customer_id = self.getNetSuiteCustomer
     if customer_id == nil
       customer_id = self.newNetSuiteCustomer
