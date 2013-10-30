@@ -22,7 +22,7 @@ class Shipping < ActiveRecord::Base
   	response.rates.each do |rate|
       shipping_types.each do |type|
         if rate.service_name == type[:key_text]
-  		    rates.push({id: type[:id], name: type[:display_text], price: (rate.total_price * 0.01)})
+  		    rates.push({id: type[:id], name: type[:display_text], price: (rate.total_price * 0.011)})
         end
       end
   	end
