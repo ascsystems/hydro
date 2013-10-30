@@ -6,7 +6,9 @@ class Shipping < ActiveRecord::Base
   def getShippingRates(zip, weight, subtotal)
     #weight = current_cart.weight.sum
     if !defined? weight
-      weight = 1
+      weight = 10
+    else
+      weight = weight * 10
     end
 		package = [Package.new(weight,[], cylinder: false)]
 		origin = Location.new(country: 'US', state: 'OR', city: 'Portland', zip: '97230')
