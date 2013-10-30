@@ -38,7 +38,15 @@ HydroFlask::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-
+  config.action_mailer.smtp_settings = {
+    address: "smtp.mandrillapp.com",
+    port: 587,
+    enable_starttls_auto: true,
+    domain: "hydroflask.com",
+    user_name: "david@aztec-apps.com", # the Mandrill SMTP User Name
+    password:  "apXxhrev9ONKex6lWTejMw",  # the Mandrill SMTP API key
+    authentication: 'login'
+  }
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
