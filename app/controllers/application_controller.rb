@@ -9,9 +9,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def authenticate
-   authenticate_or_request_with_http_basic do |username, password|
-     username == "hydroflask" && password == "Hydr0fl4sk!"
-   end
+    if !Rails.env.production?
+      authenticate_or_request_with_http_basic do |username, password|
+        username == "hydroflask" && password == "Hydr0fl4sk!"
+      end
+    end
   end
 
   private

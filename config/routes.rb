@@ -36,8 +36,6 @@ HydroFlask::Application.routes.draw do
 
   resources :product_option_value_images
 
-  resources :accounts
-
   resources :line_item_options
 
   resources :related_products
@@ -56,11 +54,14 @@ HydroFlask::Application.routes.draw do
 
   resources :options
 
-  resources :orders do
-    collection do
-      get 'confirm'
-      post 'confirm'
-      post 'payment'
+  scope constraints: { protocol: 'https', subdomain: 'secure'} do
+    resources :accounts
+    resources :orders do
+      collection do
+        get 'confirm'
+        post 'confirm'
+        post 'payment'
+      end
     end
   end
 
