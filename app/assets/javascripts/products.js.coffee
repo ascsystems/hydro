@@ -59,7 +59,7 @@ $j ->
 	$j("#enlarge_link, #product_image").on 'click', ->
 		$j.fancybox({href: $j('#product_image').attr('src') })
 		return false
-	$j('#star').raty({starOn: '/assets/star-on.png', starOff: '/assets/star-off.png', hints: ['','','','','']})
+	$j('#star').raty({starOn: '/images/star-on.png', starOff: '/images/star-off.png', hints: ['','','','','']})
 	$j("#reviews_button").on 'click', ->
 		 $j(this).parents('form:first').submit()
 		 return false
