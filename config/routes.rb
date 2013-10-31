@@ -54,7 +54,7 @@ HydroFlask::Application.routes.draw do
 
   resources :options
 
-  scope constraints: { protocol: 'https', subdomain: 'secure'} do
+  #scope constraints: { protocol: 'https', subdomain: 'secure'} do
     resources :accounts
     resources :orders do
       collection do
@@ -63,7 +63,7 @@ HydroFlask::Application.routes.draw do
         post 'payment'
       end
     end
-  end
+  #end
 
   #get "/orders/confirm" => "orders#confirm"
   #post "/orders/confirm" => "orders#confirm"
