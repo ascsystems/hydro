@@ -73,7 +73,7 @@ class OrdersController < ApplicationController
             
     if (@order.valid?)
       begin
-        #@response = @order.make_payment
+        @response = @order.make_payment
         @order.status = Order::ORDER_COMPLETED
         @order.save!
         @order.associate_cart_line_items(current_cart)
