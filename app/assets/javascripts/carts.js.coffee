@@ -5,7 +5,7 @@
 $j = jQuery.noConflict();
 $j ->
 	$j("#cart_page #checkout").on 'click', ->
-		window.location.href = '/orders/new'
+		window.location.href = 'https://' + window.location.host  +  '/orders/new'
 	$j("#cart_page #calculate_shipping").on 'click', ->
 		if($j('#shipping_zip').val() != '')
 			$j.getJSON '/carts/get_shipping.json', 'shipping_zip=' + $j('#shipping_zip').val(), (data) ->
