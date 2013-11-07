@@ -1,5 +1,5 @@
 class ProductImage < ActiveRecord::Base
-  attr_accessible :name, :product_id, :path, :default_image
+  attr_accessible :name, :product_id, :product_translation_id, :path, :default_image
 
   belongs_to :product
   belongs_to :product_translation
