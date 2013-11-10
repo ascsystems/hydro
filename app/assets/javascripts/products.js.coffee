@@ -42,7 +42,7 @@ $j ->
 	$j(".option").on 'click', ->
 		if(!$j(this).hasClass('multi'))
 			$j("input[option_type_id='" + $j(this).attr('option_type_id') + "']").val($j(this).attr('option_id'))
-			$j(this).siblings().removeClass('selected')
+			$j(".option").removeClass('selected')
 			$j(this).addClass('selected')
 			update_image()
 		else
