@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
         @order.save!
         @order.associate_cart_line_items(current_cart)
         @order.submitToNetSuite(session)
-        current_cart.destroy
+        session[:cart_id] = nil
       rescue Exception => e
         #@custom_error = e
         @custom_error = "Your credit card transaction was declined, please try again with another card."

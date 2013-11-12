@@ -96,11 +96,13 @@ class Order < ActiveRecord::Base
   # For each line_item in the current card, associate that line item to this order.
   def associate_cart_line_items(the_cart)
     the_cart.line_items.each do |a_line_item|
-      self.line_items << a_line_item  # LineItem row is saved, with our order_id
+      a_line_item.order_id = self.id
+      a_line_item.save
+      #self.line_items << a_line_item  # LineItem row is saved, with our order_id
     end
     the_cart.order_id = self.id
     the_cart.save
-    self.save
+    #self.save
   end
   #---------------------------------------------------------------------------
   

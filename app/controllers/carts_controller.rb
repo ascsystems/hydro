@@ -78,7 +78,7 @@ class CartsController < ApplicationController
     line_item.save!
     cart = current_cart
     cart.set_subtotal
-    cart_update = {total: cart.subtotal, quantity: line_item.quantity, item_total: line_item.product_subtotal}
+    cart_update = {total: cart.subtotal.to_f, quantity: line_item.quantity, item_total: line_item.product_subtotal}
     render json: cart_update
   end
 

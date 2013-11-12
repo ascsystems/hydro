@@ -34,6 +34,9 @@
           <%= store.address2 %><br />
           <% end %>
           <%= store.city %> <%= store.state %>, <%= store.zip %><br />
+          <% if !store.phone.nil? && !store.phone.empty? %>
+          <%= store.phone %><br />
+          <% end %>
           Distance: <%= store.distance.round(1) %> miles
           <script type="text/javascript">
           stores.push(new google.maps.LatLng(<%= store.lat %>, <%= store.lng %>));
@@ -85,7 +88,7 @@
       position: stores[iterator],
       map: map,
       draggable: false,
-      icon: '/assets/h_man_marker.png',
+      icon: '/images/h_man_marker.png',
       animation: google.maps.Animation.DROP
     });
     bounds.extend(stores[iterator]);

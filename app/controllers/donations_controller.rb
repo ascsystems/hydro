@@ -1,14 +1,14 @@
 class DonationsController < ApplicationController
   # GET /donations
   # GET /donations.json
-  def index
-    @donations = Donation.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @donations }
-    end
-  end
+#  def index
+ #   @donations = Donation.all
+#
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @donations }
+#    end
+#  end
 
   # GET /donations/1
   # GET /donations/1.json
@@ -71,13 +71,13 @@ class DonationsController < ApplicationController
 
   # DELETE /donations/1
   # DELETE /donations/1.json
-  def destroy
-    @donation = Donation.find(params[:id])
-    @donation.destroy
-
-    respond_to do |format|
-      format.html { redirect_to donations_url }
-      format.json { head :no_content }
-    end
-  end
+ # def destroy
+ #   @donation = Donation.find(params[:id])
+  #  @donation.destroy
+#
+#    respond_to do |format|
+ #     format.html { redirect_to donations_url }
+ #     format.json { head :no_content }
+#    end
+#  end
 end

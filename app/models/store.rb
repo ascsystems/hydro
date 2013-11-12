@@ -2,7 +2,7 @@ class Store < ActiveRecord::Base
   attr_accessible :address1, :address2, :city, :country, :lat, :lng, :name, :phone, :state, :zip
 
   def get_stores(coords)
-  	stores = Store.select("id, name, address1, address2, city, state, zip, country, lat, lng, ( 3959 * acos( cos( radians(#{coords["lat"]}) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(#{coords["lng"]}) ) + sin( radians(#{coords["lat"]}) ) * sin( radians( lat ) ) ) ) AS distance").order("distance asc").limit(20).all
+  	stores = Store.select("id, name, address1, address2, city, state, zip, phone, country, lat, lng, ( 3959 * acos( cos( radians(#{coords["lat"]}) ) * cos( radians( lat ) ) * cos( radians( lng ) - radians(#{coords["lng"]}) ) + sin( radians(#{coords["lat"]}) ) * sin( radians( lat ) ) ) ) AS distance").order("distance asc").limit(20).all
   end
 
   def get_coords(address)

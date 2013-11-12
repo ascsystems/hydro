@@ -4,14 +4,14 @@ class ProductsController < ApplicationController
 
   caches_page :show
 
-  def index
-    @products = Product.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json #{ render json: @products }
-    end
-  end
+#  def index
+#    @products = Product.all
+#
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json #{ render json: @products }
+#    end
+#  end
 
   # GET /products/1
   # GET /products/1.json
@@ -47,9 +47,9 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  def edit
-    @product = Product.find(params[:id])
-  end
+#  def edit
+#    @product = Product.find(params[:id])
+#  end
 
   # POST /products
   # POST /products.json
@@ -96,13 +96,13 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1
   # DELETE /products/1.json
-  def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-
-    respond_to do |format|
-      format.html { redirect_to products_url }
-      format.json { head :no_content }
-    end
-  end
+ # def destroy
+ #   @product = Product.find(params[:id])
+ #   @product.destroy
+#
+#    respond_to do |format|
+#      format.html { redirect_to products_url }
+#      format.json { head :no_content }
+#    end
+#  end
 end
