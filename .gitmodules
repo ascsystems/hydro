@@ -1,0 +1,3 @@
+[submodule "netsuite"]
+    path = vendor/gems/netsuite
+    url = git@github.com:bobbobbins/netsuite.git
