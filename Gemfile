@@ -42,7 +42,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', "~> 4.0"  # was version 4.0 by default, but needed to down-version for rails_admin
 gem 'friendly_id', '5.0.0.rc2'
 gem "savon"
-gem 'netsuite'
+gem 'netsuite', path: 'vendor/gems/netsuite'
 gem 'ckeditor'
 gem "curb", "~> 0.8.4"
 #gem 'actionpack', "~> 4.0.0"
