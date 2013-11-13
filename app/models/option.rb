@@ -1,5 +1,5 @@
 class Option < ActiveRecord::Base
-  attr_accessible :name, :order_num, :option_type_id, :product_type_id
+  attr_accessible :name, :order_num, :option_type_id, :product_type_id, :multi
 
   belongs_to :option_type
   belongs_to :product_type
