@@ -20,7 +20,9 @@ class ProductTranslation < ActiveRecord::Base
       end
       item_sum = 0
       item.locations_list.locations.each do |l|
-        item_sum = item_sum + l.quantity_available.to_i
+        if l.location_id.internal_id.to_i == 2
+          item_sum = item_sum + l.quantity_available.to_i
+        end
       end
       t.quantity = item_sum
       t.save!
