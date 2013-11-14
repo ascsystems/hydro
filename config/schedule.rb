@@ -19,4 +19,9 @@
 every :hour do
   runner "ProductTranslation.update_netsuite"
 end
+
+every 6.hours do
+  runner "Social.update_social"
+end
+
 # Learn more: http://github.com/javan/whenever
