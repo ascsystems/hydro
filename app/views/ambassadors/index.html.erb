@@ -9,7 +9,7 @@
     @ambassadors.each do |ambassador| 
     %>
     <li class="amblandingthumb ambparent <% if x == 4 or x == 5 or x == 6 %>right<% end %>">
-      <%= image_tag ambassador.image_path.sub!('.', '-title.'), alt: ambassador.last_name, title: ambassador.last_name %>
+      <%= image_tag ambassador.image_path.sub!(/(.*)\.(.*)/, '\1-title.\2'), alt: ambassador.last_name, title: ambassador.last_name %>
       <div class="ambpop">
         <div>
           <div class="ambpopclose"></div>

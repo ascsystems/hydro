@@ -18,4 +18,4 @@
 		end
 	end
 %>
-<div class="multi_option_wrapper<% if in_stock == false %> disabled<% end %>"><%= image_tag "/images/options/#{lid.display_data}", alt: lid.name, title: lid.name, class: "lid option #{selected}", option_id: lid.id %><% if in_stock == false %><div class="outofstock">Out of Stock</div><% end %></div>
+<div class="multi_option_wrapper<% if in_stock == false %> disabled<% end %>"><%= image_tag "https://s3.amazonaws.com/hydroflask/images/options/#{lid.display_data}", alt: lid.name, title: lid.name, class: "lid option #{selected}", option_id: lid.id %><% if in_stock == false %><div class="outofstock">Out of Stock</div><% end %></div>

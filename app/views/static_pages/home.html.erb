@@ -11,19 +11,19 @@
   document.observe("dom:loaded", function() {
     var slideImg0 = new Image();
         slideImg0.onload = function(){ homeSlide.imageLoading(); };
-        slideImg0.src = '<%= asset_path "carousel/hiking.jpg" %>';
+        slideImg0.src = 'https://s3.amazonaws.com/hydroflask/images/carousel/hiking.jpg';
     var slideImg1 = new Image();
         slideImg1.onload = function(){ homeSlide.imageLoading(); };
-        slideImg1.src = '<%= asset_path "carousel/lake_drinker.jpg" %>';
+        slideImg1.src = 'https://s3.amazonaws.com/hydroflask/images/carousel/lake_drinker.jpg';
     var slideImg2 = new Image();
         slideImg2.onload = function(){ homeSlide.imageLoading(); };
-        slideImg2.src = '<%= asset_path "carousel/golf_sunset.jpg" %>';
+        slideImg2.src = 'https://s3.amazonaws.com/hydroflask/images/carousel/golf_sunset.jpg';
     var slideImg3 = new Image();
         slideImg3.onload = function(){ homeSlide.imageLoading(); };
-        slideImg3.src = '<%= asset_path "carousel/bridge_zoom.jpg" %>';
+        slideImg3.src = 'https://s3.amazonaws.com/hydroflask/images/carousel/bridge_zoom.jpg';
     var slideImg4 = new Image();
         slideImg4.onload = function(){ homeSlide.imageLoading(); };
-        slideImg4.src = '<%= asset_path "carousel/yoga.jpg" %>';
+        slideImg4.src = 'https://s3.amazonaws.com/hydroflask/images/carousel/yoga.jpg';
   
   if(homeSlide.version == 'touch') {
     homeSlide.touch.init();
@@ -50,27 +50,27 @@
   var slides = new Array();
   
   slides[0] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/hiking.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg13" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="https://s3.amazonaws.com/hydroflask/images/carousel/hiking.jpg" alt="" title="" class="homeslideimg" id="homeslideimg13" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
 
   slides[1] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/lake_drinker.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg15" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="https://s3.amazonaws.com/hydroflask/images/carousel/lake_drinker.jpg" alt="" title="" class="homeslideimg" id="homeslideimg15" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
   
   slides[2] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/golf_sunset.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg1" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="https://s3.amazonaws.com/hydroflask/images/carousel/golf_sunset.jpg" alt="" title="" class="homeslideimg" id="homeslideimg1" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
 
   slides[3] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/bridge_zoom.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg6" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="https://s3.amazonaws.com/hydroflask/images/carousel/bridge_zoom.jpg" alt="" title="" class="homeslideimg" id="homeslideimg6" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
 
   slides[4] = {
-    html: '<div class="homeslidediv" style=""><img src="<%= asset_path "carousel/yoga.jpg" %>" alt="" title="" class="homeslideimg" id="homeslideimg4" /></div>'
+    html: '<div class="homeslidediv" style=""><img src="https://s3.amazonaws.com/hydroflask/images/carousel/yoga.jpg" alt="" title="" class="homeslideimg" id="homeslideimg4" /></div>'
     //caption: '<img src="/assets/home-bottle-overlay.png" alt="Hot 12 hours, Cold 24" style="height:400px;">'
   }
 
@@ -78,18 +78,18 @@
 <div id="homeslideposition">
 	<div id="homeslidenavouter">
 		<div id="homeslidenav">
-			<img src="<%= asset_path "arrow_left.png" %>" class="navarrow" id="navarrowleft" onclick="homeSlide.prevNext(-1);"/>
-			<img src="<%= asset_path "arrow_right.png" %>" class="navarrow" id="navarrowright" onclick="homeSlide.prevNext(1);" />
+			<img src="https://s3.amazonaws.com/hydroflask/images/arrow_left.png" class="navarrow" id="navarrowleft" onclick="homeSlide.prevNext(-1);"/>
+			<img src="https://s3.amazonaws.com/hydroflask/images/arrow_right.png" class="navarrow" id="navarrowright" onclick="homeSlide.prevNext(1);" />
 			<ul id="homeslidenavlinks">
 				<% (0..4).each do |i| %>
 				<li>
-					<img src="<%= asset_path "clear.gif" %>" class="navlink active" id="navlink<%= i %>" onclick="homeSlide.slideToPage(<%= i %>);" alt="" title="" />
+					<img src="https://s3.amazonaws.com/hydroflask/images/clear.gif" class="navlink active" id="navlink<%= i %>" onclick="homeSlide.slideToPage(<%= i %>);" alt="" title="" />
 				</li>
 				<% end %>
 			</ul>
       <!--<div id="photoposition">
         <div class="photoCredits" id="homephotocredits" style="display: none;" onmouseover="homeSlide.pause();">
-          <img class="infoicon" src="<%= asset_path "clear.gif" %>" />
+          <img class="infoicon" src="https://s3.amazonaws.com/hydroflask/images/clear.gif" />
           <div class="photoContent" id="homephotocaption" onmouseout="homeSlide.restart();">
             <div class="photoBy"></div>
           </div>
@@ -101,7 +101,7 @@
 		<div id="homeslidebox">
 			<div class="homeslide" id="homeslideB">
 				<div class="homeslidediv" style="">
-				  <img src="<%= asset_path "carousel/hiking.jpg" %>" alt="Hydro Flask Hiker" title="Hydro Flask Hiker" class="homeslideimg" id="homeslideimg0" />
+				  <img src="https://s3.amazonaws.com/hydroflask/images/carousel/hiking.jpg" alt="Hydro Flask Hiker" title="Hydro Flask Hiker" class="homeslideimg" id="homeslideimg0" />
 				</div>
 			</div>
 		</div>

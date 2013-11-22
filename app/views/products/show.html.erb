@@ -79,12 +79,12 @@
 							<div id="top_right_wrapper">
 								<div id="cart" class="content_box<% if @in_stock == false %> disabled<% end %>">
 									<div class="cart_wrapper">
-										Add to Cart <%= image_tag 'cart_white.png', alt: 'Add to cart', title: 'Add to cart' %>
+										Add to Cart <%= image_tag 'https://s3.amazonaws.com/hydroflask/images/cart_white.png', alt: 'Add to cart', title: 'Add to cart' %>
 									</div>
 								</div>
 								<div id="rating" class="content_box">
 									<div class="content_box_wrapper">
-										<h3><%= image_tag 'review.png', alt: 'Reviews', title: 'Reviews' %> Reviews <%= image_tag "stars_#{@product.rating}.png", alt: 'stars', title: 'stars', id: 'stars' %></h3>
+										<h3><%= image_tag 'https://s3.amazonaws.com/hydroflask/images/review.png', alt: 'Reviews', title: 'Reviews' %> Reviews <%= image_tag "https://s3.amazonaws.com/hydroflask/images/stars_#{@product.rating}.png", alt: 'stars', title: 'stars', id: 'stars' %></h3>
 										<ul id="review_nav_list">
 											<li display="reviews">Read all reviews</li>
 											<li>|</li>

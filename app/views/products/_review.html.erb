@@ -1,6 +1,6 @@
 <div class="customer_review">
 	<p class="posted_by">Posted by <span class="name"><%=  review.name %></span></p>
-	<p class="star_rating"><%= image_tag "stars_#{review.rating}.png", alt: "#{review.rating} Star Rating", title: "#{review.rating} Star Rating" %></p>
+	<p class="star_rating"><%= image_tag "https://s3.amazonaws.com/hydroflask/images/stars_#{review.rating}.png", alt: "#{review.rating} Star Rating", title: "#{review.rating} Star Rating" %></p>
 	<h3><%= review.title %></h3>
 	<p class="review_body"><%= review.body %></p>
 </div>

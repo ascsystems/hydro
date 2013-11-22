@@ -50,7 +50,7 @@ $j ->
 		return true
 	$j('.social_image').hover(
 		-> $j(this).attr('src', $j(this).attr('src').replace('_black',''))
-		-> $j(this).attr('src', $j(this).attr('src').replace('.','_black.'))
+		-> $j(this).attr('src', $j(this).attr('src').replace('.png','_black.png'))
 	)
 IsEmail = (email) ->
 	regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/

@@ -9,7 +9,7 @@ class ProductImage < ActiveRecord::Base
 
   def getImage(options, product_id)
   	if(options.empty? == false)
-      image = ProductImage.all(conditions: ['product_option_values.id IN (?) and product_images.product_id = ?', options, product_id], joins: [:product_option_values, :product_translation], group: 'product_images.id', having: ['COUNT(distinct product_option_values.id) >= ?', options.length])
+      image = ProductImage.all(conditions: ['product_option_values.option_value_id IN (?) and product_images.product_id = ? and product_option_values.product_id = ?', options, product_id, product_id], joins: [:product_option_values, :product_translation], group: 'product_images.id', having: ['COUNT(distinct product_option_values.option_value_id) >= ?', options.length])
   		if(image.empty? == false)
         return image
       end
@@ -21,7 +21,7 @@ class ProductImage < ActiveRecord::Base
   #getCartImage is different than getImage based on the caps chosen(needs logic added)
   def getCartImage(options, product_id) 
     if(options.empty? == false)
-      image = ProductImage.all(conditions: ['product_option_values.id IN (?) and product_images.product_id = ?', options, product_id], joins: [:product_option_values, :product_translation], group: 'product_images.id', having: ['COUNT(distinct product_option_values.id) >= ?', options.length])
+      image = ProductImage.all(conditions: ['product_option_values.option_value_id IN (?) and product_images.product_id = ? and product_option_values.product_id = ?', options, product_id, product_id], joins: [:product_option_values, :product_translation], group: 'product_images.id', having: ['COUNT(distinct product_option_values.option_value_id) >= ?', options.length])
       if(image.empty? == false)
         return image
       end

@@ -4,7 +4,7 @@
     <h3><%= link_to product.short_name, product_path(product) %></h3>
     <div class="content_wrapper">
       <div class="price"><%= number_to_currency product.price %></div>
-      <div class="rating"><%= image_tag "stars_#{product.rating}.png", alt: 'star rating', title: 'star rating' %></div>
+      <div class="rating"><%= image_tag "https://s3.amazonaws.com/hydroflask/images/stars_#{product.rating}.png", alt: 'star rating', title: 'star rating' %></div>
     </div>
     <div class="colors" product_id="<%= product.id %>">
       <%= render :partial => 'products/color', :collection => product.product_colors, :locals => {:option_type => ""} %>

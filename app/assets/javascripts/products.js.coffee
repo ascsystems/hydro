@@ -42,7 +42,7 @@ $j ->
 	$j(".option").on 'click', ->
 		if(!$j(this).hasClass('multi'))
 			$j("input[option_type_id='" + $j(this).attr('option_type_id') + "']").val($j(this).attr('option_id'))
-			$j(".option").removeClass('selected')
+			#$j(".option").removeClass('selected')
 			$j(this).addClass('selected')
 			update_image()
 		else
@@ -59,7 +59,7 @@ $j ->
 	$j("#enlarge_link, #product_image").on 'click', ->
 		$j.fancybox({href: $j('#product_image').attr('src') })
 		return false
-	$j('#star').raty({starOn: '/images/star-on.png', starOff: '/images/star-off.png', hints: ['','','','','']})
+	$j('#star').raty({starOn: 'https://s3.amazonaws.com/hydroflask/images/star-on.png', starOff: 'https://s3.amazonaws.com/hydroflask/images/star-off.png', hints: ['','','','','']})
 	$j("#reviews_button").on 'click', ->
 		 $j(this).parents('form:first').submit()
 		 return false

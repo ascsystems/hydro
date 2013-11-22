@@ -28,7 +28,7 @@
 							
 							<%= form_for(EmailSubscription.new, {:url => subscribe_email_path(), :method => :post, :html=> {:class => 'new_email_subscription_footer', :id=>"new_email_subscription_footer"}}) do |f| %>		
 								<div class="field">
-									<%= f.text_field :email_address, :placeholder => "Enter email address" %><%= f.submit "Submit Email", :type => :image, :src => asset_path("submit_button.png"), :name => 'subscribe_email', :id => 'submit_email_sub'%>
+									<%= f.text_field :email_address, placeholder: "Enter email address" %><%= f.submit "Submit Email", type: :image, src: "https://s3.amazonaws.com/hydroflask/images/submit_button.png", name: 'subscribe_email', id: 'submit_email_sub' %>
 								</div>
 							<% end %>
 							<!-- old code
@@ -50,15 +50,15 @@
 					<p>Stay current with Hydro Flask!</p>
 					<nav id="footer-social-nav">
 						<ul>
-							<li><a href="https://twitter.com/HydroFlask" target="_blank"><img src="/images/twitter_square_black.png" alt="Hydro Flask on Twitter" class="social_image"></a></li>
-							<li><a href="http://www.facebook.com/hydroflask?ref=mf" target="_blank"><img src="/images/facebook_square_black.png" alt="Hydro Flask on Facebook" class="social_image"></a></li>
-							<li><a href="http://www.instagram.com/hydroflask" target="_blank"><img src="/images/instagram_square_black.png" alt="Hydro Flask on Instagram" class="social_image"></a></li>
-							<li><a href="http://www.pinterest.com/hydroflask" target="_blank"><img src="/images/pinterest_square_black.png" alt="Hydro Flask on Pinterest" class="social_image"></a></li>
-							<li><a href="http://blog.hydroflask.com" target="_blank"><img src="/images/rss_square_black.png" alt="Hydro Flask Feedburner" class="social_image"></a></li>
+							<li><a href="https://twitter.com/HydroFlask" target="_blank"><img src="https://s3.amazonaws.com/hydroflask/images/twitter_square_black.png" alt="Hydro Flask on Twitter" class="social_image"></a></li>
+							<li><a href="http://www.facebook.com/hydroflask?ref=mf" target="_blank"><img src="https://s3.amazonaws.com/hydroflask/images/facebook_square_black.png" alt="Hydro Flask on Facebook" class="social_image"></a></li>
+							<li><a href="http://www.instagram.com/hydroflask" target="_blank"><img src="https://s3.amazonaws.com/hydroflask/images/instagram_square_black.png" alt="Hydro Flask on Instagram" class="social_image"></a></li>
+							<li><a href="http://www.pinterest.com/hydroflask" target="_blank"><img src="https://s3.amazonaws.com/hydroflask/images/pinterest_square_black.png" alt="Hydro Flask on Pinterest" class="social_image"></a></li>
+							<li><a href="http://blog.hydroflask.com" target="_blank"><img src="https://s3.amazonaws.com/hydroflask/images/rss_square_black.png" alt="Hydro Flask Feedburner" class="social_image"></a></li>
 						</ul>
 					</nav>
 					<div id="hman-div" class="clear">
-						<%= link_to image_tag("h_man.png", id: "h_man"), "/pages/h-man" %>
+						<%= link_to image_tag("https://s3.amazonaws.com/hydroflask/images/h_man.png", id: "h_man"), "/pages/h-man" %>
 						<h3><%= link_to "H-MAN", "/pages/h-man", style: "color:#000000;" %></h3>
 						<p>Meet the heart &amp; soul of Hydro Flask!</p>
 					</div>
@@ -68,7 +68,7 @@
 					<p>Find info on the Hydro Flask site.</p>
 					<%= form_tag "/search", method: "get", id: "footer_search" do %>
 						<div class="form-row">
-							<input type="text" placeholder="Search" name="query" id="footer_search_box"/><input type="image" src="<%= asset_path "search_button.png" %>" />
+							<input type="text" placeholder="Search" name="query" id="footer_search_box"/><input type="image" src="https://s3.amazonaws.com/hydroflask/images/search_button.png" />
 						</div>
 					<% end %>
 				</div>
