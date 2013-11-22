@@ -34,7 +34,7 @@ set :stages, %w(production staging)  #%w(staging production)
 require 'capistrano/ext/multistage'
 
 # Files that remain on the server; we just update the softlinks when code is deployed
-set :shared_files, %w(config/database.yml)  #  config/facebook.yml
+set :shared_files, %w(config/database.yml config/authorize_config.yml config/initializers/netsuite.rb)  #  config/facebook.yml
 
 
 set :whenever_environment, defer { stage }
