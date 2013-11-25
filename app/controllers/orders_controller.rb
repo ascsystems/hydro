@@ -75,6 +75,7 @@ class OrdersController < ApplicationController
       begin
         @response = @order.make_payment
         @order.status = Order::ORDER_COMPLETED
+        @order.account_id = current_account.id if current_account;
         @order.save!
         @order.associate_cart_line_items(current_cart)
         @order.submitToNetSuite(session)
