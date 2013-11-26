@@ -76,6 +76,10 @@ class OrdersController < ApplicationController
         @response = @order.make_payment
         @order.status = Order::ORDER_COMPLETED
         @order.account_id = current_account.id if current_account;
+        if !session[:promo].blank?
+          @order.promotion_id = session[:promo]
+        end
+        @order.netsuite_status = 'New'
         @order.save!
         @order.associate_cart_line_items(current_cart)
         #@order.submitToNetSuite(session)

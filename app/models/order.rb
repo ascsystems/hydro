@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :credit_card_number, :address, :address2, :city, :state, :zip, :phone, :email,
                   :billing_address, :billing_address2, :billing_city, :billing_state, :billing_zip, 
                   :shipping_method_id, :invoice_number, :status, :account_id, :ccv_number, :total_amount,
-                  :cc_expiry_month, :cc_expiry_year, :payment_total_cost, :shipping_cost, :tax
+                  :cc_expiry_month, :cc_expiry_year, :payment_total_cost, :shipping_cost, :tax, :netsuite_status, :promotion_id
   
               
   has_many :line_items
@@ -148,6 +148,19 @@ class Order < ActiveRecord::Base
   end
   #---------------------------------------------------------------------------
   
+  def self.netsuiteBatch
+    orders = Order.where(netsuite_status: 'New')
+    orders.each do |o|
+      begin 
+        o.submitToNetSuite
+        o.netsuite_status = 'Imported'
+      rescue Exception => e
+        o.netsuite_status = 'Error'
+      end
+      o.save!
+    end
+  end
+
   def getNetSuiteCustomer
     customer = NetSuite::Records::Customer.search({basic: [{ field: 'email', operator: 'contains', value: self.email.strip }, { field: 'firstName', operator: 'contains', value: self.first_name.strip }, { field: 'lastName', operator: 'contains', value: self.last_name.strip }]})
     if customer.results[0] != nil
@@ -163,7 +176,7 @@ class Order < ActiveRecord::Base
     tax.round(2)
   end
 
-  def submitToNetSuite(session)
+  def submitToNetSuite
     customer_id = self.getNetSuiteCustomer
     if customer_id == nil
       customer_id = self.newNetSuiteCustomer
@@ -174,9 +187,12 @@ class Order < ActiveRecord::Base
       line_items.push({quantity: li.quantity, item: NetSuite::Records::RecordRef.new(internal_id: li.netsuite_id, type: 'inventoryItem')})
     end
     netsuite_sales_order = {entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', other_ref_num: self.invoice_number, custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: shipping_method.netsuite_id}), shipping_cost: self.shipping_cost.to_f, cc_approved: TRUE, payment_method: NetSuite::Records::RecordRef.new({internal_id: 5})}
-    if !session[:promo].blank?
-      netsuite_sales_order[:promo_code] = NetSuite::Records::RecordRef.new({ internal_id: session[:promo] })
+    if !self.promotion_id.blank?
+      netsuite_sales_order[:promo_code] = NetSuite::Records::RecordRef.new({ internal_id: self.promotion_id })
     end
+    #if !session[:promo].blank?
+    #  netsuite_sales_order[:promo_code] = NetSuite::Records::RecordRef.new({ internal_id: session[:promo] })
+    #end
     so = NetSuite::Records::SalesOrder.new(netsuite_sales_order)
     so.add
   end

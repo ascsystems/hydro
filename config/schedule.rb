@@ -18,6 +18,7 @@
 # end
 every :hour do
   runner "ProductTranslation.update_netsuite"
+  runner "Order.netsuiteBatch"
 end
 
 every 6.hours do
