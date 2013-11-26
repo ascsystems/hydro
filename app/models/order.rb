@@ -25,10 +25,10 @@ class Order < ActiveRecord::Base
   validates :billing_city, presence: true
   validates :billing_state, presence: true
   validates :billing_zip, presence: true
-  validates :credit_card_number, presence: true, numericality: true, length: {minimum: 15, maximum: 16}
-  validates :cc_expiry_year, presence: true
-  validates :cc_expiry_month, presence: true
-  validates :ccv_number, presence: true, numericality: true, length: {minimum: 3, maximum: 4}
+  validates :credit_card_number, presence: true, numericality: true, length: {minimum: 15, maximum: 16}, on: :create
+  validates :cc_expiry_year, presence: true, on: :create
+  validates :cc_expiry_month, presence: true, on: :create
+  validates :ccv_number, presence: true, numericality: true, length: {minimum: 3, maximum: 4}, on: :create
   
   # NOTE: there is a special validation method for the CC info,
   #       since that data is not saved to the DB. (see validate_cc_fields)
