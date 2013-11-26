@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
         @order.account_id = current_account.id if current_account;
         @order.save!
         @order.associate_cart_line_items(current_cart)
-        @order.submitToNetSuite(session)
+        #@order.submitToNetSuite(session)
         session[:cart_id] = nil
       rescue Exception => e
         #@custom_error = e
