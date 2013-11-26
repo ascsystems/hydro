@@ -1,0 +1,81 @@
+<div id="checkout_page">
+	<h1>Thank you for your purchase! Here is a receipt for your records</h1>
+  <div id="cart_panel">
+    <h2>Your Cart</h2>
+    <%= render partial: 'carts/item', collection: @order.line_items %>
+  </div>
+  <div id="form_panel">
+    <h3>Order #: <%= @order.invoice_number %></h3>
+<div class="confirm_shipping">
+  <h2>Shipping Info</h2>
+  <p>
+    <span class="label">First name:</span>
+    <%= @order.first_name %>
+  </p>
+  <p>
+    <span class="label">Last name:</span>
+    <%= @order.last_name %>
+  </p>
+  <p>
+    <span class="label">Phone:</span>
+    <%= @order.phone %>
+  </p>
+  <% if !@order.email.empty? %>
+  <p>
+    <span class="label">Email:</span>
+    <%= @order.email %>
+  </p>
+  <% end %>
+  <p>
+    <span class="label">Address:</span>
+    <%= @order.address %>
+  </p>
+  <% if !@order.address2.empty? %>
+  <p>
+    <span class="label">Address2:</span>
+    <%= @order.address2 %>
+  </p>
+  <% end %>
+  <p>
+    <span class="label">City:</span>
+    <%= @order.city %>
+  </p>
+  <p>
+    <span class="label">State:</span>
+    <%= @order.state %>
+  </p>
+  <p>
+    <span class="label">Zip:</span>
+    <%= @order.zip %>
+  </p>
+</div>
+<div class="confirm_billing">
+  <h2>Billing Address</h2>
+  <p>
+    <span class="label">Address:</span>
+    <%= @order.billing_address %>
+  </p>
+  <% if !@order.billing_address2.empty? %>
+  <p>
+    <span class="label">Address 2:</span>
+    <%= @order.billing_address2 %>
+  </p>
+  <% end %>
+  <p>
+    <span class="label">City:</span>
+    <%= @order.billing_city %>
+  </p>
+  <p>
+    <span class="label">State:</span>
+    <%= @order.billing_state %>
+  </p>
+  <p>
+    <span class="label">Zip:</span>
+    <%= @order.billing_zip %>
+  </p>
+</div>
+</div>
+  <div id="payment_panel" style="margin-top:10px;">
+    <%= render partial: 'orders/total_cost_breakdown_final' %>
+  </div>
+</div>
