@@ -35,7 +35,7 @@
         <span class="label">Total: </span><%= number_to_currency(@order.payment_total_cost) %>
       </div>
       <div class="confirm_shipping" style="margin-bottom:20px;">
-        <h3>Shipping Info</h3>
+        <h3>Shipping Information</h3>
         <span class="label">First name:</span>
         <%= @order.first_name %><br>
         <span class="label">Last name:</span>
@@ -60,7 +60,7 @@
         <%= @order.zip %>
       </div>
       <div class="confirm_billing">
-        <h3>Billing Address</h3>
+        <h3>Billing Information</h3>
         <span class="label">Address:</span>
         <%= @order.billing_address %><br>
         <% if !@order.billing_address2.empty? %>

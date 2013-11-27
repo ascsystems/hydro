@@ -13,7 +13,7 @@ Shipping: <%= number_to_currency(@order.shipping_cost) %>
 Tax: <%= number_to_currency(@order.tax) %>
 Total: <%= number_to_currency(@order.payment_total_cost) %>
 
-Shipping Info
+Shipping Information
 
 First name: <%= @order.first_name %>
 Last name: <%= @order.last_name %>
@@ -25,7 +25,7 @@ City: <%= @order.city %>
 State: <%= @order.state %>
 Zip: <%= @order.zip %>
 
-Billing Address
+Billing Information
 
 Address: <%= @order.billing_address %>
 <% if !@order.billing_address2.empty? %>Address 2: <%= @order.billing_address2 %><% end %>
