@@ -83,6 +83,7 @@ class OrdersController < ApplicationController
         @order.save!
         @order.associate_cart_line_items(current_cart)
         #@order.submitToNetSuite(session)
+        HydroMailer.purchase_notification_email(@order).deliver
         session[:cart_id] = nil
       rescue Exception => e
         #@custom_error = e
