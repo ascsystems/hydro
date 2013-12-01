@@ -2,18 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-<<<<<<< HEAD
-$ ->
-	update_image()
-	$("#product #content_nav_list li").on 'click', ->
-		$("#product #content_nav_list li").removeClass('selected')
-		$(this).addClass('selected')
-		active_div = $(this).attr('display')
-		$('.content_div').hide()
-		$('#' + active_div).show()
-	$("#product #review_nav_list li").on 'click', ->
-		active_div = $(this).attr('display')
-=======
 # NOTE: This is only for use on the products/show page ! Do not include it other places
 $j = jQuery.noConflict()
 $j ->
@@ -33,49 +21,11 @@ $j ->
 		$j('#' + active_div).show()
 	$j("#product #review_nav_list li").on 'click', ->
 		active_div = $j(this).attr('display')
->>>>>>> e2c4492b9967997e5368a213c4dff8787ca628c5
 		if(active_div != '')
 			$j("#product #content_nav_list li").removeClass('selected')
 			if(active_div == 'reviews')
 				$j('#reviews_li').addClass('selected')
 			else if(active_div == 'review_form')
-<<<<<<< HEAD
-				$('#write_review_li').addClass('selected')
-			$('.content_div').hide()
-			$('#' + active_div).show()
-	$( "#quantity" ).spinner({ value: 1, min: 1, max:9999, stop: ->
-		$("#quantity_text").html($("#quantity").val())
-	})
-	$( "#quantity" ).readOnly = true
-
-	$("#product #cart").on 'click', ->
-		$("#product_form").submit();
-	$(".option").on 'click', ->
-		$(this).siblings("input[type='hidden']").val($(this).attr('option_id'))
-		update_image()
-		$(this).siblings().removeClass('selected')
-		$(this).addClass('selected')
-		$(this).parent().siblings(".option_header").children(".option_text").html($(this).attr('title'))
-		#$(this).sibling(".option_text").html($(this).attr('title'))
-	$("#enlarge_link, #product_image").on 'click', ->
-		$.fancybox({href: $('#product_image').attr('src') })
-		return false
-	$('#star').raty({starOn: '/assets/star-on.png', starOff: '/assets/star-off.png', hints: ['','','','','']})
-	$("#reviews_button").on 'click', ->
-		 $(this).parents('form:first').submit()
-		 return false
-
-update_image = () ->
-	$("#loadingImage").fadeIn 600;
-	options = [];
-	$("input[type='hidden'].option_value").each (index, element) =>
-		options.push($(element).val())
-	$.getJSON "/products/" + $('#product_id').val() + "/product_images/get_image", { data: '{ options: [' + options.join(",") + '], product: ' + $("#product_id").val() + '}'}, (data) ->
-		image_url = data[0].path + 'cropped/' + data[0].name
-		$("#product_image").attr('src', image_url)
-		.load ->
-			$("#loadingImage").fadeOut 600
-=======
 				$j('#write_review_li').addClass('selected')
 			$j('.content_div').hide()
 			$j('#' + active_div).show()
@@ -92,7 +42,8 @@ update_image = () ->
 	$j(".option").on 'click', ->
 		if(!$j(this).hasClass('multi'))
 			$j("input[option_type_id='" + $j(this).attr('option_type_id') + "']").val($j(this).attr('option_id'))
-			#$j(".option").removeClass('selected')
+			opt_id = $j(this).attr('option_type_id')
+			$j(".option[option_type_id='" + opt_id + "']").removeClass('selected')
 			$j(this).addClass('selected')
 			update_image()
 		else
@@ -157,5 +108,4 @@ update_image = () ->
             zoomHeight: 600,
             alwaysOn:false
         });
->>>>>>> e2c4492b9967997e5368a213c4dff8787ca628c5
 		return
