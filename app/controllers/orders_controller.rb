@@ -47,7 +47,12 @@ class OrdersController < ApplicationController
       session[:order][:tax] = @tax.to_f
       ship = Shipping.new
       weight = current_cart.line_items.map(&:weight).sum
-      @shipping_options = ship.getShippingRates(@order.zip, weight, current_cart.subtotal.to_f)
+      if(session[:promo] == 130)
+        free_shipping = true
+      else
+        free_shipping = false
+      end
+      @shipping_options = ship.getShippingRates(@order.zip, weight, current_cart.subtotal.to_f, free_shipping)
       if current_order[:shipping_method_id].blank?
         session[:order][:shipping_method_id] = @shipping_options[0][:id]
         session[:order][:shipping_cost] = @shipping_options[0][:price]

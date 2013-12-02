@@ -3,7 +3,7 @@ include ActiveMerchant::Shipping
 class Shipping < ActiveRecord::Base
   attr_accessible :display_text, :cost
 
-  def getShippingRates(zip, weight, subtotal)
+  def getShippingRates(zip, weight, subtotal, free_shipping)
     #weight = current_cart.weight.sum
     if !defined? weight
       weight = 10
@@ -18,6 +18,9 @@ class Shipping < ActiveRecord::Base
     rates = []
     shipping_types = Shipping.all
     standard_shipping = ShippingCostRate::find_best_shipping_cost('*', subtotal )
+    if free_shipping == true
+      standard_shipping[:shipping_cost] = 0
+    end
     rates.push({id: shipping_types[0][:id], name: shipping_types[0][:display_text], price: standard_shipping[:shipping_cost] })
   	response.rates.each do |rate|
       shipping_types.each do |type|

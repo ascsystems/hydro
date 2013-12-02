@@ -29,7 +29,12 @@ class CartsController < ApplicationController
   def getShipping
     ship = Shipping.new
     weight = current_cart.line_items.map(&:weight).sum
-    rates = ship.getShippingRates(params[:shipping_zip], weight.to_f, current_cart.subtotal.to_f)
+    if(session[:promo] == 130)
+      free_shipping = true
+    else
+      free_shipping = false
+    end
+    rates = ship.getShippingRates(params[:shipping_zip], weight.to_f, current_cart.subtotal.to_f, free_shipping)
     render json: rates
   end
 
