@@ -151,9 +151,12 @@ class Order < ActiveRecord::Base
   def self.netsuiteBatch
     orders = Order.where(netsuite_status: 'New')
     orders.each do |o|
-      begin 
-        o.submitToNetSuite
-        o.netsuite_status = 'Imported'
+      begin
+        if o.submitToNetSuite
+          o.netsuite_status = 'Imported'
+        else
+          o.netsuite_status = 'Error'
+        end
       rescue Exception => e
         o.netsuite_status = 'Error'
       end
