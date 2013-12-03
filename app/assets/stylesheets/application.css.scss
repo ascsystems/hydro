@@ -695,6 +695,34 @@ ul.hydro_subnav {
   z-index:999;
 }
 
+#top-promo {
+    position:relative;
+    display:block;
+    top:0;
+    width:100%;
+    height: 27px;
+    background-color: #3f944b;
+   
+    span {
+        display: inline-block;
+	vertical-align: middle;
+        width: 100%;
+        
+	p {
+            line-height: 27px;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: auto;
+            color: white;
+            
+            a {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
 @import 'accounts';
 @import 'ambassadors';
 @import 'carts';
