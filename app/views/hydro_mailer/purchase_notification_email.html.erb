@@ -16,7 +16,13 @@
 
     </style>
     <div id="checkout_page">
-    	<h3>Thank you for your purchase from Hydro Flask! Here is a copy of your receipt for your records.</h3>
+      <p>Hello,</p>
+      <p>Welcome to the Hydro Flask family! Thank you for your purchase from the Hydro Flask Online store.  This email is confirmation that your order has been received. We will send you another email with the shipping and tracking information when your order ships in 3-5 business days. </p>
+      <p>If you have any questions or need to discuss your order in the interim, please contact us at 888.58HYDRO (584-9376) or <a href="mailto:info@hydroflask.com">info@hydroflask.com</a> and reference your order number <%= @order.invoice_number %> and order date <%= @order.created_at  %>.</p>
+      <p>Hydro Flask is proud to offer a <a href="http://www.hydroflask.com/pages/lifetime-warranty">Lifetime Warranty</a> on all our products. Please visit our web site for <a href="http://www.hydroflask.com/pages/lifetime-warranty">details</a>, as well as information on <a href="http://www.hydroflask.com/pages/returns">returns</a>.</p>
+      <p>If you're interested in receiving special offers, discounts and promotions from Hydro Flask, please sign up for our newsletter at the bottom of every <a href="http://www.hydroflask.com">Hydro Flask page</a>. You may unsubscribe from the e-mails at any time by clicking on the "unsubscribe" link located at the bottom.</p>
+      <p>Thanks again for your order and for being a fan of Hydro Flask!<br>Happy hydrating,</p>
+      <p>Hydro Flask</p>
       <h3>Order #: <%= @order.invoice_number %></h3>
       <h3>Your Items</h3>
       <% @order.line_items.each do |item| %>
