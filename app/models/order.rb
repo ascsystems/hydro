@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   has_many :line_items
   has_one :cart
   belongs_to :account  # optional linkage (an order can be done by a "guest" not signed in)
-  belongs_to :shipping, :foreign_key => 'shipping_method_id'
+  belongs_to :shipping, foreign_key: 'shipping_method_id'
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
   validates :state, presence: true
   validates :zip, presence: true
   validates :phone, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, email_format: {message: 'is invalid'}
   validates :billing_address, presence: true
   validates :billing_city, presence: true
   validates :billing_state, presence: true
@@ -183,13 +183,15 @@ class Order < ActiveRecord::Base
     customer_id = self.getNetSuiteCustomer
     if customer_id == nil
       customer_id = self.newNetSuiteCustomer
+    else
+      self.addAddressesToNetsuite(customer_id)
     end
     shipping_method = Shipping.find(self.shipping_method_id)
     line_items = []
     self.line_items.each do |li|
       line_items.push({quantity: li.quantity, item: NetSuite::Records::RecordRef.new(internal_id: li.netsuite_id, type: 'inventoryItem')})
     end
-    netsuite_sales_order = {entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', other_ref_num: self.invoice_number, custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: shipping_method.netsuite_id}), shipping_cost: self.shipping_cost.to_f, cc_approved: TRUE, payment_method: NetSuite::Records::RecordRef.new({internal_id: 5})}
+    netsuite_sales_order = {entity: NetSuite::Records::RecordRef.new({ internal_id: customer_id, type: 'customer' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), order_status: '_pendingApproval', other_ref_num: self.invoice_number, custom_field_list: { custom_field: { internal_id: "custbody7", value: "37891", type: "platformCore:StringCustomFieldRef" } }, item_list: { item: line_items }, ship_method: NetSuite::Records::RecordRef.new({internal_id: shipping_method.netsuite_id}), shipping_cost: self.shipping_cost.to_f, cc_approved: TRUE, payment_method: NetSuite::Records::RecordRef.new({internal_id: 5}), to_be_emailed: false}
     if !self.promotion_id.blank?
       netsuite_sales_order[:promo_code] = NetSuite::Records::RecordRef.new({ internal_id: self.promotion_id })
     end
@@ -204,6 +206,11 @@ class Order < ActiveRecord::Base
     customer = NetSuite::Records::Customer.new(custom_field_list: { custom_field: [{ internal_id: "custentity4", value: self.email.strip, type: "platformCore:StringCustomFieldRef" }, { internal_id: "custentity2", value: "23", type: "platformCore:StringCustomFieldRef" }] }, email: self.email.strip, phone: self.phone.strip, category: NetSuite::Records::RecordRef.new({ internal_id: 11, type: 'customerCategory' }), partner: NetSuite::Records::RecordRef.new({ internal_id: 11673, type: 'partner' }), is_person: TRUE, first_name: self.first_name[0..31].strip, last_name: self.last_name[0..31].strip, addressbook_list: { addressbook: [{ default_shipping: TRUE, default_billing: FALSE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone.strip, addr1: self.address.strip, addr2: self.address2.strip, city: self.city.strip, state: self.state.strip, zip: self.zip.strip, country:"_unitedStates" }, { default_shipping: FALSE, default_billing: TRUE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone.strip, addr1: self.billing_address.strip, addr2: self.billing_address2.strip, city: self.billing_city.strip, state: self.billing_state.strip, zip: self.billing_zip.strip, country:"_unitedStates" }] }, parent: NetSuite::Records::RecordRef.new({ internal_id: 38043 }))
     customer.add
     customer.internal_id
+  end
+
+  def addAddressesToNetsuite(id)
+    customer = NetSuite::Records::Customer.get(internal_id: id)
+    customer.update addressbook_list: { addressbook: [{ default_shipping: TRUE, default_billing: FALSE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone.strip, addr1: self.address.strip, addr2: self.address2.strip, city: self.city.strip, state: self.state.strip, zip: self.zip.strip, country:"_unitedStates" }, { default_shipping: FALSE, default_billing: TRUE, is_residential: TRUE, addressee: "#{self.first_name} #{self.last_name}", phone: self.phone.strip, addr1: self.billing_address.strip, addr2: self.billing_address2.strip, city: self.billing_city.strip, state: self.billing_state.strip, zip: self.billing_zip.strip, country:"_unitedStates" }] }
   end
 
 end

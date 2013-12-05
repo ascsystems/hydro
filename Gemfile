@@ -12,6 +12,7 @@ gem 'actionview-encoded_mail_to'
 gem 'rails-perftest'
 gem 'actionpack-xml_parser', github: 'rails/actionpack-xml_parser'
 gem 'dalli'
+gem 'validates_email_format_of'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
