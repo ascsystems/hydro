@@ -12,8 +12,9 @@ $j ->
 	 			items = []
 					$j.each data, ( k, v ) ->
 						items.push('<li>' + v.name + ' - $' + (v.price * 1).toFixed(2) + '&nbsp;&nbsp;&nbsp;<input type="radio" name="shipping" price="' + (v.price * 1).toFixed(2) + '" value="' + v.id + '" /></li>')
-					$j("#cart_page #shipping").html('<p>Select your shipping option:</p>')
+					$j("#cart_page #shipping").html('<p>Select your shipping option*:</p>')
 					$j( "<ul/>", { "class": "shipping-list", html: items.join( "" ) }).appendTo("#cart_page #shipping")
+					$j("<p>*Please allow up to 3 business days for processing.</p>").css('font-size','.65em').appendTo("#cart_page #shipping");
 			return false
 		else
 			alert("Zip code field is blank.")
