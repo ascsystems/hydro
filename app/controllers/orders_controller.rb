@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
       session[:order][:tax] = @tax.to_f
       ship = Shipping.new
       weight = current_cart.line_items.map(&:weight).sum
-      if(session[:promo] == 130)
+      if(session[:promo] == 130 || session[:promo] == 136)
         free_shipping = true
       else
         free_shipping = false
